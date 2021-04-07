@@ -1,0 +1,478 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PAT「1004 To Buy or Not to Buy - Hard Version (35分)」 | お前はどこまで見えている</title><meta name="keywords" content="题解"><meta name="author" content="BlueHeart0621"><meta name="copyright" content="BlueHeart0621"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 题目 题目链接：PAT「1004 To Buy or Not to Buy - Hard Version (35分)」 。 Description Eva would like to make a string of beads with her favorite colors so she went to a small shop to buy some beads. There were">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PAT「1004 To Buy or Not to Buy - Hard Version (35分)」">
+<meta property="og:url" content="https://blueheart0621.gitee.io/2020/08/18/ACM/%E9%A2%98%E8%A7%A3/PAT%E3%80%8C1004%20To%20Buy%20or%20Not%20to%20Buy%20-%20Hard%20Version%20(35%E5%88%86)%E3%80%8D/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="1. 题目 题目链接：PAT「1004 To Buy or Not to Buy - Hard Version (35分)」 。 Description Eva would like to make a string of beads with her favorite colors so she went to a small shop to buy some beads. There were">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/601.jpg">
+<meta property="article:published_time" content="2020-08-18T03:06:00.000Z">
+<meta property="article:modified_time" content="2021-04-07T20:21:16.184Z">
+<meta property="article:author" content="BlueHeart0621">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/601.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blueheart0621.gitee.io/2020/08/18/ACM/%E9%A2%98%E8%A7%A3/PAT%E3%80%8C1004%20To%20Buy%20or%20Not%20to%20Buy%20-%20Hard%20Version%20(35%E5%88%86)%E3%80%8D/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?77434b78ec5f92549029e3806439191e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-7ET63NY1QB"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7ET63NY1QB');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "65unewt437");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-08 04:21:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/portrait.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">304</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/601.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">お前はどこまで見えている</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PAT「1004 To Buy or Not to Buy - Hard Version (35分)」</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-18T03:06:00.000Z" title="发表于 2020-08-18 11:06:00">2020-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-07T20:21:16.184Z" title="更新于 2021-04-08 04:21:16">2021-04-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ACM/">ACM</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ACM/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">932</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PAT「1004 To Buy or Not to Buy - Hard Version (35分)」"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-题目">1. 题目</h2>
+<p>题目链接：<a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805148990160896/problems/994805155206119424">PAT「1004 To Buy or Not to Buy - Hard Version (35分)」</a> 。</p>
+<h3 id="Description">Description</h3>
+<p>Eva would like to make a string of beads with her favorite colors so she went to a small shop to buy some beads. There were many colorful strings of beads. However the owner of the shop would only sell the strings in whole pieces. Hence in some cases Eva might have to buy several strings to get all the beads she needs. With a hundred strings in the shop, Eva needs your help to tell her whether or not she can get all the beads she needs with the least number of extra beads she has to pay for.</p>
+<p>For the sake of simplicity, let’s use the characters in the ranges [0-9], [a-z], and [A-Z] to represent the colors. In sample 1, buying the 2nd and the last two strings is the best way since there are only 3 extra beads. In sample 2, buying all the three strings won’t help since there are three R beads missing.</p>
+<h3 id="Input-Specification">Input Specification:</h3>
+<p>Each input file contains one test case. Each case first gives in a line the string that Eva wants. Then a positive integer N (≤100) is given in the next line, followed by N lines of strings that belong to the shop. All the strings contain no more than 1000 beads.</p>
+<h3 id="Output-Specification">Output Specification:</h3>
+<p>For each test case, print your answer in one line. If the answer is Yes, then also output the least number of extra beads Eva has to buy; or if the answer is No, then also output the number of beads missing from all the strings. There must be exactly 1 space between the answer and the number.</p>
+<h3 id="Sample-Input-1">Sample Input 1:</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">RYg5</span><br><span class="line">8</span><br><span class="line">gY5Ybf</span><br><span class="line">8R5</span><br><span class="line">12346789</span><br><span class="line">gRg8h</span><br><span class="line">5Y37</span><br><span class="line">pRgYgbR52</span><br><span class="line">8Y</span><br><span class="line">8g</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output-1">Sample Output 1:</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Yes 3</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Input-2">Sample Input 2:</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">YrRR8RRrY</span><br><span class="line">3</span><br><span class="line">ppRGrrYB225</span><br><span class="line">8ppGrrB25</span><br><span class="line">Zd6KrY</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output-2">Sample Output 2:</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">No 3</span><br></pre></td></tr></table></figure>
+<h2 id="2-题解">2. 题解</h2>
+<h3 id="分析">分析</h3>
+<p>初一看题，以为是 dp，然后发现状态太多了，根本无法 dp，左思右想没有好办法，只能暴力 dfs + 剪枝了（如果有其他更好的解法，希望大佬告知 :) 感谢 ），由于 PAT 上的数据太弱了，这都能过！剪枝主要考虑两个：</p>
+<ul>
+<li>如果所有珠子串都用上仍然无法满足要求，则直接退出 bfs</li>
+<li>如果 bfs 当前发现多余的珠子比原来的答案还多，则直接剪掉当前分支；如果当前刚好满足要求且多余的珠子数比原来的答案少，则更新当前答案</li>
+</ul>
+<h3 id="代码">代码</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1e7</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">110</span>, MAXLEN = <span class="number">1010</span>, MAXCHAR = <span class="number">62</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[MAXLEN];</span><br><span class="line"><span class="keyword">char</span> strs[MAXN][MAXLEN];</span><br><span class="line"><span class="keyword">int</span> bead[MAXCHAR];</span><br><span class="line"><span class="keyword">int</span> beads[MAXN][MAXCHAR];</span><br><span class="line"><span class="keyword">int</span> len_str;</span><br><span class="line"><span class="keyword">int</span> len_strs[MAXN];</span><br><span class="line"><span class="keyword">int</span> ans = INF;</span><br><span class="line"><span class="keyword">int</span> res = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字母映射到连续数值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maping</span><span class="params">(<span class="keyword">char</span> ch)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans;</span><br><span class="line">    <span class="keyword">if</span>(ch &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">        ans = ch - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(ch &lt;= <span class="string">&#x27;Z&#x27;</span>) &#123;</span><br><span class="line">        ans = ch - <span class="string">&#x27;A&#x27;</span> + <span class="number">10</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ans = ch - <span class="string">&#x27;a&#x27;</span> + <span class="number">36</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算每个珠子串对应珠子的个数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">genBead</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    len_str = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(str[len_str]) &#123;</span><br><span class="line">        ++bead[maping(str[len_str++])];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(strs[i][len]) &#123;</span><br><span class="line">            ++beads[i][maping(strs[i][len++])];</span><br><span class="line">        &#125;</span><br><span class="line">        len_strs[i] = len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 暴力 bfs + 剪枝</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> sans, <span class="keyword">int</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 如果全部珠子串都无法集齐所有珠子则直接退出（剪枝）</span></span><br><span class="line">    <span class="keyword">if</span>(res &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 保存现场</span></span><br><span class="line">    <span class="keyword">int</span> curlen_str;</span><br><span class="line">    <span class="keyword">int</span> curbead[MAXCHAR];</span><br><span class="line">    curlen_str = len_str;</span><br><span class="line">    <span class="built_in">memcpy</span>(curbead, bead, <span class="keyword">sizeof</span>(bead));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAXCHAR; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> y = min(bead[i], beads[x][i]);</span><br><span class="line">        len_str -= y;</span><br><span class="line">        bead[i] -= y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> use = curlen_str - len_str;</span><br><span class="line">    <span class="keyword">int</span> curans = sans + len_strs[x] - use;</span><br><span class="line">    <span class="comment">// 记录所有珠子串都用上还差的珠子数</span></span><br><span class="line">    <span class="keyword">if</span>(x == n<span class="number">-1</span> &amp;&amp; res == <span class="number">-1</span>) &#123;</span><br><span class="line">        res = len_str;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(curans &lt; ans) &#123;</span><br><span class="line">        <span class="comment">// 如果当前代价小于答案才继续 bfs（剪枝）</span></span><br><span class="line">        <span class="keyword">if</span>(len_str) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = x+<span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">                dfs(curans, i, n);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans = curans;</span><br><span class="line">            res = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 恢复现场</span></span><br><span class="line">    len_str = curlen_str;</span><br><span class="line">    <span class="built_in">memcpy</span>(bead, curbead, <span class="keyword">sizeof</span>(bead));</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算答案</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">answer</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        dfs(<span class="number">0</span>, i, n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s%d&quot;</span>, str, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n/<span class="number">2</span>; ++i) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, strs[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n<span class="number">-1</span>; i &gt;= n/<span class="number">2</span>; --i) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, strs[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    genBead(n);</span><br><span class="line">    answer(n);</span><br><span class="line">    <span class="keyword">if</span>(ans &lt; INF) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Yes %d\n&quot;</span>, ans);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;No %d\n&quot;</span>, res);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">BlueHeart0621</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blueheart0621.gitee.io/2020/08/18/ACM/%E9%A2%98%E8%A7%A3/PAT%E3%80%8C1004%20To%20Buy%20or%20Not%20to%20Buy%20-%20Hard%20Version%20(35%E5%88%86)%E3%80%8D/">https://blueheart0621.gitee.io/2020/08/18/ACM/题解/PAT「1004 To Buy or Not to Buy - Hard Version (35分)」/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://BlueHeart0621.gitee.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></div><div class="post_share"><div class="social-share" data-image="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/601.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/08/18/ACM/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E6%A0%91/%E6%A0%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/217.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">树</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/14/ACM/%E7%AE%97%E6%B3%95/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/36.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">凸包算法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/09/08/ACM/题解/CF1405D「Tree Tag」/" title="CF1405D「Tree Tag」"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/196.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-08</div><div class="title">CF1405D「Tree Tag」</div></div></a></div><div><a href="/2020/09/10/ACM/题解/CF1407D「Discrete Centrifugal Jumps」/" title="CF1407D「Discrete Centrifugal Jumps」"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/841.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-10</div><div class="title">CF1407D「Discrete Centrifugal Jumps」</div></div></a></div><div><a href="/2020/09/06/ACM/题解/CF1409F「Subsequences of Length Two」/" title="CF1409F「Subsequences of Length Two」"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1318.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-06</div><div class="title">CF1409F「Subsequences of Length Two」</div></div></a></div><div><a href="/2020/09/07/ACM/题解/P1352「没有上司的舞会」/" title="P1352「没有上司的舞会」"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1325.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-07</div><div class="title">P1352「没有上司的舞会」</div></div></a></div><div><a href="/2020/08/30/ACM/题解/P1169「棋盘制作」/" title="P1169「棋盘制作」"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/66.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-30</div><div class="title">P1169「棋盘制作」</div></div></a></div><div><a href="/2021/01/26/ACM/题解/P1439「【模板】最长公共子序列」/" title="P1439「【模板】最长公共子序列」"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/121.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-26</div><div class="title">P1439「【模板】最长公共子序列」</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/portrait.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">BlueHeart0621</div><div class="author-info__description">欢迎来到我的博客星球^_^</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">304</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/BlueHeart0621"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/BlueHeart0621" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:BlueHeart0621@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">1. 题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.2.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-Specification"><span class="toc-number">1.3.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">1.4.</span> <span class="toc-text">Sample Input 1:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">1.5.</span> <span class="toc-text">Sample Output 1:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">1.6.</span> <span class="toc-text">Sample Input 2:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">1.7.</span> <span class="toc-text">Sample Output 2:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%A2%98%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">2. 题解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">代码</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/04/03/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/990.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX色彩"/></a><div class="content"><a class="title" href="/2021/04/03/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩">LaTeX色彩</a><time datetime="2021-04-03T15:41:46.000Z" title="发表于 2021-04-03 23:41:46">2021-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/03/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1582.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX标题控制"/></a><div class="content"><a class="title" href="/2021/04/03/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制">LaTeX标题控制</a><time datetime="2021-04-03T02:41:00.000Z" title="发表于 2021-04-03 10:41:00">2021-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/30/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/723.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX浮动体"/></a><div class="content"><a class="title" href="/2021/03/30/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体">LaTeX浮动体</a><time datetime="2021-03-30T11:21:45.000Z" title="发表于 2021-03-30 19:21:45">2021-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/29/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX插图"/></a><div class="content"><a class="title" href="/2021/03/29/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图">LaTeX插图</a><time datetime="2021-03-29T06:22:03.000Z" title="发表于 2021-03-29 14:22:03">2021-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/26/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/" title="LaTeX幻灯片提纲"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/209.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX幻灯片提纲"/></a><div class="content"><a class="title" href="/2021/03/26/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/" title="LaTeX幻灯片提纲">LaTeX幻灯片提纲</a><time datetime="2021-03-26T12:49:47.000Z" title="发表于 2021-03-26 20:49:47">2021-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By BlueHeart0621</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'J9cPq1lUHLm7JmqKQiM2vQzX-MdYXbMMI',
+      appKey: 'OWjsGwfWuEDllgfJ9zRpFmrS',
+      placeholder: '说点什么吧~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://J9cPq1lU.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'J9cPq1lUHLm7JmqKQiM2vQzX-MdYXbMMI',
+        "X-LC-Key": 'OWjsGwfWuEDllgfJ9zRpFmrS',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "7948a394-b90b-47d5-84d5-6e38eae0306f";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (true) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-7ET63NY1QB', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

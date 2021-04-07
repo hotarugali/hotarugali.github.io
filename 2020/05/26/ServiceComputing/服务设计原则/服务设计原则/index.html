@@ -1,0 +1,987 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>服务设计原则 | お前はどこまで見えている</title><meta name="keywords" content="ServiceComputing"><meta name="author" content="BlueHeart0621"><meta name="copyright" content="BlueHeart0621"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 标准化服务合约 1.1 服务合约  建立了与服务交互有关的术语 提供了技术限制和需求，及服务的拥有者希望对外公布的所有语义信息   1.2 标准化服务合约  使用形式化或者标准化的合约    服务功能描述的标准化 服务数据表示的标准化    提倡尽量保持不同服务之间、在数据总体模型和特定数据类型之间的一致性    非标准化的服务数据表示将导致频繁的数据转换 Schema 被单独设计和实现，与">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务设计原则">
+<meta property="og:url" content="https://blueheart0621.gitee.io/2020/05/26/ServiceComputing/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="1. 标准化服务合约 1.1 服务合约  建立了与服务交互有关的术语 提供了技术限制和需求，及服务的拥有者希望对外公布的所有语义信息   1.2 标准化服务合约  使用形式化或者标准化的合约    服务功能描述的标准化 服务数据表示的标准化    提倡尽量保持不同服务之间、在数据总体模型和特定数据类型之间的一致性    非标准化的服务数据表示将导致频繁的数据转换 Schema 被单独设计和实现，与">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/821.jpg">
+<meta property="article:published_time" content="2020-05-26T02:44:00.000Z">
+<meta property="article:modified_time" content="2021-04-07T20:21:16.210Z">
+<meta property="article:author" content="BlueHeart0621">
+<meta property="article:tag" content="ServiceComputing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/821.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blueheart0621.gitee.io/2020/05/26/ServiceComputing/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?77434b78ec5f92549029e3806439191e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-7ET63NY1QB"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7ET63NY1QB');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "65unewt437");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-08 04:21:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/portrait.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">304</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/821.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">お前はどこまで見えている</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">服务设计原则</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-26T02:44:00.000Z" title="发表于 2020-05-26 10:44:00">2020-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-07T20:21:16.210Z" title="更新于 2021-04-08 04:21:16">2021-04-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ServiceComputing/">ServiceComputing</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="服务设计原则"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-标准化服务合约">1. 标准化服务合约</h2>
+<h3 id="1-1-服务合约">1.1 服务合约</h3>
+<ul>
+<li>建立了与服务交互有关的术语</li>
+<li>提供了技术限制和需求，及服务的拥有者希望对外公布的所有语义信息</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ServiceComputing/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/./%E6%9C%8D%E5%8A%A1%E5%90%88%E7%BA%A6.png" alt="服务合约"></p>
+<h3 id="1-2-标准化服务合约">1.2 标准化服务合约</h3>
+<ul>
+<li>使用形式化或者标准化的合约</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务功能描述的标准化</li>
+<li>服务数据表示的标准化</li>
+</ol>
+<blockquote>
+<ul>
+<li>提倡尽量保持不同服务之间、在数据总体模型和特定数据类型之间的一致性</li>
+</ul>
+<blockquote>
+<ol>
+<li>非标准化的服务数据表示将导致频繁的数据转换</li>
+<li>Schema 被单独设计和实现，与使用它的服务操作分离</li>
+<li>采用“Schema 集中化”的设计模式，倡导对每个信息集合定义一个“官方”的 Schema</li>
+<li>可以将一个企业划分为多个分离的领域，每个领域都可以被独立地进行标准化和治理</li>
+</ol>
+</blockquote>
+<ul>
+<li>除集中式的 Schema 外，也常常需要提供特定服务相关类型的额外的 Schema</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>服务策略的标准化</li>
+</ol>
+<blockquote>
+<ul>
+<li>WS-Policy 定义为服务合约添加了一个单独的潜在抽象层次</li>
+<li>使得逻辑能以单独的策略断言的形式存在于物理上独立的策略定义文档中</li>
+<li>多层次的标准化</li>
+</ul>
+<blockquote>
+<ol>
+<li>专用的断言词汇</li>
+<li>参数和嵌套策略</li>
+<li>策略的模块化和集中化</li>
+<li>结构化标准</li>
+</ol>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>其他的设计原则也会直接影响到合约的定位、设计以及最终的使用</li>
+</ul>
+<h3 id="2-3-合约与服务设计">2.3 合约与服务设计</h3>
+<ul>
+<li>数据表示标准化和转换的避免</li>
+</ul>
+<blockquote>
+<p>在对服务记性集成时，统一的数据结构减少转换环节</p>
+</blockquote>
+<ul>
+<li>标准化与粒度</li>
+</ul>
+<blockquote>
+<ol>
+<li>标准化带来合适的粒度</li>
+<li>服务级别的粒度通常受到服务模型的选择的影响</li>
+<li>设计标准引入或改变服务操作的粒度</li>
+<li>设计标准引入或改变数据的粒度</li>
+</ol>
+</blockquote>
+<ul>
+<li>标准化服务合约与服务模型</li>
+</ul>
+<blockquote>
+<ol>
+<li>以不同的标准适应不同的服务模型</li>
+<li>通用类型模板</li>
+</ol>
+<blockquote>
+<ul>
+<li>以实体为核心的服务</li>
+<li>应用服务</li>
+<li>以任务为核心的服务</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>为同一种服务模型应用同一组设计标准和命名惯例</li>
+</ol>
+</blockquote>
+<ul>
+<li>服务合约设计的相关风险</li>
+</ul>
+<blockquote>
+<ol>
+<li>版本化（服务合约的演化）</li>
+</ol>
+<blockquote>
+<ul>
+<li>服务实施后，就可能建立起与服务消费者之间的依赖关系</li>
+<li>底层逻辑越是可复用，那些需要消费它的程度的数量和消费频率就会越大</li>
+<li>可扩展可能引入“破坏”既定合约的重大变化，从而导致发布新的服务版本的要求</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li>技术依赖</li>
+</ol>
+<blockquote>
+<ul>
+<li>不同的编程语言和开发平台来实现</li>
+</ul>
+<blockquote>
+<ol>
+<li>使用基于构件的系统并通过增强的 RPC 技术以支持面向服务</li>
+<li>Web Service 平台以及它的非专用通信框架</li>
+</ol>
+</blockquote>
+<ul>
+<li>操作性系统层的技术性变化导致服务合约变化</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>开发工具缺陷</li>
+</ol>
+<blockquote>
+<ul>
+<li>使用开发工具自动生成合约可能产生非标准化的服务合约</li>
+</ul>
+</blockquote>
+</blockquote>
+<h2 id="2-服务松散耦合">2. 服务松散耦合</h2>
+<h3 id="2-1-服务耦合（服务内及消费者依赖）">2.1 服务耦合（服务内及消费者依赖）</h3>
+<ul>
+<li>关注服务耦合在哪里发生</li>
+<li>关注一个服务组合中的各部分之间以及服务内部的各部分之间以及服务内部的各部分之间应该耦合到什么程度</li>
+</ul>
+<h3 id="2-2-服务松散耦合原则">2.2 服务松散耦合原则</h3>
+<p>服务的生命周期是一直要大于某个服务系统的生命周期。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ServiceComputing/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/./%E6%9C%8D%E5%8A%A1%E4%B8%8E%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%B4%E7%9A%84%E8%80%A6%E5%90%88%E5%85%B3%E7%B3%BB.png" alt="服务与消费者间的耦合关系"></p>
+<h3 id="2-3-服务合约耦合的类型">2.3 服务合约耦合的类型</h3>
+<ul>
+<li>“逻辑-合约”耦合（正面的、积极的耦合关系）</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务逻辑到服务合约的耦合</li>
+<li>合约优先</li>
+</ol>
+<blockquote>
+<ul>
+<li>首先设计合约，然后再设计底层的方案逻辑</li>
+<li>允许对底层逻辑进行微调以支持服务合约</li>
+<li>底层逻辑的微调能够优化运行效率和增强服务的健壮性</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>“合约优先”的过程会造成服务逻辑对服务合约的紧密耦合</li>
+<li>服务合约对服务逻辑无耦合，在相同的服务合约下，可以替换服务逻辑</li>
+</ol>
+</blockquote>
+<ul>
+<li>“合约-逻辑”耦合（负面的耦合，反模式，应尽可能避免）</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务合约到服务逻辑的耦合</li>
+<li>从现有的方案逻辑当中生成 Web Service</li>
+</ol>
+<blockquote>
+<ul>
+<li>合约设计中 WSDL 定义根据组件接口的定义自动生成</li>
+<li>XML Schema 从数据库表和其他数据模型中自动生成</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>往往会增加技术、功能和实现的耦合级别</li>
+<li>作为一种“反模式”，缩短服务合约生命周期，并限制服务的长期演化</li>
+</ol>
+</blockquote>
+<ul>
+<li>“合约-技术”耦合（不好的耦合）</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务合约到其底层技术的耦合</li>
+<li>有的时候服务是作为传统专用组件存在的，这就需要服务合约与服务相关的通信技术紧密地耦合</li>
+<li>所产生的“合约-技术”耦合会限制潜在的消费者</li>
+</ol>
+</blockquote>
+<ul>
+<li>“合约-实现”耦合（不好的耦合）</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务合约到其实现环境的耦合</li>
+<li>任何一个物理上发布的服务都会包含或者需要包含除了核心服务逻辑之外的一系列实现技术和产品，比如：</li>
+</ol>
+<blockquote>
+<ul>
+<li>物理数据库和相关的物理数据模型</li>
+<li>遗留系统 API</li>
+<li>用户和群组账户以及相关的物理目录结构</li>
+<li>物理服务器环境和相关的域名</li>
+<li>文件名和网络路径</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>实现相关的特性和细节可能会在服务合约的内容中体现出来，导致“合约-实现”耦合</li>
+</ol>
+</blockquote>
+<ul>
+<li>“合约-功能”耦合</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务合约到其外部逻辑的耦合</li>
+<li>当由一个服务（更确切地说是一个服务操作）所封装的逻辑被专门设计为支持服务边界之外的功能体的时候，就可能产生“合约-功能”耦合’</li>
+<li>该耦合会导致服务的复用性较差</li>
+<li>常见的“合约-功能”耦合包括</li>
+</ol>
+<blockquote>
+<ul>
+<li>上层进程耦合</li>
+<li>“服务-消费者”耦合</li>
+<li>任务服务（特意的功能耦合）</li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="2-4-服务消费者耦合的类型">2.4 服务消费者耦合的类型</h3>
+<ul>
+<li>“消费者-实现”耦合（不好的耦合）</li>
+</ul>
+<blockquote>
+<ol>
+<li>绕过服务合约，直接使用其他入口访问服务</li>
+</ol>
+</blockquote>
+<ul>
+<li>“消费者-合约”耦合</li>
+</ul>
+<blockquote>
+<ol>
+<li>本质上形成松散耦合跨服务关系的基础</li>
+<li>由于合约与其他因素的耦合关系而产生消费者与其他因素的直接和间接的耦合关系</li>
+</ol>
+</blockquote>
+<h3 id="2-5-服务松散耦合与服务设计">2.5 服务松散耦合与服务设计</h3>
+<ul>
+<li><strong>耦合与面向服务</strong>：“积极耦合” vs. “消极耦合”</li>
+<li><strong>服务松散耦合与粒度</strong>：粗粒度 vs. 细粒度</li>
+</ul>
+<blockquote>
+<ol>
+<li>过粗操作粒度，不必要的额外处理；过细操作粒度，过多服务往返开销。</li>
+<li>过粗数据粒度，接受无用的额外信息；过细数据粒度，没有足够信息，需要额外调用。</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>耦合与服务模型</strong>：实体服务、应用服务、任务服务、编排服务</li>
+</ul>
+<blockquote>
+<ol>
+<li>实体服务</li>
+</ol>
+<blockquote>
+<ul>
+<li>解耦的服务合约</li>
+<li>与业务实体本身高度耦合</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li>应用服务</li>
+</ol>
+<blockquote>
+<ul>
+<li>往往是高度耦合的（实现耦合）</li>
+<li>通过标准化服务合约，避免“消费者-实现”的间接耦合</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>任务服务</li>
+</ol>
+<blockquote>
+<ul>
+<li>有时是在功能上耦合的</li>
+<li>有时构成“服务-消费者”耦合</li>
+</ul>
+</blockquote>
+<ol start="4">
+<li>编排服务</li>
+</ol>
+<blockquote>
+<ul>
+<li>避免技术耦合</li>
+<li>无法避免“合约-实现”耦合</li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="2-6-服务松散耦合的相关风险">2.6 服务松散耦合的相关风险</h3>
+<ul>
+<li>“逻辑-合约”耦合的限制</li>
+</ul>
+<blockquote>
+<ol>
+<li>统一底层逻辑对应两个或者多个合约，从而建立多个入口，每一入口向不同类型的消费者暴露不同的服务能力</li>
+</ol>
+</blockquote>
+<ul>
+<li>数据类型耦合太“松散”</li>
+</ul>
+<blockquote>
+<ol>
+<li>为了强调服务的兼容性演化能力，通过过分简化合约，追求减少消费者依赖，仅确定了一些非常通用的数据类型（弱类型）</li>
+<li>验证并处理弱类型，增加服务所需的性能要求</li>
+<li>服务合约发布的信息越少，消费者程序就需要知道越多关于服务实现逻辑的信息，从而产生消极耦合</li>
+</ol>
+</blockquote>
+<h2 id="3-服务抽象（信息隐藏与元抽象类型）">3. 服务抽象（信息隐藏与元抽象类型）</h2>
+<ul>
+<li>服务发布的信息传达了它的目的和能力，并给潜在用户提供了关于该服务应该如何通过程序进行调用和使用的详细信息</li>
+<li>没有发布的服务信息用来保护它和未来用户之间形成的耦合关系的完整新，从而保障服务在合约的前提下进行演化的能力</li>
+<li>服务抽象原则就是为了获得信息隐藏的正确平衡点</li>
+</ul>
+<h3 id="3-1-服务抽象原则">3.1 服务抽象原则</h3>
+<ul>
+<li>服务合约中发布的信息越多，随后的“消费者-合约”耦合就会越深</li>
+<li>向负责设计服务消费程序的人呈现的信息越多，他们所知的底层逻辑、平台和服务相关的细节就会越多，导致事实上的“消费者-实现”耦合</li>
+</ul>
+<h3 id="3-2-服务元信息">3.2 服务元信息</h3>
+<ul>
+<li>元信息类型</li>
+</ul>
+<blockquote>
+<ol>
+<li>技术信息：描述底层服务逻辑的技术实现</li>
+</ol>
+<blockquote>
+<ul>
+<li>隐藏构建软件程序的技术细节是有益的，从而可以自由地进行技术上的变化而不影响现有的用户</li>
+<li>发布</li>
+</ul>
+<blockquote>
+<ol>
+<li>调用程序需要的技术</li>
+<li>与程序交互需要的技术</li>
+</ol>
+</blockquote>
+<ul>
+<li>隐藏</li>
+</ul>
+<blockquote>
+<ol>
+<li>写程序使用的编程语言</li>
+<li>程序使用的系统资源</li>
+</ol>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>功能信息：描述服务可以做什么</li>
+</ol>
+<blockquote>
+<ul>
+<li>功能抽象决定了程序的哪些能力通过技术合约是可见的</li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>程序逻辑信息：描述服务如何实现这些能力</li>
+</ol>
+<blockquote>
+<ul>
+<li>程序逻辑抽象（简称逻辑抽象）故意对外界隐藏程序的内部细节</li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>服务质量信息：描述服务的行为、限制和交互需求</li>
+</ol>
+<blockquote>
+<ul>
+<li>服务质量数据被用来描述一个服务的行为性的、基于规则的、和可靠性等相关的元信息</li>
+<li>比如：</li>
+</ul>
+<blockquote>
+<ol>
+<li>确保服务及时响应的并发访问阈值</li>
+<li>可用性限制</li>
+<li>决定服务对不同类型输入数据的处理和响应的业务规则</li>
+</ol>
+</blockquote>
+<ul>
+<li>使用策略或 SLA 等文档加以描述</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>不同类型的元数据可以不同的方法加以抽象，并使用不同的方式来描述和归档</li>
+</ul>
+<h3 id="3-3-服务抽象度量">3.3 服务抽象度量</h3>
+<ul>
+<li>合约内容的抽象级别（有效程度）</li>
+</ul>
+<blockquote>
+<ol>
+<li>详细的合约（暴露所有信息）</li>
+<li>简明的合约</li>
+<li>优化的合约</li>
+<li>混合的详细合约（服务能力位于不同的抽象级别）</li>
+</ol>
+</blockquote>
+<ul>
+<li>访问控制级别（源代码和设计规格）</li>
+</ul>
+<blockquote>
+<ol>
+<li>开放访问</li>
+<li>受控访问</li>
+<li>不可访问</li>
+</ol>
+</blockquote>
+<ul>
+<li>抽象级别与服务质量元信息<br>
+服务质量元信息也能够适用于抽象级别和访问控制级别</li>
+</ul>
+<h3 id="3-4-服务抽象-VS-服务封装">3.4 服务抽象 VS. 服务封装</h3>
+<ul>
+<li><strong>封装</strong>是指服务边界内部的逻辑、资源和信息（服务由合约及其所封装的东西组成）</li>
+<li><strong>抽象</strong>是指服务所封装的内容中，暴露给服务便捷之外的消费者程序的部分以及对他们隐藏的部分。抽象决定了封装逻辑中有多少是公开的</li>
+<li>在良好抽象的服务中，可以改变所封装的内容，而不会影响已经在使用该服务的消费者程序</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ServiceComputing/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/./%E6%9C%8D%E5%8A%A1%E5%B0%81%E8%A3%85%E4%B8%8E%E6%8A%BD%E8%B1%A1.png" alt="服务封装与抽象"></p>
+<ul>
+<li>封装遗留系统的服务</li>
+</ul>
+<blockquote>
+<ol>
+<li>抽象的程度可能需要依靠底层服务适配器和相应的遗留 API 来决定</li>
+<li>访问控制可能会很难实现</li>
+</ol>
+</blockquote>
+<ul>
+<li>封装定制组件的服务</li>
+</ul>
+<blockquote>
+<ol>
+<li>拥有定制的能力使得内容和访问抽象级别能够较好的定义</li>
+</ol>
+</blockquote>
+<ul>
+<li>封装服务的服务</li>
+</ul>
+<blockquote>
+<ol>
+<li>除了服务本身外，所封装的子服务也对内容和访问抽象级别有所影响</li>
+</ol>
+</blockquote>
+<h3 id="3-4-服务抽象与非技术合约文档">3.4 服务抽象与非技术合约文档</h3>
+<ul>
+<li>
+<p>除技术服务合约内容、源代码和设计规格的访问以外，还需讨论对非技术合约文档的抽象</p>
+</li>
+<li>
+<p>非技术的服务描述（如 SLA）为技术合约增加了额外的规则、约束、策略、保证和担保等，这些文档由服务拥有者建立，并应当被服务消费者程序设计人员所知晓</p>
+</li>
+<li>
+<p>如非技术的服务描述过于详细（依赖于当前实现），也为影响到服务的演化</p>
+</li>
+</ul>
+<h3 id="3-5-服务抽象与粒度">3.5 服务抽象与粒度</h3>
+<ul>
+<li>
+<p>服务抽象鼓励发布尽可能少的细节，以便在服务随时间而演化的过程中给服务的拥有者最大的自由度，这可能导致粗粒度的约束级别</p>
+</li>
+<li>
+<p>在使用策略时，可能导致暴露服务底层的逻辑、行为和参数选择的细节</p>
+</li>
+<li>
+<p>其他的面向服务原则（如服务松散耦合和服务自治）也提倡在服务合约中减少约束</p>
+</li>
+</ul>
+<h3 id="3-6-服务抽象与服务模型">3.6 服务抽象与服务模型</h3>
+<ul>
+<li>
+<p>实体服务与应用服务<br>
+抽象程度往往和所封装的定制逻辑<br>
+遗留 API 等密切相关；需要严格的访问控制，以确保服务合约的寿命和底层逻辑的可复用性</p>
+</li>
+<li>
+<p>任务服务与编排服务<br>
+无法达成过高的抽象级别</p>
+</li>
+</ul>
+<h3 id="3-7-服务抽象的相关风险">3.7 服务抽象的相关风险</h3>
+<ul>
+<li>多消费者耦合的要求</li>
+</ul>
+<blockquote>
+<ol>
+<li>不同消费者可能需要不同的技术接口细节，所需的抽象级别也不尽相同</li>
+<li>使用合约反规范化，提供不同界别的抽象级别</li>
+</ol>
+</blockquote>
+<ul>
+<li>认为误判</li>
+</ul>
+<blockquote>
+<ol>
+<li>过于抽象的服务合约导致曲解或不同充分理解一个服务，从而丧失潜在的复用机会</li>
+<li>过于具体的服务合约导致对服务的行为做出与服务相关的假设，从而导致实现偶合</li>
+</ol>
+</blockquote>
+<ul>
+<li>安全和隐私的考虑</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务合约可能暴露私有或者敏感信息</li>
+</ol>
+<blockquote>
+<ul>
+<li>不同的使用环境（组织内部 vs. 组织外部）</li>
+<li>并发和冗余的服务合约内容已解决这一问题</li>
+</ul>
+</blockquote>
+</blockquote>
+<h2 id="4-服务可复用性">4. 服务可复用性</h2>
+<h2 id="5-服务自治">5. 服务自治</h2>
+<h2 id="6-服务无状态性">6. 服务无状态性</h2>
+<h2 id="7-服务可发现性">7. 服务可发现性</h2>
+<h2 id="8-服务可组合性">8. 服务可组合性</h2>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">BlueHeart0621</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blueheart0621.gitee.io/2020/05/26/ServiceComputing/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">https://blueheart0621.gitee.io/2020/05/26/ServiceComputing/服务设计原则/服务设计原则/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://BlueHeart0621.gitee.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ServiceComputing/">ServiceComputing</a></div><div class="post_share"><div class="social-share" data-image="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/821.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/26/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/486.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">服务生态系统的构建</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/26/VSCode/VSCode%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/VSCode%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1278.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">VSCode常用快捷键</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/05/26/ServiceComputing/WebService扩展/WebService扩展/" title="WebService扩展"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/690.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">WebService扩展</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/WebService核心/WebService核心/" title="WebService核心"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/85.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">WebService核心</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/XML及相关协议/XML及相关协议/" title="XML及相关协议"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/827.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">XML及相关协议</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/服务、服务系统与面向服务的泛型/服务、服务系统与面向服务的泛型/" title="服务、服务系统与面向服务的泛型"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/37.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">服务、服务系统与面向服务的泛型</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/服务生态系统与面向服务的计算/服务生态系统与面向服务的计算/" title="服务生态系统与面向服务的计算"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1397.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">服务生态系统与面向服务的计算</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/服务生态系统的构建/服务生态系统的构建/" title="服务生态系统的构建"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/486.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">服务生态系统的构建</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/portrait.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">BlueHeart0621</div><div class="author-info__description">欢迎来到我的博客星球^_^</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">304</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/BlueHeart0621"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/BlueHeart0621" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:BlueHeart0621@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%87%E5%87%86%E5%8C%96%E6%9C%8D%E5%8A%A1%E5%90%88%E7%BA%A6"><span class="toc-number">1.</span> <span class="toc-text">1. 标准化服务合约</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%9C%8D%E5%8A%A1%E5%90%88%E7%BA%A6"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 服务合约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%A0%87%E5%87%86%E5%8C%96%E6%9C%8D%E5%8A%A1%E5%90%88%E7%BA%A6"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 标准化服务合约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%90%88%E7%BA%A6%E4%B8%8E%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">2.3 合约与服务设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9C%8D%E5%8A%A1%E6%9D%BE%E6%95%A3%E8%80%A6%E5%90%88"><span class="toc-number">2.</span> <span class="toc-text">2. 服务松散耦合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%9C%8D%E5%8A%A1%E8%80%A6%E5%90%88%EF%BC%88%E6%9C%8D%E5%8A%A1%E5%86%85%E5%8F%8A%E6%B6%88%E8%B4%B9%E8%80%85%E4%BE%9D%E8%B5%96%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 服务耦合（服务内及消费者依赖）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%9C%8D%E5%8A%A1%E6%9D%BE%E6%95%A3%E8%80%A6%E5%90%88%E5%8E%9F%E5%88%99"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 服务松散耦合原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%9C%8D%E5%8A%A1%E5%90%88%E7%BA%A6%E8%80%A6%E5%90%88%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 服务合约耦合的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%E8%80%85%E8%80%A6%E5%90%88%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 服务消费者耦合的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%9C%8D%E5%8A%A1%E6%9D%BE%E6%95%A3%E8%80%A6%E5%90%88%E4%B8%8E%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 服务松散耦合与服务设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E6%9C%8D%E5%8A%A1%E6%9D%BE%E6%95%A3%E8%80%A6%E5%90%88%E7%9A%84%E7%9B%B8%E5%85%B3%E9%A3%8E%E9%99%A9"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 服务松散耦合的相关风险</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E6%8A%BD%E8%B1%A1%EF%BC%88%E4%BF%A1%E6%81%AF%E9%9A%90%E8%97%8F%E4%B8%8E%E5%85%83%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%9E%8B%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">3. 服务抽象（信息隐藏与元抽象类型）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%9C%8D%E5%8A%A1%E6%8A%BD%E8%B1%A1%E5%8E%9F%E5%88%99"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 服务抽象原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%9C%8D%E5%8A%A1%E5%85%83%E4%BF%A1%E6%81%AF"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 服务元信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%9C%8D%E5%8A%A1%E6%8A%BD%E8%B1%A1%E5%BA%A6%E9%87%8F"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 服务抽象度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%9C%8D%E5%8A%A1%E6%8A%BD%E8%B1%A1-VS-%E6%9C%8D%E5%8A%A1%E5%B0%81%E8%A3%85"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 服务抽象 VS. 服务封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%9C%8D%E5%8A%A1%E6%8A%BD%E8%B1%A1%E4%B8%8E%E9%9D%9E%E6%8A%80%E6%9C%AF%E5%90%88%E7%BA%A6%E6%96%87%E6%A1%A3"><span class="toc-number">3.5.</span> <span class="toc-text">3.4 服务抽象与非技术合约文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E6%9C%8D%E5%8A%A1%E6%8A%BD%E8%B1%A1%E4%B8%8E%E7%B2%92%E5%BA%A6"><span class="toc-number">3.6.</span> <span class="toc-text">3.5 服务抽象与粒度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E6%9C%8D%E5%8A%A1%E6%8A%BD%E8%B1%A1%E4%B8%8E%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.7.</span> <span class="toc-text">3.6 服务抽象与服务模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-%E6%9C%8D%E5%8A%A1%E6%8A%BD%E8%B1%A1%E7%9A%84%E7%9B%B8%E5%85%B3%E9%A3%8E%E9%99%A9"><span class="toc-number">3.8.</span> <span class="toc-text">3.7 服务抽象的相关风险</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9C%8D%E5%8A%A1%E5%8F%AF%E5%A4%8D%E7%94%A8%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">4. 服务可复用性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9C%8D%E5%8A%A1%E8%87%AA%E6%B2%BB"><span class="toc-number">5.</span> <span class="toc-text">5. 服务自治</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%9C%8D%E5%8A%A1%E6%97%A0%E7%8A%B6%E6%80%81%E6%80%A7"><span class="toc-number">6.</span> <span class="toc-text">6. 服务无状态性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%9C%8D%E5%8A%A1%E5%8F%AF%E5%8F%91%E7%8E%B0%E6%80%A7"><span class="toc-number">7.</span> <span class="toc-text">7. 服务可发现性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%BB%84%E5%90%88%E6%80%A7"><span class="toc-number">8.</span> <span class="toc-text">8. 服务可组合性</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/04/03/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/990.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX色彩"/></a><div class="content"><a class="title" href="/2021/04/03/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩">LaTeX色彩</a><time datetime="2021-04-03T15:41:46.000Z" title="发表于 2021-04-03 23:41:46">2021-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/03/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1582.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX标题控制"/></a><div class="content"><a class="title" href="/2021/04/03/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制">LaTeX标题控制</a><time datetime="2021-04-03T02:41:00.000Z" title="发表于 2021-04-03 10:41:00">2021-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/30/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/723.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX浮动体"/></a><div class="content"><a class="title" href="/2021/03/30/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体">LaTeX浮动体</a><time datetime="2021-03-30T11:21:45.000Z" title="发表于 2021-03-30 19:21:45">2021-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/29/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX插图"/></a><div class="content"><a class="title" href="/2021/03/29/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图">LaTeX插图</a><time datetime="2021-03-29T06:22:03.000Z" title="发表于 2021-03-29 14:22:03">2021-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/26/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/" title="LaTeX幻灯片提纲"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/209.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX幻灯片提纲"/></a><div class="content"><a class="title" href="/2021/03/26/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/" title="LaTeX幻灯片提纲">LaTeX幻灯片提纲</a><time datetime="2021-03-26T12:49:47.000Z" title="发表于 2021-03-26 20:49:47">2021-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By BlueHeart0621</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'J9cPq1lUHLm7JmqKQiM2vQzX-MdYXbMMI',
+      appKey: 'OWjsGwfWuEDllgfJ9zRpFmrS',
+      placeholder: '说点什么吧~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://J9cPq1lU.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'J9cPq1lUHLm7JmqKQiM2vQzX-MdYXbMMI',
+        "X-LC-Key": 'OWjsGwfWuEDllgfJ9zRpFmrS',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "7948a394-b90b-47d5-84d5-6e38eae0306f";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (true) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-7ET63NY1QB', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

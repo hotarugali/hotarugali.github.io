@@ -1,0 +1,1075 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>体系结构复习笔记 | お前はどこまで見えている</title><meta name="keywords" content="ComputerArchitecture"><meta name="author" content="BlueHeart0621"><meta name="copyright" content="BlueHeart0621"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 定律 1.1 摩尔定律 集成电路上可容纳的晶体管数目，大约每隔两年便会增加一倍；  CMOS工艺的瓶颈使得摩尔定律逐渐失效。  1.2 登纳德缩放比例定律 每平方毫米的电路耗能几乎不变；  登纳德缩放比例定律2007年开始逐渐失效，到2012年几乎完全失效；  1.3 阿姆达定律 多核并行计算机的加速受到程序中串行计算部分的限制；  2. DSA 提高性能的四个原因  DSA为特定领域开发了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="体系结构复习笔记">
+<meta property="og:url" content="https://blueheart0621.gitee.io/2020/07/06/ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="1. 定律 1.1 摩尔定律 集成电路上可容纳的晶体管数目，大约每隔两年便会增加一倍；  CMOS工艺的瓶颈使得摩尔定律逐渐失效。  1.2 登纳德缩放比例定律 每平方毫米的电路耗能几乎不变；  登纳德缩放比例定律2007年开始逐渐失效，到2012年几乎完全失效；  1.3 阿姆达定律 多核并行计算机的加速受到程序中串行计算部分的限制；  2. DSA 提高性能的四个原因  DSA为特定领域开发了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/135.jpg">
+<meta property="article:published_time" content="2020-07-06T09:46:00.000Z">
+<meta property="article:modified_time" content="2021-04-07T20:21:16.200Z">
+<meta property="article:author" content="BlueHeart0621">
+<meta property="article:tag" content="ComputerArchitecture">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/135.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blueheart0621.gitee.io/2020/07/06/ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?77434b78ec5f92549029e3806439191e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-7ET63NY1QB"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7ET63NY1QB');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "65unewt437");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-08 04:21:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/portrait.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">304</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/135.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">お前はどこまで見えている</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">体系结构复习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-06T09:46:00.000Z" title="发表于 2020-07-06 17:46:00">2020-07-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-07T20:21:16.200Z" title="更新于 2021-04-08 04:21:16">2021-04-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ComputerArchitecture/">ComputerArchitecture</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="体系结构复习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-定律">1. 定律</h2>
+<h3 id="1-1-摩尔定律">1.1 摩尔定律</h3>
+<p>集成电路上可容纳的晶体管数目，大约每隔两年便会增加一倍；</p>
+<ul>
+<li>CMOS工艺的瓶颈使得摩尔定律逐渐失效。</li>
+</ul>
+<h3 id="1-2-登纳德缩放比例定律">1.2 登纳德缩放比例定律</h3>
+<p>每平方毫米的电路耗能几乎不变；</p>
+<ul>
+<li>登纳德缩放比例定律2007年开始逐渐失效，到2012年几乎完全失效；</li>
+</ul>
+<h3 id="1-3-阿姆达定律">1.3 阿姆达定律</h3>
+<p>多核并行计算机的加速受到程序中串行计算部分的限制；</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E5%90%88%E9%97%AE%E9%A2%98.png" alt="计算机体系结构复合问题"></p>
+<h2 id="2-DSA-提高性能的四个原因">2. DSA 提高性能的四个原因</h2>
+<ul>
+<li>DSA为特定领域开发了一种更有效的并行形式，例如：单指令多数据并行（SIMD）比多指令多数据并行（MIMD）更有效；</li>
+<li>DSA可以更有效地使用内存结构；</li>
+<li>DSA在适当的时候使用较低存储的精度；</li>
+<li>DSL（Domain-Specific Languages）编写的目标程序，具有更高的并行性，改善内存访问的结构和表示，应用程序更加有效地映射到特定处理器。</li>
+</ul>
+<h2 id="3-体系结构黄金时代来临">3. 体系结构黄金时代来临</h2>
+<p>主要原因：深度学习新运算架构的流行</p>
+<h2 id="4-并行">4. 并行</h2>
+<h3 id="4-1-多线程">4.1 多线程</h3>
+<h3 id="4-2-多工">4.2 多工</h3>
+<h3 id="4-3-多处理器">4.3 多处理器</h3>
+<ul>
+<li>困难点：性能编程、负载均衡、优化通信和同步</li>
+</ul>
+<h2 id="5-冗余实现可靠性">5. 冗余实现可靠性</h2>
+<p>Hadoop分布式文件系统（HDFS）将文件分成多个块存在不同的Ｄatanode中，每个Ｄatanode里的文件块都会有副本存在其他的Datanode中。当某个文件块丢失了，可以使用其副本替代，从而不会导致整个文件的损坏。</p>
+<h2 id="6-计算机效能">6. 计算机效能</h2>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./%E6%95%88%E8%83%BD%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F.png" alt="效能计算公式"><br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./%E6%95%88%E8%83%BD%E6%80%BB%E7%BB%93.png" alt="效能总结"></p>
+<h3 id="6-1-响应时间">6.1 响应时间</h3>
+<p>完成一项任务需要多长时间</p>
+<h3 id="6-2-吞吐量">6.2 吞吐量</h3>
+<p>每单位时间完成的总工作量</p>
+<h3 id="6-3-相对性能">6.3 相对性能</h3>
+<ul>
+<li>定义：性能 = 1 / 执行时间</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mfrac><mrow><mi>p</mi><mi>e</mi><mi>r</mi><mi>f</mi><mi>o</mi><mi>r</mi><mi>m</mi><mi>a</mi><mi>n</mi><mi>c</mi><msub><mi>e</mi><mi>x</mi></msub></mrow><mrow><mi>p</mi><mi>e</mi><mi>r</mi><mi>f</mi><mi>o</mi><mi>r</mi><mi>m</mi><mi>a</mi><mi>n</mi><mi>c</mi><msub><mi>e</mi><mi>y</mi></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>e</mi><mi>x</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><msub><mi>e</mi><mi>y</mi></msub></mrow><mrow><mi>e</mi><mi>x</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><msub><mi>e</mi><mi>x</mi></msub></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+{performance_x \over performance_y} = {execution\_time_y \over execution\_time_x}
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5506639999999998em;vertical-align:-0.525332em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0253319999999997em;"><span style="top:-3.0366679999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">c</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2818857142857143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">c</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5423199999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.988664em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">x</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">m</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.527em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">x</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">m</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2818857142857143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5619999999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.525332em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<h3 id="6-4-经过时间">6.4 经过时间</h3>
+<p>总响应时间，包括所有方面：处理，I / O，操作系统耗时，空闲时间。</p>
+<h3 id="6-5-CPU时间">6.5 CPU时间</h3>
+<p>处理给定工作所花费的时间。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>C</mi><mi>P</mi><mi>U</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>=</mo><mi>C</mi><mi>P</mi><mi>U</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>y</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi>s</mi><mo>×</mo><mi>C</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>y</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mi>C</mi><mi>P</mi><mi>U</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>y</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi>s</mi></mrow><mrow><mi>C</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+CPU\_time = CPU\_clock\_cycles \times Clock\_cycle\_time = {CPU\_clock\_cycles \over Clock\_rate}
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5751079999999997em;vertical-align:-0.537554em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0375539999999996em;"><span style="top:-3.0375539999999996em;"><span class="pstrut" style="height:3.013108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.013108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.527em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">U</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5619999999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.537554em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<h3 id="6-6-提高效能">6.6 提高效能</h3>
+<ul>
+<li>减少时钟周期数</li>
+<li>时钟频率提高</li>
+<li>硬件设计人员必须经常权衡时钟速率与周期数</li>
+</ul>
+<h3 id="6-7-指令数和CPI">6.7 指令数和CPI</h3>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>C</mi><mi>P</mi><mi>I</mi><mo>=</mo><mi>C</mi><mi>y</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi>s</mi><mi mathvariant="normal">_</mi><mi>p</mi><mi>e</mi><mi>r</mi><mi mathvariant="normal">_</mi><mi>i</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>C</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>y</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi>s</mi><mo>=</mo><mi>I</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi><mo>×</mo><mi>C</mi><mi>P</mi><mi>I</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>C</mi><mi>P</mi><mi>U</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>=</mo><mi>I</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi><mo>×</mo><mi>C</mi><mi>P</mi><mi>I</mi><mo>×</mo><mi>C</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>y</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mi>I</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi><mo>×</mo><mi>C</mi><mi>P</mi><mi>I</mi></mrow><mrow><mi>C</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+CPI = Cycles\_per\_instruction \\
+Clock\_cycles = Instruction\_count \times CPI \\
+CPU\_time = Instruction\_count \times CPI \times Clock\_cycle\_time = {Instruction\_count \times CPI \over Clock\_rate}
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.967331em;vertical-align:-1.7336655000000003em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.2336655em;"><span style="top:-4.3989965em;"><span class="pstrut" style="height:3.005331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">s</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">u</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span></span></span><span style="top:-3.1989964999999994em;"><span class="pstrut" style="height:3.005331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">u</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">c</span><span class="mord mathnormal">o</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span><span style="top:-1.8336654999999995em;"><span class="pstrut" style="height:3.005331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">u</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">c</span><span class="mord mathnormal">o</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.005331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.527em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5619999999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.7336655000000003em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>CPI在给定CPU上的程序之间有所不同</li>
+<li>程序的指令计数：由程序，ISA和编译器确定</li>
+<li>每条指令的平均周期：由CPU硬件决定（如果不同的指令具有不同的CPI，平均CPI受指令组合影响）</li>
+</ul>
+<p>不同的指令类别需要不同的周期数：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>C</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>y</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi>s</mi><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>C</mi><mi>P</mi><msub><mi>I</mi><mi>i</mi></msub><mo>×</mo><mi>I</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>n</mi><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>C</mi><mi>P</mi><mi>I</mi><mo>=</mo><mfrac><mrow><mi>C</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>y</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi>s</mi></mrow><mrow><mi>I</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi></mrow></mfrac><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>C</mi><mi>P</mi><msub><mi>I</mi><mi>i</mi></msub><mo>×</mo><mfrac><mrow><mi>I</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>n</mi><msub><mi>t</mi><mi>i</mi></msub></mrow><mrow><mi>I</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi></mrow></mfrac><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+Clock\_cycles = \sum_{i=1}^n(CPI_i \times Instruction\_count_i) \\
+CPI = {Clock\_cycles \over Instruction\_count} = \sum_{i=1}^n(CPI_i \times {Instruction\_count_i \over Instrucion\_count})
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.775108em;vertical-align:-1.137554em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.637554em;"><span style="top:-3.8106619999999998em;"><span class="pstrut" style="height:3.013108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">u</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">c</span><span class="mord mathnormal">o</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-2.437554em;"><span class="pstrut" style="height:3.013108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.013108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.527em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5619999999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.005331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.527em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">n</span><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5619999999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.137554em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<h3 id="6-8-功率">6.8 功率</h3>
+<ul>
+<li>在 CMOS IC 技术中：</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>P</mi><mi>o</mi><mi>w</mi><mi>e</mi><mi>r</mi><mo>=</mo><mi>C</mi><mi>a</mi><mi>p</mi><mi>a</mi><mi>c</mi><mi>i</mi><mi>t</mi><mi>i</mi><mi>v</mi><mi>e</mi><mi mathvariant="normal">_</mi><mi>l</mi><mi>o</mi><mi>a</mi><mi>d</mi><mo>×</mo><mi>V</mi><mi>o</mi><mi>l</mi><mi>t</mi><mi>a</mi><mi>g</mi><msup><mi>e</mi><mn>2</mn></msup><mo>×</mo><mi>F</mi><mi>r</mi><mi>e</mi><mi>q</mi><mi>u</mi><mi>e</mi><mi>n</mi><mi>c</mi><mi>y</mi></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+Power = Capacitive\_load \times Voltage^2 \times Frequency
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2000000000000002em;vertical-align:-0.35000000000000003em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8500000000000001em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">a</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">e</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal">a</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mord mathnormal">u</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35000000000000003em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<h3 id="6-9-SPEC-CPU-基准测试">6.9 SPEC CPU 基准测试</h3>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>S</mi><mi>P</mi><mi>E</mi><mi>C</mi><mo>=</mo><mroot><mrow><msubsup><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mi>E</mi><mi>x</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi mathvariant="normal">_</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>i</mi><msub><mi>o</mi><mi>i</mi></msub></mrow><mi>n</mi></mroot></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+SPEC = \sqrt[n]{\prod_{i=1}^n Execution\_time\_ratio_i}
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.84em;vertical-align:-0.6700000000000002em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.17em;"><span style="top:-3.17em;"><span class="pstrut" style="height:3.232146em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord sqrt"><span class="root"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5898552000000001em;"><span style="top:-2.8745752em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size6 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2321460000000002em;"><span class="svg-align" style="top:-3.8em;"><span class="pstrut" style="height:3.8em;"></span><span class="mord" style="padding-left:1em;"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∏</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">x</span><span class="mord mathnormal">e</span><span class="mord mathnormal">c</span><span class="mord mathnormal">u</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.192146em;"><span class="pstrut" style="height:3.8em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.8800000000000001em;"><svg width='400em' height='1.8800000000000001em' viewBox='0 0 400000 1944' preserveAspectRatio='xMinYMin slice'><path d='M983 90
+l0 -0
+c4,-6.7,10,-10,18,-10 H400000v40
+H1013.1s-83.4,268,-264.1,840c-180.7,572,-277,876.3,-289,913c-4.7,4.7,-12.7,7,-24,7
+s-12,0,-12,0c-1.3,-3.3,-3.7,-11.7,-7,-25c-35.3,-125.3,-106.7,-373.3,-214,-744
+c-10,12,-21,25,-33,39s-32,39,-32,39c-6,-5.3,-15,-14,-27,-26s25,-30,25,-30
+c26.7,-32.7,52,-63,76,-91s52,-60,52,-60s208,722,208,722
+c56,-175.3,126.3,-397.3,211,-666c84.7,-268.7,153.8,-488.2,207.5,-658.5
+c53.7,-170.3,84.5,-266.8,92.5,-289.5z
+M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.6078539999999999em;"><span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.6700000000000002em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>SPEC 功率基准</li>
+</ul>
+<blockquote>
+<p>性能：ssj_ops / sec<br>
+功率：瓦（焦耳/秒）</p>
+</blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>O</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi mathvariant="normal">_</mi><mi>s</mi><mi>s</mi><mi>j</mi><mi mathvariant="normal">_</mi><mi>o</mi><mi>p</mi><mi>s</mi><mi mathvariant="normal">_</mi><mi>p</mi><mi>e</mi><mi>r</mi><mi mathvariant="normal">_</mi><mi>w</mi><mi>a</mi><mi>t</mi><mi>t</mi><mo>=</mo><mfrac><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mn>10</mn></msubsup><mi>s</mi><mi>s</mi><mi>j</mi><mi mathvariant="normal">_</mi><mi>o</mi><mi>p</mi><msub><mi>s</mi><mi>i</mi></msub></mrow><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mn>10</mn></msubsup><mi>p</mi><mi>o</mi><mi>w</mi><mi>e</mi><msub><mi>r</mi><mi>i</mi></msub></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+Overall\_ssj\_ops\_per\_watt = {\sum_{i=0}^{10} ssj\_ops_i \over \sum_{i=0}^{10} power_i}
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.794154em;vertical-align:-0.6470770000000001em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.147077em;"><span style="top:-3.147077em;"><span class="pstrut" style="height:3.1589270000000003em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">s</span><span class="mord mathnormal">s</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mord mathnormal">s</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.158927em;"><span style="top:-2.58978em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mop op-symbol small-op mtight" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8574571428571429em;"><span style="top:-2.1785614285714283em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-2.8971428571428572em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.32143857142857146em;"><span></span></span></span></span></span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span><span class="mord mathnormal mtight">e</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.02778em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5350070000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mop op-symbol small-op mtight" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.1785614285714283em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.32143857142857146em;"><span></span></span></span></span></span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">p</span><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.635227em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.6470770000000001em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<h3 id="6-10-阿姆达尔定律">6.10 阿姆达尔定律</h3>
+<p>改善计算机的部份性能，并期望整体性能得到成比例的改善。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>T</mi><mrow><mi>i</mi><mi>m</mi><mi>p</mi><mi>r</mi><mi>o</mi><mi>v</mi><mi>e</mi><mi>d</mi></mrow></msub><mo>=</mo><mfrac><msub><mi>T</mi><mrow><mi>a</mi><mi>f</mi><mi>f</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>e</mi><mi>d</mi></mrow></msub><mrow><mi>I</mi><mi>m</mi><mi>p</mi><mi>r</mi><mi>o</mi><mi>v</mi><mi>e</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">_</mi><mi>f</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi></mrow></mfrac><mo>+</mo><msub><mi>T</mi><mrow><mi>u</mi><mi>n</mi><mi>a</mi><mi>f</mi><mi>f</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>e</mi><mi>d</mi></mrow></msub></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+T_{improved} = {T_{affected} \over Improvement\_factor} + T_{unaffected}
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5534109999999997em;vertical-align:-0.5267054999999999em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0267054999999998em;"><span style="top:-3.0352945em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9914109999999998em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5619999999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5267054999999999em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<h3 id="6-11-MIPS">6.11 MIPS</h3>
+<p>MIPS：每秒数百万条指令</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>M</mi><mi>I</mi><mi>P</mi><mi>S</mi><mo>=</mo><mfrac><mrow><mi>I</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi></mrow><mrow><mi>E</mi><mi>x</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>C</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mi mathvariant="normal">_</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow><mrow><mi>C</mi><mi>P</mi><mi>I</mi><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+MIPS = {Instruction\_count \over Execution\_time \times 10^6} = {Clock\_rate \over CPI \times 10^6}
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5751079999999997em;vertical-align:-0.537554em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0375539999999996em;"><span style="top:-3.0375539999999996em;"><span class="pstrut" style="height:3.013108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.005331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mathnormal mtight">x</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mbin mtight">×</span><span class="mord mtight">1</span><span class="mord mtight"><span class="mord mtight">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.527em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5619999999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.013108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mbin mtight">×</span><span class="mord mtight">1</span><span class="mord mtight"><span class="mord mtight">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.527em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.537554em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<h2 id="7-cache">7. cache</h2>
+<ul>
+<li>命中率：命中/访问</li>
+<li>未命中：1 - 命中率</li>
+</ul>
+<blockquote>
+<p>未命中时从较低存储级别复制块</p>
+</blockquote>
+<h3 id="7-1-直接映射缓存">7.1 直接映射缓存</h3>
+<p>（块地址）%（＃缓存中的块）</p>
+<h3 id="7-2-缓存命中与否">7.2 缓存命中与否</h3>
+<ul>
+<li>未命中：停顿CPU流水线，从下一层次结构中获取块</li>
+<li>指令缓存未命中：重新启动指令获取</li>
+<li>数据缓存未命中：完整的数据访问</li>
+</ul>
+<h3 id="7-3-直写-Write-Through">7.3 直写(Write Through)</h3>
+<ul>
+<li>命中：数据写入命中时，同时更新内存和缓存。</li>
+<li>未命中：</li>
+</ul>
+<blockquote>
+<p>分配未命中(Allocate on miss)：更新该缓存块。<br>
+随便写(Write around)：不要更新该缓存块</p>
+</blockquote>
+<h3 id="7-4-回写-Write-Back">7.4 回写(Write-Back)</h3>
+<ul>
+<li>命中：命中数据时，只需更新缓存中的块。跟踪每个块是否脏(dirty)。</li>
+<li>未命中：通常取出整块。</li>
+</ul>
+<h3 id="7-5-多级缓存">7.5 多级缓存</h3>
+<ul>
+<li>L-1主缓存：专注于降低命中时间(hit time)</li>
+<li>L-2缓存：专注于降低未命中率以避免主存储器访问</li>
+</ul>
+<h2 id="8-DRAM">8. DRAM</h2>
+<ul>
+<li>突发模式(Burst mode)：连续访问连续的字，减少延迟</li>
+<li>双倍数据速率（DDR）DRAM：在时钟的上升沿和下降沿都可以传输</li>
+<li>四倍数据速率（QDR）DRAM：单独的DDR输入和输出通道</li>
+</ul>
+<h2 id="9-Flash">9. Flash</h2>
+<ul>
+<li>NOR闪存：以字为读写单位</li>
+<li>NAND闪存：以块为读写单位</li>
+</ul>
+<h2 id="10-RISC-V">10. RISC-V</h2>
+<h3 id="10-1-流水线形式">10.1 流水线形式</h3>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./RISC-V%E6%B5%81%E6%B0%B4%E7%BA%BF.png" alt="RISC-V流水线"></p>
+<h2 id="11-虚拟机">11. 虚拟机</h2>
+<h3 id="11-1-虚拟机监视器-Virtual-Machine-Monitor">11.1 虚拟机监视器(Virtual Machine Monitor)</h3>
+<p>将虚拟资源映射到物理资源；VMM处理实际的I / O设备，模拟guest的通用虚拟I / O设备。</p>
+<h3 id="11-2-计时器虚拟化">11.2 计时器虚拟化</h3>
+<ul>
+<li>
+<p>本机：在计时器中断时，操作系统挂起当前进程，处理中断，选择并继续下一个进程</p>
+</li>
+<li>
+<p>虚拟机监视器：VMM挂起当前的VM，处理中断，选择并恢复下一个VM。如果VM需要计时器中断，VMM模拟虚拟计时器，发生物理计时器中断时为VM模拟中断</p>
+</li>
+</ul>
+<h3 id="11-3-指令集支持">11.3 指令集支持</h3>
+<ul>
+<li>
+<p>特权指令仅(Privileged Instruction)在系统模式/内核模式/特权超级用户模式下可用。如果在用户模式下执行，则陷阱(Trap)到系统。</p>
+</li>
+<li>
+<p>所有物理资源只能使用特权指令进行访问：包括页表和其他状态信息，中断控制，I / O寄存器（系统调用例外）</p>
+</li>
+</ul>
+<h3 id="11-4-虚拟内存">11.4 虚拟内存</h3>
+<ul>
+<li>
+<p>将主内存用作辅助（磁盘）存储的“缓存”，由CPU硬件和操作系统（OS）共同管理</p>
+</li>
+<li>
+<p>CPU和OS将虚拟地址转换为物理地址：</p>
+</li>
+</ul>
+<blockquote>
+<p>VM“块(Block)”称为页面(Page)<br>
+VM转译“未命中(Miss)”称为页面错误(Page Fault)</p>
+</blockquote>
+<h3 id="11-5-Page-Fault">11.5 Page Fault</h3>
+<ul>
+<li>在页面错误时，必须从磁盘中获取页面：需要数百万个时钟周期，由操作系统代码处理</li>
+</ul>
+<h3 id="11-6-页表（Page-Tables）">11.6 页表（Page Tables）</h3>
+<ul>
+<li>CPU中的页表寄存器指向物理内存中的页表</li>
+<li>页表条目数组，由虚拟页码索引</li>
+<li>如果内存中有页面，PTE(Page Table Entry)存储物理页码，加上其他状态位</li>
+<li>如果页面不存在，PTE可以参照磁盘上交换空间中的位置</li>
+</ul>
+<h3 id="11-7-TLB-translation-lookaside-buffer">11.7 TLB (translation lookaside buffer)</h3>
+<ul>
+<li>TLB是地址转译的快取（转换后备缓冲区）</li>
+<li>遗失可由硬件或软件处理</li>
+<li>TLB没命中</li>
+</ul>
+<blockquote>
+<ol>
+<li>如果页面在内存中：从内存中加载PTE，然后重试。可以在硬件或在软件中处理。</li>
+<li>如果页面不在内存中（页面错误）：操作系统处理获取页面并更新页面表，然后重新启动故障指令(Faulting Instruction)</li>
+</ol>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./CPU%E8%AE%BF%E5%AD%98%E6%B5%81%E7%A8%8B.png" alt="CPU访存流程"><br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./%E7%BB%84%E5%90%88%E6%93%8D%E4%BD%9C.png" alt="组合操作"></p>
+<h3 id="11-8-未命中原因">11.8 未命中原因</h3>
+<ul>
+<li>强制性未命中(Compulsory misses)（冷启动未命中）：首次访问块</li>
+<li>容量缺失(Capacity misses)：由于缓存大小有限，稍后再次访问替换的块</li>
+<li>冲突未命中(Conflict misses)：在非完全关联的缓存中，由于竞争一组中的条目。不会在总大小相同的完全关联的缓存中发生。</li>
+</ul>
+<h3 id="11-9-缓存设计平衡">11.9 缓存设计平衡</h3>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E5%B9%B3%E8%A1%A1.png" alt="缓存设计平衡"></p>
+<h3 id="11-10-一致性协议">11.10 一致性协议</h3>
+<ul>
+<li>监听协议(Snooping protocol)：每个缓存监视总线的读/写</li>
+<li>基于目录的协议(Directory-based protocol)：目录中块的缓存和内存记录共享状态</li>
+</ul>
+<h3 id="11-11-Coherence-vs-Consistency">11.11 Coherence vs. Consistency</h3>
+<ul>
+<li>
+<p>Coherence模型主要考虑对于同一内存位置的写操作对于所有的处理器的可见性。</p>
+</li>
+<li>
+<p>存储的Consistency模型的范围则广得多。和Coherence相比，其主要差别有：</p>
+</li>
+</ul>
+<blockquote>
+<p>1.Consistency不仅针对同一内存区域的访问；<br>
+2.Consistency中的内存访问包括读和写两种。</p>
+</blockquote>
+<h2 id="12-指令集架构-Instruction-Set-Architecture-ISA">12. 指令集架构(Instruction Set Architecture, ISA)</h2>
+<h3 id="12-1-x86">12.1 x86</h3>
+<ul>
+<li>
+<p>为何需要寄存器?：片内RAM的速度较快，不受外部干扰。</p>
+</li>
+<li>
+<p>为何处理器需要要多样的寻址模式? ：立即数寻址和寄存器寻址在效率上是最快的，但寄存器仅有几个非常宝贵不可能将操作数都存入其中等待使用，立即数的使用场合也非常有限，这样就需要将数据保存在内存中，然后使用直接寻址、寄存器间接寻址、寄存器相对寻址、基址加变址寻址、相对基址加变址寻址这些寻址方式将内存中的数据移入寄存器中。</p>
+</li>
+</ul>
+<h3 id="12-2-MIPS">12.2 MIPS</h3>
+<ul>
+<li>分支延迟槽 (Branch delay slot)：就是位于分支指令后面的一条指令，不管分支发生与否其总是被执行，而且位于分支延迟槽中的指令先于分支指令提交 (commit)。</li>
+</ul>
+<blockquote>
+<p>引入分支延迟槽的目的主要是为了提高流水线的效率。</p>
+</blockquote>
+<h3 id="12-3-ARM">12.3 ARM</h3>
+<p>1、ARM指令都是32位定长的<br>
+2、寄存器数量丰富（37个寄存器）<br>
+3、普通的Load/Store指令<br>
+4、多寄存器的Load/Store指令<br>
+5、指令的条件执行<br>
+6、单时钟周期中的单条指令完成数据移位操作和ALU操作<br>
+7、通过变种和协处理器来扩展ARM处理器的功能<br>
+8、扩展了16位的Thumb指令来提高代码密度</p>
+<blockquote>
+<h4 id="特色">特色</h4>
+<p>1、一些特定的指令周期数可变。<br>
+例如多寄存器装载或存储的Load/Store指令<br>
+2、内嵌的桶形移位寄存器产生了更复杂的指令。<br>
+在一个寄存器被一条指令使用之前，桶形移位寄存器可以处理这个寄存器中的数据。可提高代码密度。<br>
+3、Thumb16位指令集<br>
+ARM处理器有两种工作状态。ARM状态下指令长度为32位，Thumb状态下指令长度为16位。<br>
+4、条件执行<br>
+当某个特定条件满足时指令才会被执行。这个特性可以减少分支指令的数目，可以提高代码密度。<br>
+5、增强指令<br>
+数字信号处理器（DSP）指令被加入到标准的ARM指令中，如支持快速的16*16乘法操作。</p>
+</blockquote>
+<h3 id="12-4-RISC-V">12.4 RISC-V</h3>
+<ul>
+<li>基准指令：<br>
+40 余个基准指令，已固化不变</li>
+<li>标准扩展指令：<br>
+一套标准的可选扩展指令，可能会缓慢演化</li>
+<li>特定指令：<br>
+用户专为特定片上系统设计的独特指令，无需考虑复用性；各家可对其实现进行专利保护。</li>
+</ul>
+<blockquote>
+<h4 id="1-基本指令格式">1. 基本指令格式</h4>
+<p>4种核心指令格式（R/I/S/U）,都是固定32位长度的指令。基于立即数的处理，还有SB/UI这两种指令格式的变种。<br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./RISC-V%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F.png" alt="RISC-V基础指令格式"><br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./MIPS%E4%B8%8ERISC-V%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A0%81%E6%AF%94%E8%BE%83.png" alt="MIPS与RISC-V指令编码比较"></p>
+</blockquote>
+<blockquote>
+<h4 id="2-RISC-V指令集架构特点">2. RISC-V指令集架构特点</h4>
+<p>一、模块化：支持模块化可配置的子集。<br>
+二、可扩展性：支持可扩展定制指令。<br>
+三、改进之前指令集架构：<br>
+（1）仅支持小端格式。<br>
+（2）放弃“一次读多个寄存器指令”和一次性写多个寄存器指令。<br>
+（3）去除存储器访问指令的地址自增和地址自减模式。<br>
+（4）规整的指令编码格式。<br>
+（5）简化的分支跳转指令和静态预测机制。<br>
+（6）不使用分支延迟槽。<br>
+（7）不使用指令分支延迟码。<br>
+（8）运算指令的结果不产生异常。<br>
+（9）16位的压缩指令有其对应的32位指令。<br>
+（10）支持多线程存储器模型。<br>
+（11）支持原子指令。</p>
+</blockquote>
+<blockquote>
+<h4 id="3-多线程存储器模型-FENCE栅栏操作">3. 多线程存储器模型-FENCE栅栏操作</h4>
+<p>FENCE就是一个栅栏操作，其前后指令之间不能被乱序，可用于线程间的同步。</p>
+<ul>
+<li>FENCE.I用于同步指令和序列流，用于线程内的同步。</li>
+<li>Fences用于在设备 I/O 和内存访问上强制执行顺序</li>
+</ul>
+</blockquote>
+<blockquote>
+<h4 id="4-设计原理">4. 设计原理</h4>
+<ul>
+<li>简洁有利于规律性，规律性使实施更简单，简单性以更低的成本实现更高的性能</li>
+<li>越小越快</li>
+<li>好的设计需要好的折衷</li>
+</ul>
+</blockquote>
+<blockquote>
+<h4 id="5-RISC-V寄存器">5. RISC-V寄存器</h4>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./RISC-V%E5%AF%84%E5%AD%98%E5%99%A8.png" alt="RISC-V寄存器"></p>
+</blockquote>
+<h2 id="13-并行设计">13. 并行设计</h2>
+<h3 id="13-1-并行编程">13.1 并行编程</h3>
+<ul>
+<li>
+<p>难点<br>
+分区(Partitioning)<br>
+协调(Coordination)<br>
+通讯开销(Communications overhead)</p>
+</li>
+<li>
+<p>阿姆达尔定律<br>
+顺序部分可能会限制加速(Speedup)</p>
+</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>S</mi><mi>p</mi><mi>e</mi><mi>e</mi><mi>d</mi><mi>u</mi><mi>p</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>F</mi><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>e</mi><mi>l</mi><mi>i</mi><mi>z</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow></msub><mo stretchy="false">)</mo><mo>+</mo><msub><mi>F</mi><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>e</mi><mi>l</mi><mi>i</mi><mi>z</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow></msub><mi mathvariant="normal">/</mi><mi>n</mi></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">{\begin{array}{c}
+Speedup = {1 \over (1-F_{parallelizable}) + F_{parallelizable}/n}
+\end{array}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3931879999999999em;vertical-align:-0.44659399999999994em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9465939999999999em;"><span style="top:-3.1014859999999995em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span><span class="mord mathnormal">e</span><span class="mord mathnormal">d</span><span class="mord mathnormal">u</span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29011428571428566em;"><span></span></span></span></span></span></span><span class="mclose mtight">)</span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29011428571428566em;"><span></span></span></span></span></span></span><span class="mord mtight">/</span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5480799999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44659399999999994em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></span></p>
+<p>其中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 为处理器个数，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>e</mi><mi>l</mi><mi>i</mi><mi>z</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">F_{parallelizable}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 为可并行代码比例。</p>
+<h3 id="13-2-指令和数据流">13.2 指令和数据流</h3>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./%E6%8C%87%E4%BB%A4%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B5%81.png" alt="指令和数据流"></p>
+<h3 id="13-3-多线程">13.3 多线程</h3>
+<p>在线程中，通过调度(scheduling) 和寄存器重命(register renaming)名来处理依赖项。</p>
+<h2 id="14-链接器">14. 链接器</h2>
+<h3 id="14-1-目的">14.1 目的</h3>
+<ul>
+<li>Modularity</li>
+<li>Efficiency</li>
+</ul>
+<h3 id="14-2-功能">14.2 功能</h3>
+<ul>
+<li>符号解析（Symbol resolution）</li>
+<li>重定位（Relocation）</li>
+</ul>
+<h3 id="14-3-三种目标文件">14.3 三种目标文件</h3>
+<ul>
+<li>可重定位目标文件（.o）</li>
+<li>可执行目标文件（.out）</li>
+<li>共享目标文件（.so）</li>
+</ul>
+<h3 id="14-4-ELF文件（Executable-and-Linkable-Format）">14.4 ELF文件（Executable and Linkable Format）</h3>
+<p>是上述三种目标文件的统一格式。<br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./ELF.png" alt="ELF"></p>
+<h3 id="14-3-符号解析">14.3 符号解析</h3>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./%E7%A8%8B%E5%BA%8F%E7%BF%BB%E8%AF%91%E5%85%A8%E8%BF%87%E7%A8%8B.png" alt="程序翻译全过程"></p>
+<ul>
+<li>全局链接器符号：当前模块中定义的非静态的C函数和全局变量</li>
+<li>外部符号：其他模块中定义的非静态的C函数和全局变量</li>
+<li>局部符号：带static属性的C函数和全局变量</li>
+</ul>
+<p>【注】C语言中可以利用static属性来隐藏变量和函数。</p>
+<blockquote>
+<ol>
+<li>任何带static属性的全局变量和函数都是私有的。</li>
+<li>任何不带static属性的全局变量和函数都是公有的。</li>
+</ol>
+</blockquote>
+<blockquote>
+<h4 id="伪节">伪节</h4>
+<p>三个特殊伪节，他们在节头部表中没有条目。<br>
+ABS：代表不应该被重定向的符号<br>
+UNDEF：代表未定义的符号，即在本模块引用在其他模块定义的符号<br>
+COMMON：表示还未被分配位置的为初始化的数据目标<br>
+【注】只有可重定位目标文件才有这些伪节，可执行目标文件没有。</p>
+</blockquote>
+<blockquote>
+<h4 id="COMMON-vs-bss-vs-data">COMMON vs .bss vs .data</h4>
+<p>COMMON：未初始化的全局变量<br>
+.bss：未初始化的静态变量，以及初始化为0的全局变量和静态变量<br>
+.data：已初始化的全局变量和静态变量</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./%E9%93%BE%E6%8E%A5%E5%99%A8%E7%AC%A6%E5%8F%B7.png" alt="链接器符号"></p>
+<blockquote>
+<h4 id="强符号和弱符号">强符号和弱符号</h4>
+<p>函数和已初始化的全局变量是强符号，为初始化的全局变量是弱符号</p>
+<ol>
+<li>不允许有多个同名的强符号</li>
+<li>如果一个强符号和多个弱符号同名，则选择强符号</li>
+<li>如果有多个弱符号同名，则从中任选一个</li>
+</ol>
+</blockquote>
+<blockquote>
+<h4 id="内存分配顺序">内存分配顺序</h4>
+<ol>
+<li>对于局部变量而言， 内存分配的顺序和代码的顺序是一样的。 由于是在栈分配的， 因此先定义的变量的地址要高于后定义的变量的地址</li>
+<li>对于已经初始化的全局变量， 静态局部变量， 是确定的。 编译器会分配相应的空间， 因此它们的内存分配顺序是按照定义的顺序。对于同一源文件中未初始化的全局变量， 从实验来看， 它们是按照字母顺序分配内存的， 不论定义顺序。对于不同源文件间全局变量， 是按照链接器处理的顺序。</li>
+</ol>
+</blockquote>
+<h4 id="静态库解析">静态库解析</h4>
+<blockquote>
+<p>在符号解析阶段，链接器从左到右按照它们在编译器驱动程序命令行上出现的顺序来扫描可重定位目标文件和存档文件。</p>
+<ol>
+<li>在扫描过程中，链接器维护一个可重定位目标文件集合E、一个未解析（即已引用但尚未定义）的符号集合U、一个已定义的符号集合D</li>
+<li>缺点：</li>
+</ol>
+<blockquote>
+<ul>
+<li>存储时磁盘空间存在大量冗余</li>
+<li>运行时内存空间存在大量冗余</li>
+<li>库更新导致所有程序需要显示重新链接<br>
+![注]静态库文件是.a文件，一种归档文件。</li>
+</ul>
+</blockquote>
+</blockquote>
+<h4 id="动态库解析">动态库解析</h4>
+<blockquote>
+<ol>
+<li>链接：加载时或运行时</li>
+<li>库打桩机制：</li>
+</ol>
+<blockquote>
+<ul>
+<li>编译时：显示函数包装</li>
+<li>链接时：链接符号时替换</li>
+<li>加载/运行时：通过dlsym实现定制版函数</li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="14-4-重定位">14.4 重定位</h3>
+<h2 id="15-虚拟内存">15. 虚拟内存</h2>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/./%E7%AC%A6%E5%8F%B7%E5%8F%82%E8%80%83.png" alt="符号参考"></p>
+<h3 id="15-1-动态内存分配">15.1 动态内存分配</h3>
+<ul>
+<li>分配器类型：</li>
+</ul>
+<blockquote>
+<ol>
+<li>显示分配器：malloc和free</li>
+<li>隐式分配器：垃圾回收器（不需要显示free）</li>
+</ol>
+</blockquote>
+<ul>
+<li>分配器</li>
+</ul>
+<blockquote>
+<ol>
+<li>限制</li>
+</ol>
+<blockquote>
+<ul>
+<li>处理任意请求序列</li>
+<li>立即响应请求</li>
+<li>只使用堆</li>
+<li>对齐块（对齐要求）</li>
+<li>不修改已分配的块</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li>目标</li>
+</ol>
+<blockquote>
+<ul>
+<li>最大化吞吐率：吞吐率定义为单位时间内完成的请求数（请求为malloc或free）</li>
+<li>最大化内存利用率：</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>碎片</li>
+</ul>
+<blockquote>
+<ol>
+<li>内部碎片：由于malloc需要考虑块对齐，所以实际分配空间 &gt;= 请求分配空间，以及块头部信息也属于内部碎片。由之前的请求造成，容易测量。</li>
+<li>外部碎片：不同malloc块间无法利用的小碎片空间。由未来的请求造成，不容易测量。</li>
+</ol>
+</blockquote>
+<h3 id="15-2-链表">15.2 链表</h3>
+<ul>
+<li>隐式空闲链表<br>
+根据每个块的长度链接在一起。</li>
+</ul>
+<blockquote>
+<ol>
+<li>首次适配</li>
+<li>下一次适配</li>
+<li>最佳适配</li>
+</ol>
+</blockquote>
+<ul>
+<li>显示空闲链表<br>
+通过指针链接所有块。</li>
+</ul>
+<blockquote>
+<ol>
+<li>LIFO</li>
+<li>Address-ordered</li>
+</ol>
+</blockquote>
+<ul>
+<li>分离的空闲链表</li>
+</ul>
+<blockquote>
+<ol>
+<li>优点：</li>
+</ol>
+<blockquote>
+<ul>
+<li>高吞吐率：对于2的幂次来划分大小类分配和释放只需要常量时间</li>
+<li>更好的内存利用率（首次适配接近最佳适配）</li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="15-3-垃圾回收">15.3 垃圾回收</h3>
+<ul>
+<li>
+<p>支持垃圾回收：Python、Ruby、Java、Perl、ML、Lisp、Mathematica</p>
+</li>
+<li>
+<p>C和C++的GC必须是保守的，其根本原因在于：C语言不会用类型信息来标记内存位置。</p>
+</li>
+<li>
+<p>Mark&amp;Sweep垃圾收集器</p>
+</li>
+</ul>
+<blockquote>
+<p>使用深度优先遍历内存有向图。</p>
+<ol>
+<li>标记阶段：为每个根节点调用mark函数，标记出所有的可达块。</li>
+<li>清除阶段：在堆中每个块上反复循环，释放它所遇到的所有未标记的已分配块。</li>
+</ol>
+</blockquote>
+<h3 id="15-4-C语言与内存有关的错误">15.4 C语言与内存有关的错误</h3>
+<ul>
+<li>间接引用坏指针：scanf</li>
+<li>读未初始化的内存：malloc不会将申请的堆空间清零（calloc会）</li>
+<li>允许栈缓冲溢出：gets和fgets</li>
+<li>假设指针和它们指向的对象是相同大小的</li>
+<li>造成错位错误：访问超出申请空间，覆盖其后的内存位置。</li>
+<li>引用指针，而不是它所指向的对象：C语言运算符优先级和结合性</li>
+<li>误解指针运算：指针运算单位为其指向的对象的大小</li>
+<li>引用不存在的变量：局部变量在函数结束后会被释放</li>
+<li>引用空闲堆块中的数据：堆指针被释放后又引用</li>
+<li>内存泄露：申请使用完后没有释放</li>
+<li>多次释放同一个块</li>
+<li>只释放了数据结构空间，没有释放其内部的指针指向的空间</li>
+</ul>
+<h2 id="16-IO">16. IO</h2>
+<h3 id="16-1-Unix-IO">16.1 Unix IO</h3>
+<ul>
+<li>文件类型：</li>
+</ul>
+<blockquote>
+<ol>
+<li>普通文件</li>
+<li>目录</li>
+<li>套接字<br>
+…</li>
+</ol>
+</blockquote>
+<ul>
+<li>内核为每个进程维护一个当前工作目录</li>
+</ul>
+<h3 id="16-2-RIO">16.2 RIO</h3>
+<p>解决不足值出现的问题。</p>
+<h3 id="16-3-共享文件">16.3 共享文件</h3>
+<ul>
+<li>
+<p>描述符表</p>
+</li>
+<li>
+<p>文件表</p>
+</li>
+<li>
+<p>v-node表</p>
+</li>
+</ul>
+<h2 id="17-程序优化">17. 程序优化</h2>
+<h3 id="17-1-提高并行性">17.1 提高并行性</h3>
+<ul>
+<li>循环展开+多累计变量</li>
+<li>循环展开+重新结合变换</li>
+</ul>
+<h3 id="17-2-限制因素">17.2 限制因素</h3>
+<ul>
+<li>寄存器溢出</li>
+<li>分支预测与预测错误处罚</li>
+</ul>
+<blockquote>
+<p>解决：条件数据传送（不是所有操作都可行）</p>
+</blockquote>
+<h3 id="17-3-加载和存储">17.3 加载和存储</h3>
+<ul>
+<li>加载操作延迟和数据相关性能下降</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">BlueHeart0621</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blueheart0621.gitee.io/2020/07/06/ComputerArchitecture/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://blueheart0621.gitee.io/2020/07/06/ComputerArchitecture/体系结构复习笔记/体系结构复习笔记/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://BlueHeart0621.gitee.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ComputerArchitecture/">ComputerArchitecture</a></div><div class="post_share"><div class="social-share" data-image="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/135.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/17/TeX/LaTeX/Manjaro20.0%E9%85%8D%E7%BD%AETeXLive+TeXStudio%E7%9A%84LaTeX%E7%8E%AF%E5%A2%83/Manjaro20.0%E9%85%8D%E7%BD%AETeXLive+TeXStudio%E7%9A%84LaTeX%E7%8E%AF%E5%A2%83/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/64.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Manjaro20.0配置TeXLive+TeXStudio的LaTeX环境</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/06/ComputerArchitecture/%E7%94%B5%E8%B7%AF%E6%9C%AF%E8%AF%AD/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/310.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">电路术语</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/07/06/ComputerArchitecture/电路术语/" title="电路术语"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/310.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-06</div><div class="title">电路术语</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/portrait.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">BlueHeart0621</div><div class="author-info__description">欢迎来到我的博客星球^_^</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">304</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/BlueHeart0621"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/BlueHeart0621" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:BlueHeart0621@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%9A%E5%BE%8B"><span class="toc-number">1.</span> <span class="toc-text">1. 定律</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 摩尔定律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%99%BB%E7%BA%B3%E5%BE%B7%E7%BC%A9%E6%94%BE%E6%AF%94%E4%BE%8B%E5%AE%9A%E5%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 登纳德缩放比例定律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E9%98%BF%E5%A7%86%E8%BE%BE%E5%AE%9A%E5%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 阿姆达定律</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DSA-%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.</span> <span class="toc-text">2. DSA 提高性能的四个原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E9%BB%84%E9%87%91%E6%97%B6%E4%BB%A3%E6%9D%A5%E4%B8%B4"><span class="toc-number">3.</span> <span class="toc-text">3. 体系结构黄金时代来临</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%B9%B6%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">4. 并行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 多线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%A4%9A%E5%B7%A5"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 多工</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 多处理器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%86%97%E4%BD%99%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="toc-number">5.</span> <span class="toc-text">5. 冗余实现可靠性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%88%E8%83%BD"><span class="toc-number">6.</span> <span class="toc-text">6. 计算机效能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 响应时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%90%9E%E5%90%90%E9%87%8F"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 吞吐量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E7%9B%B8%E5%AF%B9%E6%80%A7%E8%83%BD"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 相对性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E7%BB%8F%E8%BF%87%E6%97%B6%E9%97%B4"><span class="toc-number">6.4.</span> <span class="toc-text">6.4 经过时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-CPU%E6%97%B6%E9%97%B4"><span class="toc-number">6.5.</span> <span class="toc-text">6.5 CPU时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-%E6%8F%90%E9%AB%98%E6%95%88%E8%83%BD"><span class="toc-number">6.6.</span> <span class="toc-text">6.6 提高效能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-7-%E6%8C%87%E4%BB%A4%E6%95%B0%E5%92%8CCPI"><span class="toc-number">6.7.</span> <span class="toc-text">6.7 指令数和CPI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-8-%E5%8A%9F%E7%8E%87"><span class="toc-number">6.8.</span> <span class="toc-text">6.8 功率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-9-SPEC-CPU-%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95"><span class="toc-number">6.9.</span> <span class="toc-text">6.9 SPEC CPU 基准测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-10-%E9%98%BF%E5%A7%86%E8%BE%BE%E5%B0%94%E5%AE%9A%E5%BE%8B"><span class="toc-number">6.10.</span> <span class="toc-text">6.10 阿姆达尔定律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-11-MIPS"><span class="toc-number">6.11.</span> <span class="toc-text">6.11 MIPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-cache"><span class="toc-number">7.</span> <span class="toc-text">7. cache</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%BC%93%E5%AD%98"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 直接映射缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E7%BC%93%E5%AD%98%E5%91%BD%E4%B8%AD%E4%B8%8E%E5%90%A6"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 缓存命中与否</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E7%9B%B4%E5%86%99-Write-Through"><span class="toc-number">7.3.</span> <span class="toc-text">7.3 直写(Write Through)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-%E5%9B%9E%E5%86%99-Write-Back"><span class="toc-number">7.4.</span> <span class="toc-text">7.4 回写(Write-Back)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">7.5.</span> <span class="toc-text">7.5 多级缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-DRAM"><span class="toc-number">8.</span> <span class="toc-text">8. DRAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Flash"><span class="toc-number">9.</span> <span class="toc-text">9. Flash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-RISC-V"><span class="toc-number">10.</span> <span class="toc-text">10. RISC-V</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%BD%A2%E5%BC%8F"><span class="toc-number">10.1.</span> <span class="toc-text">10.1 流水线形式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">11.</span> <span class="toc-text">11. 虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9B%91%E8%A7%86%E5%99%A8-Virtual-Machine-Monitor"><span class="toc-number">11.1.</span> <span class="toc-text">11.1 虚拟机监视器(Virtual Machine Monitor)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-%E8%AE%A1%E6%97%B6%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">11.2.</span> <span class="toc-text">11.2 计时器虚拟化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-%E6%8C%87%E4%BB%A4%E9%9B%86%E6%94%AF%E6%8C%81"><span class="toc-number">11.3.</span> <span class="toc-text">11.3 指令集支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-4-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="toc-number">11.4.</span> <span class="toc-text">11.4 虚拟内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-5-Page-Fault"><span class="toc-number">11.5.</span> <span class="toc-text">11.5 Page Fault</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-6-%E9%A1%B5%E8%A1%A8%EF%BC%88Page-Tables%EF%BC%89"><span class="toc-number">11.6.</span> <span class="toc-text">11.6 页表（Page Tables）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-7-TLB-translation-lookaside-buffer"><span class="toc-number">11.7.</span> <span class="toc-text">11.7 TLB (translation lookaside buffer)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-8-%E6%9C%AA%E5%91%BD%E4%B8%AD%E5%8E%9F%E5%9B%A0"><span class="toc-number">11.8.</span> <span class="toc-text">11.8 未命中原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-9-%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1%E5%B9%B3%E8%A1%A1"><span class="toc-number">11.9.</span> <span class="toc-text">11.9 缓存设计平衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-10-%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE"><span class="toc-number">11.10.</span> <span class="toc-text">11.10 一致性协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-11-Coherence-vs-Consistency"><span class="toc-number">11.11.</span> <span class="toc-text">11.11 Coherence vs. Consistency</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%8C%87%E4%BB%A4%E9%9B%86%E6%9E%B6%E6%9E%84-Instruction-Set-Architecture-ISA"><span class="toc-number">12.</span> <span class="toc-text">12. 指令集架构(Instruction Set Architecture, ISA)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-1-x86"><span class="toc-number">12.1.</span> <span class="toc-text">12.1 x86</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-2-MIPS"><span class="toc-number">12.2.</span> <span class="toc-text">12.2 MIPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-3-ARM"><span class="toc-number">12.3.</span> <span class="toc-text">12.3 ARM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E8%89%B2"><span class="toc-number">12.3.1.</span> <span class="toc-text">特色</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-4-RISC-V"><span class="toc-number">12.4.</span> <span class="toc-text">12.4 RISC-V</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-number">12.4.1.</span> <span class="toc-text">1. 基本指令格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-RISC-V%E6%8C%87%E4%BB%A4%E9%9B%86%E6%9E%B6%E6%9E%84%E7%89%B9%E7%82%B9"><span class="toc-number">12.4.2.</span> <span class="toc-text">2. RISC-V指令集架构特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%98%E5%82%A8%E5%99%A8%E6%A8%A1%E5%9E%8B-FENCE%E6%A0%85%E6%A0%8F%E6%93%8D%E4%BD%9C"><span class="toc-number">12.4.3.</span> <span class="toc-text">3. 多线程存储器模型-FENCE栅栏操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="toc-number">12.4.4.</span> <span class="toc-text">4. 设计原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-RISC-V%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">12.4.5.</span> <span class="toc-text">5. RISC-V寄存器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%B9%B6%E8%A1%8C%E8%AE%BE%E8%AE%A1"><span class="toc-number">13.</span> <span class="toc-text">13. 并行设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B"><span class="toc-number">13.1.</span> <span class="toc-text">13.1 并行编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-2-%E6%8C%87%E4%BB%A4%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-number">13.2.</span> <span class="toc-text">13.2 指令和数据流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">13.3.</span> <span class="toc-text">13.3 多线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E9%93%BE%E6%8E%A5%E5%99%A8"><span class="toc-number">14.</span> <span class="toc-text">14. 链接器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-%E7%9B%AE%E7%9A%84"><span class="toc-number">14.1.</span> <span class="toc-text">14.1 目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-%E5%8A%9F%E8%83%BD"><span class="toc-number">14.2.</span> <span class="toc-text">14.2 功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-3-%E4%B8%89%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6"><span class="toc-number">14.3.</span> <span class="toc-text">14.3 三种目标文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-4-ELF%E6%96%87%E4%BB%B6%EF%BC%88Executable-and-Linkable-Format%EF%BC%89"><span class="toc-number">14.4.</span> <span class="toc-text">14.4 ELF文件（Executable and Linkable Format）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-3-%E7%AC%A6%E5%8F%B7%E8%A7%A3%E6%9E%90"><span class="toc-number">14.5.</span> <span class="toc-text">14.3 符号解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E8%8A%82"><span class="toc-number">14.5.1.</span> <span class="toc-text">伪节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#COMMON-vs-bss-vs-data"><span class="toc-number">14.5.2.</span> <span class="toc-text">COMMON vs .bss vs .data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E7%AC%A6%E5%8F%B7%E5%92%8C%E5%BC%B1%E7%AC%A6%E5%8F%B7"><span class="toc-number">14.5.3.</span> <span class="toc-text">强符号和弱符号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E9%A1%BA%E5%BA%8F"><span class="toc-number">14.5.4.</span> <span class="toc-text">内存分配顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%BA%93%E8%A7%A3%E6%9E%90"><span class="toc-number">14.5.5.</span> <span class="toc-text">静态库解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%BA%93%E8%A7%A3%E6%9E%90"><span class="toc-number">14.5.6.</span> <span class="toc-text">动态库解析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-4-%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="toc-number">14.6.</span> <span class="toc-text">14.4 重定位</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="toc-number">15.</span> <span class="toc-text">15. 虚拟内存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#15-1-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="toc-number">15.1.</span> <span class="toc-text">15.1 动态内存分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-2-%E9%93%BE%E8%A1%A8"><span class="toc-number">15.2.</span> <span class="toc-text">15.2 链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-3-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-number">15.3.</span> <span class="toc-text">15.3 垃圾回收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-4-C%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%86%85%E5%AD%98%E6%9C%89%E5%85%B3%E7%9A%84%E9%94%99%E8%AF%AF"><span class="toc-number">15.4.</span> <span class="toc-text">15.4 C语言与内存有关的错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-IO"><span class="toc-number">16.</span> <span class="toc-text">16. IO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-Unix-IO"><span class="toc-number">16.1.</span> <span class="toc-text">16.1 Unix IO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-2-RIO"><span class="toc-number">16.2.</span> <span class="toc-text">16.2 RIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-3-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6"><span class="toc-number">16.3.</span> <span class="toc-text">16.3 共享文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96"><span class="toc-number">17.</span> <span class="toc-text">17. 程序优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-%E6%8F%90%E9%AB%98%E5%B9%B6%E8%A1%8C%E6%80%A7"><span class="toc-number">17.1.</span> <span class="toc-text">17.1 提高并行性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-2-%E9%99%90%E5%88%B6%E5%9B%A0%E7%B4%A0"><span class="toc-number">17.2.</span> <span class="toc-text">17.2 限制因素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-3-%E5%8A%A0%E8%BD%BD%E5%92%8C%E5%AD%98%E5%82%A8"><span class="toc-number">17.3.</span> <span class="toc-text">17.3 加载和存储</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/04/03/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/990.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX色彩"/></a><div class="content"><a class="title" href="/2021/04/03/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩">LaTeX色彩</a><time datetime="2021-04-03T15:41:46.000Z" title="发表于 2021-04-03 23:41:46">2021-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/03/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1582.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX标题控制"/></a><div class="content"><a class="title" href="/2021/04/03/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制">LaTeX标题控制</a><time datetime="2021-04-03T02:41:00.000Z" title="发表于 2021-04-03 10:41:00">2021-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/30/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/723.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX浮动体"/></a><div class="content"><a class="title" href="/2021/03/30/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体">LaTeX浮动体</a><time datetime="2021-03-30T11:21:45.000Z" title="发表于 2021-03-30 19:21:45">2021-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/29/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX插图"/></a><div class="content"><a class="title" href="/2021/03/29/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图">LaTeX插图</a><time datetime="2021-03-29T06:22:03.000Z" title="发表于 2021-03-29 14:22:03">2021-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/26/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/" title="LaTeX幻灯片提纲"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/209.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX幻灯片提纲"/></a><div class="content"><a class="title" href="/2021/03/26/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/" title="LaTeX幻灯片提纲">LaTeX幻灯片提纲</a><time datetime="2021-03-26T12:49:47.000Z" title="发表于 2021-03-26 20:49:47">2021-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By BlueHeart0621</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'J9cPq1lUHLm7JmqKQiM2vQzX-MdYXbMMI',
+      appKey: 'OWjsGwfWuEDllgfJ9zRpFmrS',
+      placeholder: '说点什么吧~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://J9cPq1lU.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'J9cPq1lUHLm7JmqKQiM2vQzX-MdYXbMMI',
+        "X-LC-Key": 'OWjsGwfWuEDllgfJ9zRpFmrS',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "7948a394-b90b-47d5-84d5-6e38eae0306f";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (true) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-7ET63NY1QB', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

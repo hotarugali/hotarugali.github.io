@@ -1,0 +1,602 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>服务、服务系统与面向服务的泛型 | お前はどこまで見えている</title><meta name="keywords" content="ServiceComputing"><meta name="author" content="BlueHeart0621"><meta name="copyright" content="BlueHeart0621"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 服务 1.1 定义  服务是为客户（担任协同提供者）所执行的非持久的，无形的体验。 服务是单个或一系列活动。这些活动或多或少带有无形的天然属性，通常（不是必须）在客户和服务雇员&#x2F;物理资源和产品&#x2F;服务提供者的系统之间的交互中所发生。它们用来提供针对客户问题的解决方案。  1.2 服务模型 vs. 制造模型 123456789101112131415161718graph LRsubgraph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务、服务系统与面向服务的泛型">
+<meta property="og:url" content="https://blueheart0621.gitee.io/2020/05/26/ServiceComputing/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="1. 服务 1.1 定义  服务是为客户（担任协同提供者）所执行的非持久的，无形的体验。 服务是单个或一系列活动。这些活动或多或少带有无形的天然属性，通常（不是必须）在客户和服务雇员&#x2F;物理资源和产品&#x2F;服务提供者的系统之间的交互中所发生。它们用来提供针对客户问题的解决方案。  1.2 服务模型 vs. 制造模型 123456789101112131415161718graph LRsubgraph">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/37.jpg">
+<meta property="article:published_time" content="2020-05-26T02:44:00.000Z">
+<meta property="article:modified_time" content="2021-04-07T20:21:16.214Z">
+<meta property="article:author" content="BlueHeart0621">
+<meta property="article:tag" content="ServiceComputing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/37.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blueheart0621.gitee.io/2020/05/26/ServiceComputing/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?77434b78ec5f92549029e3806439191e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-7ET63NY1QB"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7ET63NY1QB');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "65unewt437");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-08 04:21:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/portrait.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">304</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/37.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">お前はどこまで見えている</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">服务、服务系统与面向服务的泛型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-26T02:44:00.000Z" title="发表于 2020-05-26 10:44:00">2020-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-07T20:21:16.214Z" title="更新于 2021-04-08 04:21:16">2021-04-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ServiceComputing/">ServiceComputing</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="服务、服务系统与面向服务的泛型"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-服务">1. 服务</h2>
+<h3 id="1-1-定义">1.1 定义</h3>
+<ul>
+<li>服务是为客户（担任协同提供者）所执行的非持久的，无形的体验。</li>
+<li>服务是单个或一系列活动。这些活动或多或少带有无形的天然属性，通常（不是必须）在<strong>客户和服务雇员/物理资源和产品/服务提供者的系统</strong>之间的交互中所发生。它们用来提供针对客户问题的解决方案。</li>
+</ul>
+<h3 id="1-2-服务模型-vs-制造模型">1.2 服务模型 vs. 制造模型</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">subgraph 服务模型</span><br><span class="line">    A((服务客户))</span><br><span class="line">    B[前台]</span><br><span class="line">    C[后台]</span><br><span class="line">    subgraph 服务提供者</span><br><span class="line">        C &#x3D;&#x3D;&#x3D; B</span><br><span class="line">    end</span><br><span class="line">    B ---|双向关系| A</span><br><span class="line">end</span><br><span class="line">subgraph 制造模型</span><br><span class="line">    D((通用客户))</span><br><span class="line">    E[产品]</span><br><span class="line">    subgraph 产品提供者</span><br><span class="line">        F[&quot;后台(工厂)&quot;]</span><br><span class="line">    end</span><br><span class="line">    F --&gt; E --&gt;|未知关系| D</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<!-- ![制造模式vs服务模式](/img/./ServiceComputing/服务、服务系统与面向服务的泛型/./制造模式vs服务模式.png) -->
+<ul>
+<li><strong>服务模型</strong>：服务的客户和服务的提供者之间的交互是双向的（相同的服务提供者面向不同的客户提供的服务是不同的）</li>
+<li><strong>制造模型</strong>：整个过程是单向的，产品并不是针对每个客户定制的，而是面向大众化的（客户的反馈需要通过其他另外的循环反馈到产品提供者，并在下一代产品中体现）。</li>
+</ul>
+<p>现实情况中，服务和制造并不是完全割裂开来的，我们越来越倾向于在制造模式中间引入服务部分，因为服务能够更好的对于客户的需求进行定制化设计，即制造和服务的融合。</p>
+<p>当前仍是以制造模式为主，因为大多数产品的制造仍然是单向的，即产品提供者制造出来客户买走，二者并没有进行双向的互动；但越来越偏向于服务，制造和服务进一步的融合。<br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ServiceComputing/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/./%E6%9C%8D%E5%8A%A1-%E4%BA%A7%E5%93%81%E5%85%89%E8%B0%B1.png" alt="服务-产品光谱"></p>
+<h3 id="1-3-服务发展趋势">1.3 服务发展趋势</h3>
+<ul>
+<li>单纯的制造持续减少，服务产业持续增长。</li>
+<li>服务变得越来越复杂。</li>
+<li>引入各种 IT 系统。</li>
+</ul>
+<h2 id="2-服务系统">2. 服务系统</h2>
+<h3 id="2-1-定义">2.1 定义</h3>
+<p>服务系统是指用以实现业务服务的 IT 软件系统。</p>
+<ul>
+<li>当业务服务由服务系统提供，该服务被称为 IT 使能服务（IT-enabled）。</li>
+</ul>
+<p>【注】IT 使能服务系统中可能既含有 IT 服务的部分，也可能含有非 IT 服务的部分。</p>
+<ul>
+<li>
+<p>IT 服务和非 IT 服务是服务的不同分类，二者的区别在于：提供的手段不一样、KPIs（关键绩效指标）不同、需求管理不同、变化的步调不同（二者最大的差异）。</p>
+</li>
+<li>
+<p>大多数可交互的软件系统都隶属与服务系统（操作系统不是）</p>
+</li>
+</ul>
+<h3 id="2-2-服务系统的问题">2.2 服务系统的问题</h3>
+<ul>
+<li>服务系统的复杂性（交互式）</li>
+<li>服务系统的灵活性（技术、平台改变）</li>
+<li>专业化和外包模式（专业化知识）</li>
+<li>计算环境的演化（平台的变化）</li>
+<li>IT 专家和业务专家之间的隔阂</li>
+<li>新增价值和创新功能</li>
+<li>一系列有着略微差异的服务系统（产品家族、产品线）</li>
+</ul>
+<blockquote>
+<p>【需解决的问题】</p>
+<ul>
+<li>如何利用有限的资源去建立合适的服务系统群</li>
+<li>如何利用有限的资源去维护合适的服务系统群</li>
+</ul>
+</blockquote>
+<h2 id="3-面向服务的泛型">3. 面向服务的泛型</h2>
+<h3 id="3-1-命令式（过程式）泛型">3.1 命令式（过程式）泛型</h3>
+<ul>
+<li>用程序状态和改变程序状态的语句来描述计算</li>
+<li>对冯·诺依曼式计算机的顺序执行机制的直接抽象</li>
+<li>由过程完成复用（大多数情况下复用的是计算的逻辑或流程，而不是状态）<br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ServiceComputing/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/./%E5%91%BD%E4%BB%A4%E5%BC%8F%E6%B3%9B%E5%9E%8B.png" alt="命令式泛型"></li>
+</ul>
+<h3 id="3-2-面向对象的泛型">3.2 面向对象的泛型</h3>
+<ul>
+<li>用封装了数据和操作的对象以及对象之间的消息传递描述计算</li>
+<li>封装、继承、多态</li>
+<li>Design Pattern 设计模式：为变化而设计，与泛型无关<br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ServiceComputing/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/./%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%B3%9B%E5%9E%8B.png" alt="面向对象的泛型"></li>
+</ul>
+<blockquote>
+<p>【面向对象过程中最大的问题】</p>
+<ul>
+<li>对象所抽象的东西仍然是面向计算描述（实现）的</li>
+<li>实现会受到两方面的变化的影响：一方面为底层设计的逻辑，另一方面为实现的接口</li>
+</ul>
+</blockquote>
+<h3 id="3-3-基于构件的泛型">3.3 基于构件的泛型</h3>
+<ul>
+<li>构件：模块化的、可部署、可替换的软件系统组成部分，它封装了内部的具体实现并对外提供统一接口</li>
+<li>以构件的创建、构件的管理以及复用已有构件组装形成应用为基本活动<br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ServiceComputing/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/./%E5%9F%BA%E4%BA%8E%E6%9E%84%E4%BB%B6%E7%9A%84%E6%B3%9B%E5%9E%8B.png" alt="基于构件的泛型"></li>
+</ul>
+<blockquote>
+<p>【优点】</p>
+<ul>
+<li>由于构件对外提供统一接口，针对某个特定的业务功能进行抽象，当前业务接口极少发生变更</li>
+<li>构件所实现的功能单位，相对来说，比整个业务逻辑小很多</li>
+</ul>
+</blockquote>
+<h3 id="基于构件-vs-面向对象">基于构件 vs. 面向对象</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方面</th>
+<th style="text-align:center">基于构件</th>
+<th style="text-align:center">面向对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">抽象视角</td>
+<td style="text-align:center">构件是对客观世界的实体或者实体联合能提供的功能和服务的建模；仅仅关注实体的功能和服务</td>
+<td style="text-align:center">对象是对客观世界基本实体的抽象，强调对实体的对应及实体的建模；涉及实体的静态属性特征</td>
+</tr>
+<tr>
+<td style="text-align:center">可复用程度和复用机制</td>
+<td style="text-align:center">以组合的方式实现复用（跨软件系统复用）</td>
+<td style="text-align:center">以继承的方式实现复用（单个软件系统内部）</td>
+</tr>
+<tr>
+<td style="text-align:center">粒度不同（涵盖功能单元）</td>
+<td style="text-align:center">大</td>
+<td style="text-align:center">小</td>
+</tr>
+</tbody>
+</table>
+<p>【注】大粒度的构件内部是可以以面向对象的方式来加以实现的，一方面对外以合理的方式封装了必要的完整的功能实现；另一方面拥有着统一的接口，使得构件和构件之间可以无缝连接</p>
+<h3 id="3-4-面向服务的泛型">3.4 面向服务的泛型</h3>
+<ul>
+<li>服务：是自治、开放、自描述、与实现无关的网络构件</li>
+</ul>
+<blockquote>
+<ul>
+<li>自治：服务能够单独独立地完成一个任务（不依赖于其他构件，来完成它所需要完成的工作）</li>
+<li>开放：对于构件而言，只要遵循了一般的协议或标准，当前服务的统一接口应该是跨公司、跨平台、全球范围之内可以相互调用的（进一步提升了它复用的可能性和范围）</li>
+<li>自描述：服务应该自己能够描述自己完成的任务，而不应该有其他的附加手段去对于当前的服务来进行描述</li>
+<li>与实现无关：只需提供统一接口，不用关心具体实现</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>以服务的创建、服务的管理以及复用已有服务组装形成应用为基本活动</p>
+</li>
+<li>
+<p>通过网络，使用标准方式互联。不再通过共享代码、共享设计来共享实现，而是共享计算<br>
+<img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/./ServiceComputing/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/./%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B.png" alt="面向服务的泛型"></p>
+</li>
+<li>
+<p>服务：功能相关、简单且相对稳定、由 IT 专家开发</p>
+</li>
+<li>
+<p>过程：应用相关、复杂多变、由业务专家开发、可以被封装为服务</p>
+</li>
+</ul>
+<blockquote>
+<p>【优点】</p>
+<ul>
+<li>节约资源：一方面，IT 专家开发出来的服务在不同业务流程中间不需要重复设计；另一方面，业务专家负责组装过程的流程是不需要 IT 专家进行辅助</li>
+</ul>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">BlueHeart0621</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blueheart0621.gitee.io/2020/05/26/ServiceComputing/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/">https://blueheart0621.gitee.io/2020/05/26/ServiceComputing/服务、服务系统与面向服务的泛型/服务、服务系统与面向服务的泛型/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://BlueHeart0621.gitee.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ServiceComputing/">ServiceComputing</a></div><div class="post_share"><div class="social-share" data-image="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/37.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/26/ServiceComputing/XML%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8D%8F%E8%AE%AE/XML%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8D%8F%E8%AE%AE/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/827.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">XML及相关协议</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/26/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AE%A1%E7%AE%97/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AE%A1%E7%AE%97/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1397.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">服务生态系统与面向服务的计算</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/05/26/ServiceComputing/WebService扩展/WebService扩展/" title="WebService扩展"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/690.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">WebService扩展</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/WebService核心/WebService核心/" title="WebService核心"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/85.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">WebService核心</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/XML及相关协议/XML及相关协议/" title="XML及相关协议"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/827.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">XML及相关协议</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/服务生态系统与面向服务的计算/服务生态系统与面向服务的计算/" title="服务生态系统与面向服务的计算"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1397.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">服务生态系统与面向服务的计算</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/服务生态系统的构建/服务生态系统的构建/" title="服务生态系统的构建"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/486.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">服务生态系统的构建</div></div></a></div><div><a href="/2020/05/26/ServiceComputing/服务设计原则/服务设计原则/" title="服务设计原则"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/821.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">服务设计原则</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/portrait.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">BlueHeart0621</div><div class="author-info__description">欢迎来到我的博客星球^_^</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">304</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/BlueHeart0621"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/BlueHeart0621" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:BlueHeart0621@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">1. 服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9E%8B-vs-%E5%88%B6%E9%80%A0%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 服务模型 vs. 制造模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%9C%8D%E5%8A%A1%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 服务发展趋势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.</span> <span class="toc-text">2. 服务系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 服务系统的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">3. 面向服务的泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%91%BD%E4%BB%A4%E5%BC%8F%EF%BC%88%E8%BF%87%E7%A8%8B%E5%BC%8F%EF%BC%89%E6%B3%9B%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 命令式（过程式）泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%B3%9B%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 面向对象的泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%9F%BA%E4%BA%8E%E6%9E%84%E4%BB%B6%E7%9A%84%E6%B3%9B%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 基于构件的泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%9E%84%E4%BB%B6-vs-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.4.</span> <span class="toc-text">基于构件 vs. 面向对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B"><span class="toc-number">3.5.</span> <span class="toc-text">3.4 面向服务的泛型</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/04/03/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/990.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX色彩"/></a><div class="content"><a class="title" href="/2021/04/03/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩">LaTeX色彩</a><time datetime="2021-04-03T15:41:46.000Z" title="发表于 2021-04-03 23:41:46">2021-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/03/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/1582.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX标题控制"/></a><div class="content"><a class="title" href="/2021/04/03/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制">LaTeX标题控制</a><time datetime="2021-04-03T02:41:00.000Z" title="发表于 2021-04-03 10:41:00">2021-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/30/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/723.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX浮动体"/></a><div class="content"><a class="title" href="/2021/03/30/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体">LaTeX浮动体</a><time datetime="2021-03-30T11:21:45.000Z" title="发表于 2021-03-30 19:21:45">2021-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/29/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX插图"/></a><div class="content"><a class="title" href="/2021/03/29/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图">LaTeX插图</a><time datetime="2021-03-29T06:22:03.000Z" title="发表于 2021-03-29 14:22:03">2021-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/26/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/" title="LaTeX幻灯片提纲"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://xiaoxiaoluomu.gitee.io/figurebed/wallpaper/209.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX幻灯片提纲"/></a><div class="content"><a class="title" href="/2021/03/26/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/" title="LaTeX幻灯片提纲">LaTeX幻灯片提纲</a><time datetime="2021-03-26T12:49:47.000Z" title="发表于 2021-03-26 20:49:47">2021-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By BlueHeart0621</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'J9cPq1lUHLm7JmqKQiM2vQzX-MdYXbMMI',
+      appKey: 'OWjsGwfWuEDllgfJ9zRpFmrS',
+      placeholder: '说点什么吧~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://J9cPq1lU.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'J9cPq1lUHLm7JmqKQiM2vQzX-MdYXbMMI',
+        "X-LC-Key": 'OWjsGwfWuEDllgfJ9zRpFmrS',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "7948a394-b90b-47d5-84d5-6e38eae0306f";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (true) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-7ET63NY1QB', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
