@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>お前はどこまで見えている</title>
+  
+  <subtitle>僕たちは そうやって どこまで行くのだろう、どこまで行けるのだろう</subtitle>
+  <link href="https://hotarugali.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://hotarugali.github.io/"/>
+  <updated>2021-07-16T13:54:26.775Z</updated>
+  <id>https://hotarugali.github.io/</id>
+  
+  <author>
+    <name>hotarugali</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux下各种安装包打包工具</title>
+    <link href="https://hotarugali.github.io/2021/07/16/Linux/Sundry/Linux%E4%B8%8B%E5%90%84%E7%A7%8D%E5%AE%89%E8%A3%85%E5%8C%85%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/"/>
+    <id>https://hotarugali.github.io/2021/07/16/Linux/Sundry/Linux%E4%B8%8B%E5%90%84%E7%A7%8D%E5%AE%89%E8%A3%85%E5%8C%85%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/</id>
+    <published>2021-07-16T11:48:33.000Z</published>
+    <updated>2021-07-16T13:54:26.775Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-Deb-包">1. Deb 包</h2><p>Deb 包是 Debian 系 Linux 发行版的软件包格式。</p><h3 id="1-1-Debreate">1.1 Debreate</h3><ul><li><a href="https://antumdeluge.github.io/debreate-web/">官网</a></li><li><a href="https://antumdeluge.github.io/debreate-web/docs/doxygen/">文档</a></li><li><a href="https://github.com/AntumDeluge/debreate">仓库</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-Deb-包&quot;&gt;1. Deb 包&lt;/h2&gt;
+&lt;p&gt;Deb 包是 Debian 系 Linux 发行版的软件包格式。&lt;/p&gt;
+&lt;h3 id=&quot;1-1-Debreate&quot;&gt;1.1 Debreate&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://ant</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Sundry" scheme="https://hotarugali.github.io/categories/Linux/Sundry/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Sundry" scheme="https://hotarugali.github.io/tags/Sundry/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>KaliLinux下安装deepinwine软件</title>
+    <link href="https://hotarugali.github.io/2021/07/16/Linux/KaliLinux/KaliLinux%E4%B8%8B%E5%AE%89%E8%A3%85deepinwine%E8%BD%AF%E4%BB%B6/"/>
+    <id>https://hotarugali.github.io/2021/07/16/Linux/KaliLinux/KaliLinux%E4%B8%8B%E5%AE%89%E8%A3%85deepinwine%E8%BD%AF%E4%BB%B6/</id>
+    <published>2021-07-16T11:15:35.000Z</published>
+    <updated>2021-07-16T13:54:26.779Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>Deepin 团队开发的一系列基于 deepinwine 的国产软件越来越好用，但多数 Linux 发行版并不支持直接安装，目前已知除了 Deepin 系统本身外，仅有 Arch 系的 Linux 发行版依靠 AUR 源可直接进行安装，Debian 系的其他 Linux 发行版均无法直接安装。目前有几种比较好的解决方案：星火应用商店、deepin-wine.i-m.dev。</p><h2 id="2-星火应用商店">2. 星火应用商店</h2><p><a href="https://www.spark-app.store/">星火应用商店</a>上包含了大多数常用的 wine 版国产软件，而且对 Ubuntu 和 Debian 都有较好的支持。在 KaliLinux 上安装星火应用商店步骤如下：</p><ul><li>在<a href="https://www.spark-app.store/download.html">官方页面</a>上下载星火应用商店安装包和客户端依赖包。</li><li>然后利用 <code>sudo dpkg -i xxx.deb</code> 进行安装即可。</li><li>打开星火应用商店，即可图形化安装里面提供的软件。</li></ul><h2 id="3-deepin-wine-i-m-dev">3. deepin-wine.i-m.dev</h2><p><a href="https://deepin-wine.i-m.dev/">deepin-wine.i-m.dev</a> 是 Deepin 软件商店在 Debian 和 Ubuntu 上的移植仓库，其使用方式参见<a href="https://github.com/Spark-Store/Spark-Store-Website">仓库手册</a>。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;Deepin 团队开发的一系列基于 deepinwine 的国产软件越来越好用，但多数 Linux 发行版并不支持直接安装，目前已知除了 Deepin 系统本身外，仅有 Arch 系的 Linux 发行版依靠 AUR 源可直</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="KaliLinux" scheme="https://hotarugali.github.io/categories/Linux/KaliLinux/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="KaliLinux" scheme="https://hotarugali.github.io/tags/KaliLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArchLinux下VSCode无法联网下载扩展</title>
+    <link href="https://hotarugali.github.io/2021/07/16/Linux/ArchLinux/ArchLinux%E4%B8%8BVSCode%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E4%B8%8B%E8%BD%BD%E6%89%A9%E5%B1%95/"/>
+    <id>https://hotarugali.github.io/2021/07/16/Linux/ArchLinux/ArchLinux%E4%B8%8BVSCode%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E4%B8%8B%E8%BD%BD%E6%89%A9%E5%B1%95/</id>
+    <published>2021-07-16T06:31:05.000Z</published>
+    <updated>2021-07-16T13:54:26.775Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>VSCode 作为「宇宙最强编辑器」，在日常生活办公中自然不可或缺。VSCode 目前有好几个版本，分别是 Code-OSS、Visual-Studio-Code 以及 VSCodium，它们的区别是：</p><ul><li>Code-OSS 是通过官方源码编译的开源版本。</li><li>Visual-Studio-Code 是微软官方版本，专有软件。</li><li>VSCodium 是社区驱动的完全开源版本。</li></ul><p>至于它们具体的功能区别参见微软官方介绍 <a href="https://github.com/microsoft/vscode/wiki/Differences-between-the-repository-and-Visual-Studio-Code">Differences between the repository and Visual Studio Code</a>。</p><h2 id="2-问题">2. 问题</h2><p>Code-OSS 和 VSCodium 作为开源版本，因此微软并没有将扩展商店的 url 提供出来，从而导致这两个版本无法正常联网下载扩展。对于这两个版本，我个人安装的软件包对应为：code、vscodium-bin，它们的解决方案有两种：</p><h3 id="2-1-安装-AUR-软件">2.1 安装 AUR 软件</h3><p>对于开源版本无法联网下载扩展的问题，已经有大佬在 AUR 上传了对应软件包解决这个问题。</p><ul><li>对于 code，需要安装 code-marketplace 包：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S code-marketplace</span><br></pre></td></tr></table></figure><ul><li>对于 vscodium-bin，需要安装 vscodium-bin-marketplace 包：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S vscodium-bin-marketplace</span><br></pre></td></tr></table></figure><h3 id="2-2-手动修改-product-json">2.2 手动修改 <code>product.json</code></h3><p>由微软官方介绍 <a href="https://github.com/microsoft/vscode/wiki/Differences-between-the-repository-and-Visual-Studio-Code">Differences between the repository and Visual Studio Code</a> 可知，开源版本都维护了一个 <code>product.json</code> 文档来进行私有设置，而扩展商店 url 的设置也在其中，因此我们可以修改 <code>product.json</code> 中扩展商店的 url 来解决问题。</p><ul><li>对于 code，<code>product.json</code> 在 ArchLinux 上的路径为 <code>/usr/lib/code/product.json</code>。</li><li>对于 vscodium-bin，<code>product.json</code> 在 ArchLinux 上的路径为 <code>/usr/share/vscodium-bin/resources/app/product.json</code>。</li></ul><p>具体做法是将 <code>product.json</code> 中的以下代码</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;extensionsGallery&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;serviceUrl&quot;</span>: <span class="string">&quot;https://open-vsx.org/vscode/gallery&quot;</span>,</span><br><span class="line">    <span class="string">&quot;itemUrl&quot;</span>: <span class="string">&quot;https://open-vsx.org/vscode/item&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p>替换为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;extensionsGallery&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;serviceUrl&quot;</span>: <span class="string">&quot;https://marketplace.visualstudio.com/_apis/public/gallery&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cacheUrl&quot;</span>: <span class="string">&quot;https://vscode.blob.core.windows.net/gallery/index&quot;</span>,</span><br><span class="line">    <span class="string">&quot;itemUrl&quot;</span>: <span class="string">&quot;https://marketplace.visualstudio.com/items&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p>【注】其实使用第一种方案本质上主要是修改了 <code>product.json</code> 中的这段代码，大家可以在使用第一种方案后尝试对比安装前后的 <code>product.json</code> 的区别。</p><h2 id="附录">附录</h2><p>参考资料：</p><ul><li><a href="https://wiki.archlinux.org/title/Visual_Studio_Code">Visual Studio Code</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;VSCode 作为「宇宙最强编辑器」，在日常生活办公中自然不可或缺。VSCode 目前有好几个版本，分别是 Code-OSS、Visual-Studio-Code 以及 VSCodium，它们的区别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/categories/Linux/ArchLinux/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArchLinux下zsh配置</title>
+    <link href="https://hotarugali.github.io/2021/07/15/Linux/ArchLinux/ArchLinux%E4%B8%8Bzsh%E9%85%8D%E7%BD%AE/"/>
+    <id>https://hotarugali.github.io/2021/07/15/Linux/ArchLinux/ArchLinux%E4%B8%8Bzsh%E9%85%8D%E7%BD%AE/</id>
+    <published>2021-07-15T10:40:47.000Z</published>
+    <updated>2021-07-16T13:54:26.775Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>zsh 是一款优秀的 Shell 脚本解释器，其基于 Bourne Shell<br>作出了大量改进，同时加入了 bash、ksh 和 tcsh 的一些功能。</p><h2 id="2-配置">2. 配置</h2><p>Oh My Zsh 用户社区收集了 zsh 大量的第三方插件，并推出了 <a href="https://ohmyz.sh/">oh-my-zsh</a> 框架用于管理 zsh 插件。因此对 zsh 进行配置之前，首先安装该框架：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S oh-my-zsh-git</span><br></pre></td></tr></table></figure><p>一般常用的配置包括主题、自动补全和语法高亮，更多配置可以参见 <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Customization">oh-my-zsh 官方配置文档</a>。</p><h3 id="2-1-主题">2.1 主题</h3><p>oh-my-zsh 中集成了大量 <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">zsh 主题</a>，大家可以选择一款自己的进行配置，即修改 <code>~/.zshrc</code> 中的 <code>ZSH_THEME</code> 变量：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=robbyrussell      <span class="comment"># 这里我保持默认的主题</span></span><br></pre></td></tr></table></figure><h3 id="2-2-自动补全">2.2 自动补全</h3><p>oh-my-zsh 配置自动补全功能需要安装 <a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a> 插件，具体安装步骤为：</p><ul><li>克隆 <a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a> 仓库到 oh-my-zsh 的插件目录下：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure><ul><li>修改 <code>~/.zshrc</code>，增加 <code>zsh-autosuggestions</code> 项：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plugins=( </span><br><span class="line">    <span class="comment"># other plugins...</span></span><br><span class="line">    zsh-autosuggestions</span><br><span class="line">)</span><br></pre></td></tr></table></figure><h3 id="2-3-语法高亮">2.3 语法高亮</h3><p>oh-my-zsh 配置语法高亮功能需要安装 <a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a> 插件，具体安装步骤为：</p><ul><li>克隆 <a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a> 仓库到 oh-my-zsh 的插件目录下：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br></pre></td></tr></table></figure><ul><li>修改 <code>~/.zshrc</code>，增加 <code>zsh-syntax-highlighting</code> 项：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plugins=( </span><br><span class="line">    <span class="comment"># other plugins...</span></span><br><span class="line">    zsh-syntax-highlighting</span><br><span class="line">)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;zsh 是一款优秀的 Shell 脚本解释器，其基于 Bourne Shell&lt;br&gt;
+作出了大量改进，同时加入了 bash、ksh 和 tcsh 的一些功能。&lt;/p&gt;
+&lt;h2 id=&quot;2-配置&quot;&gt;2. 配置&lt;/h2&gt;
+&lt;p</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/categories/Linux/ArchLinux/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArchLinux下bash配置</title>
+    <link href="https://hotarugali.github.io/2021/07/15/Linux/ArchLinux/ArchLinux%E4%B8%8Bbash%E9%85%8D%E7%BD%AE/"/>
+    <id>https://hotarugali.github.io/2021/07/15/Linux/ArchLinux/ArchLinux%E4%B8%8Bbash%E9%85%8D%E7%BD%AE/</id>
+    <published>2021-07-15T10:40:41.000Z</published>
+    <updated>2021-07-16T13:54:26.775Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>由于 ArchLinux 保持系统最简的原则，因此系统自带的 bash 只有最基本的功能。</p><h2 id="2-配置">2. 配置</h2><h3 id="2-1-自动补全">2.1 自动补全</h3><p>默认的 bash 按下 tab 键只会补全命令、文件名和变量。如果需要更多的补全，比如 <code>pacman -S</code> 安装软件包时的补全，则需要安装 <code>bash-completion</code> 软件包：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S bash-completion</span><br></pre></td></tr></table></figure><h3 id="2-2-其他">2.2 其他</h3><p>bash 配置完自动补全基本就足够了，其他配置可以参考 <a href="https://wiki.archlinux.org/title/Bash">ArchLinux 官方 bash 配置</a>。</p><h2 id="附录">附录</h2><p>参考文献：</p><ul><li><a href="https://wiki.archlinux.org/title/Bash">Bash</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;由于 ArchLinux 保持系统最简的原则，因此系统自带的 bash 只有最基本的功能。&lt;/p&gt;
+&lt;h2 id=&quot;2-配置&quot;&gt;2. 配置&lt;/h2&gt;
+&lt;h3 id=&quot;2-1-自动补全&quot;&gt;2.1 自动补全&lt;/h3&gt;
+&lt;p&gt;默认</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/categories/Linux/ArchLinux/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArchLinux下解决deepinwine软件中文黑框问题</title>
+    <link href="https://hotarugali.github.io/2021/07/15/Linux/ArchLinux/ArchLinux%E4%B8%8B%E8%A7%A3%E5%86%B3deepinwine%E8%BD%AF%E4%BB%B6%E4%B8%AD%E6%96%87%E9%BB%91%E6%A1%86%E9%97%AE%E9%A2%98/"/>
+    <id>https://hotarugali.github.io/2021/07/15/Linux/ArchLinux/ArchLinux%E4%B8%8B%E8%A7%A3%E5%86%B3deepinwine%E8%BD%AF%E4%BB%B6%E4%B8%AD%E6%96%87%E9%BB%91%E6%A1%86%E9%97%AE%E9%A2%98/</id>
+    <published>2021-07-15T10:39:51.000Z</published>
+    <updated>2021-07-16T13:54:26.775Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>随着 deepinwine 的不断完善，类似中文显示等问题也在逐渐减少，目前最新的 deepinwine 应用，如 com.qq.tim.spark 等中文都显示正常，相信到后面这类问题就会完全消失。给 deepin 团队打 call ！！！</p><h2 id="2-中文显示黑框">2. 中文显示黑框</h2><p>目前遇到两种情况下中文显示黑框，一种是英文环境下中文显示黑框，但中文环境下正常；另一种是中文环境下中文也显示为黑框。</p><h2 id="2-1-英文环境导致中文显示黑框">2.1 英文环境导致中文显示黑框</h2><p>这种情况下，安装的 deepinwine 软件显示中文会有问题，需要修改一下 wine 软件的启动环境，具体修改步骤如下：</p><ol><li>查找 wine 软件的启动命令，这里以 com.tencent.meeting.deepin 软件（即腾讯会议 wine 版）为例，在开始菜单中找到该软件，右键编辑应用，切换到应用选项卡，找到启动命令，我这里是 <code>&quot;/opt/apps/com.tencent.meeting.deepin/files/run.sh&quot; -u %u</code>（一般默认安装也会是这个命令）。</li><li>打开启动脚本 <code>/opt/apps/com.tencent.meeting.deepin/files/run.sh</code>，找到 <code>WINE_CMD</code>（早期版本）或 <code>APPRUN_CMD</code>（较新版本），我这里是 <code>export APPRUN_CMD=&quot;/usr/lib/deepin-wine6-stable/bin/wine&quot;</code>。然后将 <code>LC_ALL=zh_CN.UTF-8</code> 添加到变量 <code>APPRUN_CMD</code> 中，即表示使用中文环境启动：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> APPRUN_CMD=<span class="string">&quot;LC_ALL=zh_CN.UTF-8 /usr/lib/deepin-wine6-stable/bin/wine&quot;</span></span><br></pre></td></tr></table></figure><ol start="3"><li>由于命令 <code>WINE_CMD</code> 或 <code>APPRUN_CMD</code> 中引入了一条赋值语句，和原来的 wine 命令之间出现了空格，所以可能会影响后面的 <code>if</code> 命令，所以需要追踪一下 <code>APPRUN_CMD</code> 的使用。比如我这里：</li></ol><blockquote><ul><li>首先是 <code>/opt/apps/com.tencent.meeting.deepin/files/run.sh</code> 脚本中没有具体使用到 <code>APPRUN_CMD</code>，而是通过 <code>export</code> 导出了 <code>APPRUN_CMD</code> 命令，然后再通过 <code>START_SHELL_PATH=&quot;/opt/deepinwine/tools/run_v3.sh&quot;</code> 变量指定了 <code>/opt/deepinwine/tools/run_v3.sh</code>，并在下文通过 <code>$START_SHELL_PATH $BOTTLENAME $APPVER &quot;$EXEC_PATH&quot; &quot;$@&quot;</code> 进行了启动，因此定位到 <code>/opt/deepinwine/tools/run_v3.sh</code> 文件。</li><li>打开 <code>/opt/deepinwine/tools/run_v3.sh</code> 发现，有一段代码使用到 <code>APPRUN_CMD</code> 变量：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="variable">$APPRUN_CMD</span> ]; <span class="keyword">then</span></span><br><span class="line">  WINE_CMD=<span class="variable">$APPRUN_CMD</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure><ul><li>由于 <code>APPRUN_CMD</code> 变量在 <code>if</code> 语句中进行判断时没有加上双引号，因此如果 <code>APPRUN_CMD</code> 变量中有空格就会导致 <code>if</code> 语句判断了两个字符串，从而导致问题。因此需要将 <code>$APPRUN_CMD</code> 加上双引号进行判读，具体修改成如下代码：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$APPRUN_CMD</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  WINE_CMD=<span class="variable">$APPRUN_CMD</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></blockquote><ol start="4"><li>至此修改完毕，重新启动 com.tencent.meeting.deepin 中文显示正常。</li></ol><h3 id="2-2-中文环境下中文也显示为黑框">2.2 中文环境下中文也显示为黑框</h3><p>这就是系统本身找不到字体的原因了，因此可以将 Windows 环境下的添加到 deepinwine 环境中。比如这里仍然以 com.tencent.meeting.deepin 软件（即腾讯会议 wine 版）为例：</p><ol><li>将 Windows 系统下的 <code>C:\Windows\Fonts\msyh.ttc</code> 到 <code>~/.deepinwine/Deepin-WeMeet/drive_c/windows/Fonts</code> 文件夹中。</li><li>修改 com.tencent.meeting.deepin 的 wine 环境中的注册表文件 <code>~/.deepinwine/Deepin-WeChat/system.reg</code>，修改以下两行指定使用的字体为 <code>msyh.ttc</code> 字体：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;MS Shell Dlg&quot;</span>=<span class="string">&quot;msyh&quot;</span></span><br><span class="line"><span class="string">&quot;MS Shell Dlg 2&quot;</span>=<span class="string">&quot;msyh&quot;</span></span><br></pre></td></tr></table></figure><h2 id="附录">附录</h2><p>其实不止在 ArchLinux 下，其他系统下出现类似问题的解决方案也差不多是这两种。参考资料：</p><ul><li><a href="https://github.com/wszqkzqk/deepin-wine-ubuntu/issues/136">ubuntu18.04下 中文字体显示为方块方框</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;随着 deepinwine 的不断完善，类似中文显示等问题也在逐渐减少，目前最新的 deepinwine 应用，如 com.qq.tim.spark 等中文都显示正常，相信到后面这类问题就会完全消失。给 deepin 团队打</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/categories/Linux/ArchLinux/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArchLinux安装教程</title>
+    <link href="https://hotarugali.github.io/2021/07/15/Linux/ArchLinux/ArchLinux%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/"/>
+    <id>https://hotarugali.github.io/2021/07/15/Linux/ArchLinux/ArchLinux%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</id>
+    <published>2021-07-15T10:35:51.000Z</published>
+    <updated>2021-07-16T13:54:26.775Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>ArchLinux 安装参考<a href="https://wiki.archlinux.org/title/Installation_guide">官方 Wiki 文档</a>和 viseator 大佬的博文 <a href="https://www.viseator.com/2017/05/17/arch_install/">以官方Wiki的方式安装ArchLinux</a>。</li></ul><p>【注】这里有一点需要注意的是，对于多系统用户，在生成 GRUB 配置文件时，如果需要自动探测其他系统，并将它们添加到启动菜单中，按照上述文档操作如果仍然无法探测到其他系统，则可以待系统安装完成后，进入系统修改 <code>/etc/default/grub</code> 文件，修改/添加以下配置：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_DISABLE_OS_PROBER=<span class="literal">false</span>    <span class="comment"># 表明在进行 grub-mkconfig 生成启动菜单时启用 os-prober 进行自动探测（首先要安装号 os-prober 工具）</span></span><br></pre></td></tr></table></figure><p>然后重新运行以下代码生成 GRUB 启动菜单：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;ArchLinux 安装参考&lt;a href=&quot;https://wiki.archlinux.org/title/Installation_guide&quot;&gt;官方 Wiki 文档&lt;/a&gt;和 viseator 大佬的博文 &lt;a href=&quot;https://www.vis</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/categories/Linux/ArchLinux/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="ArchLinux" scheme="https://hotarugali.github.io/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux各桌面用户文档</title>
+    <link href="https://hotarugali.github.io/2021/07/15/Linux/Sundry/Linux%E5%90%84%E6%A1%8C%E9%9D%A2%E7%94%A8%E6%88%B7%E6%96%87%E6%A1%A3/"/>
+    <id>https://hotarugali.github.io/2021/07/15/Linux/Sundry/Linux%E5%90%84%E6%A1%8C%E9%9D%A2%E7%94%A8%E6%88%B7%E6%96%87%E6%A1%A3/</id>
+    <published>2021-07-15T10:35:06.000Z</published>
+    <updated>2021-07-16T13:54:26.775Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><a href="https://userbase.kde.org/">KDE 桌面</a></li><li><a href="https://help.gnome.org/">Gnome 桌面</a></li><li><a href="https://docs.xfce.org/">Xfce 桌面</a></li><li><a href="https://wiki.deepin.org/">DDE 桌面</a></li><li><a href="https://linuxmint.com/documentation.php">Cinnamon 桌面</a></li><li><a href="https://wiki.mate-desktop.org">MATE 桌面</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://userbase.kde.org/&quot;&gt;KDE 桌面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://help.gnome.org/&quot;&gt;Gnome 桌面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://do</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Sundry" scheme="https://hotarugali.github.io/categories/Linux/Sundry/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Sundry" scheme="https://hotarugali.github.io/tags/Sundry/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux下分割PDF</title>
+    <link href="https://hotarugali.github.io/2021/07/08/Linux/Sundry/Linux%E4%B8%8B%E5%88%86%E5%89%B2PDF/"/>
+    <id>https://hotarugali.github.io/2021/07/08/Linux/Sundry/Linux%E4%B8%8B%E5%88%86%E5%89%B2PDF/</id>
+    <published>2021-07-08T14:52:20.000Z</published>
+    <updated>2021-07-16T13:54:26.772Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-pdfdk">1. pdfdk</h2><p><a href="https://www.pdflabs.com/tools/pdftk-server/">pdftk</a> 是一款跨平台的命令行 PDF 编辑软件，它提供 PDF 文档分割、合并、加解密、翻转页面、等诸多功能。如果你的 Linux 发行版上没有 <code>pdftk</code> 命令，需要手动安装 pdftk 软件。pdftk 分割 PDF 的示例如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdftk 123.pdf cat 1-45 output out1_45.pdf<span class="comment"># 从单个 PDF 文件中提取指定页面</span></span><br></pre></td></tr></table></figure><p>【注】<code>pdftk</code> 的其他功能示例参见<a href="https://www.pdflabs.com/docs/pdftk-cli-examples/">官方示例</a>。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-pdfdk&quot;&gt;1. pdfdk&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.pdflabs.com/tools/pdftk-server/&quot;&gt;pdftk&lt;/a&gt; 是一款跨平台的命令行 PDF 编辑软件，它提供 PDF 文档分割、合并、加解密、翻转</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Sundry" scheme="https://hotarugali.github.io/categories/Linux/Sundry/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Sundry" scheme="https://hotarugali.github.io/tags/Sundry/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络代理工具及其文档</title>
+    <link href="https://hotarugali.github.io/2021/07/07/Net/%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%85%B6%E6%96%87%E6%A1%A3/"/>
+    <id>https://hotarugali.github.io/2021/07/07/Net/%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%85%B6%E6%96%87%E6%A1%A3/</id>
+    <published>2021-07-07T07:18:14.000Z</published>
+    <updated>2021-07-16T13:54:26.829Z</updated>
+    
+    <content type="html"><![CDATA[<p>【注】佛曰：不可说。</p><h2 id="1-Qv2ray">1. Qv2ray</h2><ul><li><a href="https://github.com/Qv2ray/Qv2ray">仓库</a></li><li><a href="https://qv2ray.net/lang/zh/">文档</a></li></ul><h3 id="1-1-插件">1.1 插件</h3><ul><li><a href="https://github.com/Qv2ray/QvPlugin-Trojan-Go">QvPlugin-Trojan-Go</a>：支持 Trojan 协议。</li></ul><h2 id="2-V2ray-Desktop">2. V2ray-Desktop</h2><ul><li><a href="https://github.com/Dr-Incognito/V2Ray-Desktop">仓库</a></li><li><a href="https://github.com/Dr-Incognito/V2Ray-Desktop/wiki">文档</a></li></ul><h2 id="3-V2ray">3. V2ray</h2><ul><li><a href="https://github.com/v2fly/v2ray-core">仓库</a></li><li><a href="https://www.v2fly.org/">文档</a></li><li><a href="https://toutyrater.github.io/">指南</a></li></ul><h2 id="4-Trojan">4. Trojan</h2><ul><li><a href="https://github.com/trojan-gfw/trojan">仓库</a></li><li><a href="https://trojan-gfw.github.io/trojan/">文档</a></li><li><a href="https://github.com/trojan-gfw/trojan/wiki/Binary-&amp;-Package-Distributions">指南</a></li></ul><h2 id="5-Trojan-Go">5. Trojan-Go</h2><ul><li><a href="https://github.com/p4gefau1t/trojan-go">仓库</a></li><li><a href="https://p4gefau1t.github.io/trojan-go/">文档</a></li></ul><h2 id="6-Clash">6. Clash</h2><ul><li><a href="https://github.com/Dreamacro/clash">仓库</a></li><li><a href="https://github.com/Dreamacro/clash/wiki">文档</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;【注】佛曰：不可说。&lt;/p&gt;
+&lt;h2 id=&quot;1-Qv2ray&quot;&gt;1. Qv2ray&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Qv2ray/Qv2ray&quot;&gt;仓库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://qv2r</summary>
+      
+    
+    
+    
+    <category term="Net" scheme="https://hotarugali.github.io/categories/Net/"/>
+    
+    
+    <category term="Net" scheme="https://hotarugali.github.io/tags/Net/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS查看系统信息</title>
+    <link href="https://hotarugali.github.io/2021/07/07/Linux/CentOS/CentOS%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/"/>
+    <id>https://hotarugali.github.io/2021/07/07/Linux/CentOS/CentOS%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/</id>
+    <published>2021-07-07T06:33:00.000Z</published>
+    <updated>2021-07-16T13:54:26.782Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-查看内核版本">1. 查看内核版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure><h2 id="2-查看系统版本号">2. 查看系统版本号</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-查看内核版本&quot;&gt;1. 查看内核版本&lt;/h2&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="CentOS" scheme="https://hotarugali.github.io/categories/Linux/CentOS/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="CentOS" scheme="https://hotarugali.github.io/tags/CentOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS7.9防火墙管理</title>
+    <link href="https://hotarugali.github.io/2021/07/07/Linux/CentOS/CentOS7.9%E9%98%B2%E7%81%AB%E5%A2%99%E7%AE%A1%E7%90%86/"/>
+    <id>https://hotarugali.github.io/2021/07/07/Linux/CentOS/CentOS7.9%E9%98%B2%E7%81%AB%E5%A2%99%E7%AE%A1%E7%90%86/</id>
+    <published>2021-07-07T04:01:40.000Z</published>
+    <updated>2021-07-16T13:54:26.782Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>在 CentOS7.9 下，对于防火墙服务本身，使用系统 <code>systemctl</code> 工具来进行管理。而对于防火墙的使用，使用自带 <code>firewall-cmd</code> 工具来进行管理，<code>firewall-cmd</code> 工具可以很方便地管理主机端口、协议服务等。本文主要介绍 <code>firewall-cmd</code> 常用的一些选项，更多细节参考附录中的参考资料以及 <code>firewall-cmd</code> 的帮助手册：<code>firewall-cmd --help</code>。</p><p>【注】在使用 <code>firewall-cmd</code> 工具修改防火墙配置时，可以通过增加 <code>--permanent</code> 选项来使得配置永久生效。</p><h2 id="2-防火墙服务管理">2. 防火墙服务管理</h2><h3 id="2-1-systemctl">2.1 <code>systemctl</code></h3><p>用系统命令 <code>systemctl</code> 来管理防火墙服务：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld.service       <span class="comment"># 启动防火墙服务</span></span><br><span class="line">systemctl stop firewalld.service        <span class="comment"># 停止防火墙服务</span></span><br><span class="line">systemctl status firewalld.service      <span class="comment"># 查看防火墙服务状态</span></span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> firewalld.service      <span class="comment"># 开机自动启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service     <span class="comment"># 禁用开机自动启动</span></span><br></pre></td></tr></table></figure><h3 id="2-2-firewall-cmd">2.2 <code>firewall-cmd</code></h3><p>也可以使用 CentOS7.9 自带的 <code>firewall-cmd</code> 工具来管理防火墙服务的简单管理：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state<span class="comment"># 查看防火墙服务状态</span></span><br><span class="line">firewall-cmd --reload<span class="comment"># 重新加载防火墙并保留状态信息</span></span><br><span class="line">firewall-cmd --complete-reload<span class="comment"># 重新加载防火墙并丢弃状态信息</span></span><br></pre></td></tr></table></figure><h2 id="3-端口管理">3. 端口管理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --query-port=80/&lt;protocol&gt;<span class="comment"># 查询端口状态</span></span><br><span class="line">firewall-cmd --list-ports<span class="comment"># 查询所有放行的端口及其使用的协议</span></span><br><span class="line"></span><br><span class="line">firewall-cmd --add-port=80/tcp<span class="comment"># 开放单个端口</span></span><br><span class="line">firewall-cmd --add-port=100-500/tcp<span class="comment"># 批量开放端口</span></span><br><span class="line"></span><br><span class="line">firewall-cmd --remove-port=80/tcp<span class="comment"># 删除单个端口</span></span><br><span class="line">firewall-cmd --remove-port=100-500/udp<span class="comment"># 批量删除端口</span></span><br><span class="line"></span><br><span class="line">firewall-cmd --zone=public --add-port=80/tcp<span class="comment"># 指定 zone 开放单个端口</span></span><br><span class="line">firewall-cmd --zone=public --remove-port=80/tcp<span class="comment"># 指定 zone 删除单个端口</span></span><br></pre></td></tr></table></figure><h2 id="4-zone-管理">4. zone 管理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --get-active-zones<span class="comment"># 查看当前生效的 zone</span></span><br><span class="line">firewall-cmd --list-all<span class="comment"># 查看当前生效的 zone 信息</span></span><br><span class="line">firewall-cmd --list-all-zones<span class="comment"># 查看所有 zone 配置</span></span><br></pre></td></tr></table></figure><h2 id="5-协议管理">5. 协议管理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-service=http<span class="comment"># 添加协议服务</span></span><br><span class="line">firewall-cmd --remove-service=http<span class="comment"># 删除协议服务</span></span><br></pre></td></tr></table></figure><h2 id="附录">附录</h2><p>参考资料：</p><ul><li><a href="https://www.jianshu.com/p/463332787dde">CentOS7、REHL7的firewalld防火墙使用简单说明</a></li><li><a href="http://www.excelib.com/article/287/show/#g5vTC3">Firewalld的结构</a></li><li><a href="https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/security_guide/sec-using_firewalls#sec-Comparison_of_Firewalld_to_system-config-firewall_and_iptables">4.5. 使用防火墙</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;在 CentOS7.9 下，对于防火墙服务本身，使用系统 &lt;code&gt;systemctl&lt;/code&gt; 工具来进行管理。而对于防火墙的使用，使用自带 &lt;code&gt;firewall-cmd&lt;/code&gt; 工具来进行管理，&lt;co</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="CentOS" scheme="https://hotarugali.github.io/categories/Linux/CentOS/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="CentOS" scheme="https://hotarugali.github.io/tags/CentOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LinuxShell命令stat</title>
+    <link href="https://hotarugali.github.io/2021/07/05/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4stat/"/>
+    <id>https://hotarugali.github.io/2021/07/05/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4stat/</id>
+    <published>2021-07-05T09:56:53.000Z</published>
+    <updated>2021-07-16T13:54:26.762Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>众所周知，Linux 下一切皆文件。当我们想要去查看某个文件的具体信息时，可以使用 <code>stat</code> 命令进行查看。</p><h2 id="2-格式">2. 格式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">stat</span> filename [filename...]</span><br></pre></td></tr></table></figure><p>以 <code>stat /home</code> 为例，以下为我电脑的输出结果：</p><ul><li>中文显示</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  文件：/home</span><br><span class="line">  大小：4096            块：8          IO 块：4096   目录</span><br><span class="line">设备：815h/2069d        Inode：15204353    硬链接：5</span><br><span class="line">权限：(0755/drwxr-xr-x)  Uid：(    0/    root)   Gid：(    0/    root)</span><br><span class="line">最近访问：2021-06-12 15:24:19.791590697 +0800</span><br><span class="line">最近更改：2021-01-14 13:22:37.236297689 +0800</span><br><span class="line">最近改动：2021-01-14 13:22:37.236297689 +0800</span><br><span class="line">创建时间：2020-04-12 02:04:12.604134012 +0800</span><br></pre></td></tr></table></figure><ul><li>英文显示</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  File: /home</span><br><span class="line">  Size: 4096            Blocks: 8          IO Block: 4096   directory</span><br><span class="line">Device: 815h/2069d      Inode: 15204353    Links: 5</span><br><span class="line">Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)</span><br><span class="line">Access: 2021-06-12 15:24:19.791590697 +0800</span><br><span class="line">Modify: 2021-01-14 13:22:37.236297689 +0800</span><br><span class="line">Change: 2021-01-14 13:22:37.236297689 +0800</span><br><span class="line"> Birth: 2020-04-12 02:04:12.604134012 +0800</span><br></pre></td></tr></table></figure><p>可以看到，<code>stat</code> 命令能够查询到文件的信息有：</p><table><thead><tr><th style="text-align:left">字段</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td style="text-align:left">File</td><td style="text-align:left">文件名</td></tr><tr><td style="text-align:left">Size</td><td style="text-align:left">文件大小</td></tr><tr><td style="text-align:left">Blocks</td><td style="text-align:left">文件占用的物理磁盘块数目</td></tr><tr><td style="text-align:left">IO Block</td><td style="text-align:left">文件系统进行 IO 操作的块大小</td></tr><tr><td style="text-align:left">directory/regular file/symbolic link</td><td style="text-align:left">文件类型</td></tr><tr><td style="text-align:left">Device</td><td style="text-align:left">设备编号</td></tr><tr><td style="text-align:left">Inode</td><td style="text-align:left">文件 Inode 号</td></tr><tr><td style="text-align:left">Links</td><td style="text-align:left">当前文件的硬链接数</td></tr><tr><td style="text-align:left">Access</td><td style="text-align:left">文件的权限</td></tr><tr><td style="text-align:left">Uid</td><td style="text-align:left">文件的 uid，表示文件的所有者</td></tr><tr><td style="text-align:left">Gid</td><td style="text-align:left">文件的 gid，表示文件的所有组</td></tr><tr><td style="text-align:left">Access</td><td style="text-align:left">文件的最近访问时间</td></tr><tr><td style="text-align:left">Modify</td><td style="text-align:left">文件的最近更改时间</td></tr><tr><td style="text-align:left">Change</td><td style="text-align:left">文件的最近改动时间</td></tr><tr><td style="text-align:left">Birth</td><td style="text-align:left">文件的创建时间</td></tr></tbody></table><h3 id="2-1-块信息">2.1 块信息</h3><ul><li>Blocks 表示的是文件实际占用的物理磁盘块个数，磁盘块大小固定为 512 字节。</li><li>IO Block 表示文件系统实际进行 IO 操作时，每次读写的块大小。因此 IO Block 因不同的文件系统而异，本人电脑为 ext4，故 IO Block 固定为 4096。</li></ul><h3 id="2-2-设备编号">2.2 设备编号</h3><ul><li>文件的设备编号占两个字节，第一个字节为设备主编号，第二个字节为设备从编号。</li></ul><p>以上述例子为例，<code>815h</code> 表示十六进制结果，即 <code>0x0815</code>；<code>2069d</code> 表示十进制结果。<code>0x0815</code> 中，<code>0x08</code> 表示设备主编号，一般取决于设备类型，对于磁盘分区等块设备，一般主编号就是 <code>0x08</code>；<code>0x15</code> 表示设备从编号，这里就是表示此系统上的第 <code>0x15</code> 个块设备。可以查看 <code>ls -l /dev/block</code>，按照字母顺序排序，其中第 <code>0x15</code> 个设备便是本系统的磁盘分区。</p><p>【注】<code>/dev</code> 目录下除了包含块设备，也还有其他类型的设备，比如 CPU 设备等。</p><h3 id="2-3-硬链接数">2.3 硬链接数</h3><p>文件的硬链接数表示访问到该文件的方式数目，普通文件的硬链接数一般为 1，目录文件的硬链接数至少为 2。</p><ul><li>因为目录下默认包含 <code>.</code> 目录，通过 <code>cd .</code> 可以访问到该目录，因此至少为 2。</li><li>每增加一个子目录，父目录的硬链接数就加 1，因为子目录下可以通过 <code>cd ..</code> 访问父目录。</li></ul><h3 id="2-4-文件时间信息">2.4 文件时间信息</h3><ul><li>Access Time：简写为 atime，表示文件的最后访问时间。当文件被访问时，该时间被更新。</li><li>Modify Time：简写为 mtime，表示文件的最后修改时间。当文件的数据内容被修改时，该时间被更新。</li><li>Change Time：简写为 ctime，表示文件的最后更改时间。当文件的属性状态被修改时，该时间被更新。文件的属性状态即其 Inode 中的属性字段，当文件所有者、访问权限、文件内容发生改变时，文件的属性状态都会被更新。</li><li>Birth Time：简写为 btime，表示文件的创建时间。一旦文件创建，该时间就固定不变。</li></ul><h2 id="3-选项">3. 选项</h2><table><thead><tr><th style="text-align:left">选项</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td style="text-align:left"><code>-L</code>、<code>--dereference</code></td><td style="text-align:left">显示符号链接所指向文件的信息</td></tr><tr><td style="text-align:left"><code>-f</code>、<code>--file-system</code></td><td style="text-align:left">展示文件系统的状态信息而不是文件的状态信息</td></tr><tr><td style="text-align:left"><code>-c</code>、<code>--format=FORMAT</code></td><td style="text-align:left">指定格式输出文件的某些状态信息</td></tr><tr><td style="text-align:left"><code>-t</code>、<code>--terse</code></td><td style="text-align:left">以简洁形式输出文件的状态信息</td></tr><tr><td style="text-align:left"><code>--cached=MODE</code></td><td style="text-align:left">使用属性信息缓存的方式</td></tr><tr><td style="text-align:left"><code>--printf=FORMAT</code></td><td style="text-align:left">类似 <code>--format</code> 选项，结尾无换行符，可以使用转义字符实现换行等操作</td></tr></tbody></table><ul><li><code>MODE</code> 取值范围：<code>always</code>、<code>never</code>、<code>default</code>。<code>always</code> 表示如果存在缓存信息则使用缓存信息；<code>never</code> 表示不使用缓存信息，并将最新属性信息同步到缓存；<code>default</code> 表示默认方式，取决于文件系统。</li><li><code>FORMAT</code> 选项对于文件和文件系统的取值是不同的：</li></ul><blockquote><ol><li>对于文件，<code>FORMAT</code> 可选选项如下表所示：</li></ol><table><thead><tr><th style="text-align:left">文件信息输出格式</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td style="text-align:left"><code>%a</code></td><td style="text-align:left">八进制格式的文件权限</td></tr><tr><td style="text-align:left"><code>%A</code></td><td style="text-align:left">可读形式的文件权限</td></tr><tr><td style="text-align:left"><code>%b</code></td><td style="text-align:left">文件占用的磁盘块数</td></tr><tr><td style="text-align:left"><code>%B</code></td><td style="text-align:left">磁盘块的字节大小</td></tr><tr><td style="text-align:left"><code>%C</code></td><td style="text-align:left">如果存在，则表示文件的 SELinux 安全上下文</td></tr><tr><td style="text-align:left"><code>%d</code></td><td style="text-align:left">十进制的设备编号</td></tr><tr><td style="text-align:left"><code>%D</code></td><td style="text-align:left">十六进制的设备编号</td></tr><tr><td style="text-align:left"><code>%f</code></td><td style="text-align:left">十六进制表示的 Raw 模式（文件类型 + 文件权限）</td></tr><tr><td style="text-align:left"><code>%F</code></td><td style="text-align:left">文件类型</td></tr><tr><td style="text-align:left"><code>%g</code></td><td style="text-align:left">文件所有组 ID</td></tr><tr><td style="text-align:left"><code>%G</code></td><td style="text-align:left">文件所有组名称</td></tr><tr><td style="text-align:left"><code>%h</code></td><td style="text-align:left">文件硬链接数</td></tr><tr><td style="text-align:left"><code>%i</code></td><td style="text-align:left">文件 Inode 号</td></tr><tr><td style="text-align:left"><code>%m</code></td><td style="text-align:left">文件所在分区的挂载点</td></tr><tr><td style="text-align:left"><code>%n</code></td><td style="text-align:left">文件名称</td></tr><tr><td style="text-align:left"><code>%N</code></td><td style="text-align:left">符号链接所链接到的文件名称</td></tr><tr><td style="text-align:left"><code>%o</code></td><td style="text-align:left">IO 块的字节大小</td></tr><tr><td style="text-align:left"><code>%s</code></td><td style="text-align:left">文件的实际字节大小</td></tr><tr><td style="text-align:left"><code>%t</code></td><td style="text-align:left">十六进制的主设备类型号</td></tr><tr><td style="text-align:left"><code>%T</code></td><td style="text-align:left">十六进制的从设备类型号</td></tr><tr><td style="text-align:left"><code>%u</code></td><td style="text-align:left">文件所有者 ID</td></tr><tr><td style="text-align:left"><code>%U</code></td><td style="text-align:left">文件所有者名称</td></tr><tr><td style="text-align:left"><code>%w</code></td><td style="text-align:left">文件的创建时区</td></tr><tr><td style="text-align:left"><code>%W</code></td><td style="text-align:left">文件的创建时间（自 Epoch 开始的秒数）</td></tr><tr><td style="text-align:left"><code>%x</code></td><td style="text-align:left">文件的最后访问时区</td></tr><tr><td style="text-align:left"><code>%X</code></td><td style="text-align:left">文件的最后访问时间（自 Epoch 开始的秒数）</td></tr><tr><td style="text-align:left"><code>%y</code></td><td style="text-align:left">文件的最后修改时区</td></tr><tr><td style="text-align:left"><code>%Y</code></td><td style="text-align:left">文件的最后修改时间（自 Epoch 开始的秒数）</td></tr><tr><td style="text-align:left"><code>%z</code></td><td style="text-align:left">文件的最后更改时区</td></tr><tr><td style="text-align:left"><code>%Z</code></td><td style="text-align:left">文件的最后更改时间（自 Epoch 开始的秒数）</td></tr></tbody></table><p>【注】文件信息的简洁模式等价于输出格式：<code>%n %s %b %f %u %g %D %i %h %t %T %X %Y %Z %W %o</code>。</p><ol start="2"><li>对于文件系统，<code>FORMAT</code> 可选选项如下表所示：</li></ol><table><thead><tr><th style="text-align:left">文件系统信息输出格式</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td style="text-align:left"><code>%a</code></td><td style="text-align:left">普通用户可用的空闲块数</td></tr><tr><td style="text-align:left"><code>%f</code></td><td style="text-align:left">文件系统可用的空闲块数</td></tr><tr><td style="text-align:left"><code>%b</code></td><td style="text-align:left">文件系统的全部块数</td></tr><tr><td style="text-align:left"><code>%c</code></td><td style="text-align:left">文件系统的全部文件节点数</td></tr><tr><td style="text-align:left"><code>%d</code></td><td style="text-align:left">文件系统的空闲文件节点数</td></tr><tr><td style="text-align:left"><code>%i</code></td><td style="text-align:left">十六进制表示的文件系统 ID</td></tr><tr><td style="text-align:left"><code>%l</code></td><td style="text-align:left">文件名的最大长度</td></tr><tr><td style="text-align:left"><code>%n</code></td><td style="text-align:left">文件名</td></tr><tr><td style="text-align:left"><code>%s</code></td><td style="text-align:left">块大小（用于更快的传输）</td></tr><tr><td style="text-align:left"><code>%S</code></td><td style="text-align:left">基本块大小（用于块计数）</td></tr><tr><td style="text-align:left"><code>%t</code></td><td style="text-align:left">十六进制表示的文件系统类型</td></tr><tr><td style="text-align:left"><code>%T</code></td><td style="text-align:left">文件系统类型</td></tr></tbody></table><p>【注】文件系统信息的简洁模式等价于输出格式：<code>%n %i %l %t %s %S %b %f %a %c %d</code>。</p></blockquote><h2 id="附录">附录</h2><p>参考资料：</p><ul><li><a href="https://unix.stackexchange.com/questions/39716/what-is-raw-mode-in-hex-from-stat-output">What is “raw mode in hex” from stat output?</a></li><li><a href="https://www.tiger-computing.co.uk/the-stat-command/">The stat command</a></li><li><a href="https://www.gnu.org/software/coreutils/manual/html_node/stat-invocation.html">stat: Report file or file system status</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;众所周知，Linux 下一切皆文件。当我们想要去查看某个文件的具体信息时，可以使用 &lt;code&gt;stat&lt;/code&gt; 命令进行查看。&lt;/p&gt;
+&lt;h2 id=&quot;2-格式&quot;&gt;2. 格式&lt;/h2&gt;
+&lt;figure class=&quot;</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Shell" scheme="https://hotarugali.github.io/categories/Linux/Shell/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Shell" scheme="https://hotarugali.github.io/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LinuxShell下文件大小单位</title>
+    <link href="https://hotarugali.github.io/2021/07/05/Linux/Shell/LinuxShell%E4%B8%8B%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E5%8D%95%E4%BD%8D/"/>
+    <id>https://hotarugali.github.io/2021/07/05/Linux/Shell/LinuxShell%E4%B8%8B%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E5%8D%95%E4%BD%8D/</id>
+    <published>2021-07-05T08:17:44.000Z</published>
+    <updated>2021-07-16T13:54:26.759Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>Linux Shell 下很多命令在打印文件大小信息时，默认使用的是字节作为单位。但为了方便用户使用，往往这些命令提供选项参数 <code>-B[SIZE]</code> 或 <code>--block-size=SIZE</code> 给用户来指定文件大小的单位，比如 <code>ls</code>、<code>df</code>、<code>du</code> 命令等。</p><h2 id="2-文件大小单位">2. 文件大小单位</h2><p>Linux Shell 下可选的文件大小单位参数 <code>SIZE</code> 如下表所示：</p><table><thead><tr><th style="text-align:left">单位</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td style="text-align:left"><code>K</code>、<code>k</code>、<code>KB</code>、<code>kB</code>、<code>KiB</code>、<code>kiB</code></td><td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>1</mn></msup><mn>0</mn></mrow><annotation encoding="application/x-tex">10^10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mord">0</span></span></span></span> 字节</td></tr><tr><td style="text-align:left"><code>M</code>、<code>m</code>、<code>MB</code>、<code>mB</code>、<code>MiB</code>、<code>miB</code></td><td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>2</mn></msup><mn>0</mn></mrow><annotation encoding="application/x-tex">10^20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">0</span></span></span></span> 字节</td></tr><tr><td style="text-align:left"><code>G</code>、<code>g</code>、<code>GB</code>、<code>gB</code>、<code>GiB</code>、<code>giB</code></td><td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup><mn>0</mn></mrow><annotation encoding="application/x-tex">10^30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord">0</span></span></span></span> 字节</td></tr><tr><td style="text-align:left"><code>T</code>、<code>t</code>、<code>TB</code>、<code>tB</code>、<code>TiB</code>、<code>tiB</code></td><td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup><mn>0</mn></mrow><annotation encoding="application/x-tex">10^40</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mord">0</span></span></span></span> 字节</td></tr><tr><td style="text-align:left"><code>P</code>、<code>p</code>、<code>PB</code>、<code>pB</code>、<code>PiB</code>、<code>piB</code></td><td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup><mn>0</mn></mrow><annotation encoding="application/x-tex">10^50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mord">0</span></span></span></span> 字节</td></tr><tr><td style="text-align:left"><code>E</code>、<code>e</code>、<code>EB</code>、<code>eB</code>、<code>EiB</code>、<code>eiB</code></td><td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup><mn>0</mn></mrow><annotation encoding="application/x-tex">10^60</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span><span class="mord">0</span></span></span></span> 字节</td></tr><tr><td style="text-align:left"><code>Z</code>、<code>z</code>、<code>ZB</code>、<code>zB</code>、<code>ZiB</code>、<code>ziB</code></td><td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>7</mn></msup><mn>0</mn></mrow><annotation encoding="application/x-tex">10^70</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mord">0</span></span></span></span> 字节</td></tr><tr><td style="text-align:left"><code>Y</code>、<code>y</code>、<code>YB</code>、<code>yB</code>、<code>YiB</code>、<code>yiB</code></td><td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>8</mn></msup><mn>0</mn></mrow><annotation encoding="application/x-tex">10^80</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mord">0</span></span></span></span> 字节</td></tr></tbody></table><p>【注】Linux Shell 命令在列举文件大小信息时，当文件大小不是单位大小的整数倍数时，采用的是上取整的方式。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;Linux Shell 下很多命令在打印文件大小信息时，默认使用的是字节作为单位。但为了方便用户使用，往往这些命令提供选项参数 &lt;code&gt;-B[SIZE]&lt;/code&gt; 或 &lt;code&gt;--block-size=SIZE&lt;</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Shell" scheme="https://hotarugali.github.io/categories/Linux/Shell/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Shell" scheme="https://hotarugali.github.io/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux系统各发行版用户文档</title>
+    <link href="https://hotarugali.github.io/2021/06/13/Linux/Sundry/Linux%E7%B3%BB%E7%BB%9F%E5%90%84%E5%8F%91%E8%A1%8C%E7%89%88%E7%94%A8%E6%88%B7%E6%96%87%E6%A1%A3/"/>
+    <id>https://hotarugali.github.io/2021/06/13/Linux/Sundry/Linux%E7%B3%BB%E7%BB%9F%E5%90%84%E5%8F%91%E8%A1%8C%E7%89%88%E7%94%A8%E6%88%B7%E6%96%87%E6%A1%A3/</id>
+    <published>2021-06-13T06:32:01.000Z</published>
+    <updated>2021-07-16T13:54:26.775Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><a href="https://www.debian.org/doc/">Debian</a></li><li><a href="https://docs.ubuntu.com/">Ubuntu</a></li><li><a href="https://wiki.deepin.org/">Deepin</a></li><li><a href="https://manjaro.org/support/userguide/">Manjaro</a></li><li><a href="https://www.linuxmint.com/documentation.php">LinuxMint</a></li><li><a href="https://access.redhat.com/documentation/en-us/">RedHat</a></li><li><a href="https://docs.centos.org/en-US/docs/">CentOS</a></li></ul><blockquote><p>CentOS 是 RedHat 的社区版，因此技术文档可以参考 RedHat。</p></blockquote><ul><li><a href="https://wiki.archlinux.org/">ArchLinux</a></li></ul><blockquote><p>ArchLinux 官方的 Wiki 非常优秀（吹爆~），基本上大部分用户所需要的文档都能在上面找到，而且这些文档不仅适用于 Arch 系的 Linux 发行版，对于其他发行版也基本适用。遇事不决上 <a href="https://wiki.archlinux.org/">ArchLinux Wiki</a>。</p></blockquote><ul><li><a href="https://www.kali.org/docs/">KaliLinux</a></li></ul><blockquote><p>KaliLinux 可谓网络安全必备利器，系统默认安装了各类网安工具，而且其官方文档除了系统本身的使用外，还包含各类网安工具的使用文档。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.debian.org/doc/&quot;&gt;Debian&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.ubuntu.com/&quot;&gt;Ubuntu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://w</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Sundry" scheme="https://hotarugali.github.io/categories/Linux/Sundry/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Sundry" scheme="https://hotarugali.github.io/tags/Sundry/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu20.04下安装星火应用商店</title>
+    <link href="https://hotarugali.github.io/2021/06/13/Linux/Ubuntu/Ubuntu20.04%E4%B8%8B%E5%AE%89%E8%A3%85%E6%98%9F%E7%81%AB%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97/"/>
+    <id>https://hotarugali.github.io/2021/06/13/Linux/Ubuntu/Ubuntu20.04%E4%B8%8B%E5%AE%89%E8%A3%85%E6%98%9F%E7%81%AB%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97/</id>
+    <published>2021-06-13T05:35:14.000Z</published>
+    <updated>2021-07-16T13:54:26.779Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p><a href="https://www.spark-app.store/index.html">星火应用商店</a>是国内一款开源的 Debian 系应用商店，其中整合了许多优秀的 Linux 软件和 Wine 适配良好的软件，和 Deepin 应用商店相辅相成，旨在构建一个良好的 Linux 应用生态。由于 Deepin 应用商店在其他 Debian 系统上的适配不是很好，比如 Ubuntu 系统，因此星火应用商店对于非 Deepin 的 Debian 系用户提供了一个很好的选择。为星火应用商店的贡献者点赞~</p><h2 id="2-安装">2. 安装</h2><h3 id="2-1-添加软件源">2.1 添加软件源</h3><ul><li>添加 Deepin20 官方源</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list.d/deepin.list</span><br></pre></td></tr></table></figure><p>在其中添加以下 Deepin20 官方源：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb [by-hash=force] https://community-packages.deepin.com/deepin/ apricot main contrib non-free</span><br></pre></td></tr></table></figure><ul><li>添加 Deepin20 应用商店源</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list.d/appstore.list</span><br></pre></td></tr></table></figure><p>在其中添加以下 Deepin20 应用商店源：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb https://community-store-packages.deepin.com/appstore eagle appstore</span><br></pre></td></tr></table></figure><ul><li>添加以上软件源对应的 GPG 验证文件<br>由于 Deepin20 的软件源目前仍无法在公钥服务器 <code>keyserver.ubuntu.com</code> 上查找到，因此无法使用以下命令直接添加：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys xxx       <span class="comment"># xxx 是 sudo apt update 报错显示为验证的 key</span></span><br></pre></td></tr></table></figure><p>目前似乎只能通过拷贝 Deepin20 系统上对应的 GPG 验证文件来解决，详情参见 <a href="/2021/06/12/Linux/Ubuntu/Ubuntu20.04%E4%B8%8Bapt%E6%8A%A5%E9%94%99">Ubuntu20.04 下 apt 报错</a>。我已将我个人 Deepin20 中对应的 GPG 验证文件上传到 Gitee 仓库 <a href="https://gitee.com/blueheart0621/DeepinKeying">DeepinKeying</a>，有需要的小伙伴可自行前往下载。添加完后执行以下命令看看是否有报错 <code>由于没有公匙，无法验证下列签名: NO_PUBKEY xxx</code>：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><p>如果没有则说明成功添加了软件源，即可继续下一步操作。</p><h3 id="2-2-安装-Deepin-Wine5">2.2 安装 Deepin-Wine5</h3><p>正确导入 Deepin20 的软件源后，就可以安装 Deepin 的最新版 Wine5：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install deepin-wine5 deepin-wine5-i386</span><br></pre></td></tr></table></figure><h3 id="2-3-安装星火应用商店">2.3 安装星火应用商店</h3><p>到<a href="https://www.spark-app.store/download.html">星火应用商店官网</a>上下载星火应用商店安装包和相关的客户端依赖包：</p><ul><li>首先解压并安装所有客户端依赖包</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unzip spark-store-dependencies-kylin.zip</span><br><span class="line"><span class="built_in">cd</span> spark-store-dependencies-kylin</span><br><span class="line">sudo dpkg -i *.deb</span><br></pre></td></tr></table></figure><ul><li>然后安装星火应用商店安装包</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i spark-store_3.0_amd64.deb</span><br></pre></td></tr></table></figure><p>至此，星火应用商店已安装完毕，可以在应用程序栏中打开。星火应用商店中适配了诸如 QQ、微信等国内软件，安装了星火应用商店后就可以直接下载使用啦~</p><h2 id="附录">附录</h2><p>参考资料：</p><ul><li><a href="https://blog.csdn.net/m0_37623485/article/details/110621614">Ubuntu20.04+Deepin-wine5+Spark-store+QQ/微信等</a></li><li><a href="https://bbs.deepin.org/post/42815">请问怎么获取deepin的公匙</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.spark-app.store/index.html&quot;&gt;星火应用商店&lt;/a&gt;是国内一款开源的 Debian 系应用商店，其中整合了许多优秀的 Linux 软件和 Wine 适配良好的</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://hotarugali.github.io/categories/Linux/Ubuntu/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://hotarugali.github.io/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu20.04下apt报错</title>
+    <link href="https://hotarugali.github.io/2021/06/12/Linux/Ubuntu/Ubuntu20.04%E4%B8%8Bapt%E6%8A%A5%E9%94%99/"/>
+    <id>https://hotarugali.github.io/2021/06/12/Linux/Ubuntu/Ubuntu20.04%E4%B8%8Bapt%E6%8A%A5%E9%94%99/</id>
+    <published>2021-06-12T12:27:22.000Z</published>
+    <updated>2021-07-16T13:54:26.779Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-目标-xxx-在-etc-apt-sources-list-yy-和-etc-apt-sources-list-zz-中被配置了多次">1. 目标 <code>xxx</code> 在 <code>/etc/apt/sources.list:yy</code> 和 <code>/etc/apt/sources.list:zz</code> 中被配置了多次</h3><ul><li>问题：<code>/etc/apt/sources.list</code> 同时启用了多个镜像源。</li><li>解决：注释掉 <code>/etc/apt/sources.list</code> 中多余的镜像源，只保留其中一个即可。</li></ul><h3 id="2-由于没有公匙，无法验证下列签名-NO-PUBKEY-xxx">2. 由于没有公匙，无法验证下列签名: NO_PUBKEY xxx</h3><ul><li>问题：GPG Key 对应的 GPG 验证文件过期或者是有些软件源没有导入 GPG Key 对应的 GPG 验证文件。可以通过下列命令查看所有 GPG Key:</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key list</span><br></pre></td></tr></table></figure><ul><li>解决办法：更新无效 GPG Key 对应的 GPG 验证文件。可以通过以下命令下载更新 GPG Key 对应的 GPG 验证文件：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys xxx</span><br></pre></td></tr></table></figure><p>【注】命令中的 <code>xxx</code> 为报错中 NO_PUBKEY 后的 GPG Key 。命令中的 <code>keyserver.ubuntu.com</code> 为提供 GPG Key 对应的 GPG 验证文件的公钥服务器，目前国内可访问的公钥服务器列表如下：</p><ul><li>[x] <a href="http://keyserver.ubuntu.com/">keyserver.ubuntu.com</a></li><li>[x] <a href="http://pgp.mit.edu/">pgp.mit.edu</a></li><li>[x] <a href="http://subkeys.pgp.net/">subkeys.pgp.net</a></li></ul><p>或者，如果能够找到该 GPG Key 对应的 GPG 验证文件，则可以直接拷贝到 <code>/etc/apt/trusted.gpg.d</code> 目录下，而不用通过 <code>keyserver</code> 下载。</p><blockquote><ol><li>对于 Debin 官方源的 GPG 验证文件，可能无法在公钥服务器中找到其 GPG Key，但可以直接使用 <code>apt</code> 下载安装相应的 GPG 验证文件：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install debian-keyring debian-archive-keyring</span><br></pre></td></tr></table></figure><ol start="2"><li>对于 Deepin 官方源的 GPG 验证文件，无法在公钥服务器中找到其 GPG Key，目前只能通过拷贝 Deepin 系统中的 GPG 验证文件到 Ubuntu20.04 中，目前我已将个人 Deepin 系统中的 GPG 验证文件上传至 Gitee 仓库 <a href="https://gitee.com/blueheart0621/DeepinKeying">DeepinKeying</a>，有需要的伙伴可自行下载并将其中所有的 GPG 验证文件拷贝到 <code>/etc/apt/trusted.gpg.d</code> 目录下。</li></ol></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;1-目标-xxx-在-etc-apt-sources-list-yy-和-etc-apt-sources-list-zz-中被配置了多次&quot;&gt;1. 目标 &lt;code&gt;xxx&lt;/code&gt; 在 &lt;code&gt;/etc/apt/sources.list:yy&lt;/code&gt;</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://hotarugali.github.io/categories/Linux/Ubuntu/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://hotarugali.github.io/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu20.04中遇到的网络问题</title>
+    <link href="https://hotarugali.github.io/2021/06/12/Linux/Ubuntu/Ubuntu20.04%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/"/>
+    <id>https://hotarugali.github.io/2021/06/12/Linux/Ubuntu/Ubuntu20.04%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/</id>
+    <published>2021-06-12T11:39:43.000Z</published>
+    <updated>2021-07-16T13:54:26.779Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-已连上有线-无线，网络未开代理，却无法访问网络">1. 已连上有线/无线，网络未开代理，却无法访问网络</h3><ul><li>缘由：我之前在 Ubuntu20.04 开过网络代理服务，当时访问网络正常。但今天突然把代理一关发现怎么都上不了网了，Ping 网络时报错名称解析服务失败，而奇怪的是一开代理又可以访问网络了。</li><li>解决：最终发现是 Ubuntu20.04 的<a href="https://manpages.ubuntu.com/manpages/focal/man8/systemd-resolved.service.8.html">网络名称解析服务</a>即 <code>systemd-resolved.service</code> 未开启，因此导致无法由域名解析到 IP 地址，所以导致 Ping 网址域名的时候失败了。应该是由于我使用网络代理从而导致系统的网络名称解析服务被关闭了，通过开启该服务即可解决该问题：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> systemd-resolved.service</span><br><span class="line">sudo systemctl restart systemd-resolved.service</span><br></pre></td></tr></table></figure><h3 id="2-需登录验证的网络始终无法弹出登录验证界面">2. 需登录验证的网络始终无法弹出登录验证界面</h3><ul><li>问题：如果网络正常没问题，那么可能就是自己的 IP 被限制了（<s>比如在校园网中，如果你使用过魔法或者挖矿之类的，就会导致 IP 被限制</s>）。</li><li>解决：</li></ul><blockquote><ol><li>方案一：如果不想自己折腾，可以直接打电话给网络管理中心，让他们解除限制。</li><li>方案二：Ubuntu20.04 下 MAC 地址随机化。</li></ol></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;1-已连上有线-无线，网络未开代理，却无法访问网络&quot;&gt;1. 已连上有线/无线，网络未开代理，却无法访问网络&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;缘由：我之前在 Ubuntu20.04 开过网络代理服务，当时访问网络正常。但今天突然把代理一关发现怎么都上不了网了，Ping </summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://hotarugali.github.io/categories/Linux/Ubuntu/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://hotarugali.github.io/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu20.04下MAC地址随机化</title>
+    <link href="https://hotarugali.github.io/2021/06/12/Linux/Ubuntu/Ubuntu20.04%E4%B8%8BMAC%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96/"/>
+    <id>https://hotarugali.github.io/2021/06/12/Linux/Ubuntu/Ubuntu20.04%E4%B8%8BMAC%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96/</id>
+    <published>2021-06-12T07:29:27.000Z</published>
+    <updated>2021-07-16T13:54:26.779Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>由于之前的挖矿操作（具体原因参见 <a href="/2021/06/02/Linux/Manjaro/Manjaro21.0%E4%B8%8BMAC%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96">Manjaro21.0 下 MAC 地址随机化</a>，导致我电脑无线网卡的 MAC 地址对应的 IP 被路由器限制了。而我的电脑上又装了多个操作系统，因此需要每个操作系统都配置 MAC 地址随机化（<s>突然觉得有点麻烦，下次再也不敢了555</s>）。总体而言，在 Ubuntu20.04 上配置 MAC 地址随机化和 <a href="/2021/06/02/Linux/Manjaro/Manjaro21.0%E4%B8%8BMAC%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96">Manjaro21.0 下 MAC 地址随机化</a> 差不多，不过细节有些差异。</p><h2 id="2-实现">2. 实现</h2><p>在 <code>/etc/NetworkManager/conf.d</code> 目录下添加一个配置文件 <code>wifi_rand_mac.conf</code>（文件名可自定义），然后在其中填入以下配置信息：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[device]</span><br><span class="line"><span class="comment"># 扫描 wifi 时随机化 MAC</span></span><br><span class="line">wifi.scan-rand-mac-address=yes      <span class="comment"># no</span></span><br><span class="line"></span><br><span class="line">[connection]</span><br><span class="line"><span class="comment"># 每次通过无线连接时随机化 MAC</span></span><br><span class="line">wifi.cloned-mac-address=random</span><br><span class="line">wifi.mac-address-randomization=random</span><br></pre></td></tr></table></figure><p>然后将之前的无线连接设置为忘记连接，再重启网络：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart network-manager.service</span><br></pre></td></tr></table></figure><h2 id="3-附录">3. 附录</h2><p>参考 GNOME Developer 手册：<a href="https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html">NetworkManager</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;由于之前的挖矿操作（具体原因参见 &lt;a href=&quot;/2021/06/02/Linux/Manjaro/Manjaro21.0%E4%B8%8BMAC%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/categories/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://hotarugali.github.io/categories/Linux/Ubuntu/"/>
+    
+    
+    <category term="Linux" scheme="https://hotarugali.github.io/tags/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://hotarugali.github.io/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Manjaro21.0搭建LAMP环境</title>
+    <link href="https://hotarugali.github.io/2021/06/12/PHP/Manjaro21.0%E6%90%AD%E5%BB%BALAMP%E7%8E%AF%E5%A2%83/"/>
+    <id>https://hotarugali.github.io/2021/06/12/PHP/Manjaro21.0%E6%90%AD%E5%BB%BALAMP%E7%8E%AF%E5%A2%83/</id>
+    <published>2021-06-12T01:24:16.000Z</published>
+    <updated>2021-07-16T13:54:26.812Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介">1. 简介</h2><p>LAMP 即 Linux+Apache+Mysql+PHP 的简称。</p><h2 id="2-安装-Apache-Mysql-PHP">2. 安装 Apache+Mysql+PHP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S apache mysql php php-apache</span><br></pre></td></tr></table></figure><h2 id="3-配置-Apache">3. 配置 Apache</h2><ul><li>打开配置文件</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/httpd/conf/httpd.conf</span><br></pre></td></tr></table></figure><ul><li>修改 <code>DocumentRoot</code> 字段后的路径为自定义的 Web Server 根目录</li></ul><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DocumentRoot <span class="string">&quot;xxx&quot;</span><span class="comment"># xxx 为自定义的 Web Server 根目录</span></span><br><span class="line">&lt;<span class="built_in">Directory</span> <span class="string">&quot;xxx&quot;</span>&gt;</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">&lt;/<span class="built_in">Directory</span>&gt;</span><br></pre></td></tr></table></figure><p>【注】对于自定义的 <code>xxx</code> 路径，需要确保每一级路径对于第三方用户都有访问权限。比如，如果 Web Server 根目录设为 <code>/home/username/php</code>，为了方便则可以设置 <code>/home/username/</code> 和 <code>/home/username/php</code> 的访问权限为 <code>777</code>：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 /home/username</span><br><span class="line">sudo chmod 777 /home/username/php</span><br></pre></td></tr></table></figure><ul><li>启动并查看 Apache</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> httpd</span><br><span class="line">sudo systemctl restart httpd</span><br><span class="line">systemctl status httpd</span><br></pre></td></tr></table></figure><blockquote><ol><li>如果 <code>httpd</code> 状态显示 <code>active(running)</code>，则说明 <code>httpd</code> 启动正常；如果报错显示地址/端口已被占用，可以尝试重启一下系统。</li><li>如果显示找不到 <code>libphp7.so</code>，则需要安装 <code>php7</code> 和 <code>php7-apache</code>，再重复一遍上述操作：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S php7 php7-apache</span><br></pre></td></tr></table></figure></blockquote><ul><li>测试 Apache<br>在自定义的 <code>xxx</code> 路径下，创建一个 <code>index.php</code> 文件，写入以下 PHP 代码：</li></ul><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">  &lt;title&gt;环境测试&lt;/title&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line"> <span class="meta">&lt;?php</span> <span class="keyword">echo</span> <span class="string">&#x27;&lt;p&gt;Hello World~&lt;/p&gt;&#x27;</span>; <span class="meta">?&gt;</span></span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure><p>再打开浏览器，输入 <code>localhost</code> 网址。如果正常显示则表示 Apache 运行正常，如果报错 <code>403</code>，则可能需要检查一下是否为 <code>xxx</code> 各级目录的访问权限问题。如果 <code>xxx</code> 各级目录访问权限没有问题，则可能是其他原因导致的，可以参考附录中的其他资料试试。</p><h2 id="4-配置-Mysql">4. 配置 Mysql</h2><ul><li>初始化 Mysql 数据目录</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize --user=mysql --basedir=/usr/<span class="built_in">local</span> --datadir=/var/lib/mysql</span><br></pre></td></tr></table></figure><ul><li>启动 Mysql 服务</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start mysqld</span><br></pre></td></tr></table></figure><ul><li>设置 Mysql 密码</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure><h2 id="附录">附录</h2><p>参考资料：</p><ul><li><a href="https://zhuanlan.zhihu.com/p/104332003">Manjaro Linux LAMP安装配置</a></li><li><a href="https://blog.csdn.net/qq_21007661/article/details/109851652">Manjaro 安装 Apache、Mysql、PHP 环境</a></li><li><a href="https://bbs.archlinux.org/viewtopic.php?id=57498">HELP! Can’t change Apache default documentRoot!</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-简介&quot;&gt;1. 简介&lt;/h2&gt;
+&lt;p&gt;LAMP 即 Linux+Apache+Mysql+PHP 的简称。&lt;/p&gt;
+&lt;h2 id=&quot;2-安装-Apache-Mysql-PHP&quot;&gt;2. 安装 Apache+Mysql+PHP&lt;/h2&gt;
+&lt;figure class=</summary>
+      
+    
+    
+    
+    <category term="PHP" scheme="https://hotarugali.github.io/categories/PHP/"/>
+    
+    
+    <category term="PHP" scheme="https://hotarugali.github.io/tags/PHP/"/>
+    
+  </entry>
+  
+</feed>
