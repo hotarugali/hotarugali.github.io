@@ -45,7 +45,7 @@ function bot_ui_ini() {
     secondpart = function () {
         botui.message.add({
             delay: 1500,
-            content: "目前是一枚大四学生"
+            content: "目前大四刚毕业啦~"
         }).then(function () {
             botui.message.add({
                 delay: 1500,
