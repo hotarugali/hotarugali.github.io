@@ -4990,7 +4990,7 @@ blockquote footer cite:before {
   transform: rotate(360deg);
 }
 #waline-wrap textarea {
-  background: url("/img/comment/air_fan.webp") 100% 100% no-repeat;
+  background: url("/img/comment/poor_guy.png") 100% 100% no-repeat;
 }
 #waline-wrap textarea:focus {
   background-image: none;
