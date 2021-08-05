@@ -262,14 +262,14 @@ if ('Waline' === 'Waline' || !true) {
   const init = () => {
     twikoo.init(Object.assign({
       el: '#twikoo-wrap',
-      envId: 'butterfly-twikoo-7f9obs1b198cf93',
+      envId: 'https://twikoo-ochre.vercel.app/',
       region: 'ap-guangzhou'
     }, null))
   }
 
   const getCount = () => {
     twikoo.getCommentsCount({
-      envId: 'butterfly-twikoo-7f9obs1b198cf93',
+      envId: 'https://twikoo-ochre.vercel.app/',
       region: 'ap-guangzhou',
       urls: [window.location.pathname],
       includeReply: false
