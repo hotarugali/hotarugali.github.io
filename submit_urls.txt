@@ -126,8 +126,8 @@ https://hotarugali.github.io/2020/06/24/JavaScript/JavaScript%E6%95%B0%E7%BB%84/
 https://hotarugali.github.io/2021/08/03/JavaScript/JS%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/
 https://hotarugali.github.io/2020/06/24/JavaScript/JavaScript%E5%AD%97%E7%AC%A6%E4%B8%B2/
 https://hotarugali.github.io/2020/07/20/JavaScript/JavaScript%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C/
-https://hotarugali.github.io/2021/02/28/OperationSystem/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87/
 https://hotarugali.github.io/2020/07/20/NodeJS/Windows10%E4%B8%8Bnode-gyp%20rebuild%E6%8A%A5%E9%94%99/
+https://hotarugali.github.io/2021/02/28/OperationSystem/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87/
 https://hotarugali.github.io/2020/05/26/InformationTheory/%E6%A6%82%E8%AE%BA/%E6%A6%82%E8%AE%BA/
 https://hotarugali.github.io/2020/07/25/ComputerEnglish/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9C%AF%E8%AF%AD/
 https://hotarugali.github.io/2020/05/26/NodeJS/Mint19.1%E5%AE%89%E8%A3%85NodeJS/
@@ -191,8 +191,8 @@ https://hotarugali.github.io/2021/08/18/Tools/Zsh/Zsh%E7%9B%B8%E5%85%B3%E8%B5%84
 https://hotarugali.github.io/2021/08/08/Tools/Gimp/Gimp%E5%BF%AB%E6%8D%B7%E9%94%AE/Gimp%E5%BF%AB%E6%8D%B7%E9%94%AE/
 https://hotarugali.github.io/2021/03/08/Tools/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88/
 https://hotarugali.github.io/2021/08/17/Tools/Aria2/Aria2%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/
-https://hotarugali.github.io/2021/08/16/Tools/XDM/XDM%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/
 https://hotarugali.github.io/2021/08/18/Tools/Tmux/Tmux%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/
+https://hotarugali.github.io/2021/08/16/Tools/XDM/XDM%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/
 https://hotarugali.github.io/2021/06/12/PHP/Manjaro21.0%E6%90%AD%E5%BB%BALAMP%E7%8E%AF%E5%A2%83/
 https://hotarugali.github.io/2021/04/19/Programming/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E8%A7%84%E8%8C%83/
 https://hotarugali.github.io/2020/05/26/MatLab/MatLab%E5%87%BD%E6%95%B0ylabel%E3%80%81ylim%E3%80%81yticks%E3%80%81yticklabels%E3%80%81ytickformat/MatLab%E5%87%BD%E6%95%B0ylabel%E3%80%81ylim%E3%80%81yticks%E3%80%81yticklabels%E3%80%81ytickformat/
