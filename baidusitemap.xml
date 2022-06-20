@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hotarugali.github.io/2022/02/18/Game/MonsterHunter/MHP3%E5%9C%A8PPSSPP%E4%B8%8A%E7%9A%84%E8%81%94%E6%9C%BA%E7%8E%A9%E6%B3%95/</loc>
+    <loc>https://hotarugali.github.io/2022/02/18/Game/PSP/PSP%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2022/02/18/Game/PSP/PSP%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</loc>
+    <loc>https://hotarugali.github.io/2022/02/18/Game/MonsterHunter/MHP3%E5%9C%A8PPSSPP%E4%B8%8A%E7%9A%84%E8%81%94%E6%9C%BA%E7%8E%A9%E6%B3%95/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -17,11 +17,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/08/11/Literature/%E6%91%98%E5%BD%95/%E9%9B%85%E7%A7%B0/</loc>
+    <loc>https://hotarugali.github.io/2022/05/14/Literature/%E6%91%98%E5%BD%95/%E8%AE%A1%E6%95%B0/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2022/05/14/Literature/%E6%91%98%E5%BD%95/%E8%AE%A1%E6%95%B0/</loc>
+    <loc>https://hotarugali.github.io/2021/08/11/Literature/%E6%91%98%E5%BD%95/%E9%9B%85%E7%A7%B0/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -61,15 +61,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2021/02/25/Research/Assessory/%E6%95%B0%E6%8D%AE%E9%9B%86%E9%93%BE%E6%8E%A5/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2022/04/25/Research/Multimodal/CLIP/2021-Arxiv-Learning%20Transferable%20Visual%20Models%20From%20Natural%20Language%20Supervision/2021-Arxiv-Learning%20Transferable%20Visual%20Models%20From%20Natural%20Language%20Supervision/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/11/19/Research/Assessory/%E4%BC%9A%E8%AE%AE%E6%8A%95%E7%A8%BF%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/02/25/Research/Assessory/%E6%95%B0%E6%8D%AE%E9%9B%86%E9%93%BE%E6%8E%A5/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -81,15 +81,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2022/05/01/Research/GAN/2014-NIPS-Generative%20Adversarial%20Nets/2014-NIPS-Generative%20Adversarial%20Nets/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2022/06/13/Research/ObjectDetection/2020-ECCV-End-to-End%20Object%20Detection%20with%20Transformers/2020-ECCV-End-to-End%20Object%20Detection%20with%20Transformers/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2022/05/03/Research/Transformer/2021-ICLR-An%20Image%20is%20Worth%2016x16%20Words%EF%BC%9ATransformers%20for%20Image%20Recognition%20at%20Scale/2021-ICLR-An%20Image%20is%20Worth%2016x16%20Words%EF%BC%9ATransformers%20for%20Image%20Recognition%20at%20Scale/</loc>
+    <loc>https://hotarugali.github.io/2022/05/01/Research/GAN/2014-NIPS-Generative%20Adversarial%20Nets/2014-NIPS-Generative%20Adversarial%20Nets/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -97,19 +93,23 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/MachineLearning/%E8%A7%84%E8%8C%83%E5%8C%96%E3%80%81%E5%BD%92%E4%B8%80%E5%8C%96%E3%80%81%E6%A0%87%E5%87%86%E5%8C%96%E3%80%81%E4%B8%AD%E5%BF%83%E5%8C%96/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2022/05/01/Research/Transformer/2017-NIPS-Attention%20Is%20All%20You%20Need/2017-NIPS-Attention%20Is%20All%20You%20Need/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/09/14/Technique/MachineLearning/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0/</loc>
+    <loc>https://hotarugali.github.io/2022/05/03/Research/Transformer/2021-ICLR-An%20Image%20is%20Worth%2016x16%20Words%EF%BC%9ATransformers%20for%20Image%20Recognition%20at%20Scale/2021-ICLR-An%20Image%20is%20Worth%2016x16%20Words%EF%BC%9ATransformers%20for%20Image%20Recognition%20at%20Scale/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/07/25/Technique/MachineLearning/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/MachineLearning/%E8%A7%84%E8%8C%83%E5%8C%96%E3%80%81%E5%BD%92%E4%B8%80%E5%8C%96%E3%80%81%E6%A0%87%E5%87%86%E5%8C%96%E3%80%81%E4%B8%AD%E5%BF%83%E5%8C%96/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/09/14/Technique/MachineLearning/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -121,11 +121,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/MySQL/%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E4%BD%BF%E7%94%A8MySQL/</loc>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/MySQL/MySQL%E6%8A%A5%E9%94%99/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/MySQL/MySQL%E6%8A%A5%E9%94%99/</loc>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/MySQL/%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E4%BD%BF%E7%94%A8MySQL/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -133,11 +133,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2021/03/26/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/06/16/Technique/TeX/LaTeX/Mint19.1%E9%85%8D%E7%BD%AETeXLive+TeXStudio%E7%9A%84LaTeX%E7%8E%AF%E5%A2%83/Mint19.1%E9%85%8D%E7%BD%AETeXLive+TeXStudio%E7%9A%84LaTeX%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/03/26/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/</loc>
+    <loc>https://hotarugali.github.io/2021/01/23/Technique/TeX/LaTeX/LaTeX%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7/LaTeX%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -153,19 +157,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/01/23/Technique/TeX/LaTeX/LaTeX%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7/LaTeX%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2021/01/23/Technique/TeX/LaTeX/LaTeX%E6%AD%A3%E6%96%87%E7%AC%A6%E5%8F%B7/LaTeX%E6%AD%A3%E6%96%87%E7%AC%A6%E5%8F%B7/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/07/17/Technique/TeX/LaTeX/Manjaro20.0%E9%85%8D%E7%BD%AETeXLive+TeXStudio%E7%9A%84LaTeX%E7%8E%AF%E5%A2%83/Manjaro20.0%E9%85%8D%E7%BD%AETeXLive+TeXStudio%E7%9A%84LaTeX%E7%8E%AF%E5%A2%83/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/01/23/Technique/TeX/LaTeX/LaTeX%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%92%8C%E7%AC%A6%E5%8F%B7/LaTeX%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%92%8C%E7%AC%A6%E5%8F%B7/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -173,7 +165,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/07/17/Technique/TeX/LaTeX/Manjaro20.0%E9%85%8D%E7%BD%AETeXLive+TeXStudio%E7%9A%84LaTeX%E7%8E%AF%E5%A2%83/Manjaro20.0%E9%85%8D%E7%BD%AETeXLive+TeXStudio%E7%9A%84LaTeX%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2021/01/23/Technique/TeX/LaTeX/LaTeX%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%8F%B7/LaTeX%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%8F%B7/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/01/23/Technique/TeX/LaTeX/LaTeX%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%92%8C%E7%AC%A6%E5%8F%B7/LaTeX%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%92%8C%E7%AC%A6%E5%8F%B7/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -193,19 +193,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/03/30/Technique/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2021/01/21/Technique/TeX/LaTeX/Manjaro20.2%E9%85%8D%E7%BD%AETexLive+VSCode%E7%9A%84LaTeX%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/03/29/Technique/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/</loc>
+    <loc>https://hotarugali.github.io/2021/03/30/Technique/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/01/21/Technique/TeX/LaTeX/LaTeX%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/</loc>
+    <loc>https://hotarugali.github.io/2021/03/29/Technique/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -221,11 +217,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/01/17/Technique/Configure/Configure%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://hotarugali.github.io/2021/08/16/Technique/VSCode/VSCode%E8%AE%BE%E7%BD%AE%E4%B8%AD%E8%8B%B1%E6%B7%B7%E5%90%88%E7%AD%89%E5%AE%BD%E5%AD%97%E4%BD%93/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/08/16/Technique/VSCode/VSCode%E8%AE%BE%E7%BD%AE%E4%B8%AD%E8%8B%B1%E6%B7%B7%E5%90%88%E7%AD%89%E5%AE%BD%E5%AD%97%E4%BD%93/</loc>
+    <loc>https://hotarugali.github.io/2021/01/21/Technique/TeX/LaTeX/LaTeX%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -233,15 +229,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2022/05/31/Technique/Make/Make%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/11/24/Technique/Make/Makefile%E4%B8%AD%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2022/02/19/Technique/Windows/Windows%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</loc>
+    <loc>https://hotarugali.github.io/2021/01/17/Technique/Configure/Configure%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -249,7 +237,19 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2022/02/19/Technique/Windows/Windows%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2021/12/05/Technique/Windows/Cmd/Cmd%E7%BB%88%E7%AB%AF%E4%BB%A3%E7%90%86/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/11/24/Technique/Make/Makefile%E4%B8%AD%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2022/05/31/Technique/Make/Make%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -273,6 +273,10 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/07/03/Technique/CryptographyBasics/RC4/RC4/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/07/03/Technique/CryptographyBasics/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E6%A8%A1%E5%BC%8F/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -285,7 +289,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/07/03/Technique/CryptographyBasics/RC4/RC4/</loc>
+    <loc>https://hotarugali.github.io/2020/07/03/Technique/CryptographyBasics/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E5%BA%8F%E5%88%97/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E5%BA%8F%E5%88%97/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -301,7 +305,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/07/03/Technique/CryptographyBasics/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E5%BA%8F%E5%88%97/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E5%BA%8F%E5%88%97/</loc>
+    <loc>https://hotarugali.github.io/2022/06/17/Technique/ChannelCoding/%E7%BC%96%E7%A0%81%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -309,7 +313,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2022/06/17/Technique/ChannelCoding/%E7%BC%96%E7%A0%81%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</loc>
+    <loc>https://hotarugali.github.io/2022/06/20/Technique/ChannelCoding/%E6%88%88%E8%8E%B1%E7%A0%81/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -321,10 +325,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/10/10/Technique/Math/Theory/%E5%9B%BE%E5%83%8F%E7%9F%A9/%E5%87%A0%E4%BD%95%E7%9F%A9/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/10/15/Technique/Math/Theory/%E5%9B%BE%E5%83%8F%E7%9F%A9/%E5%BE%84%E5%90%91%E7%9F%A9/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -333,11 +333,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/09/17/Technique/Math/Theory/%E5%87%B8%E4%BC%98%E5%8C%96/Introduction_Of_Convex_Optimization/</loc>
+    <loc>https://hotarugali.github.io/2021/10/12/Technique/Math/Theory/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/10/12/Technique/Math/Theory/%E5%87%B8%E4%BC%98%E5%8C%96/%E5%87%B8%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</loc>
+    <loc>https://hotarugali.github.io/2020/10/10/Technique/Math/Theory/%E5%9B%BE%E5%83%8F%E7%9F%A9/%E5%87%A0%E4%BD%95%E7%9F%A9/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -345,11 +345,19 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/10/28/Technique/Math/Theory/%E7%9F%A9%E9%98%B5/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4/</loc>
+    <loc>https://hotarugali.github.io/2021/09/17/Technique/Math/Theory/%E5%87%B8%E4%BC%98%E5%8C%96/Introduction_Of_Convex_Optimization/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/10/26/Technique/Math/Theory/%E7%9F%A9%E9%98%B5/%E7%9F%A9%E9%98%B5%E5%BE%AE%E5%88%86/%E7%9F%A9%E9%98%B5%E5%BE%AE%E5%88%86/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/10/28/Technique/Math/Theory/%E7%9F%A9%E9%98%B5/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/03/17/Technique/Math/Theory/%E7%9F%A9%E9%98%B5/%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -358,10 +366,6 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/09/27/Technique/Math/Theory/%E7%9F%A9%E9%98%B5/%E8%8C%83%E6%95%B0/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/03/17/Technique/Math/Theory/%E7%9F%A9%E9%98%B5/%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -397,10 +401,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/07/18/Technique/Math/Theory/%E4%B8%8D%E7%AD%89%E5%BC%8F/%E9%9C%8D%E5%A4%AB%E4%B8%81%E4%B8%8D%E7%AD%89%E5%BC%8F/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/08/31/Technique/Math/Theory/%E5%9B%BE%E8%AE%BA/%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -421,7 +421,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/07/18/Technique/Math/Theory/%E4%B8%8D%E7%AD%89%E5%BC%8F/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E4%B8%8D%E7%AD%89%E5%BC%8F/</loc>
+    <loc>https://hotarugali.github.io/2021/07/18/Technique/Math/Theory/%E4%B8%8D%E7%AD%89%E5%BC%8F/%E9%9C%8D%E5%A4%AB%E4%B8%81%E4%B8%8D%E7%AD%89%E5%BC%8F/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -433,11 +433,19 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2021/07/18/Technique/Math/Theory/%E4%B8%8D%E7%AD%89%E5%BC%8F/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E4%B8%8D%E7%AD%89%E5%BC%8F/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2021/10/12/Technique/Math/Theory/%E4%B8%8D%E7%AD%89%E5%BC%8F/%E6%9F%AF%E8%A5%BF-%E6%96%BD%E7%93%A6%E8%8C%A8%E4%B8%8D%E7%AD%89%E5%BC%8F/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/01/16/Technique/Math/Theory/%E5%88%9A%E6%80%A7%E6%96%B9%E7%A8%8B/%E5%88%9A%E6%80%A7%E6%96%B9%E7%A8%8B/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Math/Theory/%E5%90%84%E7%A7%8D%E8%B7%9D%E7%A6%BB/%E5%90%84%E7%A7%8D%E8%B7%9D%E7%A6%BB/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -453,11 +461,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Math/Theory/%E5%90%84%E7%A7%8D%E8%B7%9D%E7%A6%BB/%E5%90%84%E7%A7%8D%E8%B7%9D%E7%A6%BB/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/09/15/Technique/Math/Theory/%E6%A6%82%E7%8E%87%E8%AE%BA/%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83/</loc>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Math/Theory/%CF%80%E7%9A%84%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -473,7 +477,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Math/Theory/%CF%80%E7%9A%84%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F/</loc>
+    <loc>https://hotarugali.github.io/2020/09/15/Technique/Math/Theory/%E6%A6%82%E7%8E%87%E8%AE%BA/%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -501,18 +505,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/01/16/Technique/Math/Modeling/%E4%BC%A0%E6%9F%93%E7%97%85%E6%A8%A1%E5%9E%8B/%E4%BC%A0%E6%9F%93%E7%97%85%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Qt/Deepin15.11%E4%B8%8BQt5.14%E6%8A%A5%E9%94%99/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Qt/Deepin15.11%E4%B8%8BQt5.14%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2021/01/16/Technique/Math/Modeling/PCA%E6%A8%A1%E5%9E%8B/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -521,7 +513,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Go/Go%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</loc>
+    <loc>https://hotarugali.github.io/2021/01/16/Technique/Math/Modeling/%E4%BC%A0%E6%9F%93%E7%97%85%E6%A8%A1%E5%9E%8B/%E4%BC%A0%E6%9F%93%E7%97%85%E6%A8%A1%E5%9E%8B/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -530,6 +522,14 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Go/Mint19.1%E9%85%8D%E7%BD%AEVSCode%E7%9A%84Go%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Qt/Deepin15.11%E4%B8%8BQt5.14%E6%8A%A5%E9%94%99/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Qt/Deepin15.11%E4%B8%8BQt5.14%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -545,6 +545,10 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Go/Go%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Go/Go%E8%AF%AD%E8%A8%80%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -553,15 +557,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/MarkDown/MarkDown%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/MarkDown%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/MarkDown/Atom%E6%90%AD%E5%BB%BAMarkDown%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/04/17/Technique/MarkDown/MarkDown%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/MarkDown/MarkDown%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/MarkDown%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -577,14 +581,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/07/17/Technique/StatisticalLearning/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/09/14/Technique/StatisticalLearning/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2021/07/18/Technique/StatisticalLearning/%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -594,6 +590,14 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2022/04/24/Technique/StatisticalLearning/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/07/17/Technique/StatisticalLearning/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/09/14/Technique/StatisticalLearning/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -617,6 +621,10 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/07/20/Technique/JavaScript/JavaScript%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/06/24/Technique/JavaScript/JavaScript%E6%95%B0%E5%80%BC/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -629,11 +637,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/07/20/Technique/JavaScript/JavaScript%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/InformationTheory/%E6%A6%82%E8%AE%BA/%E6%A6%82%E8%AE%BA/</loc>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/NodeJS/Mint19.1%E5%AE%89%E8%A3%85NodeJS/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -649,7 +653,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/NodeJS/Mint19.1%E5%AE%89%E8%A3%85NodeJS/</loc>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/InformationTheory/%E6%A6%82%E8%AE%BA/%E6%A6%82%E8%AE%BA/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Net/Hosts%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2022/02/19/Technique/Net/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -665,15 +677,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Net/Hosts%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2022/02/19/Technique/Net/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</loc>
+    <loc>https://hotarugali.github.io/2021/08/23/Technique/Git/Git%E4%BF%A1%E6%81%AF%E8%B7%9F%E8%B8%AA/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/10/10/Technique/Git/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Git/Git%E6%9C%89%E5%85%B3ssh-key%E7%9A%84%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -685,27 +697,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/08/23/Technique/Git/Git%E4%BF%A1%E6%81%AF%E8%B7%9F%E8%B8%AA/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Git/Git%E6%9C%89%E5%85%B3ssh-key%E7%9A%84%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/10/17/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/AdaDelta/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/Nesterov/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/Adam/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -713,11 +705,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/Nesterov/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/10/17/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/RMSprop/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/SGD/</loc>
+    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -725,7 +721,19 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/Adam/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/SGD/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/10/22/Technique/DeepLearning/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/RNN/RNN/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -734,22 +742,6 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/01/16/Technique/DeepLearning/Padding%E7%AD%96%E7%95%A5/Padding%E7%AD%96%E7%95%A5/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/RNN/RNN/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E6%AD%A3%E5%88%99%E5%8C%96/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/07/25/Technique/DeepLearning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E8%BF%87%E6%8B%9F%E5%90%88/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -765,7 +757,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/10/17/Technique/DeepLearning/%E8%87%AA%E5%8A%A8%E6%B1%82%E6%A2%AF%E5%BA%A6/</loc>
+    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E6%AD%A3%E5%88%99%E5%8C%96/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/07/25/Technique/DeepLearning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -773,15 +769,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E8%BF%87%E6%8B%9F%E5%90%88/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/10/17/Technique/DeepLearning/%E8%87%AA%E5%8A%A8%E6%B1%82%E6%A2%AF%E5%BA%A6/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2021/04/19/Technique/Rust/Rust%E6%8E%A7%E5%88%B6%E6%B5%81/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/04/19/Technique/Rust/Rust%E6%89%80%E6%9C%89%E6%9D%83/Rust%E6%89%80%E6%9C%89%E6%9D%83/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/04/19/Technique/Rust/Rust%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -793,11 +789,23 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2021/04/19/Technique/Rust/Rust%E6%89%80%E6%9C%89%E6%9D%83/Rust%E6%89%80%E6%9C%89%E6%9D%83/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/04/19/Technique/Rust/Rust%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2021/04/22/Technique/Rust/Rust%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/04/21/Technique/Rust/Rust%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2022/03/05/Technique/Docker/Linux%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8Docker/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -825,10 +833,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2022/03/05/Technique/Docker/Linux%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8Docker/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2021/07/25/Technique/Hexo/Hexo%E5%AE%9E%E7%94%A8%E4%B8%BB%E9%A2%98%E5%8F%8A%E6%8F%92%E4%BB%B6/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -841,14 +845,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/08/18/Technique/Tools/Tmux/Tmux%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/08/16/Technique/Tools/XDM/XDM%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2021/08/18/Technique/Tools/Zsh/Zsh%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -857,7 +853,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/06/12/Technique/PHP/Manjaro21.0%E6%90%AD%E5%BB%BALAMP%E7%8E%AF%E5%A2%83/</loc>
+    <loc>https://hotarugali.github.io/2021/08/18/Technique/Tools/Tmux/Tmux%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -869,6 +865,14 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2021/08/16/Technique/Tools/XDM/XDM%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/06/12/Technique/PHP/Manjaro21.0%E6%90%AD%E5%BB%BALAMP%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2021/04/19/Technique/Programming/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E8%A7%84%E8%8C%83/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -877,23 +881,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0yyaxis/MatLab%E5%87%BD%E6%95%B0yyaxis/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/07/28/Technique/MatLab/MatLab%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/MatLab%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/MatLab%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E7%BB%98%E5%9B%BE%E6%8A%80%E5%B7%A7/MatLab%E7%BB%98%E5%9B%BE%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0rand%E3%80%81randi%E3%80%81randn%E3%80%81rng/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -906,6 +898,18 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%8F%98%E9%87%8F/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0yyaxis/MatLab%E5%87%BD%E6%95%B0yyaxis/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/07/28/Technique/MatLab/MatLab%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/MatLab%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0rand%E3%80%81randi%E3%80%81randn%E3%80%81rng/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -937,6 +941,10 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2021/04/22/Technique/ImageMoment/%E5%9B%BE%E5%83%8F%E7%9F%A9%E6%A6%82%E8%BF%B0/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0interp1%E3%80%81interp2%E3%80%81interp3%E3%80%81interpn/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -949,7 +957,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/04/22/Technique/ImageMoment/%E5%9B%BE%E5%83%8F%E7%9F%A9%E6%A6%82%E8%BF%B0/</loc>
+    <loc>https://hotarugali.github.io/2020/09/07/Technique/ACM/%E9%A2%98%E8%A7%A3/P2014%E3%80%8C%5BCTSC1997%5D%E9%80%89%E8%AF%BE%E3%80%8D/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -957,23 +965,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/09/07/Technique/ACM/%E9%A2%98%E8%A7%A3/P2014%E3%80%8C%5BCTSC1997%5D%E9%80%89%E8%AF%BE%E3%80%8D/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/09/12/Technique/ACM/%E9%A2%98%E8%A7%A3/UVA437%E3%80%8CThe%20Tower%20of%20Babylon%E3%80%8D/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/09/01/Technique/ACM/%E9%A2%98%E8%A7%A3/P2580%E3%80%8C%E4%BA%8E%E6%98%AF%E4%BB%96%E9%94%99%E8%AF%AF%E7%9A%84%E7%82%B9%E5%90%8D%E5%BC%80%E5%A7%8B%E4%BA%86%E3%80%8D/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/01/26/Technique/ACM/%E9%A2%98%E8%A7%A3/P1439%E3%80%8C%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97%E3%80%8D/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/08/26/Technique/ACM/%E9%A2%98%E8%A7%A3/P4147%E3%80%8C%E7%8E%89%E8%9F%BE%E5%AE%AB%E3%80%8D/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -981,7 +973,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/12/13/Technique/ACM/%E9%A2%98%E8%A7%A3/CF1591D%E3%80%8CYet%20Another%20Sorting%20Problem%E3%80%8D/</loc>
+    <loc>https://hotarugali.github.io/2021/01/26/Technique/ACM/%E9%A2%98%E8%A7%A3/P1439%E3%80%8C%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97%E3%80%8D/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/09/01/Technique/ACM/%E9%A2%98%E8%A7%A3/P2580%E3%80%8C%E4%BA%8E%E6%98%AF%E4%BB%96%E9%94%99%E8%AF%AF%E7%9A%84%E7%82%B9%E5%90%8D%E5%BC%80%E5%A7%8B%E4%BA%86%E3%80%8D/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/08/26/Technique/ACM/%E9%A2%98%E8%A7%A3/P4147%E3%80%8C%E7%8E%89%E8%9F%BE%E5%AE%AB%E3%80%8D/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -989,7 +989,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2021/12/13/Technique/ACM/%E9%A2%98%E8%A7%A3/CF1591D%E3%80%8CYet%20Another%20Sorting%20Problem%E3%80%8D/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2021/01/19/Technique/ACM/%E9%A2%98%E8%A7%A3/P2758%E3%80%8C%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%E3%80%8D/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/08/10/Technique/ACM/%E9%A2%98%E8%A7%A3/SpringOuting/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -997,7 +1005,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/08/10/Technique/ACM/%E9%A2%98%E8%A7%A3/SpringOuting/</loc>
+    <loc>https://hotarugali.github.io/2020/09/03/Technique/ACM/%E9%A2%98%E8%A7%A3/UVA12467%E3%80%8CSecret%20Word%E3%80%8D/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1009,10 +1017,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/09/03/Technique/ACM/%E9%A2%98%E8%A7%A3/UVA12467%E3%80%8CSecret%20Word%E3%80%8D/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/08/07/Technique/ACM/%E9%A2%98%E8%A7%A3/P2418%E3%80%8Cyyy%20loves%20OI%20IV%E3%80%8D/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -1021,15 +1025,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/08/26/Technique/ACM/%E9%A2%98%E8%A7%A3/POJ3250%E3%80%8CBad%20Hair%20Day%E3%80%8D/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/09/08/Technique/ACM/%E9%A2%98%E8%A7%A3/CF1405D%E3%80%8CTree%20Tag%E3%80%8D/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/12/14/Technique/ACM/%E9%A2%98%E8%A7%A3/CF1608C%E3%80%8CGame%20Master%E3%80%8D/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1041,15 +1037,19 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/08/26/Technique/ACM/%E9%A2%98%E8%A7%A3/POJ3250%E3%80%8CBad%20Hair%20Day%E3%80%8D/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/12/14/Technique/ACM/%E9%A2%98%E8%A7%A3/CF1608C%E3%80%8CGame%20Master%E3%80%8D/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/08/30/Technique/ACM/%E9%A2%98%E8%A7%A3/P1169%E3%80%8C%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C%E3%80%8D/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/08/27/Technique/ACM/%E9%A2%98%E8%A7%A3/P1903%E3%80%8C%5B%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%5D%E6%95%B0%E9%A2%9C%E8%89%B2%E3%80%8D/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/09/06/Technique/ACM/%E9%A2%98%E8%A7%A3/P5357%E3%80%8C%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91AC%E8%87%AA%E5%8A%A8%E6%9C%BA%EF%BC%88%E4%BA%8C%E6%AC%A1%E5%8A%A0%E5%BC%BA%E7%89%88%EF%BC%89%E3%80%8D/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1061,7 +1061,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/08/20/Technique/ACM/%E9%A2%98%E8%A7%A3/PAT%E3%80%8C1005%20Programming%20Pattern%20(35%E5%88%86)%E3%80%8D/</loc>
+    <loc>https://hotarugali.github.io/2020/09/06/Technique/ACM/%E9%A2%98%E8%A7%A3/P5357%E3%80%8C%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91AC%E8%87%AA%E5%8A%A8%E6%9C%BA%EF%BC%88%E4%BA%8C%E6%AC%A1%E5%8A%A0%E5%BC%BA%E7%89%88%EF%BC%89%E3%80%8D/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1069,7 +1069,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/08/20/Technique/ACM/%E9%A2%98%E8%A7%A3/PAT%E3%80%8C1005%20Programming%20Pattern%20(35%E5%88%86)%E3%80%8D/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/09/04/Technique/ACM/%E9%A2%98%E8%A7%A3/UVA11452%E3%80%8CDancing%20the%20Cheeky-Cheeky%E3%80%8D/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/09/19/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%85%B6%E4%BB%96/%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1077,7 +1085,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/09/19/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%85%B6%E4%BB%96/%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/</loc>
+    <loc>https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/%E4%BA%8C%E7%BB%B4%E5%87%A0%E4%BD%95%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1089,14 +1097,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/%E4%BA%8C%E7%BB%B4%E5%87%A0%E4%BD%95%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/09/08/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/LCM%E4%B8%8EGCD%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/%E7%9F%A9%E9%98%B5%E6%A0%91%E5%AE%9A%E7%90%86/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -1105,11 +1105,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/09/08/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E6%A0%91/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</loc>
+    <loc>https://hotarugali.github.io/2020/09/08/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/LCM%E4%B8%8EGCD%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/08/18/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E6%A0%91/%E6%A0%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/09/08/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E6%A0%91/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1121,19 +1125,19 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/08/18/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/08/21/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/08/18/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/08/18/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/08/18/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%A0%86%E6%8E%92%E5%BA%8F%E4%B8%8E%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/08/21/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1149,15 +1153,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/08/26/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B9%B6%E6%9F%A5%E9%9B%86/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/08/24/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/</loc>
+    <loc>https://hotarugali.github.io/2020/08/26/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1169,7 +1169,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/08/24/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/09/02/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%AD%97%E5%85%B8%E6%A0%91/%E5%AD%97%E5%85%B8%E6%A0%91/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1177,7 +1185,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%87%B8%E5%8C%85%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://hotarugali.github.io/2020/10/11/Technique/Python/Torch/Torch%E4%B8%ADTensor/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1193,18 +1201,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/02/25/Technique/Python/Matplotlib/Matplotlib%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/10/11/Technique/Python/Torch/Torch%E4%B8%ADTensor/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/11/01/Technique/Python/Matplotlib/Matplotlib%E7%BB%98%E5%9B%BE%E6%8A%80%E5%B7%A7/Matplotlib%E7%BB%98%E5%9B%BE%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Python/Python%E6%8A%A5%E9%94%99/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -1213,7 +1209,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/12/03/Technique/Python/Python%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
+    <loc>https://hotarugali.github.io/2021/02/25/Technique/Python/Matplotlib/Matplotlib%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/11/01/Technique/Python/Matplotlib/Matplotlib%E7%BB%98%E5%9B%BE%E6%8A%80%E5%B7%A7/Matplotlib%E7%BB%98%E5%9B%BE%E6%8A%80%E5%B7%A7/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1221,7 +1221,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/11/10/Technique/Python/Python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2022/06/02/Technique/Python/Python%E5%8C%85%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/12/03/Technique/Python/Python%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1230,10 +1238,6 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Python/pip%E4%B8%8B%E8%BD%BDPython%E5%BA%93%E9%80%9F%E5%BA%A6%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/11/10/Technique/Python/Python%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1265,19 +1269,19 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Ubuntu/Ubuntu20.04%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/06/12/Technique/Linux/Ubuntu/Ubuntu20.04%E4%B8%8BMAC%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2021/06/12/Technique/Linux/Ubuntu/Ubuntu20.04%E4%B8%8Bapt%E6%8A%A5%E9%94%99/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/03/02/Technique/Linux/Ubuntu/Ubuntu20.04%E5%BC%80%E6%9C%BA%E8%BF%90%E8%A1%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Ubuntu/Ubuntu20.04%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/06/12/Technique/Linux/Ubuntu/Ubuntu20.04%E4%B8%8BMAC%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1305,7 +1309,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2021/07/16/Technique/Linux/ArchLinux/ArchLinux%E4%B8%8BVSCode%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E4%B8%8B%E8%BD%BD%E6%89%A9%E5%B1%95/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2021/07/15/Technique/Linux/ArchLinux/ArchLinux%E4%B8%8Bzsh%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/08/08/Technique/Linux/ArchLinux/ArchLinux%E4%B8%8B%E8%93%9D%E7%89%99%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1317,11 +1329,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/07/16/Technique/Linux/ArchLinux/ArchLinux%E4%B8%8BVSCode%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E4%B8%8B%E8%BD%BD%E6%89%A9%E5%B1%95/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/08/08/Technique/Linux/ArchLinux/ArchLinux%E4%B8%8B%E8%93%9D%E7%89%99%E9%97%AE%E9%A2%98/</loc>
+    <loc>https://hotarugali.github.io/2021/10/02/Technique/Linux/ArchLinux/ArchLinux%E9%85%8D%E7%BD%AE%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81%E9%94%99%E8%AF%AF%E6%AC%A1%E6%95%B0%E5%92%8C%E9%94%81%E5%AE%9A%E6%97%B6%E9%97%B4/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1329,11 +1337,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/10/02/Technique/Linux/ArchLinux/ArchLinux%E9%85%8D%E7%BD%AE%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81%E9%94%99%E8%AF%AF%E6%AC%A1%E6%95%B0%E5%92%8C%E9%94%81%E5%AE%9A%E6%97%B6%E9%97%B4/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Sundry/SystemTap/SystemTap/</loc>
+    <loc>https://hotarugali.github.io/2021/07/16/Technique/Linux/Sundry/Linux%E4%B8%8B%E5%90%84%E7%A7%8D%E5%AE%89%E8%A3%85%E5%8C%85%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1341,15 +1345,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/07/16/Technique/Linux/Sundry/Linux%E4%B8%8B%E5%90%84%E7%A7%8D%E5%AE%89%E8%A3%85%E5%8C%85%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Sundry/Linux%E4%B8%8Bfcitx%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E6%A0%87%E7%82%B9/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/06/13/Technique/Linux/Sundry/Linux%E7%B3%BB%E7%BB%9F%E5%90%84%E5%8F%91%E8%A1%8C%E7%89%88%E7%94%A8%E6%88%B7%E6%96%87%E6%A1%A3/</loc>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Sundry/SystemTap/SystemTap/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1357,19 +1353,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Sundry/Linux%E4%B8%8Bfcitx%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E6%A0%87%E7%82%B9/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Sundry/Linux%E4%B8%8Bsudo%E6%8A%A5%E9%94%99/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Sundry/Linux%E4%B8%8B%E5%AE%89%E8%A3%85ocrmypdf%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/07/15/Technique/Linux/Sundry/Linux%E5%90%84%E6%A1%8C%E9%9D%A2%E7%94%A8%E6%88%B7%E6%96%87%E6%A1%A3/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/07/04/Technique/Linux/Sundry/Linux%E4%B8%8Bunzip%E8%A7%A3%E5%8E%8B%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1377,7 +1365,23 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Sundry/Linux%E4%B8%8B%E5%AE%89%E8%A3%85ocrmypdf%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Sundry/Linux%E4%B8%8EWindows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E9%94%99%E4%B9%B1%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/07/15/Technique/Linux/Sundry/Linux%E5%90%84%E6%A1%8C%E9%9D%A2%E7%94%A8%E6%88%B7%E6%96%87%E6%A1%A3/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/06/13/Technique/Linux/Sundry/Linux%E7%B3%BB%E7%BB%9F%E5%90%84%E5%8F%91%E8%A1%8C%E7%89%88%E7%94%A8%E6%88%B7%E6%96%87%E6%A1%A3/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/07/04/Technique/Linux/Sundry/Linux%E4%B8%8Bunzip%E8%A7%A3%E5%8E%8B%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1385,7 +1389,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/02/11/Technique/Linux/Sundry/Linux%E4%BF%AE%E6%94%B9grub%E8%8F%9C%E5%8D%95/</loc>
+    <loc>https://hotarugali.github.io/2020/10/01/Technique/Linux/Sundry/Linux%E4%B8%8B%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1393,11 +1397,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/10/01/Technique/Linux/Sundry/Linux%E4%B8%8B%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/25/Technique/Linux/Sundry/Linux%E5%BC%95%E5%AF%BCgrub%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/</loc>
+    <loc>https://hotarugali.github.io/2021/02/11/Technique/Linux/Sundry/Linux%E4%BF%AE%E6%94%B9grub%E8%8F%9C%E5%8D%95/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1405,11 +1405,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2022/02/20/Technique/Linux/Sundry/Linux%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</loc>
+    <loc>https://hotarugali.github.io/2020/05/25/Technique/Linux/Sundry/Linux%E5%BC%95%E5%AF%BCgrub%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/05/03/Technique/Linux/Sundry/Linux%E4%B8%8B%E5%90%88%E5%B9%B6PDF/</loc>
+    <loc>https://hotarugali.github.io/2022/02/20/Technique/Linux/Sundry/Linux%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1418,6 +1418,10 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/08/09/Technique/Linux/Sundry/Linux%E4%B8%8B%E4%BB%8EPDF%E6%96%87%E4%BB%B6%E4%B8%AD%E6%8F%90%E5%8F%96%E5%9B%BE%E7%89%87/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/05/03/Technique/Linux/Sundry/Linux%E4%B8%8B%E5%90%88%E5%B9%B6PDF/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1445,7 +1449,19 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Manjaro/Manjaro20.0%E9%85%8D%E7%BD%AETR4527%E6%89%93%E5%8D%B0%E6%9C%BA%E5%92%8C%E6%89%AB%E6%8F%8F%E4%BB%AA%E9%A9%B1%E5%8A%A8/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/10/01/Technique/Linux/Manjaro/Manjaro20.1%E4%B8%8B%E6%90%AD%E5%BB%BAPytorch%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/03/02/Technique/Linux/Manjaro/Manjaro20.2%E5%BC%80%E6%9C%BA%E8%BF%90%E8%A1%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/04/17/Technique/Linux/Manjaro/Manjaro21.0%E7%B3%BB%E7%BB%9F%E6%8A%A5%E9%94%99/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1457,19 +1473,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Manjaro/Manjaro20.0%E9%85%8D%E7%BD%AETR4527%E6%89%93%E5%8D%B0%E6%9C%BA%E5%92%8C%E6%89%AB%E6%8F%8F%E4%BB%AA%E9%A9%B1%E5%8A%A8/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/03/02/Technique/Linux/Manjaro/Manjaro20.2%E5%BC%80%E6%9C%BA%E8%BF%90%E8%A1%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2021/04/16/Technique/Linux/Manjaro/Manjaro21.0%E4%B8%8BKDE5%E6%A1%8C%E9%9D%A2%E8%AE%BE%E7%BD%AE%E6%A1%8C%E9%9D%A2%E5%A3%81%E7%BA%B8/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/04/17/Technique/Linux/Manjaro/Manjaro21.0%E7%B3%BB%E7%BB%9F%E6%8A%A5%E9%94%99/</loc>
+    <loc>https://hotarugali.github.io/2021/06/02/Technique/Linux/Manjaro/Manjaro21.0%E4%B8%8BMAC%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1482,10 +1490,6 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2021/03/04/Technique/Linux/Manjaro/Manjaro20.2%E4%B8%8BVMWare%E6%8A%A5%E9%94%99/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/06/02/Technique/Linux/Manjaro/Manjaro21.0%E4%B8%8BMAC%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1537,14 +1541,6 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4sort/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%AE%9A%E6%97%B6%E5%8A%9F%E8%83%BD/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4head/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -1553,7 +1549,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4sort/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4wc/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%AE%9A%E6%97%B6%E5%8A%9F%E8%83%BD/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1561,11 +1565,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%8D%95%E5%BC%95%E5%8F%B7%E3%80%81%E5%8F%8C%E5%BC%95%E5%8F%B7%E3%80%81%E5%8F%8D%E5%BC%95%E5%8F%B7%E4%BB%A5%E5%8F%8A%E6%97%A0%E5%BC%95%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <loc>https://hotarugali.github.io/2020/02/11/Technique/Linux/Shell/IFS%E5%8F%98%E9%87%8F%E5%AF%B9%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%92%8C%E4%B8%8D%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AF%B9%E5%BE%85/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/02/11/Technique/Linux/Shell/IFS%E5%8F%98%E9%87%8F%E5%AF%B9%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%92%8C%E4%B8%8D%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AF%B9%E5%BE%85/</loc>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%8D%95%E5%BC%95%E5%8F%B7%E3%80%81%E5%8F%8C%E5%BC%95%E5%8F%B7%E3%80%81%E5%8F%8D%E5%BC%95%E5%8F%B7%E4%BB%A5%E5%8F%8A%E6%97%A0%E5%BC%95%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1593,19 +1597,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/11/16/Technique/Linux/Shell/LinuxShell%E4%B8%8B%E5%88%86%E5%8D%B7%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4tail/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2021/02/28/Technique/Linux/Shell/LinuxShell%E5%A4%9A%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E7%AE%A1%E9%81%93/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/11/16/Technique/Linux/Shell/LinuxShell%E4%B8%8B%E5%88%86%E5%8D%B7%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1617,7 +1613,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4alias/</loc>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4tail/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2021/02/28/Technique/Linux/Shell/LinuxShell%E5%A4%9A%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1633,7 +1633,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/BashShell%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%8A%E4%BC%98%E5%85%88%E7%BA%A7/</loc>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4alias/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1642,6 +1642,10 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4history/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/BashShell%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%8A%E4%BC%98%E5%85%88%E7%BA%A7/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1693,11 +1697,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2022/05/31/Technique/CMake/CMake%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
+    <loc>https://hotarugali.github.io/2021/01/17/Technique/CMake/CMake%E4%BD%BF%E7%94%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/01/17/Technique/CMake/CMake%E4%BD%BF%E7%94%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://hotarugali.github.io/2022/05/31/Technique/CMake/CMake%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1706,6 +1710,10 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2022/05/06/Technique/Compression/Image/%E5%9B%BE%E5%83%8F%E6%89%AB%E6%8F%8F%E6%96%B9%E5%BC%8F/%E5%9B%BE%E5%83%8F%E6%89%AB%E6%8F%8F%E6%96%B9%E5%BC%8F/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2022/02/21/Technique/GPS/GPS%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1718,10 +1726,6 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/11/11/Technique/Compression/Image/JPEG%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E7%BB%BC%E8%BF%B0/JPEG%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E7%BB%BC%E8%BF%B0/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2022/02/21/Technique/GPS/GPS%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1753,6 +1757,10 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
+    <loc>https://hotarugali.github.io/2021/06/04/Technique/C++/C++%E5%86%85%E7%BD%AE%E5%AE%8F%E5%AE%9A%E4%B9%89/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://hotarugali.github.io/2020/06/24/Technique/C++/C++%E8%AF%AD%E8%A8%80%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -1769,19 +1777,15 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/06/04/Technique/C++/C++%E5%86%85%E7%BD%AE%E5%AE%8F%E5%AE%9A%E4%B9%89/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/12/12/Technique/C++/C++%E7%B3%BB%E5%88%97%E6%96%87%E6%A1%A3/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/09/14/Technique/DIP/DIP%E6%A6%82%E8%BF%B0/DIP%E6%A6%82%E8%BF%B0/</loc>
+    <loc>https://hotarugali.github.io/2021/10/09/Technique/DIP/DIP%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2021/10/09/Technique/DIP/DIP%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</loc>
+    <loc>https://hotarugali.github.io/2021/09/14/Technique/DIP/DIP%E6%A6%82%E8%BF%B0/DIP%E6%A6%82%E8%BF%B0/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1797,15 +1801,11 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/08/02/Technique/System/CSAPP/Review/Review/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
-    <loc>https://hotarugali.github.io/2020/07/24/Technique/System/CSAPP/%E7%A3%81%E7%9B%98/%E7%A3%81%E7%9B%98/</loc>
-    <lastmod>2022-06-20</lastmod>
-  </url>
-  <url>
     <loc>https://hotarugali.github.io/2020/08/03/Technique/System/CSAPP/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/08/02/Technique/System/CSAPP/Review/Review/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1813,7 +1813,7 @@
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
-    <loc>https://hotarugali.github.io/2020/05/28/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/</loc>
+    <loc>https://hotarugali.github.io/2020/07/24/Technique/System/CSAPP/%E7%A3%81%E7%9B%98/%E7%A3%81%E7%9B%98/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
@@ -1822,6 +1822,10 @@
   </url>
   <url>
     <loc>https://hotarugali.github.io/2020/05/26/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2022-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://hotarugali.github.io/2020/05/28/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
   <url>
