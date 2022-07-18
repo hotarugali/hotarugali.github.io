@@ -25,8 +25,8 @@ https://hotarugali.github.io/2020/12/13/Research/Sundry/ML%E3%80%81CV%E6%96%B9%E
 https://hotarugali.github.io/2021/11/19/Research/Sundry/%E4%BC%9A%E8%AE%AE%E6%8A%95%E7%A8%BF%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/
 https://hotarugali.github.io/2021/02/25/Research/Sundry/%E6%95%B0%E6%8D%AE%E9%9B%86%E9%93%BE%E6%8E%A5/
 https://hotarugali.github.io/2022/04/26/Research/Sundry/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E6%8C%87%E6%A0%87/
-https://hotarugali.github.io/2021/11/23/Research/Sundry/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/
 https://hotarugali.github.io/2021/10/31/Research/Sundry/%E8%8E%B7%E5%8F%96%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E7%9A%84BibTeX%E5%BC%95%E7%94%A8/
+https://hotarugali.github.io/2021/11/23/Research/Sundry/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/
 https://hotarugali.github.io/2022/05/03/Research/Transformer/2022-CVPR-Swin%20Transformer%EF%BC%9AHierarchical%20Vision%20Transformer%20using%20Shifted%20Windows/2022-CVPR-Swin%20Transformer%EF%BC%9AHierarchical%20Vision%20Transformer%20using%20Shifted%20Windows/
 https://hotarugali.github.io/2022/05/01/Research/Transformer/2017-NIPS-Attention%20Is%20All%20You%20Need/2017-NIPS-Attention%20Is%20All%20You%20Need/
 https://hotarugali.github.io/2022/05/03/Research/Transformer/2021-ICLR-An%20Image%20is%20Worth%2016x16%20Words%EF%BC%9ATransformers%20for%20Image%20Recognition%20at%20Scale/2021-ICLR-An%20Image%20is%20Worth%2016x16%20Words%EF%BC%9ATransformers%20for%20Image%20Recognition%20at%20Scale/
@@ -185,8 +185,8 @@ https://hotarugali.github.io/2021/12/15/Technique/Net/%E6%9C%BA%E5%9C%BA%E7%9B%B
 https://hotarugali.github.io/2020/10/17/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/AdaDelta/
 https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/Nesterov/
 https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/
-https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/Momentum/
 https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/Adam/
+https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/Momentum/
 https://hotarugali.github.io/2020/10/17/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/RMSprop/
 https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/AdaGrad/
 https://hotarugali.github.io/2020/10/02/Technique/DeepLearning/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/SGD/
@@ -285,9 +285,9 @@ https://hotarugali.github.io/2020/09/24/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%
 https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/BSGS%E7%AE%97%E6%B3%95/
 https://hotarugali.github.io/2020/09/08/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/LCM%E4%B8%8EGCD%E7%AE%97%E6%B3%95/
 https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/%E7%9F%A9%E9%98%B5%E6%A0%91%E5%AE%9A%E7%90%86/
+https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E7%BD%91%E7%BB%9C%E6%B5%81/%E6%9C%80%E5%A4%A7%E6%B5%81/
 https://hotarugali.github.io/2020/08/18/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E6%A0%91/%E6%A0%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/
 https://hotarugali.github.io/2020/09/08/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E6%A0%91/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/
-https://hotarugali.github.io/2020/08/14/Technique/ACM/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E7%BD%91%E7%BB%9C%E6%B5%81/%E6%9C%80%E5%A4%A7%E6%B5%81/
 https://hotarugali.github.io/2020/09/17/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/
 https://hotarugali.github.io/2020/08/18/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/
 https://hotarugali.github.io/2020/08/21/Technique/ACM/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/
