@@ -1,0 +1,1311 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LinuxShell命令ps | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【注】具体详解参见 man 手册。 1. 简介 ps 是 Linux 下显示瞬间进程状态的强大命令，并不动态连续显示进程状态（top 命令则是对进程进行实时监控）。 2. 格式 1ps [options] Linux 系统中使用 ps 命令支持三种不同类型的命令行选项参数：  Unix 风格参数（参数前使用单破折线） BSD 风格参数（参数前不使用破折线） GNU 风格长参数（参数前加双破折线）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinuxShell命令ps">
+<meta property="og:url" content="https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4ps/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="【注】具体详解参见 man 手册。 1. 简介 ps 是 Linux 下显示瞬间进程状态的强大命令，并不动态连续显示进程状态（top 命令则是对进程进行实时监控）。 2. 格式 1ps [options] Linux 系统中使用 ps 命令支持三种不同类型的命令行选项参数：  Unix 风格参数（参数前使用单破折线） BSD 风格参数（参数前不使用破折线） GNU 风格长参数（参数前加双破折线）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/49.jpg">
+<meta property="article:published_time" content="2020-05-26T02:44:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.529Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/49.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4ps/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LinuxShell命令ps',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/49.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LinuxShell命令ps</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-26T02:44:00.000Z" title="发表于 2020-05-26 10:44:00">2020-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.529Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/Linux/Shell/">Shell</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LinuxShell命令ps"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>【注】具体详解参见 man 手册。</p>
+<h2 id="1-简介">1. 简介</h2>
+<p><code>ps</code> 是 Linux 下显示瞬间进程状态的强大命令，并不动态连续显示进程状态（<code>top</code> 命令则是对进程进行实时监控）。</p>
+<h2 id="2-格式">2. 格式</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps [options]</span><br></pre></td></tr></table></figure>
+<p>Linux 系统中使用 <code>ps</code> 命令支持三种不同类型的命令行选项参数：</p>
+<ul>
+<li>Unix 风格参数（参数前使用单破折线）</li>
+<li>BSD 风格参数（参数前不使用破折线）</li>
+<li>GNU 风格长参数（参数前加双破折线）</li>
+</ul>
+<h2 id="3-选项">3. 选项</h2>
+<ul>
+<li>
+<p>默认情况下（不提供选项参数：<code>ps</code>），只显示运行在当前控制台下属于当前用户的进程。</p>
+</li>
+<li>
+<p>在使用 BSD 参数时，<code>ps</code> 命令会自动改变输出以模仿 BSD 格式。</p>
+</li>
+</ul>
+<h3 id="3-1-Unix-风格">3.1 Unix 风格</h3>
+<ul>
+<li>选项参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>-A</code></td>
+<td style="text-align:left">显示所有进程，同 <code>-e</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-N</code></td>
+<td style="text-align:left">显示与指定参数不符的所有进程（默认显示除当前终端下的程序外所有程序），同 <code>--deselect</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-a</code></td>
+<td style="text-align:left">显示除控制进程和无终端进程外的所有进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-d</code></td>
+<td style="text-align:left">显示除控制进程外的所有进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-e</code></td>
+<td style="text-align:left">显示所有进程，同 <code>-A</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-C cmdlist</code></td>
+<td style="text-align:left">显示包含在 <code>cmdlist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-G grplist</code></td>
+<td style="text-align:left">显示组 ID 包含在 <code>grplist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-U userlist</code></td>
+<td style="text-align:left">显示属主用户 ID 包含在 <code>userlist</code> 列表中的进程，同 <code>--User</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-g grplist</code></td>
+<td style="text-align:left">显示会话或组 ID 在 <code>grplist</code> 列表中的进程（到底是会话 ID 还是有有效组 ID 取决与具体 Linux 发行版）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-p pidlist</code></td>
+<td style="text-align:left">显示 PID 在 <code>pidlist</code> 列表中的进程，同 <code>p</code> 和 <code>--pid</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-s sesslist</code></td>
+<td style="text-align:left">显示会话 ID 在 <code>sesslist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-t ttylist</code></td>
+<td style="text-align:left">显示终端 ID 在 <code>ttylist</code> 列表中的进程，同 <code>t</code> 和 <code>--tty</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-u userlist</code></td>
+<td style="text-align:left">显示有效用户 ID 在 <code>userlist</code> 列表中的进程，同 <code>U</code> 和 <code>--user</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-F</code></td>
+<td style="text-align:left">显示更多额外输出（相较于 <code>-f</code> 参数）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-O format</code></td>
+<td style="text-align:left">显示默认的输出列以及 <code>format</code> 列表指定的特定列</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-M</code></td>
+<td style="text-align:left">显示进程的安全信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-c</code></td>
+<td style="text-align:left">显示进程的额外调度信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-f</code></td>
+<td style="text-align:left">显示完整格式的输出</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-j</code></td>
+<td style="text-align:left">显示任务信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-l</code></td>
+<td style="text-align:left">显示长列表</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-o format</code></td>
+<td style="text-align:left">仅显示由 <code>format</code> 指定的列，同 <code>o</code> 和 <code>--format</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-y</code></td>
+<td style="text-align:left">不显示进程标记（process flag，表明进程状态）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-Z</code></td>
+<td style="text-align:left">显示安全标签（security context/label）信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-H</code></td>
+<td style="text-align:left">用层级格式（树状格式，表明进程间的父子关系）来显示进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-n namelist</code></td>
+<td style="text-align:left">设定名称列表文件路径（有些 Linux 发行版不支持）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-w</code></td>
+<td style="text-align:left">采用宽输出模式，不限宽度显示</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-L</code></td>
+<td style="text-align:left">显示进程中的线程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-V</code></td>
+<td style="text-align:left">显示 <code>ps</code> 命令的版本号</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Unix 风格为进程单字符状态码（输出为 S 列）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">状态符号</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>R（TASK_RUNNING）</code></td>
+<td style="text-align:left">正在运行或在运行队列中准备执行</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>S（TASK_INTERRUPTIBLE）</code></td>
+<td style="text-align:left">可中断睡眠状态，因等待某事件发生而被挂起</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>D（TASK_UNINTERRUPTIBEL）</code></td>
+<td style="text-align:left">不可中断（不响应异步信号，而不是不响应外部硬件中断）睡眠状态</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>I</code></td>
+<td style="text-align:left">空闲内核线程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>T（TASK_STOPPED or TASK_TRACED）</code></td>
+<td style="text-align:left">暂停状态或跟踪状态（被作业控制信号暂停）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>t</code></td>
+<td style="text-align:left">跟踪暂停状态（在跟踪调试过程中被调试器暂停）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Z（EXIT_ZOMBIE）</code></td>
+<td style="text-align:left">僵尸进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>X（EXIT_DEAD）</code></td>
+<td style="text-align:left">退出状态，进程即将被销毁</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>W</code></td>
+<td style="text-align:left">进程处于换页状态</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>举例</li>
+</ul>
+<p>显示控制程序和无终端程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -Na</span><br></pre></td></tr></table></figure>
+<p>本人终端显示结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PID   TTY         TIME      CMD</span><br><span class="line">1      ?        00:00:02   systemd</span><br><span class="line">2      ?        00:00:00   kthreadd</span><br><span class="line">4      ?        00:00:00   kworker/0:0H</span><br><span class="line">6      ?        00:00:00   mm_percpu_wq</span><br><span class="line">7      ?        00:00:00   ksoftirqd/0</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-BSD-风格">3.2  BSD 风格</h3>
+<ul>
+<li>选项参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>T</code></td>
+<td style="text-align:left">显示跟当前终端关联的所有进程，同不带参数的 <code>t</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a</code></td>
+<td style="text-align:left">显示跟任意终端关联的所有进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>g</code></td>
+<td style="text-align:left">显示所有进程（包括控制进程）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>r</code></td>
+<td style="text-align:left">仅显示运行中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>x</code></td>
+<td style="text-align:left">显示当前用户的所有进程，甚至包括未分配任何终端的进程（若和 <code>a</code> 连用则显示系统所有进程）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>U userlist</code></td>
+<td style="text-align:left">显示属主用户 ID 包含在 <code>userlist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>p pidlist</code></td>
+<td style="text-align:left">显示 PID 在 <code>pidlist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>t ttylist</code></td>
+<td style="text-align:left">显示终端 ID 在 <code>ttylist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>O format</code></td>
+<td style="text-align:left">显示默认的输出列以及 <code>format</code> 列表指定的特定列，同 <code>-O</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>X</code></td>
+<td style="text-align:left">按过去的 Linux i386 寄存器格式显示</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Z</code></td>
+<td style="text-align:left">将安全信息添加到输出中</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>j</code></td>
+<td style="text-align:left">显示任务信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>l</code></td>
+<td style="text-align:left">显示长列表</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>o format</code></td>
+<td style="text-align:left">仅显示由 <code>format</code> 指定的列</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s</code></td>
+<td style="text-align:left">采用信号格式显示</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>u</code></td>
+<td style="text-align:left">采用基于用户的格式显示</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>v</code></td>
+<td style="text-align:left">采用虚拟内存格式显示</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>N namelist</code></td>
+<td style="text-align:left">设定名称列表文件路径（有些 Linux 发行版不支持）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>O order</code></td>
+<td style="text-align:left">定义显示信息列的顺序，即指定输出信息排序规则（<code>-O</code> 没有此用法）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>S</code></td>
+<td style="text-align:left">将数值信息从子进程加到父进程上（比如 CPU 和内存使用情况）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>c</code></td>
+<td style="text-align:left">显示真实的命令名称（用以启动进程的程序名称）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>e</code></td>
+<td style="text-align:left">显示命令使用的环境变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>f</code></td>
+<td style="text-align:left">用分层格式来显示进程（显示父子进程关系）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>h</code></td>
+<td style="text-align:left">不显示头信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>k spec</code></td>
+<td style="text-align:left">指定用以将输出排序的列，同 <code>--sort</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>n</code></td>
+<td style="text-align:left">用数值显示 WCHAN 和 USER 列</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>w</code></td>
+<td style="text-align:left">采用宽输出模式，不限宽度显示</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>H</code></td>
+<td style="text-align:left">将线程按进程来显示</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>m</code></td>
+<td style="text-align:left">在进程后显示线程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>L</code></td>
+<td style="text-align:left">列出所有格式指示符（第一列用于 <code>[-]o/O</code> 后的 <code>format</code> 格式，第二列为输出对应显示的列名）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>V</code></td>
+<td style="text-align:left">显示 <code>ps</code> 命令版本号</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>BSD 风格为进程多字符状态码（输出为 STAT 列）：第一个状态码同 Unix 风格显示进程状态，其余字符进一步说明进程的状态。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">状态符号</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>&lt;</code></td>
+<td style="text-align:left">表明该进程运行在高优先级上</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>N</code></td>
+<td style="text-align:left">表明该进程运行在低优先级上</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>L</code></td>
+<td style="text-align:left">表明该进程有页面锁定在内存中</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s</code></td>
+<td style="text-align:left">表明该进程是控制进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>l</code></td>
+<td style="text-align:left">表明该进程是多线程的</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>+</code></td>
+<td style="text-align:left">表明改进程运行在前台</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>举例</li>
+</ul>
+<p>按照父进程 ID 排序显示进程信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps k ppid O ppid</span><br></pre></td></tr></table></figure>
+<p>本人终端显示结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  PID  PPID S TTY          TIME COMMAND</span><br><span class="line"> 3088  3080 S pts/0    00:00:00 bash</span><br><span class="line"> 7869  3080 S pts/1    00:00:00 bash</span><br><span class="line">10317  3080 S pts/2    00:00:00 bash</span><br><span class="line">12429  3080 S pts/4    00:00:00 bash</span><br><span class="line">22354  3080 S pts/6    00:00:00 bash</span><br><span class="line">27861  3080 S pts/3    00:00:00 bash</span><br><span class="line">21532 10317 S pts/2    00:00:00 man</span><br><span class="line">16770 12429 R pts/4    00:00:00 ps</span><br><span class="line">21542 21532 S pts/2    00:00:00 pager</span><br><span class="line">27888 27861 S pts/3    00:00:00 man</span><br><span class="line">27898 27888 S pts/3    00:00:00 pager</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-GNU-长参数风格">3.3 GNU 长参数风格</h3>
+<ul>
+<li>选项参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>--deselect</code></td>
+<td style="text-align:left">显示与指定参数不符的所有进程（默认显示除当前终端下的程序外所有程序），同 <code>-N</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--Group grplist</code></td>
+<td style="text-align:left">显示组 ID 在 <code>grplist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--User userlist</code></td>
+<td style="text-align:left">显示用户 ID 在 <code>userlist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--group grplist</code></td>
+<td style="text-align:left">显示有效组 ID 在 <code>grplist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--pid pidlist</code></td>
+<td style="text-align:left">显示 PID 在 <code>pidlist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--ppid pidlist</code></td>
+<td style="text-align:left">显示父 PID 在 <code>pidlist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--sid sidlist</code></td>
+<td style="text-align:left">显示会话 ID 在 <code>sidlist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--tty ttylist</code></td>
+<td style="text-align:left">显示终端设备号在 <code>ttylist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--user userlist</code></td>
+<td style="text-align:left">显示有效用户 ID 在 <code>userlist</code> 列表中的进程</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--format format</code></td>
+<td style="text-align:left">仅显示由 <code>format</code> 指定的列</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--context</code></td>
+<td style="text-align:left">显示额外的安全信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--cols/columns n</code></td>
+<td style="text-align:left">将屏幕宽度设置为 <code>n</code> 列</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--cumulative</code></td>
+<td style="text-align:left">包含已停止的子进程的信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--forest</code></td>
+<td style="text-align:left">用层级结构显示出进程和父进程之间的关系</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--headers</code></td>
+<td style="text-align:left">在每页输出中都显示列的头</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--no-headers</code></td>
+<td style="text-align:left">不显示列的头</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--lines n</code></td>
+<td style="text-align:left">将屏幕高度设为 <code>n</code> 行</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--rows n</code></td>
+<td style="text-align:left">将屏幕高度设为 <code>n</code> 排</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--sort spec</code></td>
+<td style="text-align:left">指定将输出按哪列排序</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--width n</code></td>
+<td style="text-align:left">将屏幕宽度设为 <code>n</code> 列</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--help</code></td>
+<td style="text-align:left">显示帮助信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--info</code></td>
+<td style="text-align:left">显示调试信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--version</code></td>
+<td style="text-align:left">显示 <code>ps</code> 命令的版本号</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>举例</li>
+</ul>
+<p>按照父进程 ID 排序显示进程信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps --<span class="built_in">sort</span> ppid --format pid,ppid,<span class="built_in">tty</span>,cmd</span><br></pre></td></tr></table></figure>
+<p>本人终端显示结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  PID  PPID TT       CMD</span><br><span class="line">12429  3080 pts/4    bash</span><br><span class="line">18446 12429 pts/4    ps --sort ppid --format pid,ppid,tty,cmd</span><br></pre></td></tr></table></figure>
+<h2 id="4-详解">4. 详解</h2>
+<h3 id="4-1-BSD-风格-O-order-参数">4.1 BSD 风格 O order 参数</h3>
+<ul>
+<li>格式</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O[+|-]key1[,[+|-]key2[,...]]</span><br></pre></td></tr></table></figure>
+<p>其中，<code>+</code> 表示顺序，<code>-</code> 表示逆序。</p>
+<ul>
+<li>key 值表</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">key</th>
+<th style="text-align:left">全称</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>c</code></td>
+<td style="text-align:left">cmd</td>
+<td style="text-align:left">进程启动的程序名称</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>C</code></td>
+<td style="text-align:left">pcpu</td>
+<td style="text-align:left">CPU 利用率</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>f</code></td>
+<td style="text-align:left">flags</td>
+<td style="text-align:left">长列表格式中的 F 列</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>g</code></td>
+<td style="text-align:left">pgrp</td>
+<td style="text-align:left">进程组 ID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>G</code></td>
+<td style="text-align:left">tpgid</td>
+<td style="text-align:left">tty进程组ID（为连接到 tty 则为 -1）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>j</code></td>
+<td style="text-align:left">cutime</td>
+<td style="text-align:left">累计用户时间</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>J</code></td>
+<td style="text-align:left">cstime</td>
+<td style="text-align:left">累计系统时间</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>k</code></td>
+<td style="text-align:left">utime</td>
+<td style="text-align:left">用户时间</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>m</code></td>
+<td style="text-align:left">min_flt</td>
+<td style="text-align:left">次要页错误数</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>M</code></td>
+<td style="text-align:left">maj_flt</td>
+<td style="text-align:left">主要页错误数</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>n</code></td>
+<td style="text-align:left">cmin_flt</td>
+<td style="text-align:left">累计次要页错误数</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>N</code></td>
+<td style="text-align:left">cmaj_flt</td>
+<td style="text-align:left">累计主要页错误数</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>o</code></td>
+<td style="text-align:left">session</td>
+<td style="text-align:left">会话 ID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>p</code></td>
+<td style="text-align:left">pid</td>
+<td style="text-align:left">进程 ID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>P</code></td>
+<td style="text-align:left">ppid</td>
+<td style="text-align:left">父进程 ID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>r</code></td>
+<td style="text-align:left">rss</td>
+<td style="text-align:left">进程驻留内存占用空间大小</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>R</code></td>
+<td style="text-align:left">resident</td>
+<td style="text-align:left">驻留内存页</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s</code></td>
+<td style="text-align:left">size</td>
+<td style="text-align:left">占用内存大小（KB）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>S</code></td>
+<td style="text-align:left">share</td>
+<td style="text-align:left">共享页数量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>t</code></td>
+<td style="text-align:left">tty</td>
+<td style="text-align:left">控制终端 tty 设备号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>T</code></td>
+<td style="text-align:left">start_time</td>
+<td style="text-align:left">进程启动至今所过时间</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>U</code></td>
+<td style="text-align:left">uid</td>
+<td style="text-align:left">用户 ID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>u</code></td>
+<td style="text-align:left">user</td>
+<td style="text-align:left">用户名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>v</code></td>
+<td style="text-align:left">vsize</td>
+<td style="text-align:left">总占用虚拟内存空间大小（KB）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>y</code></td>
+<td style="text-align:left">priority</td>
+<td style="text-align:left">内核调度优先级</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>举例</li>
+</ul>
+<p>按照 PID 逆序输出所有进程信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -AFl O-p</span><br></pre></td></tr></table></figure>
+<p>本人终端结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">F	S	UID	        PID	        PPID	C	PRI	NI	ADDR	SZ	WCHAN	RSS	    PSR	STIME	TTY	TIME	CMD</span><br><span class="line">1	S	zhangji+	29974	4619	0	80	0	-	197384	futex_	100904	3	20:20	?	0:00	    /opt/google/chrom</span><br><span class="line">1	S	zhangji+	29953	4619	0	80	0	-	192882	futex_	117896	3	20:20	?	0:00	    /opt/google/chrom</span><br><span class="line">1	S	zhangji+	29923	4619	0	80	0	-	180153	futex_	69972	1	20:20	?	0:00	    /opt/google/chrom</span><br><span class="line">1	S	zhangji+	29885	4619	0	80	0	-	202766	futex_	112476	2	20:20	?	0:02	    /opt/google/chrom</span><br><span class="line">1	S	zhangji+	29856	4619	0	80	0	-	205781	futex_	127136	6	20:20	?	0:01	    /opt/google/chrom</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-AIX-格式描述符">4.2 AIX 格式描述符</h3>
+<ul>
+<li>格式</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[-]o/O format</span><br></pre></td></tr></table></figure>
+<p>其中，<code>format</code> 为格式字符串（类似 <code>printf</code> 的格式，不同格式中间可自选分隔符）。</p>
+<ul>
+<li><code>format</code> 中可选格式列表如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">格式</th>
+<th style="text-align:left">含义</th>
+<th style="text-align:left">输出列名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>%C</code></td>
+<td style="text-align:left">pcpu</td>
+<td style="text-align:left">%CPU</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%G</code></td>
+<td style="text-align:left">group</td>
+<td style="text-align:left">GROUP</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%P</code></td>
+<td style="text-align:left">ppid</td>
+<td style="text-align:left">PPID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%U</code></td>
+<td style="text-align:left">user</td>
+<td style="text-align:left">USER</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%a</code></td>
+<td style="text-align:left">args</td>
+<td style="text-align:left">COMMAND</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%c</code></td>
+<td style="text-align:left">comm</td>
+<td style="text-align:left">COMMAND</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%g</code></td>
+<td style="text-align:left">rgroup</td>
+<td style="text-align:left">RGROUP</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%n</code></td>
+<td style="text-align:left">nice</td>
+<td style="text-align:left">NI</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%p</code></td>
+<td style="text-align:left">pid</td>
+<td style="text-align:left">PID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%r</code></td>
+<td style="text-align:left">pgid</td>
+<td style="text-align:left">PGID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%t</code></td>
+<td style="text-align:left">etime</td>
+<td style="text-align:left">ELAPSED</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%u</code></td>
+<td style="text-align:left">ruser</td>
+<td style="text-align:left">RUSER</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%x</code></td>
+<td style="text-align:left">time</td>
+<td style="text-align:left">TIME</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%y</code></td>
+<td style="text-align:left">tty</td>
+<td style="text-align:left">TTY</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%z</code></td>
+<td style="text-align:left">vsz</td>
+<td style="text-align:left">VSZ</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>举例</li>
+</ul>
+<p>输出所有进程的 PID、TTY 号、当目前为止进程运行的累计 CPU 时间、CPU 占用率，并且自定义分隔符：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -eo <span class="string">&quot;%p -%y,%x %c&quot;</span></span><br></pre></td></tr></table></figure>
+<p>本人终端结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PID -TTY     ,    TIME COMMAND</span><br><span class="line">  1 -?       ,00:00:02 systemd</span><br><span class="line">  2 -?       ,00:00:00 kthreadd</span><br><span class="line">  4 -?       ,00:00:00 kworker/0:0H</span><br><span class="line">  6 -?       ,00:00:00 mm_percpu_wq</span><br><span class="line">  ......</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-常用标准格式描述符">4.3 常用标准格式描述符</h3>
+<ul>
+<li>格式</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[-]o/O key1[=rename1|:width1][[[,| ][key2[=rename2|:width1]]...]</span><br><span class="line">--<span class="built_in">sort</span> [+|-]key1[,[+|-]key2[,...]]</span><br></pre></td></tr></table></figure>
+<p>其中，<code>keyn</code> 为指定格式描述符，<code>renamen</code> 为重命名输出列名，<code>widthn</code> 为指定输出列宽度，<code>+</code> 表示顺序而 <code>-</code> 表示逆序。</p>
+<ul>
+<li>常用格式描述符列表</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">格式描述符</th>
+<th style="text-align:left">列名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>user/euser/uname</code></td>
+<td style="text-align:left">USER/EUSER</td>
+<td style="text-align:left">有效用户名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>uid/euid</code></td>
+<td style="text-align:left">UID/EUID</td>
+<td style="text-align:left">启动进程的有效用户 ID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>pid/tgid</code></td>
+<td style="text-align:left">PID/TGID</td>
+<td style="text-align:left">进程 ID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ppid</code></td>
+<td style="text-align:left">PPID</td>
+<td style="text-align:left">父进程 ID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>pgid/pgrp</code></td>
+<td style="text-align:left">PGID/PGRP</td>
+<td style="text-align:left">进程组 ID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>c</code></td>
+<td style="text-align:left">C</td>
+<td style="text-align:left">进程生命周期中的 CPU 利用率</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%cpu/pcpu</code></td>
+<td style="text-align:left">%CPU</td>
+<td style="text-align:left">CPU 占用率</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%mem/pmem</code></td>
+<td style="text-align:left">%MEM</td>
+<td style="text-align:left">内存使用率</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>start/start_time/stime</code></td>
+<td style="text-align:left">进程启动时的系统时间</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>etime</code></td>
+<td style="text-align:left">ELAPSED</td>
+<td style="text-align:left">进程启动至今经过的时间（<code>[DD-]HH:MM:SS</code> 格式输出）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>etimes</code></td>
+<td style="text-align:left">ELAPSED</td>
+<td style="text-align:left">进程启动至今经过的时间（秒）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>time/cputime</code></td>
+<td style="text-align:left">TIME</td>
+<td style="text-align:left">当目前为止进程运行的累计 CPU 时间（<code>[DD-]HH:MM:SS</code> 格式输出）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>times/cputimes</code></td>
+<td style="text-align:left">TIME</td>
+<td style="text-align:left">当目前为止进程运行的累计 CPU 时间（秒）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>args/cmd/command</code></td>
+<td style="text-align:left">CMD/COMMAND</td>
+<td style="text-align:left">进程启动的程序命令</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>comm/ucmd/ucomm</code></td>
+<td style="text-align:left">COMMAND/CMD</td>
+<td style="text-align:left">进程启动的可执行文件名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>tt/tty</code></td>
+<td style="text-align:left">TT</td>
+<td style="text-align:left">进程启动时的终端设备</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>f/flag/flags</code></td>
+<td style="text-align:left">F</td>
+<td style="text-align:left">内核分配给进程的系统标记</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s/state</code></td>
+<td style="text-align:left">S</td>
+<td style="text-align:left">进程单字符状态符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>stat</code></td>
+<td style="text-align:left">STAT</td>
+<td style="text-align:left">进程多字符状态符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>pri</code></td>
+<td style="text-align:left">PRI</td>
+<td style="text-align:left">进程优先级（值越大优先级越低）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ni/nice</code></td>
+<td style="text-align:left">NI</td>
+<td style="text-align:left">谦让度，参与决定优先级</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>size</code></td>
+<td style="text-align:left">SIZE</td>
+<td style="text-align:left">进程换出需要的交换空间大致大小</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>sz</code></td>
+<td style="text-align:left">SZ</td>
+<td style="text-align:left">进程所占物理页大小</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>vsz/vsize</code></td>
+<td style="text-align:left">VSZ</td>
+<td style="text-align:left">进程所占虚拟内存大小（KB）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>rss/rssize/rsz</code></td>
+<td style="text-align:left">RSS/RSZ</td>
+<td style="text-align:left">进程驻留内存占用空间大小（kB）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>wchan</code></td>
+<td style="text-align:left">WCHAN</td>
+<td style="text-align:left">进程休眠的内核函数名称（<code>-</code> 表示进程正在运行，<code>*</code> 表示为多线程进程）</td>
+</tr>
+<tr>
+<td style="text-align:left">…</td>
+<td style="text-align:left">…</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>举例</li>
+</ul>
+<p>按照自定义格式 <code>pid,ppid,pgrp,comm</code> 显示指定字段的进程信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -o pid,ppid,pgrp,<span class="built_in">comm</span></span><br></pre></td></tr></table></figure>
+<p>本人终端显示结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID    PGRP    COMMAND</span><br><span class="line">6776  13466   6776     bash</span><br><span class="line">6858  2307    6851    python3</span><br><span class="line">9412  6776    9412    ps</span><br></pre></td></tr></table></figure>
+<h2 id="5-常用参数组合">5. 常用参数组合</h2>
+<h3 id="5-1-查看系统上运行的所有进程">5.1 查看系统上运行的所有进程</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Unix 风格</span></span><br><span class="line">ps -ef</span><br><span class="line">ps -eF      <span class="comment"># 信息更加详细</span></span><br><span class="line"><span class="comment"># BSD 风格</span></span><br><span class="line">ps ax</span><br><span class="line">ps axu</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-采用层级结构显示系统上运行的所有进程">5.2 采用层级结构显示系统上运行的所有进程</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -efH</span><br><span class="line">ps -ef f    <span class="comment"># 层级结构更清晰</span></span><br><span class="line">ps axf</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-获取线程信息">5.3 获取线程信息</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -eLf</span><br><span class="line">ps axms</span><br></pre></td></tr></table></figure>
+<h3 id="5-4-获取安全信息">5.4 获取安全信息</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -eM</span><br><span class="line">ps -axZ</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4ps/">https://hotarugali.github.io/2020/05/26/Technique/Linux/Shell/LinuxShell命令ps/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Shell/">Shell</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/49.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4more/" title="LinuxShell命令more"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/218.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LinuxShell命令more</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4sort/" title="LinuxShell命令sort"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1081.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">LinuxShell命令sort</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/04/15/Technique/Linux/Shell/BashShell%E5%8F%98%E9%87%8F/" title="BashShell变量"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1590.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-15</div><div class="title">BashShell变量</div></div></a></div><div><a href="/2020/11/13/Technique/Linux/Shell/BashShell%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="BashShell字符串"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1049.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-13</div><div class="title">BashShell字符串</div></div></a></div><div><a href="/2020/05/26/Technique/Linux/Shell/BashShell%E5%B8%B8%E9%87%8F%E5%92%8C%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6/" title="BashShell常量和特殊字符"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/511.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">BashShell常量和特殊字符</div></div></a></div><div><a href="/2020/05/26/Technique/Linux/Shell/BashShell%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97/" title="BashShell数值运算"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/227.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">BashShell数值运算</div></div></a></div><div><a href="/2020/05/26/Technique/Linux/Shell/BashShell%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%8A%E4%BC%98%E5%85%88%E7%BA%A7/" title="BashShell运算符及优先级"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/27.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">BashShell运算符及优先级</div></div></a></div><div><a href="/2020/02/11/Technique/Linux/Shell/IFS%E5%8F%98%E9%87%8F%E5%AF%B9%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%92%8C%E4%B8%8D%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AF%B9%E5%BE%85/" title="IFS变量对加双引号和不加双引号变量的区别对待"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-02-11</div><div class="title">IFS变量对加双引号和不加双引号变量的区别对待</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%BC%E5%BC%8F"><span class="toc-text">2. 格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%80%89%E9%A1%B9"><span class="toc-text">3. 选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Unix-%E9%A3%8E%E6%A0%BC"><span class="toc-text">3.1 Unix 风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-BSD-%E9%A3%8E%E6%A0%BC"><span class="toc-text">3.2  BSD 风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-GNU-%E9%95%BF%E5%8F%82%E6%95%B0%E9%A3%8E%E6%A0%BC"><span class="toc-text">3.3 GNU 长参数风格</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AF%A6%E8%A7%A3"><span class="toc-text">4. 详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-BSD-%E9%A3%8E%E6%A0%BC-O-order-%E5%8F%82%E6%95%B0"><span class="toc-text">4.1 BSD 风格 O order 参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-AIX-%E6%A0%BC%E5%BC%8F%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-text">4.2 AIX 格式描述符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E6%A0%BC%E5%BC%8F%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-text">4.3 常用标准格式描述符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E7%BB%84%E5%90%88"><span class="toc-text">5. 常用参数组合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%B8%8A%E8%BF%90%E8%A1%8C%E7%9A%84%E6%89%80%E6%9C%89%E8%BF%9B%E7%A8%8B"><span class="toc-text">5.1 查看系统上运行的所有进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E9%87%87%E7%94%A8%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84%E6%98%BE%E7%A4%BA%E7%B3%BB%E7%BB%9F%E4%B8%8A%E8%BF%90%E8%A1%8C%E7%9A%84%E6%89%80%E6%9C%89%E8%BF%9B%E7%A8%8B"><span class="toc-text">5.2 采用层级结构显示系统上运行的所有进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E8%8E%B7%E5%8F%96%E7%BA%BF%E7%A8%8B%E4%BF%A1%E6%81%AF"><span class="toc-text">5.3 获取线程信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E8%8E%B7%E5%8F%96%E5%AE%89%E5%85%A8%E4%BF%A1%E6%81%AF"><span class="toc-text">5.4 获取安全信息</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/49.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

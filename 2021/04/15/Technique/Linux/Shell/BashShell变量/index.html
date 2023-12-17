@@ -1,0 +1,1036 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BashShell变量 | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 简介 Bash Shell 使用「环境变量」来存储有关 Shell 会话和工作环境的信息。环境变量分为两类：  全局环境变量：全局环境变量对于所有 Shell 会话和所生成的子 Shell 、孩子 Shell 都是可见的。 局部环境变量：局部环境变量只对创建它们的 Shell 和子 Shell 可见。 本地环境变量：本地环境变量只能在定义它们的函数内部以及子函数中可见。  【注】有关子 Sh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BashShell变量">
+<meta property="og:url" content="https://hotarugali.github.io/2021/04/15/Technique/Linux/Shell/BashShell%E5%8F%98%E9%87%8F/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="1. 简介 Bash Shell 使用「环境变量」来存储有关 Shell 会话和工作环境的信息。环境变量分为两类：  全局环境变量：全局环境变量对于所有 Shell 会话和所生成的子 Shell 、孩子 Shell 都是可见的。 局部环境变量：局部环境变量只对创建它们的 Shell 和子 Shell 可见。 本地环境变量：本地环境变量只能在定义它们的函数内部以及子函数中可见。  【注】有关子 Sh">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1590.jpg">
+<meta property="article:published_time" content="2021-04-15T03:21:02.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.533Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1590.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2021/04/15/Technique/Linux/Shell/BashShell%E5%8F%98%E9%87%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BashShell变量',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1590.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BashShell变量</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-15T03:21:02.000Z" title="发表于 2021-04-15 11:21:02">2021-04-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.533Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/Linux/Shell/">Shell</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="BashShell变量"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-简介">1. 简介</h2>
+<p>Bash Shell 使用「环境变量」来存储有关 Shell 会话和工作环境的信息。环境变量分为两类：</p>
+<ul>
+<li>全局环境变量：全局环境变量对于所有 Shell 会话和所生成的子 Shell 、孩子 Shell 都是可见的。</li>
+<li>局部环境变量：局部环境变量只对创建它们的 Shell 和子 Shell 可见。</li>
+<li>本地环境变量：本地环境变量只能在定义它们的函数内部以及子函数中可见。</li>
+</ul>
+<p>【注】有关子 Shell 和孩子 Shell 的详细介绍参见 <a href="/2020/05/26/Technique/Linux/Shell/LinuxShell%E7%88%B6%E5%AD%90%E5%85%B3%E7%B3%BB%E6%A6%82%E8%BF%B0">LinuxShell父子关系概述</a>。</p>
+<p>环境变量区分大小写，系统环境变量基本都是使用全大写字母，以区别于用户自定义的环境变量，因此用户自定义的环境变量最好都使用小写。</p>
+<h2 id="2-环境变量">2. 环境变量</h2>
+<h3 id="2-1-全局环境变量">2.1 全局环境变量</h3>
+<p>查看全局变量可以使用 <code>env</code> 或 <code>printenv</code> 命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">env</span>                 <span class="comment"># 查看所有全局变量</span></span><br><span class="line"><span class="built_in">printenv</span>            <span class="comment"># 查看所有全局变量</span></span><br><span class="line"><span class="built_in">printenv</span> &lt;variable&gt; <span class="comment"># 查看单个全局变量 &lt;variable&gt;</span></span><br></pre></td></tr></table></figure>
+<p>【注】<code>env</code> 和 <code>printenv</code> 只会输出全局变量，而且也不会对输出的全局变量进行排序。</p>
+<h3 id="2-2-局部环境变量">2.2 局部环境变量</h3>
+<p>局部环境变量只能在定义它们的进程中可见。查看局部变量的列表有些复杂，Linux 系统并没有一个只显示局部环境变量的命令。可以使用 <code>set</code> 命令显示某个特定进程设置的所有环境变量，包括系统局部变量、系统全局变量和用户自定义环境变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+<p>【注】<code>set</code> 命令会将变量按照字母顺序进行排序，且只显示值非空的环境变量。除了输出所有的环境变量外，使用不带参数的 <code>set</code> 命令还会输出当前环境所有的函数。</p>
+<h3 id="2-4-本地环境变量">2.4 本地环境变量</h3>
+<p>本地环境变量只能在函数内部被定义和使用，它们只能在定义它们的函数内部以及子函数中可见。</p>
+<h2 id="3-设置用户定义变量">3. 设置用户定义变量</h2>
+<p>创建环境变量时，变量名的命名需要遵守以下规则：</p>
+<ul>
+<li>字母、数字和下划线字符组成。</li>
+<li>首字母不能是数字。</li>
+<li>不能出现空格和标点符号。</li>
+</ul>
+<h3 id="3-1-设置局部用户定义变量">3.1 设置局部用户定义变量</h3>
+<p>通过使用等号来设置局部环境变量，并给其赋值，值可以是数值或者字符串。基本格式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var=value          	<span class="comment"># var 为局部环境变量，value 为其值</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>变量名、等号和数值之间不能有空格。</li>
+<li>在当进程定义的局部变量只能在当前进程使用。</li>
+<li>Bash Shell 没有数据类型的概念，所有的变量值都是字符串。</li>
+</ul>
+<p>Bash Shell 扩展了局部环境变量赋值语句，通过在赋值语句后接一条命令，则可以实现该局部变量仅在命令执行环境中有效，一旦命令执行完局部变量也将失效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var=value <span class="built_in">command</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-2-设置全局用户定义变量">3.2 设置全局用户定义变量</h3>
+<p>创建全局环境变量的方法是先创建一个局部变量，再通过 <code>export</code> 命令导出到全局环境中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var=value</span><br><span class="line"><span class="built_in">export</span> var</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在当前进程中创建的全局变量在当前进程的所有子进程中都是可见的。</li>
+<li>在子进程中创建的全局变量在当前进程是不可见的。</li>
+<li>在子进程中修改的全局变量只对子进程及其更下层进程有效，对父进程是无效的，即子进程的修改无法反映到父进程中，父进程的全局变量仍然保持原样。</li>
+</ul>
+<p>总而言之，即全局变量的增删改查都只是向下单层单向独立继承。</p>
+<blockquote>
+<p>其实也好理解，因为不同进程之间的各个参数都是独立的，因此只有在创建子进程的时候存在父进程到子进程的变量继承，创建后两个进程之间的变量就是完全独立的，互不影响。</p>
+</blockquote>
+<h3 id="3-3-设置本地环境变量">3.3 设置本地环境变量</h3>
+<p><code>local</code> 命令用于创建「本地环境变量」。其语法格式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">local</span> OPTION VARIABLE=value</span><br></pre></td></tr></table></figure>
+<p><code>local</code> 的选项参数 <code>OPTION</code> 同下文介绍的 <code>declare</code>，但诸如 <code>-x</code> 参数是无效的。</p>
+<h3 id="3-4-读取环境变量">3.4 读取环境变量</h3>
+<p>读取环境变量时，直接在变量前加上 <code>$</code> 即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$HOME</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>当变量不存在是，Bash Shell 不会报错，而是当作空值处理。</li>
+<li>读取变量名时，如果变量名和其他字符连在一起，需要使用 <code>&#123;&#125;</code> 包裹变量名以明确变量名。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=foo</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;a&#125;</span>_file</span><br></pre></td></tr></table></figure>
+<ul>
+<li>若一个变量值为另一个变量名字符串，如果想要使用另一个变量名的值，可以使用 <code>$&#123;!varname&#125;</code> 语法来读取。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="string">&quot;USER&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;!var&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-5-删除环境变量">3.5 删除环境变量</h3>
+<p>在 Bash Shell 使用 <code>unset</code> 命令来删除环境变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> var</span><br></pre></td></tr></table></figure>
+<ul>
+<li>和修改全局变量类似，在子进程中删除全局变量也无法反映到父进程中。</li>
+</ul>
+<h3 id="3-6-环境变量持久化">3.6 环境变量持久化</h3>
+<p>在登入 Linux 系统启动一个 Bash Shell 时，默认情况下 Bash 会在几个文件中查找命令。这些文件称为「启动文件」或「环境文件」。Bash 检查的启动文件取决于你启动 Bash Shell 的方式。启动 Bash Shell 有三种方式：</p>
+<ul>
+<li>登录时作为登录 Shell</li>
+<li>作为非登录 Shell 的交互式 Shell</li>
+<li>作为运行脚本的非交互式 Shell</li>
+</ul>
+<p>而要让环境变量持久化便是将环境变量写入启动文件，这样每当启动 Bash Shell 后就会自动载入写入的环境变量从而达到持久化效果。关于这三种不同的 Shell 登录方式及其启动文件的详细介绍可参考 <a href="/2020/05/26/Technique/Linux/Shell/LinuxShell%E5%88%86%E7%B1%BB">LinuxShell分类</a>。</p>
+<p>【注】有些 Linux 发行版使用了「可拆卸认证模块」（PAM），在这种情况下，PAM 文件会在 Bash Shell 启动之前处理，这些文件中也可能会包含环境变量。PAM 文件包括 <code>/etc/environment</code> 文件和 <code>$HOME/.pam_environment</code> 文件。PAM 更多相关信息可参考<a target="_blank" rel="noopener" href="http://linux-pam.org/">官方网址</a>。</p>
+<h2 id="4-数组变量">4. 数组变量</h2>
+<p>上文讲到环境变量都是单变量，其值可以是字符串和数值。而其实 Bash Shell 还提供了定义数组变量的功能。</p>
+<h3 id="4-1-定义数组变量">4.1 定义数组变量</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array=(val1 val2 ... valn)</span><br></pre></td></tr></table></figure>
+<p>其中，<code>array</code> 为数组变量，使用 <code>()</code> 来定义其值，值与值之间用空格分隔。</p>
+<h3 id="4-2-查询数组变量">4.2 查询数组变量</h3>
+<ul>
+<li>查询数组变量的单个元素值可以使用索引查找（索引值是从 0 开始的），比如查找数组第 3 个元素值：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array[2]&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询整个数组变量可用 <code>*</code> 作为通配符作为索引值：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array[*]&#125;</span></span><br></pre></td></tr></table></figure>
+<p>【注】直接使用数组变量并不能查询到整个数组变量，而是只查询到其第一个元素值。和 C 语言中的数组类似，即数组变量指向的是数组的第一个元素。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$array</span></span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array[0]&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-3-修改数组变量">4.3 修改数组变量</h3>
+<ul>
+<li>修改数组变量单个元素同样可以使用索引值：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array[2]=newval3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改整个数组变量和定义数组变量完全一样：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array=(newval1 newval2 ... newvalm)</span><br></pre></td></tr></table></figure>
+<h3 id="4-4-删除数组变量">4.4 删除数组变量</h3>
+<ul>
+<li>删除数组变量单个元素同样可以使用索引值：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> array[2]</span><br></pre></td></tr></table></figure>
+<p>【注】删除数组变量的单个元素后，虽然直接显示整个数组变量是没有被删除的元素，但如果专门查询该元素会发现，其实不是真的把该索引对应的数组元素剔除了，而是把它置空了，因此显示该元素时打印了空值，所以显示结果相看起来是没有该元素的。</p>
+<ul>
+<li>删除整个数组变量：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> array</span><br></pre></td></tr></table></figure>
+<h2 id="5-默认的-Shell-环境变量">5. 默认的 Shell 环境变量</h2>
+<p>Bash Shell 源自早期的 Unix Bourne Shell，因此继承了 Unix Bourne Shell 定义的一些默认的环境变量。</p>
+<h3 id="5-1-Bash-Shell-支持的-Unix-Bourne-Shell-环境变量">5.1 Bash Shell 支持的 Unix Bourne Shell 环境变量</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>CDPATH</code></td>
+<td style="text-align:left">冒号分隔的目录列表，作为 <code>cd</code> 命令的搜索路径</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HOME</code></td>
+<td style="text-align:left">当前用户的主目录</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>IFS</code></td>
+<td style="text-align:left">Shell 用来将文本字符串分割成字段的一系列字符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>MAIL</code></td>
+<td style="text-align:left">当前用户收件箱的文件名（Bash Shell 会检查这个文件，看看有没有新邮件）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>MAILPATH</code></td>
+<td style="text-align:left">冒号分隔的当前用户收件箱的文件名列表（Bash Shell 会检查列表中的每个文件，看看有没有新邮件）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>OPTARG</code></td>
+<td style="text-align:left"><code>getopts</code> 命令处理的最后一个选项参数值</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>OPTIND</code></td>
+<td style="text-align:left"><code>getopts</code> 命令处理的最后一个选项参数的索引号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PATH</code></td>
+<td style="text-align:left">Shell 查找命令的目录列表，由冒号分隔</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PS1</code></td>
+<td style="text-align:left">Shell 命令行界面的主提示符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PS2</code></td>
+<td style="text-align:left">Shell 命令行界面的次提示符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-2-Bash-Shell-定义的环境变量">5.2 Bash Shell 定义的环境变量</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>BASH</code></td>
+<td style="text-align:left">当前 Shell 实例的全路径名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_ALIASES</code></td>
+<td style="text-align:left">含有当前已设置别名的关联数组</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_ARGC</code></td>
+<td style="text-align:left">含有传入子函数或 Shell 脚本的参数总数的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_ARCV</code></td>
+<td style="text-align:left">含有传入子函数或 Shell 脚本的参数的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_CMDS</code></td>
+<td style="text-align:left">关联数组，包含 Shell 执行过的命令的所在位置</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_COMMAND</code></td>
+<td style="text-align:left">Shell 正在执行的命令或马上就执行的命令</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_ENV</code></td>
+<td style="text-align:left">若设置了该变量，每个 Bash 脚本会在运行前先尝试运行该变量定义的启动文件</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_EXECUTION_STRING</code></td>
+<td style="text-align:left">使用 <code>bash -c</code> 选项传递过来的命令</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_LINENO</code></td>
+<td style="text-align:left">含有当前执行的 Shell 函数的源代码行号的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_REMATCH</code></td>
+<td style="text-align:left">只读数组，在使用正则表达式的比较运算符 <code>=~</code> 进行肯定匹配（positive match）时，包含了匹配到的模式和子模式</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_SOURCE</code></td>
+<td style="text-align:left">含有当前正在执行的 Shell 函数所在源文件名的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_SUBSHELL</code></td>
+<td style="text-align:left">当前子 Shell 环境的嵌套级别（初始值是 0）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_VERSINFO</code></td>
+<td style="text-align:left">含有当前运行的 Bash Shell 的主版本号和次版本号的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_VERSION</code></td>
+<td style="text-align:left">当前运行的 Bash Shell 的版本号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASH_XTRACEFD</code></td>
+<td style="text-align:left">若设置成了有效的文件描述符（0、1、2），则 <code>set -x</code> 调试选项生成的跟踪输出可被重定向。通常用来将跟踪输出到一个文件中</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASHOPTS</code></td>
+<td style="text-align:left">当前启用的 Bash Shell 选项的列表</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BASHPID</code></td>
+<td style="text-align:left">当前 Bash 进程的 PID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COLUMNS</code></td>
+<td style="text-align:left">当前 Bash Shell 实例所用终端的宽度</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COMP_CWORD</code></td>
+<td style="text-align:left">COMP_WORDS 变量的索引值，后者含有当前光标的位置</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COMP_LINE</code></td>
+<td style="text-align:left">当前命令行</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COMP_POINT</code></td>
+<td style="text-align:left">当前光标位置相对于当前命令起始的索引</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COMP_KEY</code></td>
+<td style="text-align:left">用来调用 Shell 函数补全功能的最后一个键</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COMP_TYPE</code></td>
+<td style="text-align:left">一个整数值，表示所尝试的补全类型，用以完成 Shell 函数补全</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COMP_WORDBREAKS</code></td>
+<td style="text-align:left">Readline 库中用于单词补全的词分隔字符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COMP_WORDS</code></td>
+<td style="text-align:left">含有当前命令行所有单词的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COMPREPLY</code></td>
+<td style="text-align:left">含有由 Shell 函数生成的可能填充代码的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>COPROC</code></td>
+<td style="text-align:left">占用未命名的协进程的 I/O 文件描述符的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DIRSTACK</code></td>
+<td style="text-align:left">含有目录栈当前内容的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>EMACS</code></td>
+<td style="text-align:left">设置为 <code>t</code> 时，表明 emacs Shell 缓冲区正在工作，而行编辑功能被禁止</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ENV</code></td>
+<td style="text-align:left">如果设置了该环境变量，在 Bash Shell 脚本运行之前会先执行已定义的启动文件（仅用于当 Bash Shell 以 POSIX 模式被调用时）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>EUID</code></td>
+<td style="text-align:left">当前用户的有效用户 ID（数字形式）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FCEDIT</code></td>
+<td style="text-align:left">供 <code>fc</code> 命令使用的默认编辑器</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FIGNORE</code></td>
+<td style="text-align:left">在进行文件名补全时可以忽略后缀名列表，由冒号分隔</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FUNCNAME</code></td>
+<td style="text-align:left">当前执行的 Shell 函数的名称</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FUNCNEST</code></td>
+<td style="text-align:left">当设置成非零值时，表示所允许的最大函数嵌套级数（一旦超出，当前命令即被终止）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GLOBIGNORE</code></td>
+<td style="text-align:left">冒号分隔的模式列表，定义了在进行文件名扩展时可以忽略的一组文件名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GROUPS</code></td>
+<td style="text-align:left">含有当前用户属组列表的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>histchars</code></td>
+<td style="text-align:left">控制历史记录扩展，最多可有 3 个字符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HISTCMD</code></td>
+<td style="text-align:left">当前命令在历史记录中的编号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HISTCONTROL</code></td>
+<td style="text-align:left">控制哪些命令留在历史记录列表中</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HISTFILE</code></td>
+<td style="text-align:left">保存 Shell 历史记录列表的文件名（默认是 <code>.bash_history</code>）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HISTFILESIZE</code></td>
+<td style="text-align:left">最多在历史文件中存多少行</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HISTTIMEFORMAT</code></td>
+<td style="text-align:left">如果设置了且非空，就用作格式化字符串，以显示 Bash 历史中每条命令的时间戳</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HISTIGNORE</code></td>
+<td style="text-align:left">由冒号分隔的模式列表，用来决定历史文件中哪些命令会被忽略</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HISTSIZE</code></td>
+<td style="text-align:left">最多在历史文件中存多少条命令</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HOSTFILE</code></td>
+<td style="text-align:left">Shell 在补全主机名时读取的文件名称</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HOSTNAME</code></td>
+<td style="text-align:left">当前主机的名称</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HOSTTYPE</code></td>
+<td style="text-align:left">当前运行 Bash Shell 的机器</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>IGNOREEOF</code></td>
+<td style="text-align:left">Shell 在退出前必须收到连续的 EOF 字符的数量（如果这个值不存在，默认是 1）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>INPUTRC</code></td>
+<td style="text-align:left">Readline 初始化文件名（默认是 <code>.inputrc</code>）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LANG</code></td>
+<td style="text-align:left">Shell 的语言环境类别</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LC_ALL</code></td>
+<td style="text-align:left">定义了一个语言环境类别，能够覆盖 <code>LANG</code> 变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LC_COLLATE</code></td>
+<td style="text-align:left">设置对字符串排序时用的排序规则</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LC_CTYPE</code></td>
+<td style="text-align:left">决定如何解释出现在文件名扩展和模式匹配中的字符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LC_MESSAGES</code></td>
+<td style="text-align:left">在解释前面带有 <code>$</code> 的双引号字符串时，该环境变量决定了所采用的语言环境设置</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LC_NUMERIC</code></td>
+<td style="text-align:left">决定着格式化数字时采用的语言环境设置</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LINENO</code></td>
+<td style="text-align:left">当前执行的脚本的行号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LINES</code></td>
+<td style="text-align:left">定义了终端上可见的行数</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>MACHTYPE</code></td>
+<td style="text-align:left">用「CPU-公司-系统」（CPU-company-system）格式定义的系统类型</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>MAPFILE</code></td>
+<td style="text-align:left">一个数组变量，当 <code>mapfile</code> 命令未指定数组变量作为参数时，它存储了 <code>mapfile</code> 所读入的文本</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>MAILCHECK</code></td>
+<td style="text-align:left">Shell 查看新邮件的频率（以秒为单位，默认值是 60）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>OLDPWD</code></td>
+<td style="text-align:left">Shell 之前的工作目录</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>OPTERR</code></td>
+<td style="text-align:left">设置为 1 时，Bash Shell 会显示 <code>getopts</code> 命令产生的错误</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>OSTYPE</code></td>
+<td style="text-align:left">定义了 Shell 所在的操作系统</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PIPESTATUS</code></td>
+<td style="text-align:left">含有前台进程的退出状态列表的数组变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>POSIXLY_CORRECT</code></td>
+<td style="text-align:left">设置了的话，Bash 会以 POSIX 模式启动</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PPID</code></td>
+<td style="text-align:left">Bash Shell父进程的 PID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PROMPT_COMMAND</code></td>
+<td style="text-align:left">设置了的话，在命令行主提示符显示之前会执行这条命令</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PROMPT_DIRTRIM</code></td>
+<td style="text-align:left">用来定义当启用了 <code>\w</code> 或 <code>\W</code> 提示符字符串转义时显示的尾部目录名的数量。被删除的目录名会用一组英文句点替换</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PS3</code></td>
+<td style="text-align:left"><code>select</code> 命令的提示符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PS4</code></td>
+<td style="text-align:left">如果使用了 <code>bash</code> 的 <code>-x</code> 选项，在命令行之前显示的提示信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PWD</code></td>
+<td style="text-align:left">当前工作目录</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RANDOM</code></td>
+<td style="text-align:left">返回一个 0～32767 的随机数（对其的赋值可作为随机数生成器的种子）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>READLINE_LINE</code></td>
+<td style="text-align:left">当使用 <code>bind –x</code> 命令时，存储 Readline 缓冲区的内容</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>READLINE_POINT</code></td>
+<td style="text-align:left">当使用 <code>bind –x</code> 命令时，表示 Readline 缓冲区内容插入点的当前位置</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>REPLY</code></td>
+<td style="text-align:left"><code>read</code> 命令的默认变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SECONDS</code></td>
+<td style="text-align:left">自从 Shell 启动到现在的秒数（对其赋值将会重置计数器）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SHELL</code></td>
+<td style="text-align:left">Bash Shell 的全路径名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SHELLOPTS</code></td>
+<td style="text-align:left">已启用 Bash Shell 选项列表，列表项之间以冒号分隔</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SHLVL</code></td>
+<td style="text-align:left">Shell 的层级，每次启动一个新 Bash Shell，该值增加 1</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TIMEFORMAT</code></td>
+<td style="text-align:left">指定了 Shell 的时间显示格式</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TMOUT</code></td>
+<td style="text-align:left"><code>select</code> 和 <code>read</code> 命令在没输入的情况下等待多久（以秒为单位）。默认值为 0，表示无限长</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TMPDIR</code></td>
+<td style="text-align:left">目录名，保存 Bash Shell 创建的临时文件</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UID</code></td>
+<td style="text-align:left">当前用户的真实用户 ID（数字形式）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-特殊环境变量">6. 特殊环境变量</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特殊变量</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>$0</code> ～ <code>$9</code></td>
+<td style="text-align:left">位置参数，<code>$0</code> 是命令名，<code>$1</code> ～ <code>$9</code> 是命令参数</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$#</code></td>
+<td style="text-align:left">记录脚本运行时携带的命令参数个数</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$*</code></td>
+<td style="text-align:left">用双引号括起后，将所有命令参数当作单个单词保存，即看作一个整体</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$@</code></td>
+<td style="text-align:left">用双引号括起后，将所有命令参数当作字符串中的多个独立单词保存，即看作多个个体</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$?</code></td>
+<td style="text-align:left">记录最近执行的前台程序的退出状态</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$-</code></td>
+<td style="text-align:left">记录了当前 Shell 的选项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$$</code></td>
+<td style="text-align:left">当前 Shell 的 PID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$!</code></td>
+<td style="text-align:left">记录最近执行的后台进程的 PID</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$_</code></td>
+<td style="text-align:left">记录上一个命令的最后一个参数</td>
+</tr>
+</tbody>
+</table>
+<p>更多详细介绍参见下文小节。</p>
+<h3 id="6-1-0-～-9">6.1 <code>$0</code> ～ <code>$9</code></h3>
+<p><code>$0</code> ～ <code>$9</code> 为命令行的位置参数，<code>$0</code> 是命令名，<code>$1</code> ～ <code>$9</code> 是命令参数。</p>
+<h3 id="6-2">6.2 <code>$#</code></h3>
+<p><code>$#</code> 记录了脚本运行时携带的命令参数个数。</p>
+<h3 id="6-3">6.3 <code>$*</code></h3>
+<ul>
+<li>当 <code>$*</code> 未用双引号括起时，即 <code>$*</code>：将所有位置参数扩展成独立的多个个体，而且若出现用引号括起的参数时，则会将引号忽略来看待。</li>
+<li>当 <code>$*</code> 用双引号括起时，即 <code>&quot;$*&quot;</code>：将所有命令参数当作单个单词保存，即看作一个整体。</li>
+</ul>
+<h3 id="6-4">6.4 <code>$@</code></h3>
+<ul>
+<li>当 <code>$@</code> 未用双引号括起时，即 <code>$@</code>：等同于 <code>$*</code>。</li>
+<li>当 <code>$@</code> 用双引号括起时，即 <code>&quot;$@&quot;</code>：将所有命令参数当作字符串中的多个独立单词保存，即看作多个个体，而且若出现用引号括起的参数时，则将其当作单个参数。</li>
+</ul>
+<p>【注】<code>$*</code> 和 <code>$@</code> 的使用很容易混淆，为了更好地理解可以参见以下例子：</p>
+<blockquote>
+<ul>
+<li>首先定义脚本文件 <code>test.sh</code>：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&#x27;MAIN sees &#x27;</span> <span class="variable">$#</span> <span class="string">&#x27; args&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main $*</span><br><span class="line">main <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line">main <span class="string">&quot;$*&quot;</span></span><br><span class="line">main <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后运行该脚本文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./test.sh <span class="string">&#x27;a b c&#x27;</span> d e</span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后输出结果如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MAIN sees  5  args</span><br><span class="line">MAIN sees  5  args</span><br><span class="line">MAIN sees  1  args</span><br><span class="line">MAIN sees  3  args</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="6-5">6.5 <code>$?</code></h3>
+<p><code>$?</code> 记录了最近执行的前台程序的退出状态。</p>
+<h3 id="6-6">6.6 <code>$-</code></h3>
+<p><code>$-</code> 记录了当前 Bash Shell 的选项标志。Bash Shell 的选项标志是在启动时或以内建命令 set 指定的，或者是 shell 自身设置的（例如选项 <code>-i</code>）。有关 Bash Shell 选项选项参数更详细介绍可参考 <a target="_blank" rel="noopener" href="https://tldp.org/LDP/abs/html/options.html">Advanced Bash-Scripting Guide</a> 或官方手册 <code>man bash</code>。</p>
+<blockquote>
+<p>在本地直接查看 <code>$-</code> 值可以发现其为 <code>himBH</code>，关于其详细解释可参见 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean">What do the characters in the bash environment variable $- mean?</a>。</p>
+</blockquote>
+<h3 id="6-7">6.7 <code>$$</code></h3>
+<p><code>$$</code> 记录了当前 Shell 的 PID。需要注意的是，在当前 Shell 创建的子 Shell 中，指的仍然当前父 Shell 的 PID；而在孩子 Shell 中则是孩子 Shell 的 PID。这是因为子 Shell 继承了父 Shell 的所有环境变量，而孩子 Shell 只继承了父 Shell 的全局环境变量。详细介绍参见 <a href="/2020/05/26/Technique/Linux/Shell/LinuxShell%E7%88%B6%E5%AD%90%E5%85%B3%E7%B3%BB%E6%A6%82%E8%BF%B0">LinuxShell父子关系概述</a>。</p>
+<h3 id="6-8">6.8 <code>$!</code></h3>
+<p><code>$!</code> 记录了最近执行的后台进程的 PID。</p>
+<h2 id="7-declare-命令">7. <code>declare</code> 命令</h2>
+<p>除了使用上文提到的简单创建变量的语法，Bash Shell 还提供了 <code>declare</code> 命令用来扩展变量定义语法。</p>
+<ul>
+<li><code>declare</code> 命令可以声明一些特殊类型的变量，即为变量设置一些限制。</li>
+<li><code>declare</code> 命令还可以查看声明的变量和函数。</li>
+</ul>
+<h3 id="7-1-语法">7.1 语法</h3>
+<p><code>declare</code> 命名创建变量的语法格式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">declare</span> OPTION VARIABLE=value</span><br></pre></td></tr></table></figure>
+<p><code>declare</code> 命令的主要参数（<code>OPTION</code>）如下：</p>
+<ul>
+<li><code>-a</code>：声明数组变量。</li>
+<li><code>-f</code>：输出所有函数定义。</li>
+<li><code>-F</code>：输出所有函数名。</li>
+<li><code>-i</code>：声明整数变量。</li>
+<li><code>-l</code>：声明变量为小写字母。</li>
+<li><code>-p</code>：查看变量信息。</li>
+<li><code>-r</code>：声明只读变量。</li>
+<li><code>-u</code>：声明变量为大写字母。</li>
+<li><code>-x</code>：该变量输出为全局环境变量。</li>
+</ul>
+<h3 id="7-2-详解">7.2 详解</h3>
+<ul>
+<li><code>declare</code> 命令如果用在函数中，声明的变量只在函数内有效，等同于 <code>local</code> 命令。</li>
+<li><code>declare</code> 命令不带任何参数时，输出当前环境所有的环境变量和函数，等同于不带任何参数的 <code>set</code> 命令。</li>
+</ul>
+<h2 id="8-readonly-命令">8. <code>readonly</code> 命令</h2>
+<p><code>readonly</code> 命令等同于 <code>declare -r</code>，用来声明只读变量，不能改变边变量值，也不能 <code>unset</code> 变量。</p>
+<h3 id="8-1-语法">8.1 语法</h3>
+<p><code>readonly</code> 命名创建变量的语法格式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">readonly</span> OPTION VARIABLE=value</span><br></pre></td></tr></table></figure>
+<p><code>declare</code> 命令的可选参数（<code>OPTION</code>）如下：</p>
+<ul>
+<li><code>-f</code>：声明的变量为函数名。</li>
+<li><code>-p</code>：打印出所有的只读变量。</li>
+<li><code>-a</code>：声明的变量为数组。</li>
+</ul>
+<h2 id="附录">附录</h2>
+<p>参考资料来源：</p>
+<ul>
+<li>《Linux 命令行与 Shell 脚本编程大全——第3版》，by Richard Blum，门佳译</li>
+<li><a target="_blank" rel="noopener" href="https://tldp.org/LDP/abs/html/index.html">Advanced Bash-Scripting Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3008695/what-is-the-difference-between-and-in-bash">What is the difference between $@ and ​$* in Bash?</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean">What do the characters in the bash environment variable $- mean?</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2021/04/15/Technique/Linux/Shell/BashShell%E5%8F%98%E9%87%8F/">https://hotarugali.github.io/2021/04/15/Technique/Linux/Shell/BashShell变量/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Shell/">Shell</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/1590.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/04/16/Technique/Linux/Manjaro/Manjaro21.0%E4%B8%8BKDE5%E6%A1%8C%E9%9D%A2%E8%AE%BE%E7%BD%AE%E6%A1%8C%E9%9D%A2%E5%A3%81%E7%BA%B8/" title="Manjaro21.0下KDE5桌面设置桌面壁纸"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/547.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Manjaro21.0下KDE5桌面设置桌面壁纸</div></div></a></div><div class="next-post pull-right"><a href="/2021/04/06/Technique/Compression/Image/XBM%E6%A0%BC%E5%BC%8F/" title="XBM格式"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/800.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">XBM格式</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/11/13/Technique/Linux/Shell/BashShell%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="BashShell字符串"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1049.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-13</div><div class="title">BashShell字符串</div></div></a></div><div><a href="/2020/05/26/Technique/Linux/Shell/BashShell%E5%B8%B8%E9%87%8F%E5%92%8C%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6/" title="BashShell常量和特殊字符"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/511.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">BashShell常量和特殊字符</div></div></a></div><div><a href="/2020/05/26/Technique/Linux/Shell/BashShell%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97/" title="BashShell数值运算"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/227.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">BashShell数值运算</div></div></a></div><div><a href="/2020/05/26/Technique/Linux/Shell/BashShell%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%8A%E4%BC%98%E5%85%88%E7%BA%A7/" title="BashShell运算符及优先级"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/27.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">BashShell运算符及优先级</div></div></a></div><div><a href="/2020/02/11/Technique/Linux/Shell/IFS%E5%8F%98%E9%87%8F%E5%AF%B9%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%92%8C%E4%B8%8D%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AF%B9%E5%BE%85/" title="IFS变量对加双引号和不加双引号变量的区别对待"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-02-11</div><div class="title">IFS变量对加双引号和不加双引号变量的区别对待</div></div></a></div><div><a href="/2020/11/16/Technique/Linux/Shell/LinuxShell%E4%B8%8B%E5%88%86%E5%8D%B7%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/" title="LinuxShell下分卷压缩与解压"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1500.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-16</div><div class="title">LinuxShell下分卷压缩与解压</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">2. 环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%85%A8%E5%B1%80%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">2.1 全局环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%B1%80%E9%83%A8%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">2.2 局部环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">2.4 本地环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-text">3. 设置用户定义变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E8%AE%BE%E7%BD%AE%E5%B1%80%E9%83%A8%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-text">3.1 设置局部用户定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-text">3.2 设置全局用户定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E8%AE%BE%E7%BD%AE%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">3.3 设置本地环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E8%AF%BB%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">3.4 读取环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%88%A0%E9%99%A4%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">3.5 删除环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">3.6 环境变量持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%95%B0%E7%BB%84%E5%8F%98%E9%87%8F"><span class="toc-text">4. 数组变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84%E5%8F%98%E9%87%8F"><span class="toc-text">4.1 定义数组变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%9F%A5%E8%AF%A2%E6%95%B0%E7%BB%84%E5%8F%98%E9%87%8F"><span class="toc-text">4.2 查询数组变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%BF%AE%E6%94%B9%E6%95%B0%E7%BB%84%E5%8F%98%E9%87%8F"><span class="toc-text">4.3 修改数组变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E5%8F%98%E9%87%8F"><span class="toc-text">4.4 删除数组变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E9%BB%98%E8%AE%A4%E7%9A%84-Shell-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">5. 默认的 Shell 环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Bash-Shell-%E6%94%AF%E6%8C%81%E7%9A%84-Unix-Bourne-Shell-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">5.1 Bash Shell 支持的 Unix Bourne Shell 环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Bash-Shell-%E5%AE%9A%E4%B9%89%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">5.2 Bash Shell 定义的环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%89%B9%E6%AE%8A%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">6. 特殊环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-0-%EF%BD%9E-9"><span class="toc-text">6.1 $0 ～ $9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2"><span class="toc-text">6.2 $#</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3"><span class="toc-text">6.3 $*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4"><span class="toc-text">6.4 $@</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5"><span class="toc-text">6.5 $?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6"><span class="toc-text">6.6 $-</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-7"><span class="toc-text">6.7 $$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-8"><span class="toc-text">6.8 $!</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-declare-%E5%91%BD%E4%BB%A4"><span class="toc-text">7. declare 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E8%AF%AD%E6%B3%95"><span class="toc-text">7.1 语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E8%AF%A6%E8%A7%A3"><span class="toc-text">7.2 详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-readonly-%E5%91%BD%E4%BB%A4"><span class="toc-text">8. readonly 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E8%AF%AD%E6%B3%95"><span class="toc-text">8.1 语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-text">附录</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1590.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

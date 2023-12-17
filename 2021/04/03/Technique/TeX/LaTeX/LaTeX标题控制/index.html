@@ -1,0 +1,644 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LaTeX标题控制 | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【注】笔记来自《LaTeX入门》——刘海洋。详细参数可参见 LaTeX 官方文档： 1texdoc caption 1. 简介 在设计文档时，我们经常需要修改浮动体标题的字体、间距、对齐方式等格式，然而 LaTeX 内核及标准文档并没有提供直接修改浮动标题格式的命令，这时就可以使用 caption 宏包来完成相关的设置。 2. 格式选项 使用 caption 宏包设置标题格式是通过一系列键值对形式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX标题控制">
+<meta property="og:url" content="https://hotarugali.github.io/2021/04/03/Technique/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="【注】笔记来自《LaTeX入门》——刘海洋。详细参数可参见 LaTeX 官方文档： 1texdoc caption 1. 简介 在设计文档时，我们经常需要修改浮动体标题的字体、间距、对齐方式等格式，然而 LaTeX 内核及标准文档并没有提供直接修改浮动标题格式的命令，这时就可以使用 caption 宏包来完成相关的设置。 2. 格式选项 使用 caption 宏包设置标题格式是通过一系列键值对形式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/649.jpg">
+<meta property="article:published_time" content="2021-04-03T02:41:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.617Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="TeX">
+<meta property="article:tag" content="LaTeX">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/649.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2021/04/03/Technique/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LaTeX标题控制',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/649.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LaTeX标题控制</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-03T02:41:00.000Z" title="发表于 2021-04-03 10:41:00">2021-04-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.617Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/TeX/">TeX</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/TeX/LaTeX/">LaTeX</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LaTeX标题控制"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>【注】笔记来自《LaTeX入门》——刘海洋。详细参数可参见 LaTeX 官方文档：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdoc caption</span><br></pre></td></tr></table></figure>
+<h2 id="1-简介">1. 简介</h2>
+<p>在设计文档时，我们经常需要修改<a href="/2021/03/30/Technique/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93">浮动体</a>标题的字体、间距、对齐方式等格式，然而 LaTeX 内核及标准文档并没有提供直接修改浮动标题格式的命令，这时就可以使用 <code>caption</code> 宏包来完成相关的设置。</p>
+<h2 id="2-格式选项">2. 格式选项</h2>
+<p>使用 <code>caption</code> 宏包设置标题格式是通过一系列键值对形式的选项完成的，这些选项既可以作为宏包的可选项，也可以作为 <code>\captionsetup</code> 命令的参数出现，修改整篇文档的浮动体标题格式：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="keyword">\usepackage</span>[font=small,labelfont=bf]&#123;caption&#125;</span><br><span class="line"><span class="comment">% 下面命令与之等价</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;caption&#125;</span><br><span class="line"><span class="keyword">\captionsetup</span>&#123;font=small,labelfont=bf&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以只修改某种浮动体环境的标题格式，以 <code>figure</code> 环境为例：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;caption&#125;</span><br><span class="line"><span class="keyword">\captionsetup</span>[figure]&#123;font=small,labelfont=bf&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，还可以修改某个浮动体环境的标题格式，以 <code>figure</code> 环境为例：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">    <span class="comment">% ……</span></span><br><span class="line">    <span class="keyword">\captionsetup</span>&#123;font=small,labelfont=bf&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<p><code>caption</code> 宏包提供了非常多的选项，限于篇幅，这里之选择其中常用的一些。为了叙述方便，我们假定 <code>\caption</code> 放在了一个虚拟的 <code>metafloat</code> 浮动环境中。</p>
+<h3 id="2-1-format-选项">2.1 <code>format</code> 选项</h3>
+<p><code>format</code> 选项主要用来设置长标题格式：</p>
+<ul>
+<li><code>plain</code> 格式：如果标题很长，折成几行，就会像普通的正文段落一样显示。</li>
+<li><code>hang</code> 格式：如果标题很长，标题前面的数值标签会进行悬挂，就好像 LaTeX 列表环境一样。</li>
+</ul>
+<h3 id="2-2-labelformat-选项">2.2 <code>labelformat</code> 选项</h3>
+<p><code>labelformat</code> 选项则用来设置标签编号的格式：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">格式</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>default</code></td>
+<td style="text-align:left">同 <code>simple</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>empty</code></td>
+<td style="text-align:left">空格式，去除标签编号部分</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>simple</code></td>
+<td style="text-align:left">简单数字格式</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>brace</code></td>
+<td style="text-align:left">数字右括号格式</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>parens</code></td>
+<td style="text-align:left">带括号数字格式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-3-labelsep-选项">2.3 <code>labelsep</code> 选项</h3>
+<p><code>labelsep</code> 选项控制标签与后面标题之间的间隔：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">格式</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>default</code></td>
+<td style="text-align:left">同 <code>colon</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>none</code></td>
+<td style="text-align:left">无间隔</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>colon</code></td>
+<td style="text-align:left">英文分号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>period</code></td>
+<td style="text-align:left">英文句点</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>space</code></td>
+<td style="text-align:left">空格</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>quad</code></td>
+<td style="text-align:left">一个 em 的间隔</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>newline</code></td>
+<td style="text-align:left">标题另起一行</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>endash</code></td>
+<td style="text-align:left">英文 dash 连接符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-4-justification-选项">2.4 <code>justification</code> 选项</h3>
+<p><code>justification</code> 选项设置浮动标题的对齐方式：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">格式</th>
+<th style="text-align:left">对应段落命令</th>
+<th style="text-align:left">对齐方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>justified</code></td>
+<td style="text-align:left"><code>\justifying</code></td>
+<td style="text-align:left">普通段落的均匀对齐（默认值）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>centering</code></td>
+<td style="text-align:left"><code>\centering</code></td>
+<td style="text-align:left">每行居中对齐</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>centerlast</code></td>
+<td style="text-align:left"><code>\centerlast</code></td>
+<td style="text-align:left">每段的最后一行居中对齐，其他行均匀对齐</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>centerfirst</code></td>
+<td style="text-align:left"><code>\centerfist</code></td>
+<td style="text-align:left">仅标题第一行居中对齐，其他行均匀对齐</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>raggedright</code></td>
+<td style="text-align:left"><code>\raggedright</code></td>
+<td style="text-align:left">每行左对齐，段落右边界可以不对齐</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RaggedRight</code></td>
+<td style="text-align:left"><code>\RaggedRight</code></td>
+<td style="text-align:left">改进的 <code>raggedright</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>raggedleft</code></td>
+<td style="text-align:left"><code>\raggedleft</code></td>
+<td style="text-align:left">每行右对齐</td>
+</tr>
+</tbody>
+</table>
+<p>【注】与标准文档一样，在默认情况下，<code>caption</code> 宏包在单行的短标题中会忽略 <code>justification</code> 选项，而将其居中排版，只有多行的标题才使用选项中的对齐方式。如果希望设置的对齐方式对单行的标题也有效，则可以使用 <code>singlelinecheck=false</code> 来关闭对单独一行标题的检测。</p>
+<h3 id="2-5-font-选项">2.5 <code>font</code> 选项</h3>
+<p><code>font</code> 选项用来设置浮动标题的字体，而 <code>labelfont</code> 和 <code>textfont</code> 选项则可以单独设置前面的标签和后面文字的字体：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类别</th>
+<th style="text-align:left">格式</th>
+<th style="text-align:left">等价字体命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">字体</td>
+<td style="text-align:left"><code>scriptsize</code><br><code>footnotesize</code><br><code>small</code><br><code>normalsize</code><br><code>large</code><br><code>Large</code></td>
+<td style="text-align:left"><code>\scriptsize</code><br><code>\footnotesize</code><br><code>\small</code><br><code>normalsize</code><br><code>\large</code><br><code>\Large</code></td>
+<td style="text-align:left">非常小<br>很小<br>较小<br>正文文字大小<br>较大<br>很大</td>
+</tr>
+<tr>
+<td style="text-align:left">字体族</td>
+<td style="text-align:left"><code>rm</code><br><code>sf</code><br><code>tt</code></td>
+<td style="text-align:left"><code>\rmfamily</code><br><code>\sffamily</code><br><code>\ttfamily</code></td>
+<td style="text-align:left">罗马体 Roman family<br>无衬线体 Sans Serif family<br>打字机体 Typewriter family</td>
+</tr>
+<tr>
+<td style="text-align:left">字体系列</td>
+<td style="text-align:left"><code>md</code><br><code>bf</code></td>
+<td style="text-align:left"><code>\mdseries</code><br><code>bfseries</code></td>
+<td style="text-align:left">中等粗细 Medium series<br>粗体 Bold series</td>
+</tr>
+<tr>
+<td style="text-align:left">字体形状</td>
+<td style="text-align:left"><code>up</code><br><code>it</code><br><code>sl</code><br><code>sc</code></td>
+<td style="text-align:left"><code>\upshape</code><br><code>\itshape</code><br><code>\slshape</code><br><code>\scshape</code></td>
+<td style="text-align:left">值直立体 Upright shape<br>意大利体 Italic shape<br>倾斜体 Slanted shape<br>小型大写字母 SMALL CAPS SHAPE</td>
+</tr>
+<tr>
+<td style="text-align:left">行距</td>
+<td style="text-align:left"><code>singlespacing</code><br><code>onehalfspacing</code><br><code>doublespacing</code><br><code>stretch=&lt;倍数&gt;</code></td>
+<td style="text-align:left"><code>\singlespacing</code><br><code>\onehalfspacing</code><br><code>\doublespacing</code><br><code>\setstretch&#123;&lt;倍数&gt;&#125;</code></td>
+<td style="text-align:left">单倍行距<br>「1.5」倍行距<br>「双倍」行距<br>多倍行距</td>
+</tr>
+<tr>
+<td style="text-align:left">颜色</td>
+<td style="text-align:left"><code>normalcolor</code><br><code>color=&lt;颜色&gt;</code></td>
+<td style="text-align:left"><code>\normalcolor</code><br><code>\color&#123;&lt;颜色&gt;&#125;</code></td>
+<td style="text-align:left">默认颜色<br>指定彩色</td>
+</tr>
+<tr>
+<td style="text-align:left">选项集合</td>
+<td style="text-align:left"><code>normalfont</code><br><code>normal</code></td>
+<td style="text-align:left"><code>\normalfont</code><br><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span></span></span></span></td>
+<td style="text-align:left">恢复默认字体<br>恢复默认字体、行距、颜色</td>
+</tr>
+</tbody>
+</table>
+<p>多个不同的字体选项可以同时使用，只要把几个选项放在分组中：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\captinosetup</span>&#123;font=&#123;small,sf&#125;,labelfont=bf&#125;</span><br><span class="line"><span class="keyword">\caption</span>&#123;小号加粗无衬线字体 Caption&#125;</span><br></pre></td></tr></table></figure>
+<p>几个字体选项还支持 <code>+=</code> 语法，用于在现有设置上增加新设置：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\captinosetup</span>&#123;font=small&#125;</span><br><span class="line"><span class="keyword">\captionsetup</span>&#123;font+=bf&#125;</span><br><span class="line"><span class="keyword">\caption</span>&#123;小号加粗字体 Caption&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-6-margin-选项和-width-选项">2.6 <code>margin</code> 选项和 <code>width</code> 选项</h3>
+<p><code>margin</code> 选项用来设置标题距离页面左右边界的距离，<code>width</code> 则用来设置标题的最大宽度。这两个选项之间有制约关系，因而通常同时只使用其中一个：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 设定 margin</span></span><br><span class="line"><span class="keyword">\captionsetup</span>&#123;margin=4em&#125;</span><br><span class="line"><span class="keyword">\caption</span>&#123;标题距离左右个 4<span class="keyword">\,</span>em 的距离&#125;</span><br><span class="line"><span class="comment">% 或设定 width</span></span><br><span class="line"><span class="keyword">\captionsetup</span>&#123;widith=6em&#125;</span><br><span class="line"><span class="keyword">\caption</span>&#123;标题最多只有 8<span class="keyword">\,</span>em 宽&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-7-skip-选项">2.7 <code>skip</code> 选项</h3>
+<p><code>skip</code> 选项控制标题与浮动环境内容的垂直间距，在标准文档类中默认值是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span> pt。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\captionsetup</span>&#123;skip=0pt&#125;</span><br><span class="line"><span class="keyword">\caption</span>&#123;与前面浮动体内容无额外间隔&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-8-type-选项">2.8 <code>type</code> 选项</h3>
+<p><code>type</code> 选项可以设置标题所对应的浮动环境类型，这就允许在非浮动环境中直接使用浮动体的标题，或者是在同一个浮动体中显示不同的几个标签。但注意标题仍然应该倍放在一个环境中或盒子中，而不是直接写在正文里。比如，可以利用 <code>type</code> 选项在同一个浮动体中完成图表的混排：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;minipage&#125;[b]&#123;.5<span class="keyword">\textwidth</span>&#125;</span><br><span class="line">        <span class="keyword">\centering</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[width=.4<span class="keyword">\textwidth</span>]&#123;picture&#125;</span><br><span class="line">        <span class="keyword">\caption</span>&#123;picture&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;minipage&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;minipage&#125;[b]&#123;.5<span class="keyword">\textwidth</span>&#125;</span><br><span class="line">        <span class="keyword">\centering</span></span><br><span class="line">        <span class="keyword">\begin</span>&#123;tabular&#125;&#123;|*&#123;5&#125;&#123;c|&#125;&#125;</span><br><span class="line">            <span class="keyword">\hline</span></span><br><span class="line">            1996 <span class="built_in">&amp;</span> 1998 <span class="built_in">&amp;</span> 1999 <span class="built_in">&amp;</span> 2000 <span class="built_in">&amp;</span> 2001 <span class="keyword">\\</span></span><br><span class="line">            <span class="keyword">\hline</span></span><br><span class="line">            2002 <span class="built_in">&amp;</span> 2003 <span class="built_in">&amp;</span> 2004 <span class="built_in">&amp;</span> 2005 <span class="built_in">&amp;</span> 2007 <span class="keyword">\\</span></span><br><span class="line">            <span class="keyword">\hline</span></span><br><span class="line">            2008 <span class="built_in">&amp;</span> 2009 <span class="built_in">&amp;</span> 2010 <span class="built_in">&amp;</span> <span class="keyword">\dots</span> <span class="built_in">&amp;</span> <span class="keyword">\\</span></span><br><span class="line">            <span class="keyword">\hline</span></span><br><span class="line">        <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line">        <span class="keyword">\captionsetup</span>&#123;type=table&#125;</span><br><span class="line">        <span class="keyword">\caption</span>&#123;table&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;minipage&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-9-name-选项">2.9 <code>*name</code> 选项</h3>
+<p>在导言区使用 <code>*name</code> 选项可以用来设置标题标签的文字名称。在标准文档类中，<code>figure</code> 和 <code>table</code> 环境的名称是「Figure」和「Table」，而 <code>ctex</code> 文档类则分别是「图」和「表」。设置 <code>figurename</code> 和 <code>tablename</code> 选项等价于修改宏 <code>\figurename</code> 和 <code>tablename</code> 的值，但更为方便：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;caption&#125;</span><br><span class="line"><span class="keyword">\captionsetup</span>&#123;figurename=图片&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以在浮动体环境中直接使用 <code>name</code> 选项临时性修改标签名称：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\captionsetup</span>&#123;type=figure, name=空图片&#125;</span><br><span class="line"><span class="keyword">\caption</span>&#123;标签名称可以修改&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-功能命令">3. 功能命令</h2>
+<p><code>caption</code> 宏包除了定义了大量的格式选项，同时也提供了一些有用的命令。</p>
+<h3 id="3-1-caption-命令">3.1 <code>\caption</code> 命令</h3>
+<p><code>\caption</code> 用于给浮动环境添加标题，其语法格式为：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\caption</span>&#123;&lt;标题&gt;&#125;</span><br><span class="line"><span class="keyword">\caption</span>&#123;&lt;短标题&gt;&#125;&#123;&lt;长标题&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>可选的参数短标题用于图表目录，而交叉引用的标题 <code>\label</code> 需要放在 <code>\caption</code> 后面，或者 <code>&lt;标题&gt;</code>、<code>&lt;长标题&gt;</code> 中。在 <code>\caption</code> 的 <code>&lt;长标题&gt;</code> 中可以进行长达多段的叙述，但 <code>&lt;短标题&gt;</code> 或单独的 <code>&lt;标题&gt;</code> 中不允许分段。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\includegraphics</span>&#123;picture&#125;</span><br><span class="line">    <span class="keyword">\caption</span>[图片]&#123;这是一张图片&#125;<span class="keyword">\label</span>&#123;fig:picture&#125;</span><br><span class="line">    <span class="comment">% 或者 \caption[图片]&#123;\label&#123;fig:picture&#125;这是一张图片&#125;</span></span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-captionof-命令">3.2 <code>\captionof</code> 命令</h3>
+<p><code>\caption&#123;&lt;类型&gt;&#125;&#123;&lt;标题&gt;&#125;</code> 命令可以看作是先设置了 <code>type</code> 选项，然后使用普通的 <code>\caption</code>：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\captionof</span>&#123;figure&#125;&#123;空图片标题&#125;</span><br></pre></td></tr></table></figure>
+<p><code>\captionof</code> 和 <code>\caption</code> 一样，都有一个带星号的形式，表示不编号、不显示标签也不进入图表目录的标题：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\captionsetup</span>&#123;font=sf&#125;</span><br><span class="line"><span class="keyword">\caption</span>*&#123;无编号的标题，只保留格式&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-ContinuedFloat-命令">3.3 <code>\ContinuedFloat</code> 命令</h3>
+<p><code>\ContinuedFloat</code> 命令则用来放在浮动体中，阻止标题的编号增加，从而可以用一个编号表示多个浮动体。如果要产生「续图」、「续表」的功能，就可以使用类似下面的代码：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">    <span class="keyword">\ContinuedFloat</span></span><br><span class="line">    <span class="comment">% ……</span></span><br><span class="line">    <span class="keyword">\caption</span>&#123;某图形&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">    <span class="keyword">\ContinuedFloat</span></span><br><span class="line">    <span class="comment">% ……</span></span><br><span class="line">    <span class="keyword">\caption</span>&#123;某图形（续）&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-4-其他命令">3.4 其他命令</h3>
+<p><code>caption</code> 宏包同时也提供了许多命令来为其格式选项增加新的取值。相关的命令很多，以 <code>labelsep</code> 选项为例，可以声明一个 <code>fullcolon</code> 的取值：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="keyword">\DeclareCaptionLabelSeparator</span>&#123;fullcolon&#125;&#123;：&#125;    <span class="comment">% 声明中文的全角冒号分隔符</span></span><br><span class="line"><span class="keyword">\captionsetup</span>&#123;labelsep=fullcolon&#125;               <span class="comment">% 为中文的标题设置全角冒号分隔符</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-其他宏包">4. 其他宏包</h2>
+<h3 id="4-1-bicaption-宏包">4.1 <code>bicaption</code> 宏包</h3>
+<p><code>bicaption</code> 宏包是 <code>caption</code> 宏包的附加宏包，它提供了双语标题的功能，其基本命令是 <code>\bicaption</code>，语法格式如下：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\bicaption</span>[&lt;短标题一&gt;]&#123;&lt;长标题一&gt;&#125;[&lt;短标题二&gt;]&#123;&lt;长标题二&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>此时可以同时使用 <code>\captionsetup[bi-first]</code> 和 <code>\captionsetup[bi-second]</code> 的 <code>lang</code> 选项分别设置两个标题不同的语言。<code>bicaption</code> 宏包原本使用 <code>babel</code> 宏包或 <code>polyglossia</code> 宏包提供的语言选择机制来设置不同语言的标题，不过中文等东亚语言不使用上述宏包的翻译机制，因此需要手工设置不同语言的标题。可以使用 <code>\DeclareCaptionOption</code> 命令来声明一个新的选项，完成标签名的重定义，然后可以用 <code>\captionsetup</code> 为每种语言分别调用。比如，设置中英文两种图表标题：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 中文文档类会设定好标题的第一种语言</span></span><br><span class="line"><span class="keyword">\documentclass</span>&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;bicaption&#125;</span><br><span class="line"><span class="comment">% 声明 english 选项重定义第二种语言的标签名，选项没有参数</span></span><br><span class="line"><span class="keyword">\DeclareCaptionOption</span>&#123;english&#125;[]&#123;</span><br><span class="line">    <span class="keyword">\renewcommand</span><span class="keyword">\figurename</span>&#123;Figure&#125;</span><br><span class="line">    <span class="keyword">\renewcommand</span><span class="keyword">\tablename</span>&#123;Table&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">\captionsetup</span>[bi-second]&#123;english&#125;</span><br><span class="line"><span class="comment">% ……</span></span><br><span class="line"><span class="keyword">\beign</span>&#123;figure&#125;</span><br><span class="line">    <span class="comment">% ……</span></span><br><span class="line">    <span class="keyword">\bicaption</span>&#123;中文标题&#125;&#123;English Title&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-subcaption-宏包">4.2 <code>subcaption</code> 宏包</h3>
+<p><code>subcaption</code> 宏包可以给整个浮动体加一个概括性的标题，同时对浮动体内的每个子图表也都有自己的编号和标题。需要注意的是，<code>subcaption</code> 宏包依赖于 <code>caption</code> 宏包。<code>subcaption</code> 宏包提供了一组命令来完成子图表的排版输出。</p>
+<ul>
+<li><code>\subcaption&#123;&lt;子标题&gt;&#125;</code>：用来直接输出子标题。</li>
+<li><code>\subcaptionbox[&lt;目录标题&gt;]&#123;&lt;标题&gt;&#125;[&lt;宽度&gt;][&lt;盒子内位置&gt;]&#123;&lt;内容&gt;&#125;</code>：生成一个带有子标题的子图表。其中，如果省略 <code>&lt;宽度&gt;</code> 则使用其 <code>&lt;内容&gt;</code> 的自然宽度；<code>&lt;盒子内位置&gt;</code> 确定 <code>&lt;内容&gt;</code> 在盒子中的水平对齐方式，可以是 <code>l</code>（<code>\raggedright</code>）、<code>r</code>（<code>\raggedleft</code>）、<code>c</code>（<code>\centering</code>）或 <code>s</code>（无特别格式），默认为居中的 <code>c</code>。</li>
+<li><code>\subcaptionbox*&#123;&lt;标题&gt;&#125;[&lt;宽度&gt;][&lt;盒子内位置&gt;]&#123;&lt;内容&gt;&#125;</code>：与 <code>\subcaptionbox</code> 语法相同，但不进行编号。</li>
+</ul>
+<p>【注】使用 <code>\subcaptionbox</code> 时，需要给子图加引用的 <code>\label</code> 标签可以放在 <code>&lt;标题&gt;</code> 参数中。使用 <code>\ref</code> 引用标签将得到「x.y(a)」，它是外层编号「x.y」和内层编号「(a)」的混合。若只引用子标题的内层编号，可以用 <code>subcaption</code> 提供的 <code>\subref</code> 命令。</p>
+<p>由于子图表几乎总是需要使用子段盒子来放置内容和子标题，所以 <code>subcaption</code> 宏包还同时提供了 <code>subfigure</code> 和 <code>subtable</code> 环境，它们的语法和功能与 <code>minipage</code> 完全相同。</p>
+<h3 id="4-3-其他宏包">4.3 其他宏包</h3>
+<p>除了以上宏包外，还可以使用 <code>subfig</code> 和 <code>floatrow</code> 宏包，它们都与 <code>caption</code> 宏包的功能兼容，同时提供额外的子图表排版功能。</p>
+<ul>
+<li><code>subfig</code> 宏包主要提供了 <code>\subfloat</code> 和 <code>\subref</code> 命令，功能和语法都和 <code>subcaption</code> 十分相近。</li>
+<li><code>floatrow</code> 宏包则预定义了许多更为复杂的子图表格式。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2021/04/03/Technique/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/">https://hotarugali.github.io/2021/04/03/Technique/TeX/LaTeX/LaTeX标题控制/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/TeX/">TeX</a><a class="post-meta__tags" href="/tags/LaTeX/">LaTeX</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/649.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/04/03/Technique/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/887.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LaTeX色彩</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/30/Technique/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/834.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">LaTeX浮动体</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/21/Technique/TeX/LaTeX/LaTeX%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" title="LaTeX奇技淫巧"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/713.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-21</div><div class="title">LaTeX奇技淫巧</div></div></a></div><div><a href="/2021/04/17/Technique/TeX/LaTeX/LaTeX%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/" title="LaTeX学习资料汇总"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/611.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-17</div><div class="title">LaTeX学习资料汇总</div></div></a></div><div><a href="/2021/03/29/Technique/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1445.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-29</div><div class="title">LaTeX插图</div></div></a></div><div><a href="/2021/01/23/Technique/TeX/LaTeX/LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%8E%92%E7%89%88/" title="LaTeX数学公式排版"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1533.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-23</div><div class="title">LaTeX数学公式排版</div></div></a></div><div><a href="/2021/03/30/Technique/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/834.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-30</div><div class="title">LaTeX浮动体</div></div></a></div><div><a href="/2021/04/03/Technique/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/887.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-03</div><div class="title">LaTeX色彩</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%BC%E5%BC%8F%E9%80%89%E9%A1%B9"><span class="toc-text">2. 格式选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-format-%E9%80%89%E9%A1%B9"><span class="toc-text">2.1 format 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-labelformat-%E9%80%89%E9%A1%B9"><span class="toc-text">2.2 labelformat 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-labelsep-%E9%80%89%E9%A1%B9"><span class="toc-text">2.3 labelsep 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-justification-%E9%80%89%E9%A1%B9"><span class="toc-text">2.4 justification 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-font-%E9%80%89%E9%A1%B9"><span class="toc-text">2.5 font 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-margin-%E9%80%89%E9%A1%B9%E5%92%8C-width-%E9%80%89%E9%A1%B9"><span class="toc-text">2.6 margin 选项和 width 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-skip-%E9%80%89%E9%A1%B9"><span class="toc-text">2.7 skip 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-type-%E9%80%89%E9%A1%B9"><span class="toc-text">2.8 type 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-name-%E9%80%89%E9%A1%B9"><span class="toc-text">2.9 *name 选项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8A%9F%E8%83%BD%E5%91%BD%E4%BB%A4"><span class="toc-text">3. 功能命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-caption-%E5%91%BD%E4%BB%A4"><span class="toc-text">3.1 \caption 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-captionof-%E5%91%BD%E4%BB%A4"><span class="toc-text">3.2 \captionof 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-ContinuedFloat-%E5%91%BD%E4%BB%A4"><span class="toc-text">3.3 \ContinuedFloat 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-text">3.4 其他命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%85%B6%E4%BB%96%E5%AE%8F%E5%8C%85"><span class="toc-text">4. 其他宏包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-bicaption-%E5%AE%8F%E5%8C%85"><span class="toc-text">4.1 bicaption 宏包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-subcaption-%E5%AE%8F%E5%8C%85"><span class="toc-text">4.2 subcaption 宏包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%85%B6%E4%BB%96%E5%AE%8F%E5%8C%85"><span class="toc-text">4.3 其他宏包</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/649.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

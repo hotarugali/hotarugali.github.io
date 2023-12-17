@@ -1,0 +1,538 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LaTeX插图 | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【注】笔记来自《LaTeX入门》——刘海洋。 1. 简介 插图功能是利用 TeX 的特定编译程序提供的机制实现的，不同的编译程序支持不同的图形方式。不同 LaTeX 编译程序对应的插图格式如下表所示：    TeX 引擎命令 图形驱动 支持的格式 说明     latex Dvips EPS MiKTeX 还部分支持 PNG 和 JPEG   latex DVIPDFMx EPS,PDF,PNG,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX插图">
+<meta property="og:url" content="https://hotarugali.github.io/2021/03/29/Technique/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="【注】笔记来自《LaTeX入门》——刘海洋。 1. 简介 插图功能是利用 TeX 的特定编译程序提供的机制实现的，不同的编译程序支持不同的图形方式。不同 LaTeX 编译程序对应的插图格式如下表所示：    TeX 引擎命令 图形驱动 支持的格式 说明     latex Dvips EPS MiKTeX 还部分支持 PNG 和 JPEG   latex DVIPDFMx EPS,PDF,PNG,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1445.jpg">
+<meta property="article:published_time" content="2021-03-29T06:22:03.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.613Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="TeX">
+<meta property="article:tag" content="LaTeX">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1445.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2021/03/29/Technique/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LaTeX插图',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1445.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LaTeX插图</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-29T06:22:03.000Z" title="发表于 2021-03-29 14:22:03">2021-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.613Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/TeX/">TeX</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/TeX/LaTeX/">LaTeX</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LaTeX插图"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>【注】笔记来自《LaTeX入门》——刘海洋。</p>
+<h2 id="1-简介">1. 简介</h2>
+<p>插图功能是利用 TeX 的特定编译程序提供的机制实现的，不同的编译程序支持不同的图形方式。不同 LaTeX 编译程序对应的插图格式如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TeX 引擎命令</th>
+<th style="text-align:center">图形驱动</th>
+<th style="text-align:center">支持的格式</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>latex</code></td>
+<td style="text-align:center">Dvips</td>
+<td style="text-align:center">EPS</td>
+<td style="text-align:left">MiKTeX 还部分支持 PNG 和 JPEG</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>latex</code></td>
+<td style="text-align:center">DVIPDFMx</td>
+<td style="text-align:center">EPS,PDF,PNG,JPEG</td>
+<td style="text-align:left">PDF、PNG、JPEG 需要使用 extractbb 程序生成 <code>.xbb</code> 文件</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>pdflatex</code></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span></span></span></span></td>
+<td style="text-align:center">MPS、PDF、PNG、JPEG</td>
+<td style="text-align:left">MPS 是 METAPOST 的输出格式，TeXLive 2010 以后还能自动将 EPS 转换为 PDF 文件产插入</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>xelatex</code></td>
+<td style="text-align:center">xdvipdfmx</td>
+<td style="text-align:center">EPS、PDF、PNG、JPEG、BMP</td>
+<td style="text-align:left">驱动是自动调用的，MAC 系统下的旧驱动 xdv2pdf 还支持其他一些格式</td>
+</tr>
+</tbody>
+</table>
+<p>由上表可知，除非使用传统的 Dvips 程序作为图形驱动，一般编译程序支持的图形格式都有好几种，实际插入图形格式也就有不同的选择。对于 pdfLaTeX、XeLaTeX 这些现代的常用编译程序来说，PDF、PNG、JPEG 这三种格式是更为常用的，它们的用途也各自不同：</p>
+<ul>
+<li>PDF图片通常用来作为矢量图形的标准格式。矢量图形可以以任意比例放缩而不影响输出效果，在表现固定图案或数据产生的图形时很有优势。在以前 LaTeX 更多使用 EPS 格式的矢量图形，不过由于现在支持输出 PDF 的作图软件变得更加普及，而且 PDF 格式的文件通常比相同内容的 EPS 图形体积小，功能（如透明色）也更多。一般的矢量图设计软件（如 Illustrator、CorelDraw、Inkscape）、专业数学软件（如 MatLab、Maple、Mathematica）、计算或作图语言（如 R、GNUplot）、图论或流程图工具（如 Visio、Dia、Graphviz）、物理化学或工程图工具（如 JaxoDraw、ChemDraw、AutoCAD）等，都可以保存或打印为 PDF 格式的图片共 LaTeX 使用。</li>
+<li>PNG 图片是无损压缩的像素图格式。通常用来显示计算机制作的非自然图形，如复杂数据可视化结果。一般能输出矢量图的软件也都可以输出 PNG 格式的像素图，也有一些科技作图软件不支持矢量图的。通常数据可视化的图形最好使用矢量图格式，不多对于一些特殊情形，如逐点产生的动力系统图像、3D CG 图，还是更适合使用 PNG 格式。</li>
+<li>JPEG 图片是有损压缩的像素图格式。通常用作照片的格式。计算机产生的非自然图像最好不要使用这种有损压缩格式。</li>
+</ul>
+<h2 id="2-基础">2. 基础</h2>
+<p>在 LaTeX 中，插图是由 <code>graphics</code> 或 <code>graphicx</code> 宏包所使用的 <code>\includegraphics</code> 命令完成的。<code>graphics</code> 宏包和 <code>graphicx</code> 宏包在功能上并没有什么差别。<code>graphicx</code> 宏包支持 <code>&lt;项目&gt;=&lt;值&gt;</code> 的语法，使用起来更为方便，功能也更为强大。</p>
+<p><code>graphicx</code> 宏包可以使用 <code>draft</code> 和 <code>final</code> 选项，用来表示是否实际插图。当宏包使用 <code>draft</code> 选项，或是文档使用全局的 <code>draft</code> 选项时，<code>\includegraphics</code> 命令并不会实际插入图形，而只是得到一个与图形大小相同的带有文件名的方框，这个选项对于未完成的草稿可以在一定程度上加快编译，并减小文件大小。当文档完成时，就可以更改 <code>draft</code> 选项为 <code>final</code> 选项，得到最终的文档。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>[draft]&#123;graphicx&#125;</span><br><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="comment">% ……</span></span><br><span class="line"><span class="keyword">\includegraphics</span>&#123;picture&#125;</span><br></pre></td></tr></table></figure>
+<p><code>graphicx</code> 宏包还有一个特别有用的命令 <code>\graphicspath</code>，它可以指定图形文件的搜索目录列表，不同的目录用分组隔开：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\graphicspath</span>&#123;&#123;figures/&#125;&#125;           <span class="comment">% 指定图片路径</span></span><br><span class="line"><span class="keyword">\graphicspath</span>&#123;&#123;pdf/&#125;&#123;png/&#125;&#123;jpg/&#125;&#125;   <span class="comment">% 指定不同类型图片路径</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-1-格式">2.1 格式</h3>
+<p>插图的核心命令是 <code>\includegraphics</code>，其语法格式为：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\includegraphics</span>[&lt;选项&gt;]&#123;&lt;文件名&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>&lt;文件名&gt;</code> 是图形文件的文件名，一般的扩展名可以省略不写，LaTeX 会自动查找它支持的文件格式，为了明确也可以加上扩展名。</p>
+<h3 id="2-2-大小、位置">2.2 大小、位置</h3>
+<p>插入的图形一般都有一个自然比例，对于 EPS、PDF 图形就是制作的尺寸，对于 JPG、PNG、BMP 等像素图的尺寸则是点阵数除以图形打印度（一般用每英寸点数 DPI 表示）。可以给 <code>\includegraphics</code> 命令加一些可选项来调整图形的大小、位置等：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\includegraphics</span>[width=2em]&#123;picture&#125;    <span class="comment">% 宽度</span></span><br><span class="line"><span class="keyword">\includegraphics</span>[height=1cm]&#123;picture&#125;   <span class="comment">% 高度</span></span><br><span class="line"><span class="keyword">\includegraphics</span>[scale=0.5]&#123;picture&#125;    <span class="comment">% 缩放比例</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-旋转">2.3 旋转</h3>
+<p>使用 <code>angle</code> 选项可以让图形逆时针旋转一定角度，旋转中心可以用 <code>origin</code> 选项确定。<code>origin</code> 的值可以用字符 <code>l,r,c,t,b,B</code> 中的一个或两个，分别表示左、右、中、上、下和基线（默认值为 <code>lb</code>）。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\includegraphics</span>[angle=90]&#123;picture&#125;             <span class="comment">% 以左下角为原点逆时针旋转 90 度</span></span><br><span class="line"><span class="keyword">\includegraphics</span>[angle=-45,origin=c]&#123;picture&#125;   <span class="comment">% 以中心点为原点顺时针旋转 45 度</span></span><br></pre></td></tr></table></figure>
+<p>插入图形的基线就在图片的底部，因而图片盒子的深度为零。但图片旋转时，基线和深度会随 <code>origin</code> 不同而变化，此时要对图片进行放缩，就要用 <code>totalheight</code> 代替 <code>height</code> 选项，表示规定图片深度和高度之和：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\includegraphics</span>[angle=90,origin=b,totalheight=1.5cm]&#123;picture&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-其他">2.4 其他</h3>
+<p><code>includegraphics</code> 除了以上介绍的参数选项外，还有一些其他的参数选项，诸如：</p>
+<ul>
+<li><code>draft</code>、<code>final</code>：同宏包选项相同，仅针对当前插图</li>
+<li><code>keepaspectratio</code>：布尔值，决定缩放时是否保持图片原有的长宽比。如果只设置了 <code>width</code>、<code>height</code> 或 <code>totalheight</code> 中的一个，则默认为真。</li>
+</ul>
+<p>对于更多的参数选项，可参见 <code>graphicx</code> 宏包官方文档。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdoc graphicx</span><br></pre></td></tr></table></figure>
+<h2 id="3-进阶">3. 进阶</h2>
+<h3 id="3-1-几何变换">3.1 几何变换</h3>
+<p><code>graphicx/graphics</code> 宏包不仅提供了插图的功能，也提供了对任意对象（即盒子）进行几何变换的功能。除了平移，TeX 本身并没有几何变换的功能，这些功能同样是依赖具体的编译程序。</p>
+<ul>
+<li><code>\scalebox</code> 命令用来按比例对内容进行放缩，其语法格式为：</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\scalebox</span>&#123;&lt;水平因子&gt;&#125;[&lt;垂直因子&gt;]&#123;&lt;内容&gt;&#125;   <span class="comment">% &lt;垂直因子&gt; 省略时，与 &lt;水平因子&gt; 相同。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>\reflectbox</code> 命令用来对内容做水平镜像反射，其语法格式为：</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\reflectbox</span>&#123;&lt;内容&gt;&#125;     <span class="comment">% 相当于 \scalebox&#123;-1&#125;[-1]&#123;&lt;内容&gt;&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>\resizebox</code> 命令用来把内容放缩到指定的宽度和高度，其语法格式为：</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\resizebox</span>&#123;&lt;宽度&gt;&#125;&#123;&lt;高度&gt;&#125;&#123;&lt;内容&gt;&#125;  <span class="comment">% &lt;宽度&gt; 和 &lt;高度&gt; 可以使用 ! 表示按比例随另一个分量放缩</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><code>\resizebox*</code> 命令和 <code>\resizebox</code> 功能相同，只是第二个参数表示盒子高度和深度之和。</p>
+</li>
+<li>
+<p><code>\rotatebox</code> 命令用来对内容进行旋转，其语法格式为：</p>
+</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\rotatebox</span>[&lt;选项&gt;]&#123;&lt;角度&gt;&#125;&#123;&lt;内容&gt;&#125;  <span class="comment">% &lt;选项&gt; 是 graphicx 宏包才有</span></span><br></pre></td></tr></table></figure>
+<p><code>\rotatebox</code> 命令在选项中可以使用 <code>origin</code> 选项表示旋转原点，值与 <code>\includegraphics</code> 中的选项相同，使用 <code>lrctbB</code> 中的一个或两个；也可以使用 <code>x=2mm,y=5mm</code> 这样的选项准确指定旋转原点。此外，还可以使用 <code>units</code> 选项，其表示旋转的单位，默认值为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>1</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">1^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6741em;"></span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span>，设置 <code>units=6.283185</code> 就相当于使用弧度制。</p>
+<p>【注】<code>graphicx</code> 宏包并不提供错切变换的功能，如有需要，可以使用 <code>PSTricks</code>、<code>tikz</code> 等绘图宏包。</p>
+<h3 id="3-2-页面旋转">3.2 页面旋转</h3>
+<p>在 LaTeX 中，不仅可以对盒子进行旋转，也可以对整个页面的内容进行旋转。<code>lscape</code> 宏包的 <code>landscape</code> 环境就可以把整个页面逆时针旋转 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn><msup><mn>0</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">90^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6741em;"></span><span class="mord">9</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span>：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;lscape&#125;</span><br><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="comment">% ……</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;landscape&#125;</span><br><span class="line">    <span class="keyword">\subsection</span>&#123;页面旋转&#125;</span><br><span class="line">    ……</span><br><span class="line"><span class="keyword">\end</span>&#123;landscape&#125;</span><br></pre></td></tr></table></figure>
+<p>在生成 PDF 文件的情况下，可以使用 <code>pdflscape</code> 宏包代替 <code>lscape</code> 宏包，它可以在旋转页面的同时，让输出的 PDF 文件的页面在阅读器中显示时同时顺时针旋转 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn><msup><mn>0</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">90^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6741em;"></span><span class="mord">9</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span>。</p>
+<p><code>landscape</code> 环境旋转的页面不会影响版心外面页眉页脚的输出，它通常用来表示过宽的内容，如大幅的图片或宽大的表格。不过，<code>landscape</code> 环境会在前后造成额外的分页，这对于只想单纯插入一张图片的情形往往并不适合。理想的办法是产生旋转的浮动环境，可以使用 <code>rotfloat</code> 宏包提供的 <code>sidewapsfigure</code> 来插入浮动的图形，同时不会影响浮动页前后的内容。<code>rotfloat</code> 宏包基于 <code>rotating</code> 宏包和 <code>float</code> 宏包，它会将所有浮动环境增加一个 <code>sideways</code> 开头的旋转环境（比如表格有 <code>sidewapstable</code> 环境）。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;rotfloat&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;sidewaysfigure&#125;[p]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\includegraphics</span>[width=7in]&#123;figure&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;这是一张旋转的图片&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;sidewaysfigure&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，可以给 <code>rotfloat</code> 宏包加上旋转方向选项（默认逆时针旋转）：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>[figureleft]&#123;rotfloat&#125;   <span class="comment">% 顺时针旋转</span></span><br><span class="line"><span class="keyword">\usepackage</span>[figureright]&#123;rotfloat&#125;  <span class="comment">% 逆时针旋转</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-3-浮动体">3.3 浮动体</h3>
+<p>详情参见 <a href="/2021/03/30/Technique/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93">LaTeX浮动体</a>。</p>
+<h3 id="3-4-标题控制">3.4 标题控制</h3>
+<p>详情参见 <a href="/2021/04/03/Technique/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6">LaTeX标题控制</a>。</p>
+<h3 id="3-5-并排与子图">3.5 并排与子图</h3>
+<p>在实际中，经常需要把好几个图表并列放在一起输出。由于 LaTeX 的浮动环境并不对环境内容加以限制，所以可以直接把多个图表放在一个浮动体里。又因为 <code>tabular</code> 环境生成的表格和 <code>\includegraphics</code> 插入的图形都是一个大盒子，因此可以直接并排放在一起。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\caption</span>&#123;并排的图片&#125;</span><br><span class="line">    <span class="keyword">\includegraphics</span>&#123;picture1&#125;</span><br><span class="line">    <span class="keyword">\includegraphics</span>&#123;picture2&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<p>如果是和一段文字并排放在一起，则可以使用 <code>\parbox</code> 命令或 <code>minipage</code> 环境生成一个子段盒子：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\includegraphics</span>&#123;picture&#125;</span><br><span class="line">    <span class="keyword">\qquad</span></span><br><span class="line">    <span class="keyword">\parbox</span>[b]&#123;0.4<span class="keyword">\textwidth</span>&#125;&#123;这是一段和图片并排的文字内容。&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;picture&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<p>使用并排的图表或文字时，需要注意其对齐方式。</p>
+<ul>
+<li><code>tabular</code> 环境和 <code>\parbox</code> 生成的子段盒子，默认都是在盒子中央对齐，盒子的基准点是中线左端。</li>
+<li><code>\includegraphics</code> 插入的图形其基准点在左下角。</li>
+</ul>
+<p>因此上面例子中 <code>\parbox</code> 使用了 <code>b</code> 选项使文字与前面的图形对齐，即「底部对齐」。如果需要让插入垂直「居中对齐」，则可以把它放进子段盒子中。对于「顶部对齐」，需要注意的是如果直接把插图放进 <code>t</code> 选项的子段盒子中，并不能使图片在顶部对齐，这是因为 <code>t</code> 选项只能让第一行按基线对齐；此时可以在盒子中先使用 <code>\vspace&#123;0pt&#125;</code> 增加一个高度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> 的空行，然后按这个空行对齐。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\parbox</span>[t]&#123;0.4<span class="keyword">\textwidth</span>&#125;&#123;</span><br><span class="line">        <span class="keyword">\vspace</span>&#123;0pt&#125;</span><br><span class="line">        <span class="keyword">\includegraphics</span>&#123;picture&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">\qquad</span></span><br><span class="line">    <span class="keyword">\parbox</span>[t]&#123;0.4<span class="keyword">\textwidth</span>&#125;&#123;</span><br><span class="line">        <span class="keyword">\vspace</span>&#123;0pt&#125;    </span><br><span class="line">        这是一段和图片并排的文字内容。</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-6-文字绕排">3.6 文字绕排</h3>
+<p>对于小幅的图表，使用绕排的方式可以得到更为紧凑的页面，在篇幅紧张或注重行文的场合，效果往往比浮动环境更有吸引力。由于 TeX 固有的限制，文字绕排的效果还无法做到尽善尽美，对绕排图表的位置、形状、使用都有一些限制。因此在使用绕排工具时，往往需要仔细的调整，或者另寻它途。</p>
+<ul>
+<li>在 TeX 内部，绕排工具都是使用 <code>\parshape</code> 命令的功能配合复杂的盒子操作与计算完成的，这也是为什么在列表环境中无法正常使用绕排功能（因为列表项也是由 <code>\parshape</code> 实现的）。</li>
+<li>可以使用 <code>\parshape</code> 命令产生复杂形状的绕排效果，下面所介绍的 <code>picinpar</code>、<code>wrapfig</code> 和 <code>floatflt</code> 宏包都只能产生矩形的空洞，而 <code>shapepar</code> 和 <code>cutwin</code> 宏包则部分实现了复杂绕排的功能。</li>
+</ul>
+<h4 id="3-6-1-picinpar-宏包">3.6.1 <code>picinpar</code> 宏包</h4>
+<p><code>picinpar</code> 宏包提供了 <code>\figwindow</code> 和 <code>\tabwindow</code> 来实现绕排功能。它们的语法格式如下：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 下面四个参数都是必选的</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;figwindow&#125;[&lt;下降行数&gt;,&lt;水平位置&gt;,&lt;图内容&gt;,&lt;图标题&gt;]</span><br><span class="line">    &lt;绕排文字&gt;</span><br><span class="line"><span class="keyword">\end</span>&#123;figwindow&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;tabwindow&#125;[&lt;下降行数&gt;,&lt;水平位置&gt;,&lt;表内容&gt;,&lt;表标题&gt;]</span><br><span class="line">    &lt;绕排文字&gt;</span><br><span class="line"><span class="keyword">\end</span>&#123;tabwindow&#125;</span><br></pre></td></tr></table></figure>
+<p><code>figwindow</code> 和 <code>tabwindow</code> 环境会在 <code>&lt;绕排文字&gt;</code> 的段落中开一个窗口，用来放置图表。图表的位置由前两个参数确定，<code>&lt;下降行数&gt;</code> 是一个整数，确定被绕排图表的垂直位置，图表将在这么多行文字下方显示；<code>&lt;水平位置&gt;</code> 可以是 <code>l,c,r</code>，表示窗口开在段落左、中、右的位置。后面两个参数分别是图表的内容和标题。标题可以留空，但需要保留标题前的逗号，此时就没有标题和编号。如果标题的编号需要引用，可以把标签放在标题内。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;picinpar&#125;</span><br><span class="line"><span class="comment">% ……</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;figwindow&#125;[2,c,<span class="keyword">\includegraphics</span>&#123;picture&#125;,picture<span class="keyword">\label</span>&#123;fig:picture&#125;]</span><br><span class="line"><span class="keyword">\lipsum</span>*[1]     <span class="comment">% 该命令产生足够长的虚拟文本段落，需要使用 lipsum 宏包</span></span><br></pre></td></tr></table></figure>
+<p><code>picinpar</code> 能够自动计算图表内容的大小，在环境中文本段落指定的位置开窗口放置此图表。不过，<code>picinpar</code> 也有一个缺点，即它要求环境中的段落在页面上必须有足够的空白，如果段落文字恰好在一页的末尾，就会在页面上留下大片的空白，这与使用 <code>float</code> 提供的不浮动的图表环境（<code>H</code> 选项）是一样的。此外，<code>picinpar</code> 在图表外面加的间距很小，不方便调整，<code>figwindow</code> 与 <code>tabwindow</code> 环境的语法也与一般的 LaTeX 环境不同。当图形大小或环境中文本内容在页面中位置不合适时，<code>picinpar</code> 偶尔还会造成错误的段落形状，需要在使用中小心调整。</p>
+<h4 id="3-6-2-wrapfig-宏包">3.6.2 <code>wrapfig</code> 宏包</h4>
+<p><code>wrapfig</code> 宏包提供了 <code>wrapfigure</code> 和 <code>wraptable</code> 环境，在语法格式上更接近标准的 <code>figure</code> 和 <code>table</code> 环境：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 中括号参数是可选的</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;wrapfigure&#125;[&lt;行数&gt;]&#123;&lt;位置&gt;&#125;[&lt;外伸长度&gt;]&#123;&lt;宽度&gt;&#125;</span><br><span class="line">    &lt;图内容&gt;</span><br><span class="line"><span class="keyword">\end</span>&#123;wrapfigure&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;wraptable&#125;[&lt;行数&gt;]&#123;&lt;位置&gt;&#125;[&lt;外伸长度&gt;]&#123;&lt;宽度&gt;&#125;</span><br><span class="line">    &lt;表内容&gt;</span><br><span class="line"><span class="keyword">\end</span>&#123;wraptable&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用时，<code>&lt;图内容&gt;</code> 及 <code>&lt;表内容&gt;</code> 与普通 <code>figure</code>、<code>table</code> 环境的内容相同，可以是任意代码产生的图表，也可以使用 <code>\caption</code> 命令生成标题。在环境后面的段落内容江辉沿图表绕排。在这里，<code>&lt;位置&gt;</code> 参数不区分大小写，可以是 <code>l,r</code>，即左右两侧；也可以用 <code>o,i</code>，表示双页页面的装订内侧和外侧。<code>&lt;宽度&gt;</code> 则指定图表环境所占用的宽度。可选的 <code>&lt;行数&gt;</code> 可以指定图表占用的行数，如果留空则会按照内容高度自动计算（不过自动计算的结果有时偏大）。<code>&lt;外伸长度&gt;</code> 如果大于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> pt，则图表会向左右侧面伸出版心指定的长度，产生特殊的效果。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;wrapfig&#125;</span><br><span class="line"><span class="comment">% ……</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;wraptable&#125;[4]&#123;r&#125;[1.5cm]&#123;4.5cm&#125;</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\caption</span>&#123;向右伸出的绕排表格&#125;<span class="keyword">\label</span>&#123;tag:wraptable&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;tabular&#125;&#123;|c|c|c|c|&#125;</span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">        甲 <span class="built_in">&amp;</span> 乙 <span class="built_in">&amp;</span> 丙 <span class="built_in">&amp;</span> 丁 <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;wraptable&#125;</span><br></pre></td></tr></table></figure>
+<p><code>wrapfig</code> 在使用时可以不必指定把多少文字包含进绕排的范围，但它同样也有与 <code>picinpar</code> 类似的问题，即本页中剩下的空间必须足够放下被绕排的图表，否则也将造成难看的分页。在功能上，<code>wrapfig</code> 可以让图伸出版心之外，不过不能把图表放在中间或跳过前几行，因而与 <code>picinpar</code> 有互补的效果。</p>
+<h4 id="3-6-3-floatflt-宏包">3.6.3 <code>floatflt</code> 宏包</h4>
+<p><code>floatflt</code> 宏包与 <code>wrapfig</code> 类似，它提供了 <code>floatingfigure</code> 和 <code>floatingtable</code> 的浮动环境，可以把浮动体放在一段开头的左侧或右侧。<code>floatflt</code> 的独特功能是提供了 <code>\fltitem</code> 命令，试图解决与列表环境共用时产生的问题。</p>
+<h4 id="3-6-4-shapepar-宏包">3.6.4 <code>shapepar</code> 宏包</h4>
+<p><code>shapepar</code> 宏包的 <code>\cutout</code> 命令部分实现了复杂形状绕排功能，其基本语法格式为：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\cutout</span>&#123;&lt;side&gt;&#125;(&lt;h<span class="built_in">_</span>offset&gt;,&lt;v<span class="built_in">_</span>offset&gt;)&lt;settings&gt; <span class="keyword">\shapepar</span> &lt;文字内容&gt;</span><br></pre></td></tr></table></figure>
+<p>其中，必选的 <code>&lt;side&gt;</code> 参数只能为 <code>l,r</code>。图表的默认的位置为盒子的中心位置，可选的 <code>&lt;h_offset&gt;</code>、<code>&lt;v_offset&gt;</code> 分别表示图表由默认位置上在水平、垂直方向上的偏移，正值分别表示往右、下偏移，负值分别表示往左、上。</p>
+<p><code>shapepar</code> 宏包提供了许多预定义的绕排形状，详细参见官方文档：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdoc shapepar</span><br></pre></td></tr></table></figure>
+<h4 id="3-6-5-cutwin-宏包">3.6.5 <code>cutwin</code> 宏包</h4>
+<p><code>cutwin</code> 宏包也提供了类似 <code>picinpar</code>、<code>wrapfig</code> 的绕排功能，同时与 <code>shapepar</code> 一样还支持自定义挖洞的形状。虽然没有 <code>shaperpar</code> 一样丰富的预定义形状，不过在处理绕排时其语法相对自然。<code>cutwin</code> 与 <code>shapepar</code> 宏包有命名冲突，具体用法参见官方文档：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdoc cutwin</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2021/03/29/Technique/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/">https://hotarugali.github.io/2021/03/29/Technique/TeX/LaTeX/LaTeX插图/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/TeX/">TeX</a><a class="post-meta__tags" href="/tags/LaTeX/">LaTeX</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/1445.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/30/Technique/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/834.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LaTeX浮动体</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/26/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/" title="LaTeX幻灯片提纲"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/725.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">LaTeX幻灯片提纲</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/21/Technique/TeX/LaTeX/LaTeX%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" title="LaTeX奇技淫巧"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/713.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-21</div><div class="title">LaTeX奇技淫巧</div></div></a></div><div><a href="/2021/04/17/Technique/TeX/LaTeX/LaTeX%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/" title="LaTeX学习资料汇总"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/611.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-17</div><div class="title">LaTeX学习资料汇总</div></div></a></div><div><a href="/2021/01/23/Technique/TeX/LaTeX/LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%8E%92%E7%89%88/" title="LaTeX数学公式排版"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1533.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-23</div><div class="title">LaTeX数学公式排版</div></div></a></div><div><a href="/2021/04/03/Technique/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/649.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-03</div><div class="title">LaTeX标题控制</div></div></a></div><div><a href="/2021/03/30/Technique/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/834.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-30</div><div class="title">LaTeX浮动体</div></div></a></div><div><a href="/2021/04/03/Technique/TeX/LaTeX/LaTeX%E8%89%B2%E5%BD%A9/" title="LaTeX色彩"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/887.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-03</div><div class="title">LaTeX色彩</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9F%BA%E7%A1%80"><span class="toc-text">2. 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%A0%BC%E5%BC%8F"><span class="toc-text">2.1 格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%A4%A7%E5%B0%8F%E3%80%81%E4%BD%8D%E7%BD%AE"><span class="toc-text">2.2 大小、位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%97%8B%E8%BD%AC"><span class="toc-text">2.3 旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%85%B6%E4%BB%96"><span class="toc-text">2.4 其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%BF%9B%E9%98%B6"><span class="toc-text">3. 进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2"><span class="toc-text">3.1 几何变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E9%A1%B5%E9%9D%A2%E6%97%8B%E8%BD%AC"><span class="toc-text">3.2 页面旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%B5%AE%E5%8A%A8%E4%BD%93"><span class="toc-text">3.3 浮动体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6"><span class="toc-text">3.4 标题控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%B9%B6%E6%8E%92%E4%B8%8E%E5%AD%90%E5%9B%BE"><span class="toc-text">3.5 并排与子图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E6%96%87%E5%AD%97%E7%BB%95%E6%8E%92"><span class="toc-text">3.6 文字绕排</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-1-picinpar-%E5%AE%8F%E5%8C%85"><span class="toc-text">3.6.1 picinpar 宏包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-2-wrapfig-%E5%AE%8F%E5%8C%85"><span class="toc-text">3.6.2 wrapfig 宏包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-3-floatflt-%E5%AE%8F%E5%8C%85"><span class="toc-text">3.6.3 floatflt 宏包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-4-shapepar-%E5%AE%8F%E5%8C%85"><span class="toc-text">3.6.4 shapepar 宏包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-5-cutwin-%E5%AE%8F%E5%8C%85"><span class="toc-text">3.6.5 cutwin 宏包</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1445.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

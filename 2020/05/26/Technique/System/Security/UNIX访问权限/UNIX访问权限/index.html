@@ -1,0 +1,710 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UNIX访问权限 | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【注】*NIX 下很重要的概念是「一切皆文件」；以下仅以 *NIX 家族的起源 UNIX 作为分析对象。 1. 文件的组织与权限表示 1.1 文件的组织方式（此处文件为泛指概念，包括目录等）   文件存在于目录中   目录是一种特殊的文件   文件采用层次结构存放      文件的基本操作：open、close、read、write、lseek   打开现存文件或创建新文件，内核都会向进程返回一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNIX访问权限">
+<meta property="og:url" content="https://hotarugali.github.io/2020/05/26/Technique/System/Security/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="【注】*NIX 下很重要的概念是「一切皆文件」；以下仅以 *NIX 家族的起源 UNIX 作为分析对象。 1. 文件的组织与权限表示 1.1 文件的组织方式（此处文件为泛指概念，包括目录等）   文件存在于目录中   目录是一种特殊的文件   文件采用层次结构存放      文件的基本操作：open、close、read、write、lseek   打开现存文件或创建新文件，内核都会向进程返回一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/644.jpg">
+<meta property="article:published_time" content="2020-05-26T02:44:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.633Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="System">
+<meta property="article:tag" content="Security">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/644.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2020/05/26/Technique/System/Security/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UNIX访问权限',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/644.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UNIX访问权限</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-26T02:44:00.000Z" title="发表于 2020-05-26 10:44:00">2020-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.633Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/System/">System</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/System/Security/">Security</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UNIX访问权限"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>【注】*NIX 下很重要的概念是「一切皆文件」；以下仅以 *NIX 家族的起源 UNIX 作为分析对象。</p>
+<h2 id="1-文件的组织与权限表示">1. 文件的组织与权限表示</h2>
+<h3 id="1-1-文件的组织方式（此处文件为泛指概念，包括目录等）">1.1 文件的组织方式（此处文件为泛指概念，包括目录等）</h3>
+<ul>
+<li>
+<p>文件存在于目录中</p>
+</li>
+<li>
+<p>目录是一种特殊的文件</p>
+</li>
+<li>
+<p>文件采用层次结构存放</p>
+</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/System/Security/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/UNIX%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.png" class="" width="566" title="UNIX系统文件层次结构">
+<ul>
+<li>
+<p>文件的基本操作：open、close、read、write、lseek</p>
+</li>
+<li>
+<p>打开现存文件或创建新文件，内核都会向进程返回一个文件描述符 fid</p>
+</li>
+<li>
+<p>对内核而言，所有文件都由文件描述符引用</p>
+</li>
+<li>
+<p>UNIX 下，每个文件都有一个对应的 inode。UNIX 系统中的 inode 结构如下：</p>
+</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/System/Security/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/UNIX%E7%B3%BB%E7%BB%9Finode%E7%BB%93%E6%9E%84.png" class="" width="850" title="UNIX系统inode结构">
+<p>以 Ext2 文件系统为例，inode 信息在文件系统的结构层次如下：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/System/Security/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/Ext2%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84.png" class="" width="866" title="Ext2文件系统结构">
+<p>【注】stat 命令可以查看文件的 inode 信息。</p>
+<h3 id="1-2-文件的权限表示（此处文件为泛指概念，包括目录等）">1.2 文件的权限表示（此处文件为泛指概念，包括目录等）</h3>
+<ul>
+<li>文件的基本权限</li>
+</ul>
+<blockquote>
+<ol>
+<li>Read 权限：控制读文件权限</li>
+<li>Write 权限：控制写文件权限</li>
+<li>Execute 权限：控制将文件调入内存执行</li>
+</ol>
+</blockquote>
+<ul>
+<li>文件的基本权限位</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/System/Security/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/UNIX%E6%96%87%E4%BB%B6%E5%9F%BA%E6%9C%AC%E6%9D%83%E9%99%90%E4%BD%8D.png" class="" width="427" title="UNIX文件基本权限位">
+<p>其中，<strong>r</strong> 代表 Read 权限，<strong>w</strong> 代表 Write 权限，<strong>x</strong> 代表 Execute 权限。rwx 权限位组合在一起用来表示文件具有的基本权限，可使用 <strong>ls -l</strong> 命令列出文件的基本权限位信息，在对应位若为 <strong>-</strong>，则表明不具有对应位权限；若为对应 r\w\x 字母，则表明具有对应权限。每组 rwx 权限位组合对应的权限数值如下表（对应权限位为 0 代表不具有该权限，为 1 代表具有该权限）：</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">r</th>
+<th style="text-align:center">w</th>
+<th style="text-align:center">x</th>
+<th style="text-align:center">权限数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">7</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<ul>
+<li>UNIX 中 chmod 命令可以更改文件权限；fchmod 命令可以对已打开的文件更改权限</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 745 foo       <span class="comment"># 将 foo 文件权限数值改为 745（7 4 5 依次对应文件拥有者、文件拥有者所在组、其他人的权限）</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>UNIX 中文件权限检查时依次检查拥有者、拥有者所在组、其他用户</li>
+</ul>
+<h3 id="1-3-文件的权限要求">1.3 文件的权限要求</h3>
+<ul>
+<li>二进制文件 vs. 脚本文件</li>
+</ul>
+<blockquote>
+<ol>
+<li>UNIX 下二进制文件执行只需要执行权限即可</li>
+<li>UNIX 下脚本文件执行需要读权限和执行权限</li>
+</ol>
+</blockquote>
+<ul>
+<li>权限的特殊性：权限位不是直接授权用户操作某程序，而是授权给用户可以使用相应的系统调用。</li>
+</ul>
+<blockquote>
+<p><strong>比如：</strong> 在 UNIX 下的 cat 和 more 命令调用了 read() 系统调用，用户要想使用其显示某文件内容，则必须满足两个权限要求：</p>
+<ol>
+<li>当前用户需要 cat 和 more 命令的执行权限</li>
+<li>当前用户需要读取文件的读权限（用于调用 read() 系统调用）</li>
+</ol>
+<p><strong>同理：</strong> 在 UNIX 下用户要想使用某个命令写文件，也必须满足两个权限要求：</p>
+<ol>
+<li>当前用户需要写文件的命令的执行权限</li>
+<li>当前用户需要写文件的写权限（用于调用 write() 系统调用）</li>
+</ol>
+</blockquote>
+<ul>
+<li>文件写权限作用</li>
+</ul>
+<blockquote>
+<ol>
+<li>改文件名、删除文件不需要对文件有写权限，但需要对文件所在目录具有写权限（故不是文件的拥有者也可以删除相应文件）</li>
+</ol>
+</blockquote>
+<h3 id="1-4-文件的特殊权限">1.4 文件的特殊权限</h3>
+<p>除了上述说明的三组 rwx 共 9 位权限位外，UNIX 下文件还具有另外 3 位特殊权限位：suid\sgid\sticky。该三位特殊权限位组成一组，使用 chmod 命令时该组权限值放在最前面：<code>chmod 4755 xxx</code> 其中 4 即为该组特殊权限位组。</p>
+<ul>
+<li>suid 位：用于临时将进程的 euid 设置为程序文件的 ruid</li>
+</ul>
+<p>【注】用户运行程序后是该进程的拥有者（ruid），进程执行者（euid）代表该进程以相应身份访问系统资源。若位设置 suid 位，ruid 和 euid 均为当前用户 id；设置了 suid 位后，ruid 仍为当前用户 id，euid 为该程序文件的拥有者 id。（ruid、euid 解释见下文 <strong>4</strong>）</p>
+<blockquote>
+<p><strong>比如：</strong> 用户 Jane 运行命令 <code>view memo.txt</code>，view 和 memo.txt 的权限和所用者信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-rwx--x--x 1 root bin 4515 Aug 14 13:08   <span class="comment"># view</span></span><br><span class="line">-rw------- 1 root bin 218 Aug 14 13:08    <span class="comment"># memo.txt</span></span><br></pre></td></tr></table></figure>
+<p>由于 Jane 用户运行 view 程序时对应的进程的 euid 为 Jane 用户 id，而 Jane 对 memo.txt 文件不具备可读权限，故无法执行。但利用 chmod 命令将 view 程序的权限改为 4755 则可以执行该命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-rws--x--x 1 root bin 4515 Aug 14 13:08   <span class="comment"># view</span></span><br><span class="line">-rw------- 1 root bin 218 Aug 14 13:08    <span class="comment"># memo.txt</span></span><br></pre></td></tr></table></figure>
+<p>原因在于设置了 suid 后，Jane 用户运行 view程序时对应的进程的 euid 为 view 程序文件的拥有者 root 的 id，而 root 用户具备对 memo.txt 文件的可读权限，故该命令可以正常执行。</p>
+</blockquote>
+<p>【注】设置了 suid 后，利用 <strong>ls -l</strong> 命令显示时 suid 对应文件拥有者那组 rwx 中的 x 位：</p>
+<blockquote>
+<ol>
+<li>若既设置了 x 权限又设置了 suid，则显示 <strong>s</strong></li>
+<li>若未设置 x 权限，但设置了 suid，则显示 <strong>S</strong></li>
+</ol>
+</blockquote>
+<ul>
+<li>sgid 位：用于临时将进程的 egid 设置为程序文件的 rgid（类比 suid）</li>
+</ul>
+<p>【注】设置了 sgid 后，利用 <strong>ls -l</strong> 命令显示时 sgid 对应文件拥有者所在组那组 rwx 中的 x 位：</p>
+<blockquote>
+<ol>
+<li>若既设置了 x 权限又设置了 sgid，则显示 <strong>s</strong></li>
+<li>若未设置 x 权限，但设置了 sgid，则显示 <strong>S</strong></li>
+</ol>
+</blockquote>
+<ul>
+<li>sticky 位：如果一个可执行程序设置了该位，则该程序执行结束后，程序正文的一个文本被保存在交换区，下次执行该程序时能较快装入内存。如果一个目录设置了该位，则可以保护该目录下的文件不能被轻易删除，只有满足以下条件之一才能删除或更名目录下的文件：</li>
+</ul>
+<blockquote>
+<ol>
+<li>拥有此文件</li>
+<li>拥有此目录</li>
+<li>是超级用户</li>
+</ol>
+</blockquote>
+<p>【注】设置了 sticky 后，利用 <strong>ls -l</strong> 命令显示时 sticky 对应其他用户那组 rwx 中的 x 位：</p>
+<blockquote>
+<ol>
+<li>若既设置了 x 权限又设置了 sticky，则显示 <strong>t</strong></li>
+<li>若未设置 x 权限，但设置了 sticky，则显示 <strong>T</strong></li>
+</ol>
+</blockquote>
+<h2 id="2-目录的组织与权限表示">2. 目录的组织与权限表示</h2>
+<h3 id="2-1-目录的组织">2.1 目录的组织</h3>
+<p>UNIX 目录在文件系统也是作为广泛意义上的文件，只是其中存储的不是文件内容，而是其包含的文件的文件名和对应文件的 inode 指针。</p>
+<h3 id="2-2-目录的权限">2.2 目录的权限</h3>
+<ul>
+<li>
+<p>目录的读权限位：仅能显示目录下的文件名（不能访问文件的 inode 指针）</p>
+</li>
+<li>
+<p>目录的执行权限位：可以遍历目录内的文件属性信息（可以访问文件的 inode 指针）</p>
+</li>
+<li>
+<p>目录的写权限位 + 执行权限位：可以在目录下创建/删除文件（不要求对文件具有权限）</p>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>目录拥有者对目录没有执行权限：不能访问目录下的文件（即使对文件具有权限）</li>
+<li>用户对目录具有读权限，无执行权限：只能运行 <strong>ls DIR</strong> 而不能运行 <strong>ls -l DIR</strong></li>
+<li>用户对目录拥有执行权限，无读权限：可运行 <strong>ls -l DIR/FILE</strong> 而不能运行 <strong>ls DIR</strong></li>
+</ol>
+</blockquote>
+<p>【注】在 UINX 中，目录的权限不具有继承性，即不能被子目录继承。故访问一个路径下的文件时，需要整个路径上的目录都具有执行权限。</p>
+<h2 id="3-文件链接">3. 文件链接</h2>
+<h3 id="3-1-文件硬链接">3.1 文件硬链接</h3>
+<p>每个 inode 节点都有一个链接计数，表示指向该 inode 节点的 inode 指针数。只有当链接计数减少为 0 时，才表示删除了该文件。链接计数表示的是该文件拥有的硬链接数，创建硬链接时，系统不会为它重新分配 inode，而是在目录下直接添加一个指向文件 inode 节点的 inode 指针项。</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/System/Security/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/UNIX%E6%96%87%E4%BB%B6%E7%A1%AC%E9%93%BE%E6%8E%A5.png" class="" width="672" title="UNIX文件硬链接">
+<ul>
+<li>创建硬链接：link 命令</li>
+<li>删除硬链接：unlink 命令</li>
+<li>删除文件：UNIX 下删除文件是删除文件的硬链接，而并非释放该文件占用的磁盘块，只有当一个文件的硬链接数减为 0 时，该文件才彻底从文件系统中删除了（即无法访问到了）</li>
+</ul>
+<p>【注】硬链接不可以在不同文件系统间建立。对于目录的硬链接，只有超级用户可以创建。</p>
+<h3 id="3-2-文件软链接（符号链接）">3.2 文件软链接（符号链接）</h3>
+<p>对一个 inode 节点的间接指针，不同于硬链接，容易被清除。创建符号链接时，系统会分配一个新的 inode 节点，所以符号链接的 inode 号和文件的 inode 号不相同。符号链接中的 inode 里存放者指向文件的路径，当文件的被删除时，符号链接也就失效了。</p>
+<p>【注】符号链接可以跨文件系统建立。任何用户均可创建文件的符号链接。</p>
+<h2 id="4-用户、主体和客体">4. 用户、主体和客体</h2>
+<h3 id="4-1-用户标识">4.1 用户标识</h3>
+<p>UNIX 系统中，每个用户有一个唯一的 UID。</p>
+<ul>
+<li>root 用户的 UID ：0</li>
+<li>用户不能更改其用户 UID</li>
+<li>内核根据 UID 检验其权限</li>
+<li>/etc/passwd 文件：保存用户名和用户 ID 映射关系</li>
+</ul>
+<p>同时，用户可以属于某一个组，组 ID 是系统管理员分配的。</p>
+<ul>
+<li>同组中的成员之间可以共享资源</li>
+<li>/etc/group 文件：保存组用户和组 ID 映射关系</li>
+<li>一个用户可以属于多个组</li>
+</ul>
+<h3 id="4-2-主体">4.2 主体</h3>
+<ul>
+<li>用户访问文件，具体的操作由主体执行，主体是进程</li>
+<li>当一个主体访问文件时，需要知道其以哪个用户身份访问</li>
+<li>进程是主体，进程保存相关联的用户信息</li>
+</ul>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ruid rgid</td>
+<td style="text-align:left">在登录系统时取自口令文件中的登录项</td>
+</tr>
+<tr>
+<td style="text-align:left">euid egid</td>
+<td style="text-align:left">用于文件存取许可权检查，决定了对文件的访问权</td>
+</tr>
+<tr>
+<td style="text-align:left">suid sgid</td>
+<td style="text-align:left">由 exec 函数保存，保存了 euid 和 egid 的副本</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>【注】此 suid 非上文说到的文件权限 suid 位。</p>
+<h3 id="4-3-进程控制">4.3 进程控制</h3>
+<p>每个进程拥有一个非负整数的唯一进程 ID。</p>
+<ul>
+<li>专用进程</li>
+</ul>
+<blockquote>
+<ol>
+<li>进程 ID = 0 是调度进程（交互进程），是内核的一部分，称作系统进程</li>
+<li>进程 ID = 1 是 init 进程，对应与 /sbin/init 。此进程负责在内核自举后启动一个 UNIX 系统，并将系统引导到一个状态（与初始化文件 /etc/rc* 相关）</li>
+</ol>
+</blockquote>
+<ul>
+<li>fork 函数：内核创建新进程（子进程）</li>
+</ul>
+<blockquote>
+<ol>
+<li>函数调用一次，返回两次：子进程返回 0，父进程返回子进程 ID</li>
+<li>fork 创建的子进程是父进程的复制品，子进程获得父进程的数据空间、堆、栈的复制品（而不是共享这些存储空间）</li>
+<li>父子进程的执行顺序不确定，取决于内核的调度算法</li>
+</ol>
+</blockquote>
+<h3 id="4-4-文件共享">4.4 文件共享</h3>
+<p>UNIX 支持在不同进程间共享打开文件。内核使用三个数据结构，使多个进程共享一个文件。</p>
+<ul>
+<li>每个进程在进程表中都有一个记录项，每个记录项中包含一张打开文件描述符，包含：</li>
+</ul>
+<blockquote>
+<ol>
+<li>文件描述符标志</li>
+<li>指向一个文件表项的指针</li>
+</ol>
+</blockquote>
+<ul>
+<li>内核为所有打开文件维持一张文件表，包含：</li>
+</ul>
+<blockquote>
+<ol>
+<li>文件状态标志：读、写、增写、同步等</li>
+<li>当前文件位移量</li>
+<li>指向该文件 v 节点表项</li>
+</ol>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2020/05/26/Technique/System/Security/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/">https://hotarugali.github.io/2020/05/26/Technique/System/Security/UNIX访问权限/UNIX访问权限/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/System/">System</a><a class="post-meta__tags" href="/tags/Security/">Security</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/644.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/26/Technique/Math/Theory/%E5%90%84%E7%A7%8D%E8%B7%9D%E7%A6%BB/%E5%90%84%E7%A7%8D%E8%B7%9D%E7%A6%BB/" title="各种距离"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/43.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">各种距离</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/26/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/" title="操作系统安全基础"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/921.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">操作系统安全基础</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/05/26/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/" title="操作系统安全基础"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/921.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">操作系统安全基础</div></div></a></div><div><a href="/2020/05/28/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/" title="操作系统级防护方法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/489.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-28</div><div class="title">操作系统级防护方法</div></div></a></div><div><a href="/2020/05/26/Technique/System/Security/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%AE%BA/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%AE%BA/" title="计算机系统安全概论"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/471.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">计算机系统安全概论</div></div></a></div><div><a href="/2020/07/06/Technique/System/ComputerArchitecture/%E7%94%B5%E8%B7%AF%E6%9C%AF%E8%AF%AD/" title="电路术语"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/328.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-06</div><div class="title">电路术语</div></div></a></div><div><a href="/2020/12/18/Technique/System/DistributedSystem/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E7%B3%BB%E5%88%97%E6%96%87%E6%A1%A3/" title="分布式架构"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/338.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-18</div><div class="title">分布式架构</div></div></a></div><div><a href="/2021/02/28/Technique/System/OperationSystem/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87/" title="多系统共享蓝牙设备"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/742.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-28</div><div class="title">多系统共享蓝牙设备</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%84%E7%BB%87%E4%B8%8E%E6%9D%83%E9%99%90%E8%A1%A8%E7%A4%BA"><span class="toc-text">1. 文件的组织与权限表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%EF%BC%88%E6%AD%A4%E5%A4%84%E6%96%87%E4%BB%B6%E4%B8%BA%E6%B3%9B%E6%8C%87%E6%A6%82%E5%BF%B5%EF%BC%8C%E5%8C%85%E6%8B%AC%E7%9B%AE%E5%BD%95%E7%AD%89%EF%BC%89"><span class="toc-text">1.1 文件的组织方式（此处文件为泛指概念，包括目录等）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%96%87%E4%BB%B6%E7%9A%84%E6%9D%83%E9%99%90%E8%A1%A8%E7%A4%BA%EF%BC%88%E6%AD%A4%E5%A4%84%E6%96%87%E4%BB%B6%E4%B8%BA%E6%B3%9B%E6%8C%87%E6%A6%82%E5%BF%B5%EF%BC%8C%E5%8C%85%E6%8B%AC%E7%9B%AE%E5%BD%95%E7%AD%89%EF%BC%89"><span class="toc-text">1.2 文件的权限表示（此处文件为泛指概念，包括目录等）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%96%87%E4%BB%B6%E7%9A%84%E6%9D%83%E9%99%90%E8%A6%81%E6%B1%82"><span class="toc-text">1.3 文件的权限要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%96%87%E4%BB%B6%E7%9A%84%E7%89%B9%E6%AE%8A%E6%9D%83%E9%99%90"><span class="toc-text">1.4 文件的特殊权限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%9B%AE%E5%BD%95%E7%9A%84%E7%BB%84%E7%BB%87%E4%B8%8E%E6%9D%83%E9%99%90%E8%A1%A8%E7%A4%BA"><span class="toc-text">2. 目录的组织与权限表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%9B%AE%E5%BD%95%E7%9A%84%E7%BB%84%E7%BB%87"><span class="toc-text">2.1 目录的组织</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%9B%AE%E5%BD%95%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-text">2.2 目录的权限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%87%E4%BB%B6%E9%93%BE%E6%8E%A5"><span class="toc-text">3. 文件链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%96%87%E4%BB%B6%E7%A1%AC%E9%93%BE%E6%8E%A5"><span class="toc-text">3.1 文件硬链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%96%87%E4%BB%B6%E8%BD%AF%E9%93%BE%E6%8E%A5%EF%BC%88%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5%EF%BC%89"><span class="toc-text">3.2 文件软链接（符号链接）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%94%A8%E6%88%B7%E3%80%81%E4%B8%BB%E4%BD%93%E5%92%8C%E5%AE%A2%E4%BD%93"><span class="toc-text">4. 用户、主体和客体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%94%A8%E6%88%B7%E6%A0%87%E8%AF%86"><span class="toc-text">4.1 用户标识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%B8%BB%E4%BD%93"><span class="toc-text">4.2 主体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-text">4.3 进程控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB"><span class="toc-text">4.4 文件共享</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/644.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

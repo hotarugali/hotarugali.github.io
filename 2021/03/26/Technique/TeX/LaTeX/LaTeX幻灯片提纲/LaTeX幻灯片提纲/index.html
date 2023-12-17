@@ -1,0 +1,703 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LaTeX幻灯片提纲 | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【注】笔记来自《LaTeX入门》——刘海洋。更多细节内容可以参考官方用户手册。 1texdoc beamer 1. 简介 由于现代的 LaTeX 系统主要以 pdf 文件为输出方式，因此它可以用来生成各种专门的电子文档，诸如书籍、文章、幻灯片等。 1.1 工具 LaTeX 中专门用来制作幻灯片的工具有很多，诸如：  beamer 文档类 powerdot 文档类 prosper 文档类 pdfsl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX幻灯片提纲">
+<meta property="og:url" content="https://hotarugali.github.io/2021/03/26/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="【注】笔记来自《LaTeX入门》——刘海洋。更多细节内容可以参考官方用户手册。 1texdoc beamer 1. 简介 由于现代的 LaTeX 系统主要以 pdf 文件为输出方式，因此它可以用来生成各种专门的电子文档，诸如书籍、文章、幻灯片等。 1.1 工具 LaTeX 中专门用来制作幻灯片的工具有很多，诸如：  beamer 文档类 powerdot 文档类 prosper 文档类 pdfsl">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/725.jpg">
+<meta property="article:published_time" content="2021-03-26T12:49:47.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.625Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="TeX">
+<meta property="article:tag" content="LaTeX">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/725.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2021/03/26/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LaTeX幻灯片提纲',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/725.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LaTeX幻灯片提纲</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-26T12:49:47.000Z" title="发表于 2021-03-26 20:49:47">2021-03-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.625Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/TeX/">TeX</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/TeX/LaTeX/">LaTeX</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>23分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LaTeX幻灯片提纲"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>【注】笔记来自《LaTeX入门》——刘海洋。更多细节内容可以参考官方用户手册。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdoc beamer</span><br></pre></td></tr></table></figure>
+<h2 id="1-简介">1. 简介</h2>
+<p>由于现代的 LaTeX 系统主要以 pdf 文件为输出方式，因此它可以用来生成各种专门的电子文档，诸如书籍、文章、幻灯片等。</p>
+<h3 id="1-1-工具">1.1 工具</h3>
+<p>LaTeX 中专门用来制作幻灯片的工具有很多，诸如：</p>
+<ul>
+<li><code>beamer</code> 文档类</li>
+<li><code>powerdot</code> 文档类</li>
+<li><code>prosper</code> 文档类</li>
+<li><code>pdfslide</code> 宏包</li>
+<li><code>ppower4</code> 宏包</li>
+<li><code>pdfscreen</code> 宏包</li>
+</ul>
+<h3 id="1-2-beamer-文档类">1.2 <code>beamer</code> 文档类</h3>
+<p>目前最流行的 LaTeX 幻灯片工具为 <code>beamer</code> 文档类，它以页面（被称为「帧」）为基本组织单位，提供丰富的功能选项和许多预定义的风格主题，支持各种编译程序。因此，本文也使用 <code>beamer</code> 文档类来制作幻灯片提纲。</p>
+<h2 id="2-幻灯片提纲">2. 幻灯片提纲</h2>
+<h3 id="2-1-代码框架">2.1 代码框架</h3>
+<p>使用 <code>beamer</code> 文档类与编写一般的 LaTeX 文档的代码框架是一样的：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;beamer&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"><span class="comment">% ...</span></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要在 <code>beamer</code> 文档类中使用中文，则可以使用 <code>ctex</code> 或 <code>ctexcap</code> 宏包，前者只引入必要的中文，后者还会翻译图表等环境名称。为了方便起见，本文使用 <code>ctexcap</code> 宏包。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>[UTF8,noindent]&#123;ctexcap&#125;</span><br></pre></td></tr></table></figure>
+<p>【注】引入 <code>ctexcap</code> 宏包时使用 <code>noindent</code> 参数表示取消段前缩进，因为与一般文档不同，在幻灯片的段落中通常不使用首行缩进。</p>
+<h3 id="2-2-幻灯片风格">2.2 幻灯片风格</h3>
+<p>修改 <code>beamer</code> 幻灯片格式的基本方式是使用主题。<code>beamer</code> 提供了 20 多种不同的幻灯片风格，可以在导言区使用 <code>\usetheme</code> 命令自主选择：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usetheme</span>&#123;PaloAlto&#125;</span><br></pre></td></tr></table></figure>
+<p><code>beamer</code> 提供的官方预定义主题风格可参考<a target="_blank" rel="noopener" href="https://hartwork.org/beamer-theme-matrix/">此处</a>，对于更多非官方预定义主题风格可参考<a target="_blank" rel="noopener" href="https://github.com/martinbjeldbak/ultimate-beamer-theme-list">此处</a>。</p>
+<p>【注】有趣的是，<code>beamer</code> 文档类提供的官方预定义主题风格大多是以作者游历的一些地点命名的。</p>
+<p>实际上，<code>beamer</code> 的主题是由不同的内部主题、外部主题、色彩主题、字体主题等组合而成的，因此可以分别使用各自对应命令来选择各自的主题：</p>
+<ul>
+<li><code>\useinnertheme</code>：选择内部主题</li>
+<li><code>\useoutertheme</code>：选择外部主题</li>
+<li><code>\usecolortheme</code>：选择色彩主题</li>
+<li><code>\usecolortheme</code>：选择字体主题</li>
+</ul>
+<h4 id="2-2-1-内部主题">2.2.1 内部主题</h4>
+<p>内部主题主要控制的是标题页、列表项目、定理环境、图表环境、脚注等一帧以内的内容格式。预定义的内部主题有：</p>
+<ul>
+<li><code>default</code></li>
+<li><code>circles</code></li>
+<li><code>rectangles</code></li>
+<li><code>rounded</code></li>
+<li><code>inmargin</code></li>
+</ul>
+<h4 id="2-2-2-外部主题">2.2.2 外部主题</h4>
+<p>外部主题主要控制的是幻灯片顶部尾部的信息栏、边栏、图表、帧标题等一帧以外的内功格式。预定义的外部主题有：</p>
+<ul>
+<li><code>default</code></li>
+<li><code>infolines</code></li>
+<li><code>miniframes</code></li>
+<li><code>smoothbars</code></li>
+<li><code>sidebar</code></li>
+<li><code>split</code></li>
+<li><code>shadow</code></li>
+<li><code>tree</code></li>
+<li><code>smoothtree</code></li>
+</ul>
+<h4 id="2-2-3-色彩主题">2.2.3 色彩主题</h4>
+<p>色彩主题控制各个部分的色彩。预定义的色彩主题有：</p>
+<ul>
+<li><code>default</code></li>
+<li><code>albatross</code></li>
+<li><code>beaver</code></li>
+<li><code>beetle</code></li>
+<li><code>crane</code></li>
+<li><code>dolphin</code></li>
+<li><code>dove</code></li>
+<li><code>fly</code></li>
+<li><code>lily</code></li>
+<li><code>orchid</code></li>
+<li><code>rose</code></li>
+<li><code>seagull</code></li>
+<li><code>seahorse</code></li>
+<li><code>sidebartab</code></li>
+<li><code>structure</code></li>
+<li><code>whale</code></li>
+<li><code>wolverine</code></li>
+</ul>
+<h4 id="2-2-4-字体主题">2.2.4 字体主题</h4>
+<p>字体主题则控制幻灯片的整体字体风格。预定义的字体主题有：</p>
+<ul>
+<li><code>default</code>：无衬线字体</li>
+<li><code>professionalfonts</code>：不对字体有特别的设置，需要使用另外专门的宏包进行设置</li>
+<li><code>serif</code>：衬线字体，此时最好选择较大的字号和较粗的字体</li>
+<li><code>structurebold</code></li>
+<li><code>structureitalicserif</code></li>
+<li><code>structuresmallcapsserif</code></li>
+</ul>
+<p>【注】<code>structure</code> 开头的几个字体主题主要是对 <code>beamer</code> 文档类中的几个结构有特别设置。</p>
+<h4 id="2-2-5-自定义风格">2.2.5 自定义风格</h4>
+<p><code>beamer</code> 使用一种模板机制，将幻灯片的不同内容组件格式抽象为模板代码、模板字体、模板色彩，模板代码是实现组件的具体代码。在 <code>beamer</code> 中，提供了许多自定义的设置命令让用户自定义幻灯片风格：</p>
+<ul>
+<li><code>setbeamercolor</code>：设置组件的色彩</li>
+<li><code>setbeamerfont</code>：设置组件字体</li>
+<li><code>setbeamertemplate</code>：设置组件模板的具体实现代码</li>
+</ul>
+<p>比如对于 <code>itemize</code> 列表，可以设置：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\setbeamertemplate</span>&#123;itemize items&#125;[circle]</span><br><span class="line"><span class="keyword">\setbeamercolor</span>&#123;itemize item&#125;&#123;fg=black&#125;</span><br><span class="line"><span class="keyword">\setbeamercolor</span>&#123;itemize/enumerate body&#125;&#123;fg=gray&#125;</span><br><span class="line"><span class="keyword">\setbeamerfont</span>&#123;itemize/enumerate body&#125;&#123;family=<span class="keyword">\rmfamily</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就设置了列表项的符号是一个黑色的圆形，同时类标得内容是 <code>\rmfamily</code> 的灰色文字。</p>
+<p>对于简单的样式修改通过组合现有的主题和背景插图来完成，但对 <code>beamer</code> 进行更详细的样式定制时，字体、色彩、模板名目繁多，可能需要参考在安装目录下 <code>theme/</code> 目录中的模板源代码。<code>beamer</code> 的每一个主题对应一个后缀为 <code>.sty</code> 的主题文件，使用命令 <code>\usetheme</code> 或 <code>\useinnertheme</code> 等切换主题，其实就是在载入主题文件。可以查看官方手册，定制自己的主题文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdoc beamer</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-幻灯片内容">2.3 幻灯片内容</h3>
+<h4 id="2-3-1-帧">2.3.1 帧</h4>
+<p>在 <code>beamer</code> 中，帧用 <code>frame</code> 环境得到。一帧里面的内容可以使用各种常见的 LaTeX 命令和环境。在每一帧当中，内容有一定的水平边距，并且整体垂直居中显示。幻灯片每一帧通常都有标题，甚至还有小标题：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\frametitle</span>&#123;标题&#125;</span><br><span class="line">    <span class="keyword">\framesubtitle</span>&#123;小标题&#125;</span><br><span class="line">    这是简单的一帧</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line"><span class="comment">% 标题和小标题还可以有下面更简洁的方式</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;&#123;标题&#125;&#123;小标题&#125;</span><br><span class="line">    这是简单的一帧</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p><code>beamer</code> 重定义了大量 LaTeX 环境，使它们的格式更适合在幻灯片中显示，比如列表环境和定理类环境，但它们的使用方式和一般的文档没有区别。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\frametitle</span>&#123;古中国数学&#125;</span><br><span class="line">    <span class="keyword">\framesubtitle</span>&#123;定理发现&#125;</span><br><span class="line">    中国在 3000 多年前就知道勾股数的概念，比古希腊更早一些。</span><br><span class="line"></span><br><span class="line">    《周髀算经》的记载：</span><br><span class="line">    <span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">        <span class="keyword">\item</span> 公元前 11 世纪，商高答周公问：</span><br><span class="line">        <span class="keyword">\begin</span>&#123;quote&#125;</span><br><span class="line">            勾广三，股修四，径隅五。</span><br><span class="line">        <span class="keyword">\end</span>&#123;quote&#125;</span><br><span class="line">        <span class="keyword">\item</span> 又载公元前 7--6 世纪陈子答荣方问，表述了勾股定理的一般形式：</span><br><span class="line">        <span class="keyword">\begin</span>&#123;quote&#125;</span><br><span class="line">            若求邪至日者，以日下为勾，日高为股，勾股各自乘，并而开方除之，得邪至日。</span><br><span class="line">        <span class="keyword">\end</span>&#123;quote&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-2-首页">2.3.2 首页</h4>
+<p>幻灯片首页也是 <code>beamer</code> 中的一帧，其显示内容也是要在帧环境中设置。但首页又往往和其它页不一样，需要显示整个幻灯的标题、小标题、作者、学院、日期、标题图形等。<code>beamer</code> 在导言区为首页提供了显示相对应内容的命令，在首页帧中需要通过使用 <code>\maketitle</code> 或者 <code>\titlepage</code> 使得这些内容显示到首页帧中。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\title</span>&#123;杂谈勾股定理&#125;</span><br><span class="line"><span class="keyword">\subtitle</span>&#123;数学史讲座之一&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;BlueHeart&#125;        </span><br><span class="line"><span class="keyword">\institute</span>&#123;九章学堂&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;<span class="keyword">\today</span>&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">        <span class="keyword">\maketitle</span> <span class="comment">% 等价于 \titlepage</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line">    <span class="comment">% ...</span></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-3-分节">2.3.3 分节</h4>
+<p>和一般文档类一样，在 <code>beamer</code> 中可以使用 <code>section</code>、<code>subsection</code>、<code>subsubsection</code> 以及 <code>\part</code> 命令对幻灯片分节，然后使用 <code>\tableofcontents</code> 命令产生目录。目录页也是帧，需要在目录帧中通过使用 <code>\tableofcontents</code> 才能产生目录并将其显示到目录帧中。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\frametitle</span>&#123;目录&#125;</span><br><span class="line">    <span class="keyword">\tableofcontents</span></span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p><code>\part</code> 命令本身不产生标题，但 <code>beamer</code> 提供了一个 <code>\partpage</code> 命令，它和 <code>\titlepage</code> 命令类似，可以在一帧中产生文档某部分的标题。一个完整的演讲报告 <code>beamer</code> 文档一般控制在几十帧的篇幅，使用 <code>\part</code> 和 <code>\section</code> 至 <code>\subsubsection</code> 的命令进行分节足以。但如果希望将所有很多次的演讲报告内容放进同一个单独的文件，则可以使用 <code>\lecture</code> 命令进行更高一层的内容划分。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\lecture</span>&#123;杂谈勾股定理&#125;&#123;gougu&#125; <span class="comment">% 两个参数分别表示「讲座标题」和「讲座标签」</span></span><br></pre></td></tr></table></figure>
+<p><code>\lecture</code> 命令本身并不产生任何标题和效果，<code>beamer</code> 提供 <code>\insertlecture</code> 命令向文档中插入 <code>\lecture</code> 的标题。还可以通过 <code>\AtBeginLecture</code> 命令在每一讲前面都添加一帧，代替 <code>\maketitle</code>：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="keyword">\AtBeginLecture</span>&#123;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">        <span class="keyword">\Large</span></span><br><span class="line">        本周论题：<span class="keyword">\insertlecture</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，<code>\lecture</code> 的另一个用途是使用 <code>\includeonlylecture&#123;&lt;标签&gt;&#125;</code> 来使文档编译时只输出选定标签的那一讲，这样通过修改标签就可以只使用一个文件来分别生成单独的幻灯片了。</p>
+<h4 id="2-3-4-目录">2.3.4 目录</h4>
+<p><code>beamer</code> 中的 <code>\tableofcontents</code> 可以在可选参数中使用许多参数控制其格式：</p>
+<ul>
+<li><code>\tableofcontents[currentsection]</code>：只显示当前一节的目录结构</li>
+<li><code>\tableofcontents[currentsubsection]</code>：只显示当前一小节的目录结构</li>
+</ul>
+<p>【注】以上参数设置在某些情况下是非常有用的，因为演讲时可能需要在每一节的开头都显示一下即将讲到的内容结构，因而每一节前面都应该有一个小目录，特别是缺少导航条显示分节标题的格式更是如此。</p>
+<p>为了方便在每一节前面添加一个目录，<code>beamer</code> 还提供了 <code>\AtBeginSection</code>、<code>\AtBeginSubsection</code> 命令，它们的用法与 LaTeX 原有的 <code>\AtBeginDocument</code> 命令功能类似，用来给每一节或每一小节前面增加一段代码（<code>\AtBeginDocument</code> 命令在整个文档前面添加一段内容，主要用在宏包制作）：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="keyword">\AtBeginSection</span>[]&#123;  <span class="comment">% 空选项[]表示 \section* 前不加目录</span></span><br><span class="line">    <span class="keyword">\begin</span>&#123;frame&#125;&#123;本节概要&#125;</span><br><span class="line">        <span class="keyword">\tableofcontents</span>[currentsection]</span><br><span class="line">    <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-5-定理">2.4.5 定理</h4>
+<p>在 <code>beamer</code> 文档类，已经与定义了许多定理类环境：</p>
+<ul>
+<li><code>definition</code>、<code>definitions</code>：定义</li>
+<li><code>theorem</code>：定理</li>
+<li><code>corollary</code>：推论</li>
+<li><code>proof</code>：证明</li>
+<li><code>fact</code>：事实</li>
+<li><code>example</code>：例子</li>
+</ul>
+<p>除了上述预定义的定理类环境，还可以自定义定理环境：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\newtheorem</span>&#123;thm&#125;&#123;定理&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;&#123;现代叙述&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;thm&#125;[勾股定理]</span><br><span class="line">        直角三角形斜边的平方等于两直角边的平方和。</span><br><span class="line">    <span class="keyword">\end</span>&#123;thm&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-6-区块">2.4.6 区块</h4>
+<p>类似定理环境的彩色框效果，<code>beamer</code> 还提供了其他的区块环境，可以用于强调一部分内容。<code>beamer</code> 提供了三种区块环境：</p>
+<ul>
+<li><code>block</code></li>
+<li><code>alertblock</code></li>
+<li><code>exampleblock</code></li>
+</ul>
+<p>它们除了使用的配色不同之外，用法和结果都大致相同：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;block&#125;&#123;块标题&#125;</span><br><span class="line">        这是一个区块</span><br><span class="line">    <span class="keyword">\end</span>&#123;block&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-7-图表">2.4.7 图表</h4>
+<p>在 <code>beamer</code> 中使用图表和在一般文档中的语法并无区别。不过由于 <code>beamer</code> 是按帧组织内容的，位置固定，因此 <code>figure</code> 和 <code>table</code> 环境不再是浮动的环境。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;&#123;古中国数学&#125;&#123;定理证明&#125;</span><br><span class="line">    有论者认为早在公元前 11 世纪商高即已证明勾股定理。完整的证明见于三国时（公元 3 世纪）赵爽对《周髀算经》的注释。</span><br><span class="line">    <span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">        <span class="keyword">\centering</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[height=0.4<span class="keyword">\textheight</span>]&#123;xiantu.pdf&#125;</span><br><span class="line">        <span class="keyword">\caption</span>&#123;赵爽的弦图可给出勾股定理的一个富于对称美的证明&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p>除了标准的图表环境，<code>beamer</code> 还提供了一个 <code>\logo</code> 命令，用于把一个较小的图表放在幻灯片的左上角落里，可以用它来放置校徽、公司商标等内容。<code>\logo</code> 命令一般放在导言区：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\logo</span>&#123;<span class="keyword">\includegraphics</span>&#123;logo.pdf&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p><code>beamer</code> 内部使用 <code>pgf</code> 宏包绘制定理边框、幻灯片按钮等图形。对于一些简单的数学图形，使用基于 <code>pdf</code> 的 <code>tikz</code> 宏包直接画图是最方便的，比如在绘制直角三角形：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line">        <span class="keyword">\begin</span>&#123;tikzpicture&#125;[scale=0.5,font=<span class="keyword">\small</span>]</span><br><span class="line">            <span class="keyword">\draw</span>[thick] (0,0) node[left] &#123;<span class="built_in">$</span>A<span class="built_in">$</span>&#125;</span><br><span class="line">            -- (4,0) node[right] &#123;<span class="built_in">$</span>C<span class="built_in">$</span>&#125;</span><br><span class="line">            -- (4,3) node[above right] &#123;<span class="built_in">$</span>B<span class="built_in">$</span>&#125; -- cycle;</span><br><span class="line">            <span class="keyword">\draw</span> (3.5,0) |- (4,0.5);</span><br><span class="line">        <span class="keyword">\end</span>&#123;tikzpicture&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p>幻灯片中的表格务求简明清晰，可以考虑使用行色彩相间的彩色表格。<code>xcolor</code> 宏包通过加上 <code>table</code> 选项就可以实现给表格行加上颜色。由于 <code>beamer</code> 本身就会载入 <code>xcolor</code> 宏包，因此可以直接在 <code>beamer</code> 参数中设置：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[xcolor=table]&#123;beamer&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\rowcolors</span>&#123;2&#125;&#123;blue!25&#125;&#123;blue!50&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;tabular&#125;&#123;ccc&#125;</span><br><span class="line">        <span class="keyword">\rowcolor</span>&#123;green&#125;x <span class="built_in">&amp;</span> y <span class="built_in">&amp;</span> z <span class="keyword">\\</span></span><br><span class="line">        3 <span class="built_in">&amp;</span> 4 <span class="built_in">&amp;</span> 5 <span class="keyword">\\</span></span><br><span class="line">        5 <span class="built_in">&amp;</span> 12 <span class="built_in">&amp;</span> 13 <span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>\rowcolors&#123;n&#125;&#123;color&#125;...&#123;color&#125;</code> 命令使用来表格除去首行外，连续 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 行的背景颜色设定，并以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 为周期循环。而 <code>\rowcolor&#123;color&#125;</code> 命令用来在表格中单独设置一行的背景颜色。</p>
+<h4 id="2-4-8-参考文献">2.4.8 参考文献</h4>
+<p>在 <code>beamer</code> 中添加参考文献列表与一般文档的语法没有区别，不过与书面的文稿不同，在幻灯片中通常并不适合特别冗长的文献列表，列出的条目不宜过多，也不需要文献编号。因此，<code>beamer</code> 中的文献列表，文字排版比较宽松，列表前没有标题，默认格式也是没有编号的（因为幻灯片很难前后跳跃翻页，因此编号引用用途不大）。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;&#123;参考文献&#125;</span><br><span class="line">    <span class="keyword">\notice</span>&#123;Shiye&#125;</span><br><span class="line">    <span class="keyword">\bibliography</span>&#123;math&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p>如果确实需要对文献进行引用，那么最好使用「作者,年代」的引用格式，避免完全不直观的数字编号可能造成的问题。</p>
+<p>【注】<code>beamer</code> 的文献格式比较特殊，它并不支持 <code>natbib</code> 宏包及其对应的 <code>.bst</code> 文献格式。可以使用相对简单的 <code>apalike</code> 文献格式，它按照 APA 的格式，提供了基本的作者年代引用方式。<code>biblatex</code> 宏包与 <code>beamer</code> 没有明显的冲突，也可以使用。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 提供简单的作者年代引用格式</span></span><br><span class="line"><span class="keyword">\bibliographystyle</span>&#123;apalike&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-幻灯片动态">2.4 幻灯片动态</h3>
+<h4 id="2-4-1-覆盖">2.4.1 覆盖</h4>
+<p>覆盖是最为基本的一种幻灯片效果，它是把同一帧幻灯片的不同内容按一定次序拆分成几页显示出来。利用覆盖可以让内容逐步显示，也可以让不同内容依次替代，产生类似动画的效果。</p>
+<p>逐条显示是最为常用的覆盖效果，其基本命令是 <code>\pause</code>，表示幻灯片在此处会停顿一下，在 <code>\pause</code> 后面的所有内容会在 pdf 文件的下一页显示。对于目录帧，可以给目录命令加上选项使得目录在一项后面暂停。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;&#123;目录&#125;</span><br><span class="line">    <span class="keyword">\tableofcontents</span>[pausesections]</span><br><span class="line"><span class="keyword">\end</span></span><br></pre></td></tr></table></figure>
+<p>更为一般的是 <code>\onslide</code>，它可以指定内容在一帧中的第几步显示，使用 <code>\onslide</code> 时「不显示的内容还占用原来的位置」。在 <code>\onslide</code> 后面的尖括号中的内容就是覆盖步骤的设置。覆盖语法支持单个的步骤，也支持多个步骤和区间。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\onslide</span>&lt;1&gt;&#123;只有第一步&#125;</span><br><span class="line">    <span class="keyword">\onslide</span>&lt;2-&gt;&#123;第二步之后&#125;</span><br><span class="line">    <span class="keyword">\onslide</span>&lt;1,3&gt;&#123;第一、三两步&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p><code>\only</code> 命令与 <code>\onslide</code> 命令类似，不过 <code>\only</code> 命令「在不显示的步骤没有额外的占位」，可以得到内容代替的效果。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    计数：<span class="keyword">\only</span>&lt;1&gt;&#123;1&#125;<span class="keyword">\only</span>&lt;2&gt;&#123;2&#125;<span class="keyword">\only</span>&lt;3&gt;&#123;3&#125;<span class="keyword">\only</span>&lt;4-&gt;&#123;4&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">\onslide</span>&lt;5&gt;数完了</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p><code>\onslide</code> 和 <code>\only</code> 命令还有许多变种，它们的效果都大同小异。</p>
+<ul>
+<li><code>\uncover</code> 和 <code>\visible</code> 与 <code>\onslide</code> 大体相同，只是用不同的方式隐藏文字。</li>
+<li><code>\invisible</code> 和 <code>\visible</code> 具有相反的效果。</li>
+<li><code>\alt</code> 可以分别设置在指定步骤和步骤外的内容。</li>
+<li><code>\temporal</code> 可以分别指定步骤与此步骤前后的内容。</li>
+</ul>
+<p>【注】这种使用尖括号表示步骤的覆盖语法，实际上在 <code>beamer</code> 的很多命令和环境后面都可以使用，比如：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 加粗</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\textbf</span>&lt;3&gt;&#123;只在第三步加粗&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line"><span class="comment">% 定理</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;theorem&#125;&lt;2-&gt;</span><br><span class="line">        第二步以后显示定理</span><br><span class="line">    <span class="keyword">\end</span>&#123;theorem&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line"><span class="comment">% 列表</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">        <span class="keyword">\item</span>&lt;1-&gt; 开始显示</span><br><span class="line">        <span class="keyword">\item</span>&lt;3-&gt; 最后显示</span><br><span class="line">        <span class="keyword">\item</span>&lt;2-&gt; 然后显示</span><br><span class="line">    <span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p>在覆盖语法中，使用 <code>+</code> 号就类似使用了 <code>\pause</code>，这可以避免手工计数。连续使用多个 <code>\item&lt;+-&gt;</code> 就可以表示 <code>\item&lt;1-&gt;</code>、<code>\item&lt;2-&gt;</code>、<code>\item&lt;3-&gt;</code> …… 的效果。此外，还可以在整个 <code>enumerate</code> 和 <code>itemize</code> 环境后面加上 <code>[&lt;+-&gt;]</code> 的可选项，相当于对每个 <code>\item</code> 后面都使用了 <code>&lt;+-&gt;</code>，非常方便：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;itemize&#125;[&lt;+-&gt;]</span><br><span class="line">        <span class="keyword">\item</span> 开始显示</span><br><span class="line">        <span class="keyword">\item</span> 其次显示</span><br><span class="line">        <span class="keyword">\item</span> 最后显示</span><br><span class="line">    <span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p><code>\structure</code> 和 <code>\alert</code> 命令用于在指定的步骤设置高亮，前者使用幻灯片中结构的色彩，后者使用更鲜明的警告色彩（一般是红色）。它们也可以带上覆盖的语法：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\alert</span>&lt;2&gt;&#123;在第二步强调重要的内容&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，高亮命令可以作为覆盖语法的一部分，用在 <code>\item</code> 等命令后面，这样既能控制条目何时显示，可以控制条目高亮：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">    <span class="keyword">\item</span>&lt;+-| alert@+&gt; 公元前 6 世纪，毕达哥拉斯学派发现一个法则，可以构造直角三角形的边长；</span><br><span class="line">    <span class="keyword">\item</span>&lt;+-| alert@+&gt; 公元前 3 世纪，欧几里得《几何原本》使用面积法证明勾股定理。</span><br><span class="line"><span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"><span class="comment">% 更简洁表达为</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;itemize&#125;[&lt;+-| alert@+&gt;]</span><br><span class="line">    <span class="keyword">\item</span> 公元前 6 世纪，毕达哥拉斯学派发现一个法则，可以构造直角三角形的边长；</span><br><span class="line">    <span class="keyword">\item</span> 公元前 3 世纪，欧几里得《几何原本》使用面积法证明勾股定理。</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-2-活动对象和多媒体">2.4.2 活动对象和多媒体</h4>
+<p>在 <code>beamer</code> 中可以使用一些真正的动态演示功能，包括 pdf 动画、javascript 表单、多媒体对象等内容。不过，并非所有的 pdf 阅读器都支持这些动态功能。</p>
+<p>pdf 动画是把动画内容分别画在许多页中，再通过 pdf 文件中自动快速翻页产生的效果。<code>beamer</code> 提供了 <code>\animate</code> 和 <code>\animatevalue</code> 命令生成动画。</p>
+<ul>
+<li><code>\animate&lt;自动步进的步数&gt;</code>：定义自动步进的步数，指定的几步会迅速翻页。</li>
+<li><code>\animatevalue&lt;起步,止步&gt;&#123;寄存器,起始值,终止值&#125;</code>：设置动画变量，变量是整数或长度寄存器，可以用于控制画面。</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\newdimen</span><span class="keyword">\xoffset</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="comment">% 第一步是静止的，之后自动运动</span></span><br><span class="line">    <span class="keyword">\animate</span>&lt;2-10&gt;</span><br><span class="line">    <span class="keyword">\animatevalue</span>&lt;1-10&gt;&#123;<span class="keyword">\xoffset</span>&#125;&#123;0cm&#125;&#123;5cm&#125;</span><br><span class="line">    <span class="keyword">\hspace</span>&#123;<span class="keyword">\xoffset</span>&#125;从左到右</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p><code>beamer</code> 本身的动画功能比较简单，如果要求更高，可以使用 <code>animate</code> 宏包在幻灯片中画出 pdf 动画来。<code>animate</code> 宏包的动画是嵌入在一个 pdf 页面内的，不需要自动翻页，并且通过 javascript 代码提供了更丰富的控制功能。</p>
+<p><code>beamer</code> 还支持 pdf 页面的动画切换效果，这些效果只在 pdf 文件全屏观看是时有效。比如，可以设置一帧中的第二步为页面从左边飞入：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;&#123;动画切换&#125;</span><br><span class="line">    <span class="keyword">\only</span>&lt;1&gt;&#123;旧内容&#125;</span><br><span class="line">    <span class="keyword">\only</span>&lt;2&gt;&#123;新内容&#125;</span><br><span class="line">    <span class="keyword">\transcover</span>&lt;2&gt;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p><code>beamer</code> 支持的 pdf 页面切换效果如下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>\transblindshorizontal</code></td>
+<td style="text-align:left">水平百叶窗</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transblindsvertical</code></td>
+<td style="text-align:left">垂直百叶窗</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transboxin</code></td>
+<td style="text-align:left">盒状收缩</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transboxout</code></td>
+<td style="text-align:left">盒装展开</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transcover</code></td>
+<td style="text-align:left">新页面飞入，覆盖旧页面</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transdissolve</code></td>
+<td style="text-align:left">溶解</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transfade</code></td>
+<td style="text-align:left">渐显</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transglitter</code></td>
+<td style="text-align:left">闪烁（与溶解类似）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transpush</code></td>
+<td style="text-align:left">新页面推进，推走旧页面</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transsplitverticalin</code></td>
+<td style="text-align:left">垂直收缩</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transsplitverticalout</code></td>
+<td style="text-align:left">垂直展开</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transsplithorizontalin</code></td>
+<td style="text-align:left">水平收缩</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transsplithorizontalout</code></td>
+<td style="text-align:left">水平展开</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transuncover</code></td>
+<td style="text-align:left">旧页面飞走，揭开新页面</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\transwipe</code></td>
+<td style="text-align:left">沿直线消除旧页面</td>
+</tr>
+</tbody>
+</table>
+<p><code>beamer</code> 的一个附属包 <code>multimedia</code> 可以用来在 pdf 幻灯片中嵌入视频、音频等多媒体信息。<code>multimedia</code> 提供视频的基本命令是 <code>\movie</code>：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\movie</span>[可选项]&#123;文字&#125;&#123;多媒体文件名&#125;</span><br></pre></td></tr></table></figure>
+<p>比如，下面的代码可以用来播放 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>:</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">4:3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 的 AVI 视频 <code>foo.avi</code>：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;multimedia&#125;</span><br><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="comment">% ……</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="comment">% 自动播放，无显示内容</span></span><br><span class="line">    <span class="keyword">\movie</span>[width=4cm,height=3cm]&#123;Click to play&#125;&#123;foo.avi&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p>类似地，<code>\sound</code> 命令用来在 pdf 幻灯片中插入音频：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;multimedia&#125;</span><br><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="comment">% ……</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="comment">% 自动播放，无显示内容</span></span><br><span class="line">    <span class="keyword">\sound</span>[autostart]&#123;&#125;&#123;foo.au&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p>【注】<code>multimedia</code> 的多媒体功能必须使用 pdfLaTeX 进行编译，无法使用 xeLaTeX 处理中文。</p>
+<p><code>media9</code> 宏包（其前身为 <code>movie15</code>，仅支持 pdfLaTeX）提供了比 <code>multimedia</code> 宏包更为强大的多媒体功能，可以嵌入 Adobe Reader 9 所支持的各类媒体和 3D 对象，并支持各种编译引擎和输出驱动，使用 xeLaTeX 可以用它来代替 <code>multimedia</code>。</p>
+<p>除了动画和多媒体信息，使用第三方宏包，还可以在 <code>beamer</code> 中添加更多的动态内容。<code>tdclock</code> 宏包使用 javascript 代码和 pdf 表单，可以在幻灯片中插入日期和时间，可以用来在演讲中计时：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;tdclock&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    当前时间：<span class="keyword">\tdtime</span>；已经过去时间：<span class="keyword">\crono</span></span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<p>不过 <code>tdclock</code> 宏包对 pdfTeX 支持最好，使用 xeLaTeX 会出现一些问题。</p>
+<p><code>ocgtools</code> 宏包提供了所谓可选内容块的功能，可以在幻灯片中添加一个可弹出的可选内容块。<code>ocgtools</code> 要求使用 pdfTeX，且同时要求安装 <code>acrotex</code> 包组件。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;ocgtools&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">    <span class="comment">% 点击公式会显示定理名称</span></span><br><span class="line">    <span class="keyword">\ocgminitext</span>&#123;<span class="built_in">$</span>a<span class="built_in">^</span>+b<span class="built_in">^</span>2=c<span class="built_in">^</span>2<span class="built_in">$</span>&#125;&#123;Pythagoras Theorem&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-附录">3. 附录</h2>
+<h3 id="3-1-学习资料">3.1 学习资料</h3>
+<ul>
+<li>《LaTeX入门》——刘海洋</li>
+<li>《The beamer class User Guide》——Tantau et al.</li>
+<li>《The beamer class User Guide》中译本——黄旭华</li>
+</ul>
+<h3 id="3-2-幻灯片实例">3.2 幻灯片实例</h3>
+<p>效果展示如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/0.jpg" class="" width="725"></th>
+<th style="text-align:center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/1.jpg" class="" width="725"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/2.jpg" class="" width="725"></td>
+<td style="text-align:center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/3.jpg" class="" width="725"></td>
+</tr>
+<tr>
+<td style="text-align:center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/4.jpg" class="" width="725"></td>
+<td style="text-align:center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/5.jpg" class="" width="725"></td>
+</tr>
+<tr>
+<td style="text-align:center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/6.jpg" class="" width="725"></td>
+<td style="text-align:center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/7.jpg" class="" width="725"></td>
+</tr>
+</tbody>
+</table>
+<p>代码实现如下：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[xcolor=table,hideothersubsections]&#123;beamer&#125;</span><br><span class="line"><span class="keyword">\usetheme</span>&#123;PaloAlto&#125;</span><br><span class="line"><span class="keyword">\useinnertheme</span>&#123;circles&#125;</span><br><span class="line"><span class="keyword">\useoutertheme</span>&#123;smoothbars&#125;</span><br><span class="line"><span class="keyword">\usecolortheme</span>&#123;default&#125;</span><br><span class="line"><span class="keyword">\usefonttheme</span>&#123;default&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\setbeamertemplate</span>&#123;itemize items&#125;[circle]</span><br><span class="line"><span class="keyword">\setbeamercolor</span>&#123;itemize item&#125;&#123;fg=black&#125;</span><br><span class="line"><span class="keyword">\setbeamercolor</span>&#123;itemize/enumerate body&#125;&#123;fg=gray&#125;</span><br><span class="line"><span class="keyword">\setbeamerfont</span>&#123;itemize/enumerate body&#125;&#123;family=<span class="keyword">\rmfamily</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>[UTF8,noindent]&#123;ctexcap&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;tikz&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\title</span>&#123;杂谈勾股定理&#125;</span><br><span class="line"><span class="keyword">\subtitle</span>&#123;数学史讲座之一&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;BlueHeart0621&#125;</span><br><span class="line"><span class="keyword">\institute</span>&#123;九章学堂&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;<span class="keyword">\today</span>&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">        <span class="keyword">\maketitle</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">\section</span>&#123;目录&#125;</span><br><span class="line">        <span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">            <span class="keyword">\frametitle</span>&#123;目录&#125;</span><br><span class="line">            <span class="keyword">\tableofcontents</span></span><br><span class="line">        <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">\section</span>&#123;勾股定理在古代&#125;</span><br><span class="line">        <span class="keyword">\subsection</span>&#123;古希腊数学&#125;</span><br><span class="line">            <span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">                <span class="keyword">\frametitle</span>&#123;古希腊数学&#125;</span><br><span class="line">                勾股定理在西方称为毕达哥拉斯定理，古希腊数学家在 2000 多年前就已经发现并证明了它<span class="keyword">\footnote</span>&#123;克莱因(2002).古今数学思想.上海科学技术出版社&#125;。</span><br><span class="line">            <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">\subsection</span>&#123;古中国数学&#125;</span><br><span class="line">            <span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">                <span class="keyword">\frametitle</span>&#123;古中国数学&#125;</span><br><span class="line">                <span class="keyword">\framesubtitle</span>&#123;定理发现&#125;</span><br><span class="line">                中国在 3000 多年前就知道勾股数的概念，比古希腊更早一些。</span><br><span class="line"></span><br><span class="line">                《周髀算经》的记载：</span><br><span class="line">                <span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">                    <span class="keyword">\item</span> 公元前 11 世纪，商高答周公问：</span><br><span class="line">                    <span class="keyword">\begin</span>&#123;quote&#125;</span><br><span class="line">                        勾广三，股修四，径隅五。</span><br><span class="line">                    <span class="keyword">\end</span>&#123;quote&#125;</span><br><span class="line">                    <span class="keyword">\item</span> 又载公元前 7--6 世纪陈子答荣方问，表述了勾股定理的一般形式：</span><br><span class="line">                    <span class="keyword">\begin</span>&#123;quote&#125;</span><br><span class="line">                        若求邪至日者，以日下为勾，日高为股，勾股各自乘，并而开方除之，得邪至日。</span><br><span class="line">                    <span class="keyword">\end</span>&#123;quote&#125;</span><br><span class="line">                <span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line">            <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">                <span class="keyword">\frametitle</span>&#123;古中国数学&#125;</span><br><span class="line">                <span class="keyword">\framesubtitle</span>&#123;定理证明&#125;</span><br><span class="line">                有论者认为早在公元前 <span class="built_in">$</span>11<span class="built_in">$</span> 世纪商高即已证明勾股定理<span class="keyword">\footnote</span>&#123;曲安京(1998).商高、赵爽与刘徽关于勾股定理的证明.数学传播,20(3)&#125;。完整的证明见于三国时（公元 <span class="built_in">$</span>3<span class="built_in">$</span> 世纪）赵爽对《周髀算经》的注释。</span><br><span class="line">                <span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">                    <span class="keyword">\centering</span></span><br><span class="line">                    <span class="keyword">\includegraphics</span>[scale=0.45]&#123;xiantu.pdf&#125;</span><br><span class="line">                    <span class="keyword">\caption</span>&#123;赵爽的弦图可以给出勾股定理的一个富于对称美的证明&#125;</span><br><span class="line">                <span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line">            <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">\section</span>&#123;勾股定理在现代&#125;</span><br><span class="line">        <span class="keyword">\subsection</span>&#123;现代叙述&#125;</span><br><span class="line">            <span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">                <span class="keyword">\frametitle</span>&#123;现代叙述&#125;</span><br><span class="line">                <span class="keyword">\begin</span>&#123;theorem&#125;&#123;（勾股定理）&#125;</span><br><span class="line">                    直角三角形谢别的平方等于量直角边的平方和。</span><br><span class="line">                    可以用符号语言表述为：设直角三角形 <span class="built_in">$</span>ABC<span class="built_in">$</span>，其中 <span class="built_in">$</span><span class="keyword">\angle</span>&#123;C&#125; = 90<span class="built_in">^</span><span class="keyword">\circ</span><span class="built_in">$</span>，则有</span><br><span class="line">                    <span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">                        AB<span class="built_in">^</span>2 = BC<span class="built_in">^</span>2 + AC<span class="built_in">^</span>2</span><br><span class="line">                        <span class="keyword">\label</span>&#123;eq:pythagorean&#125;</span><br><span class="line">                    <span class="keyword">\end</span>&#123;equation&#125;</span><br><span class="line">                    <span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line">                        <span class="keyword">\begin</span>&#123;tikzpicture&#125;[scale=0.5,font=<span class="keyword">\small</span>]</span><br><span class="line">                        <span class="keyword">\draw</span>[thick] (0,0) node[left] &#123;<span class="built_in">$</span>A<span class="built_in">$</span>&#125;</span><br><span class="line">                           -- (4,0) node[right] &#123;<span class="built_in">$</span>C<span class="built_in">$</span>&#125;</span><br><span class="line">                           -- (4,3) node[above right] &#123;<span class="built_in">$</span>B<span class="built_in">$</span>&#125; -- cycle;</span><br><span class="line">                        <span class="keyword">\draw</span> (3.5,0) |- (4,0.5);</span><br><span class="line">                        <span class="keyword">\end</span>&#123;tikzpicture&#125;</span><br><span class="line">                        <span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line">                <span class="keyword">\end</span>&#123;theorem&#125;</span><br><span class="line">            <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line">        <span class="keyword">\subsection</span>&#123;勾股数&#125;</span><br><span class="line">            <span class="keyword">\begin</span>&#123;frame&#125;</span><br><span class="line">                <span class="keyword">\frametitle</span>&#123;勾股数&#125;</span><br><span class="line">                满足式<span class="keyword">\ref</span>&#123;eq:pythagorean&#125;的整数称为勾股数。前面所说毕达哥拉斯学派得到的三元数就是勾股数。常见的勾股数如下表所示。</span><br><span class="line"></span><br><span class="line">                <span class="keyword">\rowcolors</span>&#123;2&#125;&#123;green!25&#125;&#123;green!50&#125;</span><br><span class="line">                <span class="keyword">\begin</span>&#123;table&#125;</span><br><span class="line">                    <span class="keyword">\centering</span></span><br><span class="line">                    <span class="keyword">\begin</span>&#123;tabular&#125;&#123;rrr&#125;</span><br><span class="line">                        <span class="keyword">\rowcolor</span>&#123;blue!50&#125; 直角边 <span class="built_in">$</span>a<span class="built_in">$</span> <span class="built_in">&amp;</span> 直角边 <span class="built_in">$</span>b<span class="built_in">$</span> <span class="built_in">&amp;</span> 斜边 <span class="built_in">$</span>c<span class="built_in">$</span> <span class="keyword">\\</span></span><br><span class="line">                        3 <span class="built_in">&amp;</span> 4 <span class="built_in">&amp;</span> 5 <span class="keyword">\\</span></span><br><span class="line">                        5 <span class="built_in">&amp;</span> 12 <span class="built_in">&amp;</span> 13 <span class="keyword">\\</span></span><br><span class="line">                        7 <span class="built_in">&amp;</span> 24 <span class="built_in">&amp;</span> 25 <span class="keyword">\\</span></span><br><span class="line">                        8 <span class="built_in">&amp;</span> 15 <span class="built_in">&amp;</span> 17 <span class="keyword">\\</span></span><br><span class="line">                    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line">                    <span class="keyword">\caption</span>&#123;较小的几组勾股数&#125;</span><br><span class="line">                    <span class="keyword">\label</span>&#123;tb:pythagorean&#125;</span><br><span class="line">                <span class="keyword">\end</span>&#123;table&#125;</span><br><span class="line">            <span class="keyword">\end</span>&#123;frame&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2021/03/26/Technique/TeX/LaTeX/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/LaTeX%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2/">https://hotarugali.github.io/2021/03/26/Technique/TeX/LaTeX/LaTeX幻灯片提纲/LaTeX幻灯片提纲/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/TeX/">TeX</a><a class="post-meta__tags" href="/tags/LaTeX/">LaTeX</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/725.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/29/Technique/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1445.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LaTeX插图</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/17/Technique/Math/Theory/%E7%9F%A9%E9%98%B5/%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/" title="稀疏矩阵存储格式"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/181.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">稀疏矩阵存储格式</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/21/Technique/TeX/LaTeX/LaTeX%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" title="LaTeX奇技淫巧"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/713.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-21</div><div class="title">LaTeX奇技淫巧</div></div></a></div><div><a href="/2021/04/17/Technique/TeX/LaTeX/LaTeX%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/" title="LaTeX学习资料汇总"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/611.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-17</div><div class="title">LaTeX学习资料汇总</div></div></a></div><div><a href="/2021/03/29/Technique/TeX/LaTeX/LaTeX%E6%8F%92%E5%9B%BE/" title="LaTeX插图"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1445.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-29</div><div class="title">LaTeX插图</div></div></a></div><div><a href="/2021/01/23/Technique/TeX/LaTeX/LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%8E%92%E7%89%88/" title="LaTeX数学公式排版"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1533.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-23</div><div class="title">LaTeX数学公式排版</div></div></a></div><div><a href="/2021/04/03/Technique/TeX/LaTeX/LaTeX%E6%A0%87%E9%A2%98%E6%8E%A7%E5%88%B6/" title="LaTeX标题控制"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/649.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-03</div><div class="title">LaTeX标题控制</div></div></a></div><div><a href="/2021/03/30/Technique/TeX/LaTeX/LaTeX%E6%B5%AE%E5%8A%A8%E4%BD%93/" title="LaTeX浮动体"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/834.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-30</div><div class="title">LaTeX浮动体</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B7%A5%E5%85%B7"><span class="toc-text">1.1 工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-beamer-%E6%96%87%E6%A1%A3%E7%B1%BB"><span class="toc-text">1.2 beamer 文档类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B9%BB%E7%81%AF%E7%89%87%E6%8F%90%E7%BA%B2"><span class="toc-text">2. 幻灯片提纲</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6"><span class="toc-text">2.1 代码框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%B9%BB%E7%81%AF%E7%89%87%E9%A3%8E%E6%A0%BC"><span class="toc-text">2.2 幻灯片风格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E5%86%85%E9%83%A8%E4%B8%BB%E9%A2%98"><span class="toc-text">2.2.1 内部主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E5%A4%96%E9%83%A8%E4%B8%BB%E9%A2%98"><span class="toc-text">2.2.2 外部主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E8%89%B2%E5%BD%A9%E4%B8%BB%E9%A2%98"><span class="toc-text">2.2.3 色彩主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-4-%E5%AD%97%E4%BD%93%E4%B8%BB%E9%A2%98"><span class="toc-text">2.2.4 字体主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-5-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A3%8E%E6%A0%BC"><span class="toc-text">2.2.5 自定义风格</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%B9%BB%E7%81%AF%E7%89%87%E5%86%85%E5%AE%B9"><span class="toc-text">2.3 幻灯片内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E5%B8%A7"><span class="toc-text">2.3.1 帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-%E9%A6%96%E9%A1%B5"><span class="toc-text">2.3.2 首页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-%E5%88%86%E8%8A%82"><span class="toc-text">2.3.3 分节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-%E7%9B%AE%E5%BD%95"><span class="toc-text">2.3.4 目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-5-%E5%AE%9A%E7%90%86"><span class="toc-text">2.4.5 定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-6-%E5%8C%BA%E5%9D%97"><span class="toc-text">2.4.6 区块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-7-%E5%9B%BE%E8%A1%A8"><span class="toc-text">2.4.7 图表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-8-%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">2.4.8 参考文献</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%B9%BB%E7%81%AF%E7%89%87%E5%8A%A8%E6%80%81"><span class="toc-text">2.4 幻灯片动态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-%E8%A6%86%E7%9B%96"><span class="toc-text">2.4.1 覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-%E6%B4%BB%E5%8A%A8%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="toc-text">2.4.2 活动对象和多媒体</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%99%84%E5%BD%95"><span class="toc-text">3. 附录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99"><span class="toc-text">3.1 学习资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%B9%BB%E7%81%AF%E7%89%87%E5%AE%9E%E4%BE%8B"><span class="toc-text">3.2 幻灯片实例</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/725.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

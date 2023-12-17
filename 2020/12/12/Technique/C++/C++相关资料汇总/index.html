@@ -1,0 +1,683 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C++相关资料汇总 | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="网站 说明     C++ 标准库参考 (STL) 微软官方出品，还是非常全面细致的。   learncpp.com 免费的 C++ 学习指导在线文档，非常好的 C++ 教程。   cppreference.com C++ 官方在线参考文档，内容详实丰厚。   cplusplus.com C++ 的非官方在线参考文档。   boost.org boost 官方网址；boost 是一个功能强大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++相关资料汇总">
+<meta property="og:url" content="https://hotarugali.github.io/2020/12/12/Technique/C++/C++%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="网站 说明     C++ 标准库参考 (STL) 微软官方出品，还是非常全面细致的。   learncpp.com 免费的 C++ 学习指导在线文档，非常好的 C++ 教程。   cppreference.com C++ 官方在线参考文档，内容详实丰厚。   cplusplus.com C++ 的非官方在线参考文档。   boost.org boost 官方网址；boost 是一个功能强大">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1326.jpeg">
+<meta property="article:published_time" content="2020-12-12T03:14:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.549Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1326.jpeg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2020/12/12/Technique/C++/C++%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++相关资料汇总',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1326.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C++相关资料汇总</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-12T03:14:00.000Z" title="发表于 2020-12-12 11:14:00">2020-12-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.549Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/C/">C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C++相关资料汇总"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><table>
+<thead>
+<tr>
+<th>网站</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/standard-library/cpp-standard-library-reference?view=msvc-170">C++ 标准库参考 (STL)</a></td>
+<td>微软官方出品，还是非常全面细致的。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.learncpp.com/">learncpp.com</a></td>
+<td>免费的 C++ 学习指导在线文档，非常好的 C++ 教程。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/">cppreference.com</a></td>
+<td>C++ 官方在线参考文档，内容详实丰厚。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://cplusplus.com/">cplusplus.com</a></td>
+<td>C++ 的非官方在线参考文档。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.boost.org/">boost.org</a></td>
+<td>boost 官方网址；boost 是一个功能强大的 C++ 开源库，其兼容并扩展了 C++ 的标准库。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://theboostcpplibraries.com/">The Boost C++ Libraries</a></td>
+<td>boost 的在线文档，对 boost 中常用的库给出了简洁明了的综述。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>来自 Stackoverflow 的书籍推荐清单如下：</p>
+</blockquote>
+<h2 id="Beginner">Beginner</h2>
+<h3 id="Introductory-no-previous-programming-experience">Introductory, no previous programming experience</h3>
+<table>
+<thead>
+<tr>
+<th>Book</th>
+<th>Author(s)</th>
+<th>Description</th>
+<th>review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0321714113"><em>C++ Primer</em></a> <br />Not to be confused with <a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0672326973"><em>C++ Primer Plus</em></a> (Stephen Prata), with a significantly less favorable <a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2002/glassborow_1744">review</a>.</td>
+<td>Stanley Lippman, Josée Lajoie, and Barbara E. Moo  (<strong>updated for C++11</strong>)</td>
+<td>Coming at 1k pages, this is a very thorough introduction into C++  that covers just about everything in the language in a very accessible  format and in great detail. The fifth edition (released August 16, 2012) covers C++11.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2012/glassborow_1848">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0321992784"><em>Programming: Principles and Practice Using C++</em></a></td>
+<td>Bjarne Stroustrup, 2nd Edition - May 25, 2014 (<strong>updated for C++11/C++14</strong>)</td>
+<td>An introduction to programming using C++ by the creator of the  language. A good read, that assumes no previous programming experience,  but is not only for beginners.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Introductory-with-previous-programming-experience">Introductory, with previous programming experience</h3>
+<table>
+<thead>
+<tr>
+<th>Book</th>
+<th>Author(s)</th>
+<th>Description</th>
+<th>review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/B00F8CWGOS"><em>A Tour of C++</em></a></td>
+<td>Bjarne Stroustrup (<strong><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0134997832">2nd edition for C++17</a></strong>, <strong><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0136816487">3rd edition for C++20</a></strong>)</td>
+<td>The “tour” is a quick (about 180 pages and 14 chapters) tutorial  overview of all of standard C++ (language and standard library, <strong>and using C++11</strong>) at a moderately high level for people who already know C++ or at least  are experienced programmers. This book is an extended version of the  material that constitutes Chapters 2-5 of The C++ Programming Language,  4th edition.</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/020170353X"><em>Accelerated C++</em></a></td>
+<td>Andrew Koenig and Barbara Moo, 1st Edition - August 24, 2000</td>
+<td>This basically covers the same ground as the <em>C++ Primer</em>, but does so in a quarter of its space. This is largely because it does not attempt to be an introduction to <em>programming</em>, but an introduction to <em>C++</em> for people who’ve previously programmed in some other language. It has a steeper learning curve, but, for those who can cope with this, it is a  very compact introduction to the language. (Historically, it broke new  ground by being the first beginner’s book to use a modern approach to  teaching the language.) Despite this, the C++ it teaches is purely  C++98.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2000/glassborow_1185">Review]</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Best-practices">Best practices</h3>
+<table>
+<thead>
+<tr>
+<th>Book</th>
+<th>Author(s)</th>
+<th>Description</th>
+<th>review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0321334876"><em>Effective C++</em></a></td>
+<td>Scott Meyers, 3rd Edition - May 22, 2005</td>
+<td>This was written with the aim of being the best second book C++  programmers should read, and it succeeded. Earlier editions were aimed  at programmers coming from C, the third edition changes this and targets programmers coming from languages like Java. It presents ~50  easy-to-remember rules of thumb along with their rationale in a very  accessible (and enjoyable) style. For C++11 and C++14 the examples and a few issues are outdated and Effective Modern C++ should be preferred.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/1998/glassborow_700">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/1491903996"><em>Effective Modern C++</em></a></td>
+<td>Scott Meyers</td>
+<td>This book is aimed at C++ programmers making the transition from  C++03 to C++11 and C++14. This book can be treated like a continuation  and “correction” of some parts of the previous book - “Effective C++”.  They don’t cover the same things, but keep similar item-based theme.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2019/floyd_1937">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201749629"><em>Effective STL</em></a></td>
+<td>Scott Meyers</td>
+<td>This aims to do the same to the part of the standard library coming from the STL what <em>Effective C++</em> did to the language as a whole: It presents rules of thumb along with their rationale.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="Intermediate">Intermediate</h2>
+<table>
+<thead>
+<tr>
+<th>Book</th>
+<th>Author(s)</th>
+<th>Description</th>
+<th>review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/020163371X"><em>More Effective C++</em></a></td>
+<td>Scott Meyers</td>
+<td>Even more rules of thumb than <em>Effective C++</em>. Not as important as the ones in the first book, but still good to know.</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201615622"><em>Exceptional C++</em></a></td>
+<td>Herb Sutter</td>
+<td>Presented as a set of puzzles, this has one of the best and thorough discussions of the proper resource management and exception safety in  C++ through Resource Acquisition is Initialization (RAII) in addition to in-depth coverage of a variety of other topics including the pimpl  idiom, name lookup, good class design, and the C++ memory model.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2000/griffiths_209">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/020170434X"><em>More Exceptional C++</em></a></td>
+<td>Herb Sutter</td>
+<td>Covers additional exception safety topics not covered in <em>Exceptional C++</em>, in addition to discussion of effective object-oriented programming in C++ and correct use of the STL.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2002/glassborow_784">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201760428"><em>Exceptional C++ Style</em></a></td>
+<td>Herb Sutter</td>
+<td>Discusses generic programming, optimization, and resource  management; this book also has an excellent exposition of how to write  modular code in C++ by using non-member functions and the single  responsibility principle.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2005/goodliffe_107">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0321113586"><em>C++ Coding Standards</em></a></td>
+<td>Herb Sutter and Andrei Alexandrescu</td>
+<td>“Coding standards” here doesn’t mean “how many spaces should I  indent my code?”  This book contains 101 best practices, idioms, and  common pitfalls that can help you to write correct, understandable, and  efficient C++ code.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2004/glassborow_1439">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201734842"><em>C++ Templates: The Complete Guide</em></a></td>
+<td>David Vandevoorde and Nicolai M. Josuttis</td>
+<td>This is <em>the</em> book about templates as they existed before  C++11.  It covers everything from the very basics to some of the most  advanced template metaprogramming and explains every detail of how  templates work (both conceptually and at how they are implemented) and  discusses many common pitfalls.  Has excellent summaries of the One  Definition Rule (ODR) and overload resolution in the appendices. A <a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0321714121">second edition</a> covering C++11, C++14 and C++17 has been already published.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2020/floyd_1946">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://leanpub.com/cpp17"><em>C++ 17 - The Complete Guide</em></a></td>
+<td>Nicolai M. Josuttis</td>
+<td>This book describes all the new features introduced in the C++17  Standard covering everything from the simple ones like ‘Inline  Variables’, ‘constexpr if’ all the way up to ‘Polymorphic Memory  Resources’ and ‘New and Delete with over aligned Data’.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2020/floyd_1943">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://leanpub.com/cpp20"><em>C++ 20 - The Complete Guide</em></a></td>
+<td>Nicolai M. Josuttis</td>
+<td>This book presents all the new language and library features of  C++20. It covers the motivation and context of each new feature with  examples and background information. The focus is on how these features  impact day-to-day programming, what it means to combine them, and how to benefit from C++20 in practice. (Note that this book was <strong>published step-by-step</strong>, and the first edition is now complete.)</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.worldcolleges.info/sites/default/files/C++_In_Action.pdf"><em>C++ in Action</em></a></td>
+<td>Bartosz Milewski</td>
+<td>This book explains C++ and its features by building an application from ground up.</td>
+<td>[<a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2003/09/12/book-review-c-in-action-by-bartosz-milewski">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.manning.com/books/functional-programming-in-c-plus-plus"><em>Functional Programming in C++</em></a></td>
+<td>Ivan Čukić</td>
+<td>This book introduces functional programming techniques to modern C++ (C++11 and later). A very nice read for those who want to apply  functional programming paradigms to C++.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="Advanced">Advanced</h2>
+<table>
+<thead>
+<tr>
+<th>Book</th>
+<th>Author(s)</th>
+<th>Description</th>
+<th>review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201704315"><em>Modern C++ Design</em></a></td>
+<td>Andrei Alexandrescu</td>
+<td>A groundbreaking book on advanced generic programming techniques.   Introduces policy-based design, type lists, and fundamental generic  programming idioms then explains how many useful design patterns  (including small object allocators, functors, factories, visitors, and  multi-methods) can be implemented efficiently, modularly, and cleanly  using generic programming.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2001/glassborow_979">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0321227255"><em>C++ Template Metaprogramming</em></a></td>
+<td>David Abrahams and Aleksey Gurtovoy</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/1933988770"><em>C++ Concurrency In Action</em></a></td>
+<td>Anthony Williams</td>
+<td>A book covering C++11 concurrency support including the thread  library, the atomics library, the C++ memory model, locks and mutexes,  as well as issues of designing and debugging multithreaded applications. A <a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/1617294691">second edition</a> covering C++14 and C++17 has already been published.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2012/glassborow_1850">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/1460966163"><em>Advanced C++ Metaprogramming</em></a></td>
+<td>Davide Di Gennaro</td>
+<td>A pre-C++11 manual of TMP techniques, focused more on practice than  theory.  There are a ton of snippets in this book, some of which are  made obsolete by type traits, but the techniques, are nonetheless useful to know.  If you can put up with the quirky formatting/editing, it is  easier to read than Alexandrescu, and arguably, more rewarding.  For  more experienced developers, there is a good chance that you may pick up something about a dark corner of C++ (a quirk) that usually only comes  about through extensive experience.</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.pearson.com/store/p/large-scale-c-volume-i-process-and-architecture/P100001343596/9780201717068"><em>Large Scale C++ volume I, Process and architecture</em></a> (2020)</td>
+<td>John Lakos</td>
+<td>Part one of a three-part series extending the older book ‘Large  Scale C++ Design’. Lakos explains battle-tested techniques to manage  very big C++ software projects. If you work in a big C++ software  project this is a great read, detailing the relationship between  physical and logical structure, strategies for components, and their  reuse.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2020/bruntlett_1953/">Review]</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="Reference-Style-All-Levels">Reference Style - All Levels</h2>
+<table>
+<thead>
+<tr>
+<th>Book</th>
+<th>Author(s)</th>
+<th>Description</th>
+<th>review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0321958322"><em>The C++ Programming Language</em></a></td>
+<td>Bjarne Stroustrup (<strong>updated for C++11</strong>)</td>
+<td>The classic introduction to C++ by its creator. Written to parallel  the classic K&amp;R, this indeed reads very much like it and covers just about everything from the core language to the standard library, to  programming paradigms to the language’s philosophy.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2014/lenton_1853">Review]</a>  Note: All releases of the C++ standard are tracked in the question “<em><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/81656/where-do-i-find-the-current-c-or-c-standard-documents">Where do I find the current C or C++ standard documents?</a></em>”.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0321623215"><em>C++ Standard Library Tutorial and Reference</em></a></td>
+<td>Nicolai Josuttis (<strong>updated for C++11</strong>)</td>
+<td><em>The</em> introduction and reference for the C++ Standard Library. The second edition (released on April 9, 2012) covers C++11.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2012/glassborow_1849">Review]</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201183951"><em>The C++ IO Streams and Locales</em></a></td>
+<td>Angelika Langer and Klaus Kreft</td>
+<td>There’s very little to say about this book except that if you want  to know anything about streams and locales, then this is the one place  to find definitive answers.</td>
+<td>[<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/2000/glassborow_200">Review]</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>C++11/14/17/… References:</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://eel.is/c++draft/">Working Draft, Standard for Programming Language C++</a> generated from  <a target="_blank" rel="noopener" href="https://github.com/cplusplus/draft">LaTeX sources published on GitHub</a>.</li>
+<li><a target="_blank" rel="noopener" href="https://www.open-std.org/jtc1/sc22/wg21/docs/papers/">C++ Standard Papers</a>, latest standard working draft: <a target="_blank" rel="noopener" href="https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4868.pdf">ISO working draft</a></li>
+<li><em>The C++<a target="_blank" rel="noopener" href="https://www.iso.org/standard/50372.html">11</a>/<a target="_blank" rel="noopener" href="https://www.iso.org/standard/64029.html">14</a>/<a target="_blank" rel="noopener" href="https://www.iso.org/standard/68564.html">17</a> Standard (INCITS/ISO/IEC 14882:2011/2014/2017)</em> This, of course, is the final arbiter of all that is or isn’t C++. Be  aware, however, that it is intended purely as a reference for <em>experienced</em> users willing to devote considerable time and effort to its  understanding. The C++17 standard is released in electronic form for 198 Swiss Francs.</li>
+<li>The C++17 standard is available, but seemingly not in an economical form – <a target="_blank" rel="noopener" href="https://www.iso.org/standard/68564.html">directly from the ISO</a> it costs 198 Swiss Francs (about $200 US). For most people, the <a target="_blank" rel="noopener" href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf">final draft before standardization</a> is more than adequate (and free). Many will prefer an <a target="_blank" rel="noopener" href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/n4778.pdf">even newer draft</a>, documenting new features that are likely to be included in C++20.</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cplusplus/draft/releases/download/n4868/n4868.pdf">C++20 draft</a> is available on GitHub as <a target="_blank" rel="noopener" href="https://github.com/cplusplus/draft/releases">some older too</a>.</li>
+<li><a target="_blank" rel="noopener" href="https://www.artima.com/shop/overview_of_the_new_cpp"><em>Overview of the New C++ (C++11/14) (PDF only)</em></a> (Scott Meyers) (<strong>updated for C++14</strong>) These are the presentation materials (slides and some lecture notes) of a three-day training course offered by Scott Meyers, who’s a highly  respected author on C++. Even though the list of items is short, the  quality is high.</li>
+<li>The <a target="_blank" rel="noopener" href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md"><em>C++ Core Guidelines (C++11/14/17/…)</em></a> (edited by Bjarne Stroustrup and Herb Sutter) is an evolving online  document consisting of a set of guidelines for using modern C++ well.  The guidelines are focused on relatively higher-level issues, such as  interfaces, resource management, memory management, and concurrency  affecting application architecture and library design. The project was <a target="_blank" rel="noopener" href="https://isocpp.org/blog/2015/09/bjarne-stroustrup-announces-cpp-core-guidelines">announced at CppCon’15 by Bjarne Stroustrup and others</a> and welcomes contributions from the community. Most guidelines are  supplemented with a rationale and examples as well as discussions of  possible tool support. Many rules are designed specifically to be  automatically checkable by static analysis tools.</li>
+<li>The <a target="_blank" rel="noopener" href="https://isocpp.org/faq"><em>C++ Super-FAQ</em></a> (Marshall Cline, Bjarne Stroustrup, and others) is an effort by the  Standard C++ Foundation to unify the C++ FAQs previously maintained  individually by Marshall Cline and Bjarne Stroustrup and also  incorporating new contributions. The items mostly address issues at an  intermediate level and are often written with a humorous tone. Not all  items might be fully up to date with the latest edition of the C++  standard yet.</li>
+<li><a target="_blank" rel="noopener" href="https://cppreference.com"><em>cppreference.com (C++03/11/14/17/…)</em></a> (initiated by Nate Kohl) is a wiki that summarizes the basic  core-language features and has extensive documentation of the C++  standard library. The documentation is very precise but is easier to  read than the official standard document and provides better navigation  due to its wiki nature. The project documents all versions of the C++  standard and the site allows filtering the display for a specific  version. The project was <a target="_blank" rel="noopener" href="https://isocpp.org/blog/2015/07/cppcon-2014-cppreference.com-documenting-cpp-one-edit-at-a-time-nate-kohl">presented by Nate Kohl at CppCon’14</a>.</li>
+</ul>
+<hr>
+<h2 id="Classics-Older">Classics / Older</h2>
+<p><strong>Note:</strong> Some information contained within these books may not be up-to-date or no longer considered best practice.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201543303"><em>The Design and Evolution of C++</em></a> (Bjarne Stroustrup)  If you want to know <em>why</em> the language is the way it is, this book is where you find answers. This covers everything <em>before the standardization</em> of C++.</li>
+<li><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201423391"><em>Ruminations on C++</em></a> - (Andrew Koenig and Barbara Moo) [<a target="_blank" rel="noopener" href="https://accu.org/bookreviews/1997/glassborow_776">Review]</a></li>
+<li><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201548550"><em>Advanced C++ Programming Styles and Idioms</em></a> (James Coplien)  A predecessor of the pattern movement, it describes  many C+±specific “idioms”. It’s certainly a very good book and might  still be worth a read if you can spare the time, but quite old and not  up-to-date with current C++.</li>
+<li><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201633620"><em>Large Scale C++ Software Design</em></a> (John Lakos)  Lakos explains techniques to manage very big C++ software projects. Certainly, a good read, if it only was up to date. It was  written long before C++ 98 and misses on many features (e.g. namespaces) important for large-scale projects. If you need to work on a big C++  software project, you might want to read it, although you need to take  more than a grain of salt with it. Not to be confused with the extended  and later book series Large Scale C++ volume I-III.</li>
+<li><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201834545"><em>Inside the C++ Object Model</em></a> (Stanley Lippman)  If you want to know how virtual member functions are commonly implemented and how base objects are commonly laid out in  memory in a multi-inheritance scenario, and how all this affects  performance, this is where you will find thorough discussions of such  topics.</li>
+<li><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201514591"><em>The Annotated C++ Reference Manual</em></a> (Bjarne Stroustrup, Margaret A. Ellis) This book is quite outdated in  the fact that it explores the 1989 C++ 2.0 version - Templates,  exceptions, namespaces, and new casts were not yet introduced. Saying  that however, this book goes through the entire C++ standard of the time explaining the rationale, the possible implementations, and features of the language. This is not a book to learn programming principles and  patterns on C++, but to understand every aspect of the C++ language.</li>
+<li><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0139798099"><em>Thinking in C++</em></a> (Bruce Eckel, 2nd Edition, 2000).  Two volumes; is a tutorial-style <em>free</em> set of intro level books. Downloads: <a target="_blank" rel="noopener" href="https://ia800100.us.archive.org/10/items/TICPP2ndEdVolOne/TICPP-2nd-ed-Vol-one.zip">vol 1</a>, <a target="_blank" rel="noopener" href="https://ia800108.us.archive.org/24/items/TICPP2ndEdVolTwo/TICPP-2nd-ed-Vol-two.zip">vol 2</a>. Unfortunately, they’re marred by a number of trivial errors (e.g. maintaining that temporaries are automatic <code>const</code>), with no official errata list. A partial 3rd party errata list is available at <a target="_blank" rel="noopener" href="http://www.computersciencelab.com/Eckel.htm">http://www.computersciencelab.com/Eckel.htm</a>, but it is apparently not maintained.</li>
+<li><a target="_blank" rel="noopener" href="https://rads.stackoverflow.com/amzn/click/com/0201533936"><em>Scientific and Engineering C++: An Introduction to Advanced Techniques and Examples</em></a> (John Barton and Lee Nackman) It is a comprehensive and very detailed book that tried to explain and  make use of all the features available in C++, in the context of  numerical methods. It introduced at the time several new techniques,  such as the Curiously Recurring Template Pattern (CRTP, also called  Barton-Nackman trick). It pioneered several techniques such as dimensional analysis and  automatic differentiation. It came with a lot of compilable and useful code, ranging from an  expression parser to a Lapack wrapper. The code is <a target="_blank" rel="noopener" href="https://www.informit.com/store/scientific-and-engineering-c-plus-plus-an-introduction-9780201533934">still available online</a>. Unfortunately, the books have become somewhat outdated in the style and  C++ features, however, it was an incredible tour-de-force at the time  (1994, pre-STL). The chapters on dynamics inheritance are a bit complicated to understand and not very useful. An updated version of this classic book that includes move semantics and the lessons learned from the STL would be very nice.</li>
+</ul>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list">The Definitive C++ Book Guide and List</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.reddit.com/r/cpp_questions/comments/ld7a54/is_cpluspluscom_a_good_way_to_learn_proper_c/">Is cplusplus.com a good way to learn proper C++?</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2020/12/12/Technique/C++/C++%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/">https://hotarugali.github.io/2020/12/12/Technique/C++/C++相关资料汇总/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/1326.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/13/Research/Sundry/AI%E4%BC%9A%E8%AE%AE%E6%9C%9F%E5%88%8A%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/" title="ML、CV方向会议期刊相关资料汇总"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1624.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ML、CV方向会议期刊相关资料汇总</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/10/Technique/Python/Python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" title="Python虚拟环境"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/403.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python虚拟环境</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/06/04/Technique/C++/C++%E5%86%85%E7%BD%AE%E5%AE%8F%E5%AE%9A%E4%B9%89/" title="C++内置宏定义"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1524.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-04</div><div class="title">C++内置宏定义</div></div></a></div><div><a href="/2020/06/24/Technique/C++/C++%E8%AF%AD%E8%A8%80%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%A8%A1%E5%BC%8F/" title="C++语言打开文件模式"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/457.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-24</div><div class="title">C++语言打开文件模式</div></div></a></div><div><a href="/2020/05/26/Technique/C++/Deepin15.11%E4%B8%8B%E5%AE%89%E8%A3%85CodeBlocks17.12/" title="Deepin15.11下安装CodeBlocks17.12"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/781.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">Deepin15.11下安装CodeBlocks17.12</div></div></a></div><div><a href="/2020/08/19/Technique/C++/%E6%9C%AF%E8%AF%AD/" title="术语"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1433.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-19</div><div class="title">术语</div></div></a></div><div><a href="/2021/06/04/Technique/C++/C%E8%AF%AD%E8%A8%80%E5%90%84%E7%89%88%E6%9C%AC%E5%AF%B9%E6%AF%94/C%E8%AF%AD%E8%A8%80%E5%90%84%E7%89%88%E6%9C%AC%E5%AF%B9%E6%AF%94/" title="C语言各版本对比"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-04</div><div class="title">C语言各版本对比</div></div></a></div><div><a href="/2022/06/02/Technique/C++/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8VSCode%E9%85%8D%E7%BD%AEC++%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8VSCode%E9%85%8D%E7%BD%AEC++%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/" title="Linux下使用VSCode配置C++调试环境"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/502.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-02</div><div class="title">Linux下使用VSCode配置C++调试环境</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Beginner"><span class="toc-text">Beginner</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Introductory-no-previous-programming-experience"><span class="toc-text">Introductory, no previous programming experience</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Introductory-with-previous-programming-experience"><span class="toc-text">Introductory, with previous programming experience</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Best-practices"><span class="toc-text">Best practices</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intermediate"><span class="toc-text">Intermediate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced"><span class="toc-text">Advanced</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference-Style-All-Levels"><span class="toc-text">Reference Style - All Levels</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Classics-Older"><span class="toc-text">Classics &#x2F; Older</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1326.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

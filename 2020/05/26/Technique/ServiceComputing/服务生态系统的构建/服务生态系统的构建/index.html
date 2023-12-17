@@ -1,0 +1,984 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>服务生态系统的构建 | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 服务生命周期 1.1 基本阶段  面向服务的分析 面向服务的设计 服务的开发 服务的测试 服务的部署 服务的管理  1.2 业务逻辑&#x2F;应用逻辑  业务逻辑源自于企业业务领域，也无需求的文档化实现    一般被构造为表达这些需求的流程 包括任何相关的约束、依赖及外部影响    应用逻辑是组织成不同技术解决方案的业务逻辑的自动化实现   【注】业务逻辑和应用逻辑可以认为是针对同一个问题在不同层级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务生态系统的构建">
+<meta property="og:url" content="https://hotarugali.github.io/2020/05/26/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="1. 服务生命周期 1.1 基本阶段  面向服务的分析 面向服务的设计 服务的开发 服务的测试 服务的部署 服务的管理  1.2 业务逻辑&#x2F;应用逻辑  业务逻辑源自于企业业务领域，也无需求的文档化实现    一般被构造为表达这些需求的流程 包括任何相关的约束、依赖及外部影响    应用逻辑是组织成不同技术解决方案的业务逻辑的自动化实现   【注】业务逻辑和应用逻辑可以认为是针对同一个问题在不同层级">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1043.jpg">
+<meta property="article:published_time" content="2020-05-26T02:44:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.581Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="ServiceComputing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1043.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2020/05/26/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '服务生态系统的构建',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1043.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">服务生态系统的构建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-26T02:44:00.000Z" title="发表于 2020-05-26 10:44:00">2020-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.581Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/ServiceComputing/">ServiceComputing</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="服务生态系统的构建"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-服务生命周期">1. 服务生命周期</h2>
+<h3 id="1-1-基本阶段">1.1 基本阶段</h3>
+<ul>
+<li>面向服务的分析</li>
+<li>面向服务的设计</li>
+<li>服务的开发</li>
+<li>服务的测试</li>
+<li>服务的部署</li>
+<li>服务的管理</li>
+</ul>
+<h3 id="1-2-业务逻辑-应用逻辑">1.2 业务逻辑/应用逻辑</h3>
+<ul>
+<li>业务逻辑源自于企业业务领域，也无需求的文档化实现</li>
+</ul>
+<blockquote>
+<ol>
+<li>一般被构造为表达这些需求的流程</li>
+<li>包括任何相关的约束、依赖及外部影响</li>
+</ol>
+</blockquote>
+<ul>
+<li>应用逻辑是组织成不同技术解决方案的业务逻辑的自动化实现</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E5%BA%94%E7%94%A8%E9%80%BB%E8%BE%91.png" class="" width="523" title="业务逻辑与应用逻辑">
+<p>【注】业务逻辑和应用逻辑可以认为是针对同一个问题在不同层级上的解决方案。</p>
+<h3 id="1-3-服务层次">1.3 服务层次</h3>
+<p>服务生态系统服务可分为三个不同类别：</p>
+<ul>
+<li>应用服务层：针对底层应用逻辑进行封装的服务</li>
+<li>业务服务层：用来满足服务调用者的业务需求的服务</li>
+<li>编排层：对业务服务采用编排方式加以实现（可选层）</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/%E6%9C%8D%E5%8A%A1%E5%B1%82%E6%AC%A1.png" class="" width="512" title="服务层次">
+<p>【注】若将应用服务和业务服务在同一个服务接口中间加以实现，则称为混合（应用）服务。</p>
+<h3 id="1-4-面向服务的交付策略">1.4 面向服务的交付策略</h3>
+<ul>
+<li>自顶向下策略——分析优先</li>
+</ul>
+<blockquote>
+<ol>
+<li>定义企业范围的相关本体（Ontology，领域知识的概念及其关联）</li>
+<li>将相关的业务模型（包括实体模型）与新的或修订后的本体匹配</li>
+<li>进行面向服务的分析</li>
+<li>进行面向服务的设计</li>
+<li>开发所需服务</li>
+<li>测试服务及所有的服务操作</li>
+<li>部署服务</li>
+</ol>
+</blockquote>
+<p>【注】自顶向下策略完全发挥了面向服务的特征；但前两个步骤并不能直接产生可用软件，前期投入较高。</p>
+<ul>
+<li>自底向上策略——按需交付、封装并集成遗留系统优先</li>
+</ul>
+<blockquote>
+<ol>
+<li>对所需的应用服务进行建模，多为混合（应用）服务</li>
+<li>设计所需的服务</li>
+<li>开发所需的服务</li>
+<li>测试服务</li>
+<li>部署服务</li>
+</ol>
+</blockquote>
+<p>【注】自底向上策略完全为了应对我们迫在眉睫的某一个特定业务系统的开发的需求（多、快、好、省），并不是完整的想要用面向服务的方式最大化一系列的优势。</p>
+<ul>
+<li>敏捷策略（折中方式）——平衡策略<br>
+服务生态系统的分析（业务人员为主、IT 人员为辅）和设计和具体服务的分析和设计（IT 人员为主、业务员人员为辅）并发进行。</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/%E6%95%8F%E6%8D%B7%E7%AD%96%E7%95%A5.png" class="" width="759" title="敏捷策略">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">策略</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">自顶向下</td>
+<td style="text-align:left">高质量的服务架构<br>彻底分析每个服务的接口和设计<br>最大的可复用潜能<br>促进组织的服务化</td>
+<td style="text-align:left">大量的预先分析工作量<br>前期投入的时间和资金</td>
+</tr>
+<tr>
+<td style="text-align:left">自底向上</td>
+<td style="text-align:left">以建立应用（服务系统）为主要目标快速建立 Web Service<br>简单易行</td>
+<td style="text-align:left">保留现有应用环境（非面向服务）<br>Web Service 仍然面向应用<br>如需实现面向服务，后期需大量额外工作</td>
+</tr>
+<tr>
+<td style="text-align:left">敏捷策略</td>
+<td style="text-align:left">综合满足长期需求和短期需求</td>
+<td style="text-align:left">服务可能被重新回顾、设计、开发<br>增加回顾业务环节</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-面向服务的分析">2. 面向服务的分析</h2>
+<h3 id="2-1-面向服务的分析的目标">2.1 面向服务的分析的目标</h3>
+<ul>
+<li>在服务生态系统中（初步）讨论需要构建哪些服务、每个服务需要封装哪些逻辑</li>
+</ul>
+<blockquote>
+<ol>
+<li>定义一组预备的服务操作初选</li>
+<li>将服务操作候选分组到符合逻辑的语境（服务候选）中</li>
+<li>初步定义服务的边界，以使他们不会与任何现有的或已经规划好的服务相重叠</li>
+<li>识别封装好的逻辑（服务操作候选、服务候选）能够被复用的潜在可能</li>
+<li>确保被封装的逻辑（服务操作候选、服务候选）语境符合预期的用途</li>
+<li>定义任何已知的候选合成模型</li>
+</ol>
+</blockquote>
+<h3 id="2-2-面向服务分析的流程">2.2 面向服务分析的流程</h3>
+<ul>
+<li>定义流程自动化需求：文档化的需求描述，是服务候选建模的依据</li>
+<li>识别现有的自动化系统</li>
+<li>对服务候选建模：对服务操作候选，并将其分组到服务候选中的过程</li>
+</ul>
+<h3 id="2-3-以业务为核心的-SOA">2.3 以业务为核心的 SOA</h3>
+<p>【注】面向技术 vs. 面向业务：Web Service 仍然是面向技术的</p>
+<ul>
+<li>面向服务的分析应以业务服务为核心</li>
+</ul>
+<blockquote>
+<ol>
+<li>业务服务分别隔离来自业务领域和应用领域的变化</li>
+<li>服务编排以业务服务为对象</li>
+<li>业务服务实现复用</li>
+<li>业务服务促进面向服务的企业</li>
+</ol>
+</blockquote>
+<ul>
+<li>常见业务分析方法</li>
+</ul>
+<blockquote>
+<ol>
+<li>业务流程管理（BMP）模型：大多数组织业务分析归档的主要形式</li>
+</ol>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9E%8B.png" class="" width="474" title="业务流程管理模型">
+<ol start="2">
+<li>实体模型：遵循 OO 规范</li>
+</ol>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/%E5%AE%9E%E4%BD%93%E6%A8%A1%E5%9E%8B.png" class="" width="488" title="实体模型">
+</blockquote>
+<ul>
+<li>业务服务的派生类型</li>
+</ul>
+<blockquote>
+<ol>
+<li>以任务为核心的业务服务（灵活性）</li>
+</ol>
+<blockquote>
+<ul>
+<li>可能来源：用例模型，BPM 流程定义</li>
+<li>较少分析工作，有限复用潜力</li>
+<li>需要对多个用例和业务流程模型进行分析以识别公共性</li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>以实体为核心的业务服务（稳定性）</li>
+</ol>
+<blockquote>
+<ul>
+<li>来源：实体模型</li>
+<li>较多分析工作，不包含业务流程逻辑，较高复用潜力</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>业务服务与编排（灵活）</li>
+</ul>
+<blockquote>
+<ol>
+<li>业务中心化</li>
+<li>编排能够组合以任务为核心的工作服务和以实体为核心的业务服务</li>
+</ol>
+<blockquote>
+<ul>
+<li>基本的业务模型由以实体为核心的服务来表示</li>
+<li>与业务逻辑相关的任务由以任务为核心的服务来表示</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>在不影响业务服务和应用服务的前提下进行业务规则和业务逻辑的变更</li>
+</ol>
+</blockquote>
+<h3 id="2-4-服务建模的过程">2.4 服务建模的过程</h3>
+<ul>
+<li>分解业务流程</li>
+<li>识别业务服务候选逻辑</li>
+</ul>
+<blockquote>
+<ol>
+<li>识别业务流程中不应该被抽象为服务候选的步骤</li>
+</ol>
+<blockquote>
+<ul>
+<li>不能或者不应该被自动化的手工流程步骤</li>
+<li>流程步骤由现有遗留逻辑加以执行，且不允许被封装为服务候选</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li>分析潜在的可复用性，具备潜在复用性的流程步骤，应充分考虑被抽象为单独的服务候选</li>
+</ol>
+</blockquote>
+<ul>
+<li>抽象编排逻辑</li>
+</ul>
+<blockquote>
+<ol>
+<li>定义由编排层完成的潜在逻辑</li>
+</ol>
+<blockquote>
+<ul>
+<li>业务规则</li>
+<li>条件逻辑</li>
+<li>异常逻辑</li>
+<li>序列逻辑</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li>创建的编排逻辑亦为服务操作候选</li>
+</ol>
+</blockquote>
+<ul>
+<li>创建业务服务候选：在创建业务服务候选时，充分考虑业务中立，引入对额外的服务操作候选的分析</li>
+<li>提炼和应用面向服务原则（复用、自治）</li>
+<li>识别服务候选组合</li>
+</ul>
+<blockquote>
+<ol>
+<li>假想一系列业务流程中的通用场景</li>
+</ol>
+<blockquote>
+<ul>
+<li>有助于识别当前的业务流程步骤划分是否合理</li>
+<li>显示编排服务层和业务服务层之间的潜在关系</li>
+<li>定义潜在的服务组合</li>
+<li>突出显现当前缺失的工作流逻辑或过程步骤</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>修订业务服务候选</li>
+<li>分析应用处理需求</li>
+</ul>
+<blockquote>
+<ol>
+<li>为了完成服务操作候选描述的动作，需要执行那些底层应用逻辑</li>
+<li>所需的应用逻辑是否存在，是否需要全新开发</li>
+<li>所需的应用逻辑是否跨越应用边界，即是否需要多个系统完成该应用逻辑</li>
+</ol>
+</blockquote>
+<ul>
+<li>识别应用服务操作候选：不应与业务流程步骤的上下文相关</li>
+<li>创建应用服务候选</li>
+<li>修订服务候选组合</li>
+<li>修订应用服务候选</li>
+<li>保存服务候选库存（文档化或形式化方式，可选步骤）</li>
+</ul>
+<h2 id="3-面向服务的设计">3. 面向服务的设计</h2>
+<ul>
+<li>在面对服务设计的过程中，通过从服务候选（逻辑）派生出具体的服务设计（物理），然后装配到实现业务流程的抽象组合中</li>
+<li>面向服务设计的目标</li>
+</ul>
+<blockquote>
+<ol>
+<li>确定架构扩展的核心集合（协议及版本）</li>
+<li>设定架构的边界</li>
+<li>识别所需的设计标准</li>
+<li>定义抽象服务接口设计</li>
+<li>识别潜在的服务组合</li>
+<li>评估面向服务原则的支持</li>
+<li>探究 SOA 特征的支持</li>
+</ol>
+</blockquote>
+<h3 id="3-1-面向服务的设计过程">3.1 面向服务的设计过程</h3>
+<ul>
+<li>组合 SOA</li>
+</ul>
+<blockquote>
+<ol>
+<li>选择服务层</li>
+</ol>
+<blockquote>
+<ul>
+<li>必选：以业务核心的服务</li>
+<li>对内：用应用服务封装实现</li>
+<li>对外：用编排服务来封装灵活变化的流程</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li>定位核心的 SOA 标准（协议、版本）</li>
+<li>选择 SOA 扩展</li>
+</ol>
+</blockquote>
+<ul>
+<li>设计服务</li>
+</ul>
+<blockquote>
+<ol>
+<li>设计以实体为核心的业务服务</li>
+<li>设计应用服务</li>
+<li>设计以任务为核心的业务服务</li>
+</ol>
+</blockquote>
+<ul>
+<li>设计面向服务的业务过程</li>
+<li>WSDL 优先的服务设计（主要是服务合约的设计）</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务被设计为精确表达对应服务候选的上下文和功能</li>
+<li>约定服务操作命名标准，从而产生标准化的接入点定义</li>
+<li>抽象地对操作的粒度进行建模，提供一致性和可预知的接口设计，从而得到消息大小以及适应于目标通讯架构的负载比例</li>
+<li>要求底层应用遵循服务设计的表示（现有服务合约，再有服务实现），否则，常会使得业务层需要组合依赖于 RPC 风格的通信的旧由组件</li>
+<li>业务服务的设计由业务领域专家辅助完成，以确保业务逻辑的精确表示</li>
+</ol>
+</blockquote>
+<h3 id="3-2-以实体为核心的业务服务设计">3.2 以实体为核心的业务服务设计</h3>
+<ul>
+<li>审查现存服务：服务建模时已经考虑现有服务，设计时再次审查以确保服务操作候选所表示的部分或所有功能并不存在与现有的其他服务中</li>
+<li>定义消息 Schema 类型（不推荐从无到有定义类型，数据类型应该谁拥有谁定义）</li>
+<li>提取抽象服务接口</li>
+<li>应用面向服务原则</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务可复用性</li>
+<li>服务自治</li>
+<li>服务无状态</li>
+<li>服务可发现性</li>
+</ol>
+</blockquote>
+<ul>
+<li>标准化并完善服务接口</li>
+</ul>
+<blockquote>
+<ol>
+<li>审查并应用现存设计标准和原则</li>
+<li>修订服务设计</li>
+<li>验证 WS-I 基本概要的一致性要求（完成到目前为止产物的校验）</li>
+</ol>
+</blockquote>
+<ul>
+<li>扩展服务设计</li>
+</ul>
+<blockquote>
+<ol>
+<li>添加新操作</li>
+<li>在现存操作中添加新参数</li>
+<li>实体为核心的服务的一组经典操作：</li>
+</ol>
+<blockquote>
+<ul>
+<li>Get Something</li>
+<li>Update Something</li>
+<li>Add Something</li>
+<li>Delete Something</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>识别必要处理：在服务建模的基础上进一步识别应用服务</li>
+</ul>
+<h3 id="3-3-应用服务设计">3.3 应用服务设计</h3>
+<ul>
+<li>审查现有服务</li>
+</ul>
+<blockquote>
+<ol>
+<li>避免应用服务内的冗余</li>
+<li>考虑使用第三方服务（业务、实体服务几乎不可能，所以不用考虑）</li>
+</ol>
+</blockquote>
+<ul>
+<li>确认上下文：在与现有服务设计所构成的上下文进行对比的基础上，重新评估由服务候选所提议的操作候选分组（在以实体为核心的服务中，由于实体模型已经预定义了上下文，故不需要此步骤）</li>
+<li>提取初始服务的服务接口</li>
+<li>应用面向服务原则</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务可复用性：审查现存的操作候选，以确保设计的通用和可复用</li>
+<li>服务自治；确保用以执行服务操作的底层应用逻辑不强制依赖于该服务，且自身也没有依赖性</li>
+<li>服务无状态：不同的应用平台和实现环境带来的挑战（功能/性能）</li>
+<li>服务可发现性：以统一方式描述，使用元数据标注服务</li>
+</ol>
+</blockquote>
+<ul>
+<li>标准化并提炼服务接口</li>
+</ul>
+<blockquote>
+<ol>
+<li>审查并应用现存设计标准和原则</li>
+<li>审查设计目标，修订服务设计</li>
+<li>验证 WS-I 基本概要的一致性要求（完成到目前为止产物的校验）</li>
+</ol>
+</blockquote>
+<ul>
+<li>为服务候选引入推理性特性</li>
+</ul>
+<blockquote>
+<ol>
+<li>可能修改现有操作或引入全新操作，需回溯到第 1 步</li>
+<li>如需要调整或新加入特性时，需回溯到第 2～5 步以确保良好和一致的设计</li>
+</ol>
+</blockquote>
+<ul>
+<li>识别技术约束</li>
+</ul>
+<blockquote>
+<ol>
+<li>特定功能的物理接入点（需要引用什么组件、需要调用什么 API 函数、需要激活什么适配器）</li>
+<li>与处理过程中任意部分相关的安全性约束</li>
+<li>每个处理功能的响应时间</li>
+<li>执行处理功能的底层系统的可用性</li>
+<li>与服务部署位置相关的环境因素</li>
+<li>底层应用逻辑的技术限制（尤其是当面临遗留系统时）</li>
+<li>服务所带来的管理需求</li>
+<li>潜在的 SLA（服务合约）需求</li>
+</ol>
+</blockquote>
+<h3 id="3-4-以任务为核心的业务服务设计">3.4 以任务为核心的业务服务设计</h3>
+<ul>
+<li>定义工作流逻辑</li>
+</ul>
+<blockquote>
+<ol>
+<li>为每个可能的交互场景定义逻辑（执行路径）</li>
+<li>便于提供定义类型、操作和消息格式的消息</li>
+</ol>
+</blockquote>
+<ul>
+<li>提取服务接口</li>
+</ul>
+<blockquote>
+<ol>
+<li>根据活动图派生服务所需执行的动作集合</li>
+<li>服务其他服务的接口（WSDL）和类型（XSD Schema）</li>
+</ol>
+</blockquote>
+<ul>
+<li>应用面向服务原则</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务可复用性：相对较弱，仍可对子流程进行抽象，达成跨流程和流程内的复用</li>
+<li>服务自治：取决于底层子服务的自治性</li>
+<li>服务无状态：使用文档风格的 SOAP 消息来转义状态信息</li>
+<li>服务可发现性：要求相对较高，使用元数据标注服务</li>
+</ol>
+</blockquote>
+<ul>
+<li>标准化并完善服务接口</li>
+</ul>
+<blockquote>
+<ol>
+<li>审查并应用现存设计标准和原则</li>
+<li>审查设计目标，修订服务设计</li>
+<li>验证 WS-I 基本概要的一致性要求（完成目前位置产物的校验）</li>
+</ol>
+</blockquote>
+<ul>
+<li>识别所需要的处理</li>
+</ul>
+<blockquote>
+<ol>
+<li>鉴于复用性，以任务为核心的业务服务可能调用了以实体为核心的业务服务，应用服务以及其他的以任务为核心的业务服务。</li>
+<li>确定所需子服务已经存在或者已经完成设计，否则需要重新进行考虑</li>
+</ol>
+</blockquote>
+<h3 id="3-5-面向服务的业务流程设计">3.5 面向服务的业务流程设计</h3>
+<ul>
+<li>传统上</li>
+</ul>
+<blockquote>
+<ol>
+<li>业务流程由分析师采用建模工具设计，产生图标交给架构师和开发者实现</li>
+<li>在一个自动化解决方案中，工作流程图及其相应的文档是传达该逻辑应如何实现的唯一方式</li>
+</ol>
+</blockquote>
+<ul>
+<li>面向服务的业务流程设计</li>
+</ul>
+<blockquote>
+<ol>
+<li>技术分析师和系统架构师来图形化地创建代表他们工作的工作流逻辑和业务流程图，并自动转化并对应到 BPEL 脚本</li>
+<li>更加自动化的工具使得业务分析师可以在不了解 BPEL 的前提下，完成流程的设计</li>
+</ol>
+</blockquote>
+<h2 id="4-服务的开发、测试及其它">4. 服务的开发、测试及其它</h2>
+<h3 id="4-1-服务的开发">4.1 服务的开发</h3>
+<ul>
+<li>在具体开发平台上，使用特定语言</li>
+</ul>
+<blockquote>
+<ol>
+<li>开发定制服务</li>
+<li>包装遗留系统（查漏补缺）</li>
+<li>构建应用系统</li>
+</ol>
+</blockquote>
+<h3 id="4-2-服务的测试">4.2 服务的测试</h3>
+<ul>
+<li>服务的潜在访问者有哪些类型</li>
+<li>能够满足所有服务策略断言吗</li>
+<li>服务可能会面临怎样的异常情况</li>
+<li>服务描述在多大程度上良好表达了服务语义</li>
+<li>修订后的服务描述是否改变或扩展了前一版本</li>
+<li>服务被组合的简易程度有多高</li>
+<li>服务描述被发现的简易程度有多高</li>
+<li>是否遵循了 WS-I 该要的要求</li>
+<li>会出现什么与数据类型相关的问题</li>
+<li>是否已经提出了所有可能的服务活动和服务组合</li>
+<li>补偿过程是否已经被充分测试</li>
+<li>在补偿过程汇总出现异常时，会发生什么</li>
+<li>新的服务是否遵循了已有的设计规范</li>
+<li>新服务是否引入了定制的 SOAP 头，如果有，是否所有的潜在调用者（包括中间节点）也需要引入，并对他们进行理解和处理</li>
+<li>新服务是否引入了当前架构不支持的功能或 QoS 需求</li>
+</ul>
+<h3 id="4-3-面向服务的测试的特点">4.3 面向服务的测试的特点</h3>
+<ul>
+<li>基于规约的测试</li>
+</ul>
+<blockquote>
+<ol>
+<li>服务用户可能没有看到或看不到源码</li>
+<li>服务提供者虽然没有看见源码，可能不知道源码会被谁使用以及如何使用</li>
+<li>服务代理了解服务规约，但是依然不知道具体的使用方法和源码</li>
+</ol>
+</blockquote>
+<ul>
+<li>动态性测试</li>
+<li>协同测试</li>
+</ul>
+<blockquote>
+<ol>
+<li>协同验证与确认（CV &amp; V）</li>
+<li>独立验证预确认（IV &amp; V）</li>
+</ol>
+</blockquote>
+<h3 id="4-4-面向服务的测试方法">4.4 面向服务的测试方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">测试方法</th>
+<th style="text-align:left">如何测试</th>
+<th style="text-align:left">应用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">不测试</td>
+<td style="text-align:left">不做任何测试</td>
+<td style="text-align:left">一些对计算可信性要求不高的个人或小型应用</td>
+</tr>
+<tr>
+<td style="text-align:left">“相信我，没错的！”</td>
+<td style="text-align:left">用公司信誉作服务质量担保</td>
+<td style="text-align:left">对日常的许多应用都是可以的，但不是用于对计算可信性较高的应用<br>是用信誉或法律来保障服务软件的质量</td>
+</tr>
+<tr>
+<td style="text-align:left">“统统高告诉我‘代码’”</td>
+<td style="text-align:left">测试一些可能的组合，仅使用那些通过测试的组合</td>
+<td style="text-align:left">服务提供者愿意提供源代码<br>评估比较客观<br>真正进行测试以确保软件质量<br>由于需要测试所有组合，且组合总数十分庞大，代价很昂贵</td>
+</tr>
+<tr>
+<td style="text-align:left">CV &amp; V</td>
+<td style="text-align:left">用户选择进过排名的服务</td>
+<td style="text-align:left">SOA 框架中的每一方（服务用户、服务中介和服务提供者）都需要参与到 CV &amp; V 过程中来<br>评估比较客观<br>真正进行测试以确保软件的质量<br>可以对新组合的应用程序进行运行时的测试</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-5-WebStar">4.5 WebStar</h3>
+<ul>
+<li>用以发布与服务相关的测试资产，如测试用例、测试用例的排名方法、测试生成方法、测试生成方法排名、软件可靠性模型、软件可靠性模型的排名方法</li>
+<li>用以提供服务排名、测试用例排名、测试方法排名、可靠性模型排名</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/WebStar.png" class="" width="640" title="WebStar">
+<h3 id="4-6-服务的部署">4.6 服务的部署</h3>
+<ul>
+<li>服务如何部署</li>
+<li>基础设施是否能够适应满足所有服务的处理需求</li>
+<li>引入新服务将如何影响现有的服务和应用</li>
+<li>如何定位和部署在多个解决方案中复用的服务</li>
+<li>引入所需要的中间件将如何影响现有环境</li>
+<li>在服务引入新版本的服务描述时，是否需要和现有版本一起部署</li>
+<li>需要怎样的安全设置和账号</li>
+<li>为适应计划中或不可预见的扩展性需求，如何维护服务池</li>
+<li>如何维护和监管具有性能和可靠性限制的包装遗留系统</li>
+</ul>
+<h3 id="4-7-服务的管理">4.7 服务的管理</h3>
+<ul>
+<li>如何监管服务的使用</li>
+<li>为了管理服务描述文档，需要何种形式的版本控制</li>
+<li>如何跟踪和管理信小溪</li>
+<li>如何检测性能瓶颈</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2020/05/26/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E5%BB%BA/">https://hotarugali.github.io/2020/05/26/Technique/ServiceComputing/服务生态系统的构建/服务生态系统的构建/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/ServiceComputing/">ServiceComputing</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/1043.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/26/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AE%A1%E7%AE%97/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AE%A1%E7%AE%97/" title="服务生态系统与面向服务的计算"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1501.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">服务生态系统与面向服务的计算</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/26/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" title="服务设计原则"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1427.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">服务设计原则</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/05/26/Technique/ServiceComputing/WebService%E6%89%A9%E5%B1%95/WebService%E6%89%A9%E5%B1%95/" title="WebService扩展"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1443.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">WebService扩展</div></div></a></div><div><a href="/2020/05/26/Technique/ServiceComputing/WebService%E6%A0%B8%E5%BF%83/WebService%E6%A0%B8%E5%BF%83/" title="WebService核心"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1280.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">WebService核心</div></div></a></div><div><a href="/2020/05/26/Technique/ServiceComputing/XML%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8D%8F%E8%AE%AE/XML%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8D%8F%E8%AE%AE/" title="XML及相关协议"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/679.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">XML及相关协议</div></div></a></div><div><a href="/2020/05/26/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/%E6%9C%8D%E5%8A%A1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%9B%E5%9E%8B/" title="服务、服务系统与面向服务的泛型"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/350.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">服务、服务系统与面向服务的泛型</div></div></a></div><div><a href="/2020/05/26/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AE%A1%E7%AE%97/%E6%9C%8D%E5%8A%A1%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E4%B8%8E%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AE%A1%E7%AE%97/" title="服务生态系统与面向服务的计算"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1501.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">服务生态系统与面向服务的计算</div></div></a></div><div><a href="/2020/05/26/Technique/ServiceComputing/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" title="服务设计原则"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1427.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">服务设计原则</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9C%8D%E5%8A%A1%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">1. 服务生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%9F%BA%E6%9C%AC%E9%98%B6%E6%AE%B5"><span class="toc-text">1.1 基本阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91-%E5%BA%94%E7%94%A8%E9%80%BB%E8%BE%91"><span class="toc-text">1.2 业务逻辑&#x2F;应用逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%9C%8D%E5%8A%A1%E5%B1%82%E6%AC%A1"><span class="toc-text">1.3 服务层次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E4%BA%A4%E4%BB%98%E7%AD%96%E7%95%A5"><span class="toc-text">1.4 面向服务的交付策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-text">2. 面向服务的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%88%86%E6%9E%90%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">2.1 面向服务的分析的目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%88%86%E6%9E%90%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-text">2.2 面向服务分析的流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E4%BB%A5%E4%B8%9A%E5%8A%A1%E4%B8%BA%E6%A0%B8%E5%BF%83%E7%9A%84-SOA"><span class="toc-text">2.3 以业务为核心的 SOA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E6%9C%8D%E5%8A%A1%E5%BB%BA%E6%A8%A1%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-text">2.4 服务建模的过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">3. 面向服务的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B"><span class="toc-text">3.1 面向服务的设计过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BB%A5%E5%AE%9E%E4%BD%93%E4%B8%BA%E6%A0%B8%E5%BF%83%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.2 以实体为核心的业务服务设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.3 应用服务设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E4%BB%A5%E4%BB%BB%E5%8A%A1%E4%B8%BA%E6%A0%B8%E5%BF%83%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.4 以任务为核心的业务服务设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.5 面向服务的业务流程设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%BC%80%E5%8F%91%E3%80%81%E6%B5%8B%E8%AF%95%E5%8F%8A%E5%85%B6%E5%AE%83"><span class="toc-text">4. 服务的开发、测试及其它</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%BC%80%E5%8F%91"><span class="toc-text">4.1 服务的开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B5%8B%E8%AF%95"><span class="toc-text">4.2 服务的测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B5%8B%E8%AF%95%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">4.3 面向服务的测试的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-text">4.4 面向服务的测试方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-WebStar"><span class="toc-text">4.5 WebStar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%83%A8%E7%BD%B2"><span class="toc-text">4.6 服务的部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-text">4.7 服务的管理</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1043.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>操作系统级防护方法 | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 操作系统安全问题 1.1 计算机感染恶意软件或被入侵  运行了恶意代码（email 附件, 下载并执行了 trojan 木马, 运行了受感染的硬盘） 运行了有 bug 的 daemon 程序（ftpd, httpd） 运行了有 bug 的客户端程序（web 浏览器, mail 客户端） 读取了有病毒和 bug 的文件 配置错误（弱口令，guest 帐户，DEBUG options，不正确的访">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统级防护方法">
+<meta property="og:url" content="https://hotarugali.github.io/2020/05/28/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="1. 操作系统安全问题 1.1 计算机感染恶意软件或被入侵  运行了恶意代码（email 附件, 下载并执行了 trojan 木马, 运行了受感染的硬盘） 运行了有 bug 的 daemon 程序（ftpd, httpd） 运行了有 bug 的客户端程序（web 浏览器, mail 客户端） 读取了有病毒和 bug 的文件 配置错误（弱口令，guest 帐户，DEBUG options，不正确的访">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/489.jpg">
+<meta property="article:published_time" content="2020-05-28T00:30:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.637Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="System">
+<meta property="article:tag" content="Security">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/489.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2020/05/28/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '操作系统级防护方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/489.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">操作系统级防护方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-28T00:30:00.000Z" title="发表于 2020-05-28 08:30:00">2020-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.637Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/System/">System</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/System/Security/">Security</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="操作系统级防护方法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-操作系统安全问题">1. 操作系统安全问题</h2>
+<h3 id="1-1-计算机感染恶意软件或被入侵">1.1 计算机感染恶意软件或被入侵</h3>
+<ul>
+<li>运行了恶意代码（email 附件, 下载并执行了 trojan 木马, 运行了受感染的硬盘）</li>
+<li>运行了有 bug 的 daemon 程序（ftpd, httpd）</li>
+<li>运行了有 bug 的客户端程序（web 浏览器, mail 客户端）</li>
+<li>读取了有病毒和 bug 的文件</li>
+<li>配置错误（弱口令，guest 帐户，DEBUG options，不正确的访问控制配置，etc）</li>
+</ul>
+<h3 id="1-2-原因">1.2 原因</h3>
+<ul>
+<li>软件有漏洞（内存错误：缓冲区溢出、栈溢出、……）</li>
+<li>漏洞会被利用</li>
+<li>尽管有多层防御机制，但也会遭到破坏（没有一个安全机制是坚不可摧的）</li>
+<li>安全问题的发生多是因为访问控制不当</li>
+</ul>
+<h3 id="1-3-UNIX-访问控制的一些问题">1.3 UNIX 访问控制的一些问题</h3>
+<ul>
+<li>设计系统时仅考虑单机上的用户共享系统, 未考虑网络攻击和软件 bug</li>
+<li>粗粒度：访问控制时取决于 user id；但该一个 user 可能运行多个程序（一些程序是不可信的），这些程序以同样的权限运行，如果每个程序拥有各自有限的权限会提高安全性</li>
+<li>root 功能太强大</li>
+</ul>
+<h3 id="1-4-解决方法">1.4 解决方法</h3>
+<ul>
+<li>虚拟化限制</li>
+</ul>
+<blockquote>
+<ol>
+<li>限制进程在有限空间内，不影响其它进程</li>
+<li>三种虚拟化技术</li>
+</ol>
+</blockquote>
+<ul>
+<li>细粒度的、基于进程的强制访问控制（Mandatory Access Control）</li>
+</ul>
+<blockquote>
+<p>目的是更好的实现最小特权: 分配一个程序其需要的权限，不同于按用户进行权限划分</p>
+</blockquote>
+<ul>
+<li>root 权限分开</li>
+</ul>
+<h2 id="2-虚拟化限制方法">2. 虚拟化限制方法</h2>
+<h3 id="2-1-操作系统级虚拟化">2.1 操作系统级虚拟化</h3>
+<p>运行在单核下, 单操作系统上运行多个虚拟服务；服务提供者可以利用较低的代价提供主机服务。</p>
+<blockquote>
+<ol>
+<li>优点：性能高，建立和管理比较容易</li>
+<li>缺点：所有服务在单操作系统上，虚拟服务可能打破虚拟限制破坏操作系统</li>
+</ol>
+</blockquote>
+<ul>
+<li>chroot 系统调用：<br>
+改变当前进程和子进程到指定路径下的“根”目录，新的“根”目录（常称 jail）受真正的 root 的文件系统约束</li>
+</ul>
+<blockquote>
+<ol>
+<li>一般的目录架构：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/ </span><br><span class="line">/bin </span><br><span class="line">/sbin </span><br><span class="line">/usr/bin </span><br><span class="line">/home </span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>chroot 的目录架构：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/hell/ </span><br><span class="line">/hell/bin </span><br><span class="line">/hell/sbin</span><br><span class="line">/hell/usr/bin </span><br><span class="line">/hell/home  </span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>chroot 的作用</li>
+</ol>
+<blockquote>
+<ul>
+<li>限制被 chroot 的使用者所能执行的程序，如 SetUid 的程序，或是会造成 Load 的 Compiler 等等</li>
+<li>防止使用者存取某些特定文件，如 /etc/passwd</li>
+<li>防止入侵者 /bin/rm -rf /</li>
+<li>提供 Guest 服务</li>
+<li>增进系统的安全</li>
+<li>为一个运行的进程创建一个临时的 root 目录，并在新建的 root 目录中放入有限的应用</li>
+</ul>
+</blockquote>
+<ol start="4">
+<li>chroot 的优点</li>
+</ol>
+<blockquote>
+<ul>
+<li>增加了系统的安全性，限制了用户的权力：在经过 chroot 之后，在新根下将访问不到旧系统的根目录结构和文件，这样就增强了系统的安全性</li>
+<li>建立一个与原系统隔离的系统目录结构，方便用户的开发：使用 chroot 后，系统读取的是新根下的目录和文件，这是一个与原系统根下文件不相关的目录结构。在这个新的环境中，可以用来测试软件的静态编译以及一些与系统不相关的独立开发程序</li>
+<li>切换系统的根目录位置，引导 Linux 系统启动以及急救系统等：chroot 的作用就是切换系统的根位置，而这个作用最为明显的是在系统初始引导磁盘的处理过程中使用，从初始 RAM 磁盘 (initrd) 切换系统的根位置并执行真正的 init。另外，当系统出现一些问题时，我们也可以使用 chroot 来切换到一个临时的系统</li>
+</ul>
+</blockquote>
+<ol start="5">
+<li>chroot 的缺点</li>
+</ol>
+<blockquote>
+<ul>
+<li>仅 root 用户可运行 chroot：应防止用户将一个 setuid 程序(如, 一个假的 /etc/passwd 文件)放入一个特殊编制的 chroot 环境以避免受骗而获得高权限</li>
+<li>chroot 并非在所有系统上都完全安全：因为是 root 权限下的 chroot 环境，一旦攻破 chroot 会影响 root 安全</li>
+<li>chroot 环境也会影响其它进程和网络空间</li>
+<li>chroot 不能限制 I/O、带宽, 磁盘空间、CPU 时间等资源</li>
+</ul>
+</blockquote>
+<ol start="6">
+<li>chroot 的一些原则</li>
+</ol>
+<blockquote>
+<ul>
+<li>在chroot环境下以 non-root user 运行</li>
+<li>正确的 “放弃” 权限</li>
+</ul>
+<blockquote>
+<ol>
+<li>程序利用 saved uid 在 non-root user 和 root 用户切换</li>
+<li>利用无歧义函数 setresuid() seteuid(), setreuid()</li>
+</ol>
+</blockquote>
+<ul>
+<li>利用 chdir 显式进入 jail</li>
+<li>在 jail 环境中内容尽量少</li>
+<li>尽可能让 root 管理 jailed 文件</li>
+<li>限制 jail 内文件和目录的权限</li>
+<li>建立权限设置脚本</li>
+<li>不要在 jail 环境存放 /etc/passwd 文件</li>
+</ul>
+<blockquote>
+<ol>
+<li>/etc/passwd 跟 $CHROOT/etc/passwd 相同：被攻击者有机会得到 root 的 encrypted password；要保持 /etc/passwd 及 $CHROOT/etc/passwd 的同步性是个大问题</li>
+<li>/etc/passwd 跟 $CHROOT/etc/passwd 不同：可以把 $CHROOT/etc/passwd 中的重要人物（如 root）的密码拿掉，然后以比较复杂的方法修改 /usr/bin/login</li>
+</ol>
+</blockquote>
+<ul>
+<li>在建立 jail 环境前关闭文件描述符（在创建 jail 时，已打开的文件描述符能够通过 dup 被复制）</li>
+<li>chroot 配置了网络服务后，外部需要查看 chroot 环境的配置文件，从外部连接配置文件：<code>ln -s /chroot/named/etc/named.conf /etc/named.conf</code>（尽量让 root 管理配置文件，保持配置文件一致）</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>FreeBSD 系统下 Jail</li>
+</ul>
+<blockquote>
+<ol>
+<li>
+<p>Jail 提供分散化的管理（partitioning）, 与虚拟机相似</p>
+</li>
+<li>
+<p>Jail 内的限制因素</p>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li>访问文件名空间时仅受限于 jail 内部</li>
+<li>可限制绑定在指定 IP 地址下的网络资源</li>
+<li>使用系统资源、执行特权操作能力大大减少</li>
+<li>仅能与 jail 内其它进程交互</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>FreeBSD jail 的三个目标</li>
+</ol>
+<blockquote>
+<ul>
+<li>虚拟化: 每个 jail 是一个运行于单机的虚拟环境 ，拥有自己的文件、进程、用户、超级用户。在 jail 内部看起来和真实系统一样</li>
+<li>安全: 每个 jail 和其他部分无关联，破坏其他部分比较困难</li>
+<li>容易授权: 因为 jail 是受限环境, 管理员授权后对整个系统影响不大</li>
+</ul>
+</blockquote>
+<ol start="4">
+<li>FreeBSD jail 缺点</li>
+</ol>
+<blockquote>
+<ul>
+<li>FreeBSD jail 并不是真正的虚拟化，不同于虚拟机，不能运行不同的操作内核版本，利用原操作系统内核进行上级配置<br>
+所有虚拟服务共享同一内核，可利用操作系统的bugs 和安全漏洞进行攻击<br>
+没有聚簇和进程迁移能力, 主机内核和主机系统的单点失效影响所有虚拟服务</li>
+</ul>
+</blockquote>
+<ol start="5">
+<li>FreeBSD jail 安全</li>
+</ol>
+<blockquote>
+<ul>
+<li>FreeBSD jails 可有效增加服务安全性，因为jail 环境和其它部分是分离的</li>
+<li>在网络管理方面，安全性相比 chroot 要高很多</li>
+<li>对FreeBSD jail的限制：</li>
+</ul>
+<blockquote>
+<ol>
+<li>Jail 间进程不能互相干扰（ps 只能查看 jail 内进程）</li>
+<li>禁止访问和加载模块以防修改正在运行的内核. 禁止修改多数 sysctrls 配置和安全级别</li>
+<li>禁止修改网络配置, 包括接口和 IP 地址、禁止访问路由表。jail 仅能绑定指定 IP 地址，不可以修改防火墙规则</li>
+<li>禁止 Mounting、unmounting 文件系统。不能访问 Jail 外的目录</li>
+</ol>
+</blockquote>
+</blockquote>
+<ol start="6">
+<li>FreeBSD jail 优点</li>
+</ol>
+<blockquote>
+<ul>
+<li>可在不同 jail 中安装不同的 daemon</li>
+<li>jail 内管理员授权方便</li>
+</ul>
+<blockquote>
+<ol>
+<li>jail内的超级用户具有有限特权 (如，不能修改防火墙规则)</li>
+<li>很难越过jail环境，很难获得jail外系统环境信息</li>
+</ol>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="2-2-虚拟机">2.2 虚拟机</h3>
+<p>在用户进程中模拟硬件（模拟软件运行在主机 OS上，guest OS 运行在模拟软件上）</p>
+<ul>
+<li>优点：不修改 OS，可直接运行多个 guest OS</li>
+<li>缺点：性能差</li>
+</ul>
+<h3 id="2-3-虚拟指令集">2.3 虚拟指令集</h3>
+<ul>
+<li>
+<p>无主机 OS, 一个小型的虚拟指令集运行在硬件上, 修改 guest OSes 后在上面运行</p>
+</li>
+<li>
+<p>能使不同和不兼容的 OS 运行在同一台计算机上</p>
+</li>
+<li>
+<p>优点：比虚拟机性能高；比操作系统级虚拟化支持多 OSes</p>
+</li>
+<li>
+<p>缺点：每个 guest OS 需修改后才能运行（新 OS 版本需要打补丁）</p>
+</li>
+</ul>
+<h2 id="3-root-权限划分">3. root 权限划分</h2>
+<h3 id="3-1-POSIX-Linux-内核能力">3.1 POSIX/Linux 内核能力</h3>
+<ul>
+<li>Linux 内核将 root 权限分为多种能力</li>
+</ul>
+<blockquote>
+<ol>
+<li><strong>CAP_CHOWN 0</strong> ：允许改变文件的所有权</li>
+<li><strong>CAP_DAC_OVERRIDE 1</strong> ：忽略对文件的所有 DAC 访问限制</li>
+<li><strong>CAP_DAC_READ_SEARCH 2</strong> ：忽略文件读及目录搜索的 DAC 访问限制</li>
+<li><strong>CAP_FOWNER 3</strong> ：忽略文件属主 ID 必须和进程用户 ID 相匹配的限制（最后操作的UID会覆盖文件的先前的UID）</li>
+<li><strong>CAP_FSETID 4</strong> ：允许设置文件 setuid 位</li>
+<li><strong>CAP_KILL 5</strong> ：允许对不属于自己的进程发送信号</li>
+<li><strong>CAP_SETGID 6</strong> ：允许改变组ID</li>
+<li><strong>CAP_SETUID 7</strong> ：允许改变进程的用户 ID</li>
+<li><strong>CAP_SETPCAP 8</strong> ：允许向其他进程转移能力以及删除其他进程的能力</li>
+<li><strong>CAP_LINUX_IMMUTABLE 9</strong> ：允许修改文件的 IMMUTABLE（不可修改）和 APPEND（只添加）属性标志</li>
+<li><strong>CAP_NET_BIND_SERVICE 10</strong> ：允许绑定到 1024 以下的 TCP/UDP sockets 和 32 以下的 ATM VCIs</li>
+<li><strong>CAP_NET_BROADCAST 11</strong> ：允许广播，监听多播</li>
+<li><strong>CAP_NET_ADMIN 12</strong> ：允许执行网络管理任务</li>
+<li><strong>CAP_NET_RAW 13</strong> ：允许使用原始套接字</li>
+<li><strong>CAP_IPC_LOCK 14</strong> ：允许锁定共享内存片段</li>
+<li><strong>CAP_IPC_OWNER 15</strong> ：忽略 IPC 所有权检查</li>
+<li><strong>CAP_SYS_MODULE 16</strong> ：允许插入和删除内核模块</li>
+<li><strong>CAP_SYS_RAWIO 17</strong> ：允许直接访问 /devport，/dev/mem，/dev/kmem 及原始块设备</li>
+<li><strong>CAP_SYS_CHROOT 18</strong> ：允许使用 chroot() 系统调用</li>
+<li><strong>CAP_SYS_PTRACE 19</strong> ：允许跟踪任何进程</li>
+<li><strong>CAP_SYS_PACCT 20</strong> ：允许执行进程的 BSD 式审计</li>
+<li><strong>CAP_SYS_ADMIN 21</strong> ：允许执行系统管理任务，如加载或卸载文件系统、设置磁盘配额等</li>
+<li><strong>CAP_SYS_BOOT 22</strong> ：允许重新启动系统</li>
+<li><strong>CAP_SYS_NICE 23</strong> ：允许提升优先级及设置其他进程的优先级</li>
+<li><strong>CAP_SYS_RESOURCE 24</strong> ：忽略资源限制</li>
+<li><strong>CAP_SYS_TIME 25</strong> ：允许改变系统时钟</li>
+<li><strong>CAP_SYS_TTY_CONFIG 26</strong> ：允许配置TTY设备</li>
+<li><strong>CAP_MKNOD 27</strong> ：允许使用 mknod() 系统调用</li>
+<li><strong>CAP_LEASE 28</strong> ：允许修改文件锁的 FL_LEASE 标志</li>
+</ol>
+</blockquote>
+<ul>
+<li>实现能力集要求：</li>
+</ul>
+<blockquote>
+<ol>
+<li>对所有特权操作，内核必须检查进程的能力位是否 effective</li>
+<li>内核提供相应的系统调用，进程获得或改变能力集</li>
+<li>文件系统应支持可执行文件与相应的能力集相对应，使得可执行文件运行时获得对应的能力</li>
+</ol>
+</blockquote>
+<ul>
+<li>进程的能力表示：每个进程有三个能力集</li>
+</ul>
+<blockquote>
+<ol>
+<li><strong>effective</strong> ：进程进行某个特权操作时，操作系统检查 cap_effective 的对应位是否有效，而不再是检查进程的有效 UID 是否为0</li>
+<li><strong>permitted</strong> ：表示进程能够使用的能力，这些能力是被进程自己临时放弃的， cap_effective 是 cap_permitted 的一个子集</li>
+<li><strong>inheritable</strong> ：加载新进程时可继承的能力</li>
+</ol>
+</blockquote>
+<ul>
+<li>可执行文件的能力表示：可执行文件的能力集如下</li>
+</ul>
+<blockquote>
+<ol>
+<li><strong>allowed(inheritable)</strong> ：可继承的能力</li>
+<li><strong>forced(permitted)</strong> ：可获得的能力</li>
+<li><strong>transfer(effective)</strong> ：从 permitted 转化为 effective 的能力</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p>能力边界集：能力边界集（capability bounding set）是系统中所有进程允许保留的能力</p>
+</li>
+<li>
+<p>系统调用接口：系统调用 capset 和 capget 设置和获得进程能力</p>
+</li>
+<li>
+<p>内核中能力的安全作用</p>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>程序可以使用 root 的部分特权，而不需要该程序 setuid root ：程序的 forced 能力位置 1 即可</li>
+<li>系统引导时删除部分能力，会保护系统</li>
+</ol>
+<blockquote>
+<p>保护系统工具和日志的完整性</p>
+<ul>
+<li>CAP_LINUX_IMMUTABLE 能力，允许修改文件的 IMMUTABLE 和 APPEND 属性标志</li>
+<li>去除 CAP_LINUX_IMMUTABLE 能力，攻击者不能删除其攻击轨迹、不能安装后门工具、系统日志文件为 append-only、系统工具不被删除和修改</li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="3-2-FreeBSD-安全级">3.2 FreeBSD 安全级</h3>
+<ul>
+<li>安全模式</li>
+</ul>
+<blockquote>
+<p><strong>-1</strong> : Permanently insecure mode<br>
+<strong>0</strong> : Insecure mode<br>
+<strong>1</strong> : Secure mode<br>
+<strong>2</strong> : Highly secure mode<br>
+<strong>3</strong> : Network secure mode</p>
+</blockquote>
+<ul>
+<li>在内核中执行安全级</li>
+</ul>
+<blockquote>
+<ol>
+<li>当安全级 &gt; 0，内核限制执行某些操作；superuser 也不能执行限制操作</li>
+<li>不能降低正在运行系统的安全级</li>
+<li>要降低安全级, 需要修改 /etc/rc.conf 中的安全级配置并需重启</li>
+</ol>
+</blockquote>
+<ul>
+<li>FreeBSD FAQ的安全级警告</li>
+</ul>
+<blockquote>
+<ol>
+<li>安全级并非坚不可摧; 也有很多缺陷. 经常导致安全问题</li>
+<li>一个最大的安全问题： 在系统引导时设置所有文件的安全级，设置安全级后安全级才能起作用。当攻击者在设置安全级之前能够执行代码,则所有后续保护都失效。</li>
+</ol>
+</blockquote>
+<h2 id="4-细粒度的强制访问控制">4. 细粒度的强制访问控制</h2>
+<h3 id="4-1-细粒度访问控制思想">4.1 细粒度访问控制思想</h3>
+<ul>
+<li>每个进程, 都有相应的策略控制该进程可以做什么</li>
+</ul>
+<blockquote>
+<ol>
+<li>不同于自主访问控制，自主访问控制权限取决于 user id</li>
+<li>具体指明其能力，访问具体文件的权限</li>
+</ol>
+</blockquote>
+<ul>
+<li>控制策略的执行时间</li>
+</ul>
+<blockquote>
+<ol>
+<li>加载二进制代码时</li>
+<li>进程获得数据时</li>
+</ol>
+</blockquote>
+<ul>
+<li>困难性</li>
+</ul>
+<blockquote>
+<p>如何指定策略</p>
+</blockquote>
+<h3 id="4-2-细粒度访问控制工具">4.2 细粒度访问控制工具</h3>
+<ul>
+<li>Systrace</li>
+<li>Linux的入侵检测系统 (LIDS)</li>
+</ul>
+<h3 id="4-3-安全增强的-Linux-SELinux">4.3 安全增强的 Linux (SELinux)</h3>
+<ul>
+<li>SELinux提供了比传统的UNIX权限更好的访问控制</li>
+</ul>
+<blockquote>
+<ol>
+<li>管理员可以只允许一个应用程序添加记录到一个日志文件，但不允许其修改或者删除该日志文件的内容</li>
+<li>一个应用程序可以被允许在一个文件夹中建立文件和向其写入数据，但不能删除文件：这种特性是没有SELinux的普通的Linux内核所不能做到的</li>
+<li>网络应用程序可以绑定到其需要的端口上（如 BIND 的 53 端口），但不能绑定其它端口</li>
+</ol>
+</blockquote>
+<ul>
+<li>域-类型</li>
+</ul>
+<blockquote>
+<ol>
+<li>模型意味着在安全域中运行着的每一个进程和每一个资源（一般文件、目录文件和套接字等）都有一个与之相联系的“类型”（type）</li>
+<li>在域-类型上建立了一系列规则，这些规则列出了某个域可以在每一个类型上执行的所有动作</li>
+</ol>
+</blockquote>
+<ul>
+<li>进程的上下文组成</li>
+</ul>
+<blockquote>
+<p>SELinux 的系统中，每一个进程的上下文都包含三个组成部分：一个ID（identity），一个角色（role）和一个域（domain）</p>
+<ul>
+<li>ID：用户,进程的所有者，系统进程 ID(system_u) ，未知用户进程 ID(user_u)</li>
+<li>角色用来判断某个处于此角色的ID可以进入哪些域，还用来防止某个处于此角色的ID进入其它不该进入的域（比如，user_r 角色就不允许进入 sysadm_t）</li>
+<li>一个安全上下文可以像 identity:role:domain（可用 ps 和 ls 查看）</li>
+</ul>
+</blockquote>
+<h3 id="4-4-SELinux-细粒度访问控制">4.4 SELinux 细粒度访问控制</h3>
+<ul>
+<li>类型强制访问控制——TE(type enforce)</li>
+</ul>
+<blockquote>
+<ol>
+<li>
+<p>所有访问都必须明确授权，SELinux 默认不允许任何访问，不管 Linux 用户/组 ID 是什么。即在 SELinux 中，没有默认的超级用户</p>
+</li>
+<li>
+<p>与标准 Linux 中的 root 不一样，通过指定主体类型（即域）和客体类型使用 allow 规则授予访问权限</p>
+</li>
+<li>
+<p>allow规则由四部分组成：</p>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li>源类型（Source type(s)）：尝试访问的进程的域类型</li>
+<li>目标类型（Target type(s)）：被进程访问的客体的类型</li>
+<li>客体类别（Object class(es)）：指定允许访问的客体的类型</li>
+<li>许可（Permission(s)）：象征目标类型允许源类型访问客体类型的访问种类</li>
+</ul>
+</blockquote>
+<ol start="4">
+<li>allow user_t bin_t : file {read execute getattr}</li>
+</ol>
+<blockquote>
+<ul>
+<li>源类型（或主体类型或域）user_t</li>
+<li>目标类型（或客体类型）bin_t</li>
+<li>标识符file是定义在策略中的客体类别名称</li>
+<li>大括号中包括的许可是文件客体类别有效许可</li>
+</ul>
+</blockquote>
+<ol start="5">
+<li>举例：</li>
+</ol>
+<blockquote>
+<ul>
+<li>passwd 程序是可信任的，修改存储经过加密的密码的影子密码文件（/etc/shadow）</li>
+</ul>
+<blockquote>
+<p>强制访问控制：确保只有passwd程序（或类似的受信任的程序）可以访问shadow文件，不管运行程序的用户是谁</p>
+</blockquote>
+<ul>
+<li>查看文件域属性：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ls -Z /etc/shadow</span></span><br><span class="line">-r----  root   root  system_u:object_r:shadow_t  shadow </span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看进程域属性：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aZ</span></span><br><span class="line">joe:user_r:passwd_t   16532 pts/0    00:00:00 passwd</span><br></pre></td></tr></table></figure>
+<ul>
+<li>allow 规则：授予 passwd 进程的域类型（passwd_t）访问 shadow 的文件类型（shadow_t），允许进程移动并创建一个新的 shadow 密码文件</li>
+<li>普通用户修改密码过程</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%E8%BF%87%E7%A8%8B.png" class="" width="902" title="普通用户修改密码过程">
+</blockquote>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2020/05/28/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E9%98%B2%E6%8A%A4%E6%96%B9%E6%B3%95/">https://hotarugali.github.io/2020/05/28/Technique/System/Security/操作系统级防护方法/操作系统级防护方法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/System/">System</a><a class="post-meta__tags" href="/tags/Security/">Security</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/489.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/29/Technique/Linux/Manjaro/Manjaro20.0%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%B1%8F%E9%97%AE%E9%A2%98/Manjaro20.0%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%B1%8F%E9%97%AE%E9%A2%98/" title="Manjaro20.0无法使用深度截屏问题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/803.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Manjaro20.0无法使用深度截屏问题</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/26/Technique/Linux/Manjaro/Manjaro20.0%E4%B8%8BDeepin-WeChat%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E5%8E%9F%E5%9B%A0/" title="Manjaro20.0下Deepin-WeChat无法启动原因"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1035.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Manjaro20.0下Deepin-WeChat无法启动原因</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/05/26/Technique/System/Security/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/UNIX%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/" title="UNIX访问权限"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/644.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">UNIX访问权限</div></div></a></div><div><a href="/2020/05/26/Technique/System/Security/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/" title="操作系统安全基础"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/921.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">操作系统安全基础</div></div></a></div><div><a href="/2020/05/26/Technique/System/Security/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%AE%BA/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%AE%BA/" title="计算机系统安全概论"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/471.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">计算机系统安全概论</div></div></a></div><div><a href="/2020/07/06/Technique/System/ComputerArchitecture/%E7%94%B5%E8%B7%AF%E6%9C%AF%E8%AF%AD/" title="电路术语"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/328.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-06</div><div class="title">电路术语</div></div></a></div><div><a href="/2020/12/18/Technique/System/DistributedSystem/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E7%B3%BB%E5%88%97%E6%96%87%E6%A1%A3/" title="分布式架构"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/338.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-18</div><div class="title">分布式架构</div></div></a></div><div><a href="/2021/02/28/Technique/System/OperationSystem/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87/" title="多系统共享蓝牙设备"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/742.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-28</div><div class="title">多系统共享蓝牙设备</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">1. 操作系统安全问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%84%9F%E6%9F%93%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E6%88%96%E8%A2%AB%E5%85%A5%E4%BE%B5"><span class="toc-text">1.1 计算机感染恶意软件或被入侵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%8E%9F%E5%9B%A0"><span class="toc-text">1.2 原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-UNIX-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">1.3 UNIX 访问控制的一些问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">1.4 解决方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%99%9A%E6%8B%9F%E5%8C%96%E9%99%90%E5%88%B6%E6%96%B9%E6%B3%95"><span class="toc-text">2. 虚拟化限制方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-text">2.1 操作系统级虚拟化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">2.2 虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E8%99%9A%E6%8B%9F%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-text">2.3 虚拟指令集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-root-%E6%9D%83%E9%99%90%E5%88%92%E5%88%86"><span class="toc-text">3. root 权限划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-POSIX-Linux-%E5%86%85%E6%A0%B8%E8%83%BD%E5%8A%9B"><span class="toc-text">3.1 POSIX&#x2F;Linux 内核能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-FreeBSD-%E5%AE%89%E5%85%A8%E7%BA%A7"><span class="toc-text">3.2 FreeBSD 安全级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BB%86%E7%B2%92%E5%BA%A6%E7%9A%84%E5%BC%BA%E5%88%B6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-text">4. 细粒度的强制访问控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%BB%86%E7%B2%92%E5%BA%A6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%80%9D%E6%83%B3"><span class="toc-text">4.1 细粒度访问控制思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E7%BB%86%E7%B2%92%E5%BA%A6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%B7%A5%E5%85%B7"><span class="toc-text">4.2 细粒度访问控制工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%AE%89%E5%85%A8%E5%A2%9E%E5%BC%BA%E7%9A%84-Linux-SELinux"><span class="toc-text">4.3 安全增强的 Linux (SELinux)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-SELinux-%E7%BB%86%E7%B2%92%E5%BA%A6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-text">4.4 SELinux 细粒度访问控制</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/489.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

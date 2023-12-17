@@ -1,0 +1,741 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MatLab函数interp1、interp2、interp3、interpn | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【注】详情请参阅 MatLab help 文档。 1. interp1 1.1 作用 对一元函数数据进行插值，得到指定自变量值对应插值函数值。 1.2 语法 1234567vq &#x3D; interp1(x,v,xq)vq &#x3D; interp1(x,v,xq,method)vq &#x3D; interp1(x,v,xq,method,extrapolation)vq &#x3D; interp1(v,xq)vq &#x3D; int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MatLab函数interp1、interp2、interp3、interpn">
+<meta property="og:url" content="https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0interp1%E3%80%81interp2%E3%80%81interp3%E3%80%81interpn/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="【注】详情请参阅 MatLab help 文档。 1. interp1 1.1 作用 对一元函数数据进行插值，得到指定自变量值对应插值函数值。 1.2 语法 1234567vq &#x3D; interp1(x,v,xq)vq &#x3D; interp1(x,v,xq,method)vq &#x3D; interp1(x,v,xq,method,extrapolation)vq &#x3D; interp1(v,xq)vq &#x3D; int">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1318.jpg">
+<meta property="article:published_time" content="2020-05-26T02:44:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.597Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="MatLab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1318.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0interp1%E3%80%81interp2%E3%80%81interp3%E3%80%81interpn/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MatLab函数interp1、interp2、interp3、interpn',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1318.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MatLab函数interp1、interp2、interp3、interpn</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-26T02:44:00.000Z" title="发表于 2020-05-26 10:44:00">2020-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.597Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/MatLab/">MatLab</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MatLab函数interp1、interp2、interp3、interpn"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>【注】详情请参阅 <strong>MatLab help 文档</strong>。</p>
+<h2 id="1-interp1">1. interp1</h2>
+<h3 id="1-1-作用">1.1 作用</h3>
+<p>对一元函数数据进行插值，得到指定自变量值对应插值函数值。</p>
+<h3 id="1-2-语法">1.2 语法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vq = interp1(x,v,xq)</span><br><span class="line">vq = interp1(x,v,xq,method)</span><br><span class="line">vq = interp1(x,v,xq,method,extrapolation)</span><br><span class="line">vq = interp1(v,xq)</span><br><span class="line">vq = interp1(v,xq,method)</span><br><span class="line">vq = interp1(v,xq,method,extrapolation)</span><br><span class="line">pp = interp1(x,v,method,<span class="string">&#x27;pp&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>vq = interp1(x,v,xq)</strong><br>
+向量 x、v 分别对应样本点的自变量值、因变量值；向量 xq 为查询点的自变量值。采用线型插值计算 xq 对应的因变量值返回到向量 vq 中。</p>
+</li>
+<li>
+<p><strong>vq = interp1(x,v,xq,method)</strong><br>
+在上述语法基础上指定一元函数插值方法，其中 method 可取值有：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">method 取值</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">连续性</th>
+<th style="text-align:left">注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">‘linear’</td>
+<td style="text-align:left">线型插值（默认）</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">C^0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.至少需要 2 个点<br>2.比最近邻点插值需要更多内存和计算时间</td>
+</tr>
+<tr>
+<td style="text-align:left">‘nearest’</td>
+<td style="text-align:left">最近邻点插值</td>
+<td style="text-align:left">不连续</td>
+<td style="text-align:left">1.至少需要 2 个点<br>2.最低内存要求<br>3.最快计算时间</td>
+</tr>
+<tr>
+<td style="text-align:left">‘next’</td>
+<td style="text-align:left">下一个邻点插值</td>
+<td style="text-align:left">不连续</td>
+<td style="text-align:left">1.至少需要 2 个点<br>2.内存要求和计算时间与 ‘nearest’ 相同</td>
+</tr>
+<tr>
+<td style="text-align:left">‘previous’</td>
+<td style="text-align:left">上一个邻点插值</td>
+<td style="text-align:left">不连续</td>
+<td style="text-align:left">1.至少需要 2 个点<br>2.内存要求和计算与 ‘nearest’ 相同</td>
+</tr>
+<tr>
+<td style="text-align:left">‘pchip’</td>
+<td style="text-align:left">保形分段三次插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">C^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.至少需要 4 个点<br>2.比 ‘linear’ 需要更多内存和计算时间</td>
+</tr>
+<tr>
+<td style="text-align:left">‘cubic’ / ‘v5cubic’</td>
+<td style="text-align:left">旧版本 ‘cubic’ 同 ‘pchip’、‘v5cubic’ 为三次卷积插值；后续新版本 ‘cubic’ 将替代 ‘v5cubic’（个人情况详见 MatLab 帮助文档）</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">C^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">三次卷积插值要求点之间的间距必须均匀</td>
+</tr>
+<tr>
+<td style="text-align:left">‘makima’</td>
+<td style="text-align:left">修改后的 Akima 三次 Hermite 插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">C^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.至少需要 2 个点<br>2.产生的波动比 ‘spline’ 小，但不像 ‘pchip’ 那样急剧变平<br>3.计算成本高于 ‘pchip’，但通常低于 ‘spline’<br>4.内存要求与 ‘spline’ 类似</td>
+</tr>
+<tr>
+<td style="text-align:left">‘spline’</td>
+<td style="text-align:left">使用非结终止条件的三次样条插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">C^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.至少需要 4 个点<br>2.比 ‘pchip’ 需要更多内存和计算时间</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>vq = interp1(x,v,xq,method,extrapolation)</strong><br>
+在上述语法基础上，指定外插策略，来计算在给定自变量值向量 x 域范围外的点。extrapolation 可取值为 <code>extrap | 标量值</code>，前者指定 interp1 使用与内插所用相同方法来计算落在 x 域范围外的点；后者指定落在 x 域范围外的点均取对应标量值作为插值函数值。<br>
+【注】若没有给出 extrapolation 参数，则默认指定以下情况：</li>
+</ul>
+<blockquote>
+<ol>
+<li>如果指定 ‘pchip’、‘spline’ 或 ‘makima’ 插值方法，则 extrapolation 默认值为 ‘extrap’ 。</li>
+<li>任何其他方法都指定在 x 范围外的点的插值函数值为 NaN 。</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>vq = interp1(v,xq)</strong><br>
+假定样本点坐标默认集为从 1 到 n 的数字序列，其中 n 为：</li>
+</ul>
+<blockquote>
+<ol>
+<li>当 v 为向量，n = length(v) 。</li>
+<li>当 v 为数组，n = size(v,1) 。</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p><strong>vq = interp1(v,xq,method)</strong><br>
+在上述语法基础上指定插值方法。</p>
+</li>
+<li>
+<p><strong>vq = interp1(v,xq,method,extrapolation)</strong><br>
+在上述语法基础上制定外插值策略。</p>
+</li>
+<li>
+<p><strong>pp = interp1(x,v,method,‘pp’)</strong><br>
+使用 method 插值方法返回插值后的分段多项式函数结构体 pp （可结合 <strong>ppval</strong> 函数计算查询点出的插值函数值）。</p>
+</li>
+</ul>
+<h2 id="2-interp2">2. interp2</h2>
+<h3 id="2-1-作用">2.1 作用</h3>
+<p>对二元函数数据进行插值，得到指定自变量值对应插值函数值。其中样本点数据为 <strong>meshgrid</strong> 格式。<br>
+【注】meshgrid 格式为一种完整网格格式（可使用 meshgrid 函数创建），即元素表示矩阵区域内的网格点。一个矩阵包含 x 坐标，另一个矩阵包含 y 坐标。x 矩阵中的值沿行方向严格单调递增，沿列方向为常量；y 矩阵则相反。</p>
+<h3 id="2-2-语法">2.2 语法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vq = interp2(X,Y,V,Xq,Yq)</span><br><span class="line">Vq = interp2(V,Xq,Yq)</span><br><span class="line">Vq = interp2(V)</span><br><span class="line">Vq = interp2(V,k)</span><br><span class="line">Vq = interp2(___,method)</span><br><span class="line">Vq = interp2(___,menthod,extrapval)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>Vq = interp2(X,Y,V,Xq,Yq)</strong><br>
+向量 X、Y 为样本点的二元自变量值，向量 V 为对应的因变量值；Xq、Yq 指定查询点的自变量值。采用线性插值方法计算查询点处的插值函数值。</p>
+</li>
+<li>
+<p><strong>Vq = interp2(V,Xq,Yq)</strong><br>
+假定一个默认的样本点网格，其覆盖区域为 X=1:n 和 Y=1:m，其中 [m,n]=size(V)。</p>
+</li>
+<li>
+<p><strong>Vq = interp2(V)</strong><br>
+在上述语法默认的样本点网格 [m,n] 基础上，将每个维度上的样本点之间的间隔分割一次，即两两相邻样本点之间取中点，形成更细密的优化网络，然后返回使用线性插值法计算所有网格点对应的插值函数值。</p>
+</li>
+<li>
+<p><strong>Vq = interp2(V,k)</strong><br>
+在上述语法基础上，将每个维度上的样本点之间的间隔分割 k 次，形成更细密的优化网络，然后返回使用线性插值法计算所有网格点对应的插值函数值。</p>
+</li>
+<li>
+<p><strong>Vq = interp2(___,method)</strong><br>
+在以上任一语法基础上，指定二元函数插值方法：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">method 值</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">连续性</th>
+<th style="text-align:left">注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">‘linear’</td>
+<td style="text-align:left">线性插值法（默认）</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">C^0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度至少需要两个网格点<br>2.比 ‘nearest’ 需要更多内存</td>
+</tr>
+<tr>
+<td style="text-align:left">‘nearest’</td>
+<td style="text-align:left">最近邻插值</td>
+<td style="text-align:left">不连续</td>
+<td style="text-align:left">1.每个维度需要两个网格点<br>2.内存要求最低，计算速度最快</td>
+</tr>
+<tr>
+<td style="text-align:left">‘cubic’</td>
+<td style="text-align:left">三次卷积插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">C^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度的网格必须有均匀间隔（各个维度间隔不要求相等）<br>2.每个维度至少需要 4 个点<br>3.比 ‘linear’ 需要更多内存和计算时间</td>
+</tr>
+<tr>
+<td style="text-align:left">‘makima’</td>
+<td style="text-align:left">修改后的 Akima 三次 Hermite 插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">C^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度至少需要 2 个点<br>2.产生的波动比 ‘spline’ 小<br>3.计算时间通常少于 ‘spline’，但内存要求类似</td>
+</tr>
+<tr>
+<td style="text-align:left">‘spline’</td>
+<td style="text-align:left">使用非结终止条件的三次样条插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">C^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度至少需要 4 个点<br>比 ‘cubic’ 需要更多内存和计算时间</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Vq = interp2(___,menthod,extrapval)</strong><br>
+在上述语法基础上制定外插值策略，来计算在给定自变量值向量网格域范围外的点。extrapolation 可取值为 <code>标量值</code>，指定落在网格域范围外的点均取对应标量值作为插值函数值。<br>
+【注】若没有给出 extrapolation 参数，则默认指定以下情况：</li>
+</ul>
+<blockquote>
+<ol>
+<li>如果指定 ‘spline’ 或 ‘makima’ 插值方法，则采用与内插相同的插值方法进行外插值，并返回外插值结果。</li>
+<li>任何其他方法，都指定在网格域范围外的点的插值函数值为 NaN 。</li>
+</ol>
+</blockquote>
+<h2 id="3-interp3">3. interp3</h2>
+<h3 id="3-1-作用">3.1 作用</h3>
+<p>对三元函数数据进行插值，得到指定自变量值对应插值函数值。其中样本点数据为 <strong>meshgrid</strong> 格式。<br>
+【注】meshgrid 格式为一种完整网格格式（可使用 meshgrid 函数创建），即元素表示矩阵区域内的网格点。一个矩阵包含 x 坐标、一个矩阵包含 y 坐标、一个矩阵包含 z 坐标。x 矩阵中的值沿第二维度（行）方向严格单调递增，沿其余维度方向为常量；y 矩阵中的值沿第一维度（列）方向严格单调递增，沿其余维度方向为常量；z 矩阵中的值沿第三维度方向严格单调递增，沿其余维度方向为常量。</p>
+<h3 id="3-2-语法">3.2 语法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vq = interp3(X,Y,Z,V,Xq,Yq,Zq)</span><br><span class="line">Vq = interp3(V,Xq,Yq,Zq)</span><br><span class="line">Vq = interp3(V)</span><br><span class="line">Vq = interp3(V,k)</span><br><span class="line">Vq = interp3(___,method)</span><br><span class="line">Vq = interp3(___,method,extrapval)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>Vq = interp3(X,Y,Z,V,Xq,Yq,Zq)</strong><br>
+向量 X、Y、Z 为样本点的三元自变量值，向量 V 为对应的因变量值；Xq、Yq、Zq 指定查询点的自变量值。采用线性插值方法计算查询点处的插值函数值。</p>
+</li>
+<li>
+<p><strong>Vq = interp3(V,Xq,Yq,Zq)</strong><br>
+假定一个默认的样本点网格，其覆盖区域为 X=1:n、Y=1:m、Z=1:p，其中 [m,n,p]=size(V)。</p>
+</li>
+<li>
+<p><strong>Vq = interp3(V)</strong><br>
+在上述语法默认的样本点网格 [m,n,p] 基础上，将每个维度上的样本点之间的间隔分割一次，即两两相邻样本点之间取中点，形成更细密的优化网络，然后返回使用线性插值法计算所有网格点对应的插值函数值。</p>
+</li>
+<li>
+<p><strong>Vq = interp3(V,k)</strong><br>
+在上述语法基础上，将每个维度上的样本点之间的间隔分割 k 次，形成更细密的优化网络，然后返回使用线性插值法计算所有网格点对应的插值函数值。</p>
+</li>
+<li>
+<p><strong>Vq = interp3(___,method)</strong><br>
+在以上任一语法基础上，指定二元函数插值方法：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">method 值</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">连续性</th>
+<th style="text-align:left">注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">‘linear’</td>
+<td style="text-align:left">线性插值法（默认）</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">C^0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度至少需要两个网格点<br>2.比 ‘nearest’ 需要更多内存</td>
+</tr>
+<tr>
+<td style="text-align:left">‘nearest’</td>
+<td style="text-align:left">最近邻插值</td>
+<td style="text-align:left">不连续</td>
+<td style="text-align:left">1.每个维度需要两个网格点<br>2.内存要求最低，计算速度最快</td>
+</tr>
+<tr>
+<td style="text-align:left">‘cubic’</td>
+<td style="text-align:left">三次卷积插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">C^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度的网格必须有均匀间隔（各个维度间隔不要求相等）<br>2.每个维度至少需要 4 个点<br>3.比 ‘linear’ 需要更多内存和计算时间</td>
+</tr>
+<tr>
+<td style="text-align:left">‘makima’</td>
+<td style="text-align:left">修改后的 Akima 三次 Hermite 插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">C^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度至少需要 2 个点<br>2.产生的波动比 ‘spline’ 小<br>3.计算时间通常少于 ‘spline’，但内存要求类似</td>
+</tr>
+<tr>
+<td style="text-align:left">‘spline’</td>
+<td style="text-align:left">使用非结终止条件的三次样条插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">C^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度至少需要 4 个点<br>比 ‘cubic’ 需要更多内存和计算时间</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Vq = interp3(___,method,extrapval)</strong><br>
+在上述语法基础上制定外插值策略，来计算在给定自变量值向量网格域范围外的点。extrapolation 可取值为 <code>标量值</code>，指定落在网格域范围外的点均取对应标量值作为插值函数值。<br>
+【注】若没有给出 extrapolation 参数，则默认指定以下情况：</li>
+</ul>
+<blockquote>
+<ol>
+<li>如果指定 ‘spline’ 或 ‘makima’ 插值方法，则采用与内插相同的插值方法进行外插值，并返回外插值结果。</li>
+<li>任何其他方法，都指定在网格域范围外的点的插值函数值为 NaN 。</li>
+</ol>
+</blockquote>
+<h2 id="4-interpn">4. interpn</h2>
+<h3 id="4-1-作用">4.1 作用</h3>
+<p>对 n 元函数数据进行插值，得到指定自变量值对应插值函数值。其中样本点数据为 <strong>ndgrid</strong> 格式（与 <strong>meshgrid</strong> 略有不同，详情请<a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0meshgrid%E3%80%81ndgrid">参阅</a>）。<br>
+【注】ndgrid 格式为另一种完整网格格式（可使用 ndgrid 函数创建），即元素表示矩阵区域内的网格点。X1 矩阵中的值沿第一维度方向严格单调递增，沿其余维度方向为常量；X2 矩阵中的值沿第二维度方向严格单调递增，沿其余维度方向为常量（第一、二维度与 meshgrid 格式不同）；<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋯</mo></mrow><annotation encoding="application/x-tex">\cdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.313em;"></span><span class="minner">⋯</span></span></span></span>；Xn 矩阵中的值沿第 n 维度方向严格单调递增，沿其余维度方向为常量。</p>
+<h3 id="4-2-语法">4.2 语法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vq = interpn(X1,X2,...,Xn,V,Xq1,Xq2,...,Xqn)</span><br><span class="line">Vq = interpn(V,Xq1,Xq2,...,Xqn)</span><br><span class="line">Vq = interpn(V)</span><br><span class="line">Vq = interpn(V,k)</span><br><span class="line">Vq = interpn(___,method)</span><br><span class="line">Vq = interpn(___,method,extrapval)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>Vq = interpn(X1,X2,…,Xn,V,Xq1,Xq2,…,Xqn)</strong><br>
+向量 X1,X2,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋯</mo></mrow><annotation encoding="application/x-tex">\cdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.313em;"></span><span class="minner">⋯</span></span></span></span>,Xn 为样本点的 n 元自变量值，向量 V 为对应的因变量值；Xq1,Xq2,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋯</mo></mrow><annotation encoding="application/x-tex">\cdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.313em;"></span><span class="minner">⋯</span></span></span></span>,Xqn 指定查询点的自变量值。采用线性插值方法计算查询点处的插值函数值。</p>
+</li>
+<li>
+<p><strong>Vq = interpn(V,Xq1,Xq2,…,Xqn)</strong><br>
+假定一个默认的样本点网格，其覆盖区域为 X1=1:N1、X2=1:N2、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋯</mo></mrow><annotation encoding="application/x-tex">\cdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.313em;"></span><span class="minner">⋯</span></span></span></span>、Xn=1:Nn，其中 [N1, N2, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋯</mo></mrow><annotation encoding="application/x-tex">\cdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.313em;"></span><span class="minner">⋯</span></span></span></span>, Nn] = size(V) 。</p>
+</li>
+<li>
+<p><strong>Vq = interpn(V)</strong><br>
+在上述语法默认的样本点网格 [N1, N2, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋯</mo></mrow><annotation encoding="application/x-tex">\cdots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.313em;"></span><span class="minner">⋯</span></span></span></span>, Nn] 基础上，将每个维度上的样本点之间的间隔分割一次，即两两相邻样本点之间取中点，形成更细密的优化网络，然后返回使用线性插值法计算所有网格点对应的插值函数值。</p>
+</li>
+<li>
+<p><strong>Vq = interpn(V,k)</strong><br>
+在上述语法基础上，将每个维度上的样本点之间的间隔分割 k 次，形成更细密的优化网络，然后返回使用线性插值法计算所有网格点对应的插值函数值。</p>
+</li>
+<li>
+<p><strong>Vq = interpn(___,method)</strong><br>
+在以上任一语法基础上，指定二元函数插值方法：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">method 值</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">连续性</th>
+<th style="text-align:left">注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">‘linear’</td>
+<td style="text-align:left">线性插值法（默认）</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">C^0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度至少需要两个网格点<br>2.比 ‘nearest’ 需要更多内存</td>
+</tr>
+<tr>
+<td style="text-align:left">‘nearest’</td>
+<td style="text-align:left">最近邻插值</td>
+<td style="text-align:left">不连续</td>
+<td style="text-align:left">1.每个维度需要两个网格点<br>2.内存要求最低，计算速度最快</td>
+</tr>
+<tr>
+<td style="text-align:left">‘cubic’</td>
+<td style="text-align:left">三次卷积插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">C^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度的网格必须有均匀间隔（各个维度间隔不要求相等）<br>2.每个维度至少需要 4 个点<br>3.比 ‘linear’ 需要更多内存和计算时间</td>
+</tr>
+<tr>
+<td style="text-align:left">‘makima’</td>
+<td style="text-align:left">修改后的 Akima 三次 Hermite 插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">C^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度至少需要 2 个点<br>2.产生的波动比 ‘spline’ 小<br>3.计算时间通常少于 ‘spline’，但内存要求类似</td>
+</tr>
+<tr>
+<td style="text-align:left">‘spline’</td>
+<td style="text-align:left">使用非结终止条件的三次样条插值</td>
+<td style="text-align:left"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">C^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:left">1.每个维度至少需要 4 个点<br>比 ‘cubic’ 需要更多内存和计算时间</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Vq = interpn(___,method,extrapval)</strong><br>
+在上述语法基础上制定外插值策略，来计算在给定自变量值向量网格域范围外的点。extrapolation 可取值为 <code>标量值</code>，指定落在网格域范围外的点均取对应标量值作为插值函数值。<br>
+【注】若没有给出 extrapolation 参数，则默认指定以下情况：</li>
+</ul>
+<blockquote>
+<ol>
+<li>如果指定 ‘spline’ 或 ‘makima’ 插值方法，则采用与内插相同的插值方法进行外插值，并返回外插值结果。</li>
+<li>任何其他方法，都指定在网格域范围外的点的插值函数值为 NaN 。</li>
+</ol>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0interp1%E3%80%81interp2%E3%80%81interp3%E3%80%81interpn/">https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab函数interp1、interp2、interp3、interpn/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/MatLab/">MatLab</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/1318.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0datetime%E3%80%81datenum%E3%80%81datevec%E3%80%81datestr/" title="MatLab函数datetime、datenum、datevec、datestr"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1046.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MatLab函数datetime、datenum、datevec、datestr</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0legend/" title="MatLab函数legend"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1592.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MatLab函数legend</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/05/26/Technique/MatLab/MatLab%E4%B8%ADM%E6%96%87%E4%BB%B6/" title="MatLab中M文件"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/8.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab中M文件</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0/" title="MatLab函数"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/494.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0datetime%E3%80%81datenum%E3%80%81datevec%E3%80%81datestr/" title="MatLab函数datetime、datenum、datevec、datestr"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1046.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数datetime、datenum、datevec、datestr</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0legend/" title="MatLab函数legend"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1592.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数legend</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0meshgrid%E3%80%81ndgrid/" title="MatLab函数meshgrid、ndgrid"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/594.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数meshgrid、ndgrid</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0rand%E3%80%81randi%E3%80%81randn%E3%80%81rng/" title="MatLab函数rand、randi、randn、rng"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1364.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数rand、randi、randn、rng</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-interp1"><span class="toc-text">1. interp1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">1.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%AF%AD%E6%B3%95"><span class="toc-text">1.2 语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-interp2"><span class="toc-text">2. interp2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">2.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%AF%AD%E6%B3%95"><span class="toc-text">2.2 语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-interp3"><span class="toc-text">3. interp3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">3.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%AF%AD%E6%B3%95"><span class="toc-text">3.2 语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-interpn"><span class="toc-text">4. interpn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">4.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E8%AF%AD%E6%B3%95"><span class="toc-text">4.2 语法</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1318.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LinuxShell命令tar | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 简介 tar 是 GNU 项目中的一个归档工具，其创建可以追溯到磁带机的年代，可谓历史悠久。虽然 tar 工具最初是用于磁带机的数据归档，但其现在也支持磁盘的数据归档，而且仍然保留着对磁带机的兼容。tar 工具一路发展过来，经过很多大佬的打磨，功能强大，现在已经是 Linux 系统上默认的数据归档工具。 需要注意的是，tar 只是一个归档工具，本身并不具有强大的压缩功能。不过可以通过给 ta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinuxShell命令tar">
+<meta property="og:url" content="https://hotarugali.github.io/2021/09/29/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4tar/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="1. 简介 tar 是 GNU 项目中的一个归档工具，其创建可以追溯到磁带机的年代，可谓历史悠久。虽然 tar 工具最初是用于磁带机的数据归档，但其现在也支持磁盘的数据归档，而且仍然保留着对磁带机的兼容。tar 工具一路发展过来，经过很多大佬的打磨，功能强大，现在已经是 Linux 系统上默认的数据归档工具。 需要注意的是，tar 只是一个归档工具，本身并不具有强大的压缩功能。不过可以通过给 ta">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/556.jpg">
+<meta property="article:published_time" content="2021-09-29T13:10:22.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.529Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/556.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2021/09/29/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4tar/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LinuxShell命令tar',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/556.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LinuxShell命令tar</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-29T13:10:22.000Z" title="发表于 2021-09-29 21:10:22">2021-09-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.529Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/Linux/Shell/">Shell</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LinuxShell命令tar"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-简介">1. 简介</h2>
+<p>tar 是 GNU 项目中的一个归档工具，其创建可以追溯到磁带机的年代，可谓历史悠久。虽然 tar 工具最初是用于磁带机的数据归档，但其现在也支持磁盘的数据归档，而且仍然保留着对磁带机的兼容。tar 工具一路发展过来，经过很多大佬的打磨，功能强大，现在已经是 Linux 系统上默认的数据归档工具。</p>
+<p>需要注意的是，tar 只是一个归档工具，本身并不具有强大的压缩功能。不过可以通过给 tar 指定合适的选项，让其间接调用其它压缩工具来实现强大的压缩功能。</p>
+<h2 id="2-格式">2. 格式</h2>
+<p>tar 工具的参数主要分为两种：</p>
+<ul>
+<li>操作：共有 8 个，用来指定具体执行什么操作。</li>
+<li>选项：用来在基础操作上，执行一些可选的扩展操作。</li>
+</ul>
+<h3 id="2-1-操作">2.1 操作</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>-c</code>、<code>--create</code></td>
+<td style="text-align:left">创建新的归档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-t</code>、<code>--list</code></td>
+<td style="text-align:left">列出归档中的内容</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-x</code>、<code>--extract</code>、<code>--get</code></td>
+<td style="text-align:left">提取归档中的内容</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-r</code>、<code>--append</code></td>
+<td style="text-align:left">追加内容到归档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-u</code>、<code>--update</code></td>
+<td style="text-align:left">更新归档中的成员</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-A</code>、<code>--catenate</code>、<code>--concatenate</code></td>
+<td style="text-align:left">拼接多个归档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-delete</code></td>
+<td style="text-align:left">删除归档中的成员</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-d</code>、<code>--compare</code>、<code>--diff</code></td>
+<td style="text-align:left">对比归档中的成员和文件系统中的文件的区别</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-1-1-create">2.1.1 create</h4>
+<p>为三个文件 <code>blues</code>、<code>folk</code>、<code>jazz</code> 和一个文件夹 <code>rock/</code> 归档：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf collection.tar blues folk jazz rock/ <span class="comment"># -cvf 为 -c,-v,-f 的缩写</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-1-2-list">2.1.2 list</h4>
+<p>查看归档 <code>collection.tar</code> 中的成员：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -tvf collection.tar     <span class="comment"># -tvf 为 -t,-v,-f 的缩写</span></span><br></pre></td></tr></table></figure>
+<p>查看归档 <code>collection.tar</code> 中是否有 <code>blues</code> 成员名（匹配成员名是按照创建归档时存储的成员名严格进行的）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -tvf collection.tar blues       <span class="comment"># 若有，则会输出对应成员名；否则报错</span></span><br><span class="line">tar -tvf collection.tar --wildcards <span class="string">&#x27;*/blues&#x27;</span>   <span class="comment"># 模糊匹配（当不确定完整成员名时）</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-1-3-extract">2.1.3 extract</h4>
+<p>提取整个归档 <code>collection.tar</code> 中的成员：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf collection.tar     <span class="comment"># -xvf 为 -x,-v,-f 的缩写</span></span><br></pre></td></tr></table></figure>
+<p>提取归档 <code>collection.tar</code> 中的 <code>blues</code> 成员名：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf collection.tar blues       <span class="comment"># 严格匹配</span></span><br><span class="line">tar -xvf collection.tar --wildcards <span class="string">&#x27;*/blues&#x27;</span>   <span class="comment"># 模糊匹配</span></span><br></pre></td></tr></table></figure>
+<p>从归档中提取出来的成员，会按照它存储在归档中的路径名，在当前目录中创建对应路径。因此，如果只是想将文件提取到当前目录而忽略它在归档中存储的目录结构，可以使用 <code>--strip-components</code> 来指定跳过的目录级数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf collection.tar --strip-components=1 folk <span class="comment"># 假设 folk 在 collection.tar 中的完整路径名为 ./folk</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-1-4-append">2.1.4 append</h4>
+<p>追加文件 <code>rock</code> 到已有归档文件 <code>collection.tar</code> 中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -rvf collection.tar rock        <span class="comment"># -rvf 是 -r,-v,-f 的缩写</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是，tar 允许往已有的归档文件中追加相同路径名的文件，而且它们都会保存在归档文件中，且它们会按照被加入归档的顺序在归档中有序存储。</p>
+<ul>
+<li>当使用 <code>--extract</code> 从归档中提取有很多相同路径名的成员时，最终得到的只有最后被加入归档的那个副本。</li>
+<li>这是因为 extract 操作提取归档成员是按照它们在归档中的存储顺序依次提取的，因此具有相同路径名的成员都将被提取出来，且在提取时排在后面的会覆盖前面的，而且这个覆盖过程在 tar 看来是正常的，因此它也不会有任提示。</li>
+<li>如果确实需要指定某个副本单独提取出来，则可以使用 <code>--occurrence=n</code> 选项指定只提取出出现第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 次的这个副本，即第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 个副本。</li>
+</ul>
+</blockquote>
+<h4 id="2-1-5-update">2.1.5 update</h4>
+<p>更新归档 <code>collection.tar</code> 中的成员 <code>blues</code> 和 <code>jazz</code>（假设 <code>blues</code> 修改了但 <code>jazz</code> 未修改）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -uvf collection.tar blues jazz  <span class="comment"># -uvf 是 -u,-v,-f 的缩写</span></span><br></pre></td></tr></table></figure>
+<p>tar 首先会对比要更新的文件的修改时间，如果发现文件没有发生修改，就不会执行任何操作；如果发现文件发生了修改，就会将修改后的文件追加到归档中。</p>
+<blockquote>
+<p>注意，是追加，不是替换。这是因为 tar 最初是为了写磁带机而创立的，而磁带的一个特点就是无论写还是读，都只能顺序操作。所以 tar 的更新操作只会将修改后的文件追加到归档文件中，同时原来的旧文件也仍然保存在归档文件中。</p>
+<p>此外，如果要更新的文件在归档文件中没有，则 tar 会将这个新文件直接追加到归档文件中。</p>
+</blockquote>
+<h4 id="2-1-6-catenate">2.1.6 catenate</h4>
+<p>将归档文件 <code>folkjazz.tar</code> 拼接到归档文件 <code>bluesrock.tar</code> 中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -Avf bluesrock.tar jazzfolk.tar <span class="comment"># -Avf 是 -A,-u,-f 的缩写</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是，这些需要拼接的归档文件必须是兼容的格式，tar 不会去检查这些归档文件的格式，甚至不会去检查文件是不是归档文件。</p>
+</blockquote>
+<h4 id="2-1-7-delete">2.1.7 delete</h4>
+<p>从归档文件 <code>collection.tar</code> 中移除 <code>blues</code> 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar --delete -vf collection.tar blues</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，tar 会将归档中对应的所有相同成员名的成员删除。如果只想删除某一个具体的副本，则可以使用 <code>--occurrence=n</code> 选项指定只删除排在第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 个的这个副本。</p>
+</blockquote>
+<h4 id="2-1-8-compare">2.1.8 compare</h4>
+<p>对比归档 <code>collection.tar</code> 中的成员 <code>blues</code> 和文件系统中具有相同路径名的文件之间的差异：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -dvf collection.tar blues</span><br></pre></td></tr></table></figure>
+<p>如果指定的归档成员在文件系统中不存在，则 tar 会警告；如果指定的归档成员不在归档中，则会报错。</p>
+<h3 id="2-2-常用选项">2.2 常用选项</h3>
+<ul>
+<li>GNU tar 默认在归档时会省略掉成员的完整路径名最前面的 <code>/</code> 和 <code>..</code>。</li>
+<li>GNU tar 默认会覆盖文件系统中相同路径名的文件。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>-f archive-name</code>、<code>--file=archive-name</code></td>
+<td style="text-align:left">指定归档文件的路径</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-T file</code>、<code>-files-from=file</code></td>
+<td style="text-align:left">指定包含在 <code>file</code> 中的所有归档路径作为 tar 的处理对象</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-v</code>、<code>--verbose</code></td>
+<td style="text-align:left">显示 tar 工具执行过程中的详细信息（此选项可多次指定，指定次数越多显示的信息越详细）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-w</code>、<code>--interactive</code>、<code>--confirmation</code></td>
+<td style="text-align:left">告诉 tar 当出现会破坏系统上的文件的操作时，通知用户是否执行而不是默认执行（比如同名文件覆盖）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--overwrite</code></td>
+<td style="text-align:left">显示表明在提取归档时覆盖同名文件</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--overwrite-dir</code></td>
+<td style="text-align:left">显示表明在提取归档时覆盖同名文件夹</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--show-stored-names</code></td>
+<td style="text-align:left">强制 tar 在创建归档并显示详细信息时，按照归档中的存储内容输出归档中成员的路径名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-O</code>、<code>--to-stdout</code></td>
+<td style="text-align:left">结合 <code>--extract</code> 操作可以将成员提取并显示到标准输出</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-P</code>、<code>--absolute-names</code></td>
+<td style="text-align:left">阻止 GNU tar 在归档时会省略掉成员的完整路径名最前面的 <code>/</code> 和 <code>..</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-a</code>、<code>--auto-compress</code></td>
+<td style="text-align:left">根据归档包名的后缀自动识别压缩格式</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--occurrence=n</code></td>
+<td style="text-align:left">指定处理相同成员名的第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 个副本</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-h</code>、<code>--dereference</code></td>
+<td style="text-align:left">归档时如果文件是符号链接，则追溯到原文件本身而不是归档链接文件</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--hard-dereference</code></td>
+<td style="text-align:left">归档时如果文件是硬链接，则追溯到原文件本身而不是归档链接文件</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--no-recursion</code></td>
+<td style="text-align:left">归档时不会递归到子目录下</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--recursion</code></td>
+<td style="text-align:left">显示表明归档时要递归到子目录下</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--sort=order</code></td>
+<td style="text-align:left">指定读取目录时处理其下面的文件顺序，<code>order</code> 可取值：<code>none</code>、<code>name</code>、<code>inode</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-C dir</code>、<code>--directory=dir</code></td>
+<td style="text-align:left">当指定这个选项时，tar 会先切换到这个选项指定的目录下，然后再进行操作，并在操作完成后切换回来</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--exclude=pattern</code></td>
+<td style="text-align:left">当指定这个选项时，tar 在归档时会忽略匹配模式的那些文件，匹配模式可使用 Shell 下的通配符，且最好用引号引起</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-X file</code>、<code>--exclude-from=file</code></td>
+<td style="text-align:left">在归档时忽略匹配文件 <code>file</code> 中罗列的那些模式的文件</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-i</code>、<code>--ignore-zeros</code></td>
+<td style="text-align:left">忽略归档文件中的 EOF 符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--mode=permissions</code></td>
+<td style="text-align:left">在归档时指定成员的权限（默认使用原文件的权限）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-o</code>、<code>--no-same-owner</code></td>
+<td style="text-align:left">在归档时不保存成员的所有者（默认使用原文件的所有者）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--no-same-permissions</code></td>
+<td style="text-align:left">在归档时不保存成员的权限（默认使用原文件的权限）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-Z</code>、<code>--compress</code>、<code>--uncompress</code></td>
+<td style="text-align:left">指定 tar 在归档时使用 <code>compress</code> 程序进行压缩，以减小归档的大小</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-j</code>、<code>--bzip2</code></td>
+<td style="text-align:left">指定 tar 通过 bzip2 来读写归档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-z</code>、<code>--gzip</code>、<code>--gunzip</code>、<code>--ungzip</code></td>
+<td style="text-align:left">指定 tar 在归档时使用 gzip 来读写归档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-lzip</code></td>
+<td style="text-align:left">指定 tar 在归档时使用 lzip 来读写归档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-lzma</code></td>
+<td style="text-align:left">指定 tar 在归档时使用 lzma 来读写归档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-lzop</code></td>
+<td style="text-align:left">指定 tar 在归档时使用 lzop 来读写归档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-J</code>、<code>--xz</code></td>
+<td style="text-align:left">指定 tar 在归档时使用 xz 来读写归档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--zstd</code></td>
+<td style="text-align:left">指定 tar 在归档时使用 zstd 来读写归档</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意事项</strong></p>
+<ul>
+<li>当使用 <code>-c,--create</code> 操作时，无论是否存在 <code>-f,--file</code> 指定的归档文件，tar 均会默认擦除其内容。即如果已经存在 <code>-f,--file</code> 指定的归档文件，tar 会默不作声地覆盖掉其中的内容。</li>
+<li>当使用 <code>-x,--extract</code> 操作时，如果提取到的当前目录包含和要提取出来的成员同名的文件（夹），则当前目录下的文件（夹）默认会被覆盖。因此，在提取归档时最好的做法是先检查一下归档中的成员，然后创建一个新的目录，在新创建的目录下提取归档。</li>
+</ul>
+</blockquote>
+<h2 id="3-压缩-解压">3. 压缩 &amp; 解压</h2>
+<p>tar 可以通过指定合适的选项，实现强大的压缩和解压功能。tar 目前支持的压缩程序有：gzip、bzip2、lzip、lzma、lzop、zstd、xz 以及传统的 compress。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">压缩格式</th>
+<th style="text-align:left">长参数</th>
+<th style="text-align:left">短参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">gzip</td>
+<td style="text-align:left"><code>--gzip</code></td>
+<td style="text-align:left"><code>-z</code></td>
+</tr>
+<tr>
+<td style="text-align:left">bzip2</td>
+<td style="text-align:left"><code>--bzip2</code></td>
+<td style="text-align:left"><code>-j</code></td>
+</tr>
+<tr>
+<td style="text-align:left">xz</td>
+<td style="text-align:left"><code>--xz</code></td>
+<td style="text-align:left"><code>-J</code></td>
+</tr>
+<tr>
+<td style="text-align:left">lzip</td>
+<td style="text-align:left"><code>--lzip</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">lzma</td>
+<td style="text-align:left"><code>--lzma</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">lzop</td>
+<td style="text-align:left"><code>--lzop</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">zstd</td>
+<td style="text-align:left"><code>--zstd</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">compress</td>
+<td style="text-align:left"><code>--compress</code></td>
+<td style="text-align:left"><code>-Z</code></td>
+</tr>
+</tbody>
+</table>
+<p>常用压缩包后缀及其对应的压缩程序：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">后缀</th>
+<th style="text-align:left">压缩程序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>.gz</code></td>
+<td style="text-align:left">gzip</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.tgz</code></td>
+<td style="text-align:left">gzip</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.taz</code></td>
+<td style="text-align:left">gzip</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.Z</code></td>
+<td style="text-align:left">compress</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.taZ</code></td>
+<td style="text-align:left">compress</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.bz2</code></td>
+<td style="text-align:left">bzip2</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.tz2</code></td>
+<td style="text-align:left">bzip2</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.tbz2</code></td>
+<td style="text-align:left">bzip2</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.tbz</code></td>
+<td style="text-align:left">bzip2</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.lz</code></td>
+<td style="text-align:left">lzip</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.lzma</code></td>
+<td style="text-align:left">lzma</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.tlz</code></td>
+<td style="text-align:left">lzma</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.lzo</code></td>
+<td style="text-align:left">lzop</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.xz</code></td>
+<td style="text-align:left">xz</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.zst</code></td>
+<td style="text-align:left">zstd</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.tzst</code></td>
+<td style="text-align:left">zstd</td>
+</tr>
+</tbody>
+</table>
+<p>【注】在解压压缩包前，建议先用 <code>tar -tvf</code> 查看一下对应的压缩包，因为有些压缩包中的成员可能没有一个公共的根目录前缀，这个时候就要先手动创建一个目录，然后将压缩包解压到这个目录中。这样可以防止直接解压到当前目录下，造成当前目录的混乱。如果查看后发现其中的成员都有一个公共的根目录前缀，则可以放心解压到当前目录下。</p>
+<blockquote>
+<p><strong>常用压缩命令</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf tar_file xxx         <span class="comment"># 创建 .tar 包</span></span><br><span class="line">tar -czvf gzip_file xxx       <span class="comment"># 创建 .gz, .tgz. taz 包</span></span><br><span class="line">tar -cjvf bzip2_file xxx      <span class="comment"># 创建 .bz2, .tz2, tbz2, .tbz 包</span></span><br><span class="line">tar -cJvf xz_file xxx         <span class="comment"># 创建 .xz 包</span></span><br><span class="line">tar -cZvf compress_file xxx   <span class="comment"># 创建 .Z, .taZ 包</span></span><br><span class="line">tar --lzip -cvf lzip_file xxx <span class="comment"># 创建 .lz 包</span></span><br><span class="line">tar --lzma -cvf lzma_file xxx <span class="comment"># 创建 .lzma, .tlz 包</span></span><br><span class="line">tar --lzop -cvf lzop_file xxx <span class="comment"># 创建 .lzo 包</span></span><br><span class="line">tar --zstd -cvf zstd_file xxx <span class="comment"># 创建 .zst, .tzst 包</span></span><br></pre></td></tr></table></figure>
+<p><strong>常用解压命令</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf tar_file             <span class="comment"># 提取 .tar 包</span></span><br><span class="line">tar -xzvf gzip_file           <span class="comment"># 解压 .gz, .tgz. taz 包</span></span><br><span class="line">tar -xjvf bzip2_file          <span class="comment"># 解压 .bz2, .tz2, tbz2, .tbz 包</span></span><br><span class="line">tar -xJvf xz_file             <span class="comment"># 解压 .xz 包</span></span><br><span class="line">tar -xZvf compress_file       <span class="comment"># 解压 .Z, .taZ 包</span></span><br><span class="line">tar --lzip -xvf lzip_file     <span class="comment"># 解压 .lz 包</span></span><br><span class="line">tar --lzma -xvf lzma_file     <span class="comment"># 解压 .lzma, .tlz 包</span></span><br><span class="line">tar --lzop -xvf lzop_file     <span class="comment"># 解压 .lzo 包</span></span><br><span class="line">tar --zstd -xvf zstd_file     <span class="comment"># 解压 .zst, .tzst 包</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>归档或提取归档时使用 <code>-a</code>/<code>--auto-compress</code> 选项，tar 会根据给出的归档文件后缀使用对应的压缩程序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -cavf xxx_file yyy          <span class="comment"># 压缩</span></span><br><span class="line">tar -xavf xxx_file              <span class="comment"># 解压</span></span><br></pre></td></tr></table></figure>
+<h2 id="附录">附录</h2>
+<p>参考资料：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/tar/manual">GNU tar manual</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2021/09/29/Technique/Linux/Shell/LinuxShell%E5%91%BD%E4%BB%A4tar/">https://hotarugali.github.io/2021/09/29/Technique/Linux/Shell/LinuxShell命令tar/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Shell/">Shell</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/556.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/09/29/Technique/Linux/Shell/LinuxShell%E4%B8%8B%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/" title="LinuxShell下压缩与解压"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/281.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LinuxShell下压缩与解压</div></div></a></div><div class="next-post pull-right"><a href="/2021/09/25/Technique/Linux/ArchLinux/ArchLinux%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%AD%97%E4%BD%93/" title="ArchLinux下配置字体"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/927.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ArchLinux下配置字体</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/04/15/Technique/Linux/Shell/BashShell%E5%8F%98%E9%87%8F/" title="BashShell变量"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1590.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-15</div><div class="title">BashShell变量</div></div></a></div><div><a href="/2020/11/13/Technique/Linux/Shell/BashShell%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="BashShell字符串"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1049.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-13</div><div class="title">BashShell字符串</div></div></a></div><div><a href="/2020/05/26/Technique/Linux/Shell/BashShell%E5%B8%B8%E9%87%8F%E5%92%8C%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6/" title="BashShell常量和特殊字符"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/511.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">BashShell常量和特殊字符</div></div></a></div><div><a href="/2020/05/26/Technique/Linux/Shell/BashShell%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97/" title="BashShell数值运算"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/227.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">BashShell数值运算</div></div></a></div><div><a href="/2020/05/26/Technique/Linux/Shell/BashShell%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%8A%E4%BC%98%E5%85%88%E7%BA%A7/" title="BashShell运算符及优先级"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/27.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">BashShell运算符及优先级</div></div></a></div><div><a href="/2020/02/11/Technique/Linux/Shell/IFS%E5%8F%98%E9%87%8F%E5%AF%B9%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%92%8C%E4%B8%8D%E5%8A%A0%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AF%B9%E5%BE%85/" title="IFS变量对加双引号和不加双引号变量的区别对待"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-02-11</div><div class="title">IFS变量对加双引号和不加双引号变量的区别对待</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%BC%E5%BC%8F"><span class="toc-text">2. 格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%93%8D%E4%BD%9C"><span class="toc-text">2.1 操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-create"><span class="toc-text">2.1.1 create</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-list"><span class="toc-text">2.1.2 list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-extract"><span class="toc-text">2.1.3 extract</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-4-append"><span class="toc-text">2.1.4 append</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-5-update"><span class="toc-text">2.1.5 update</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-6-catenate"><span class="toc-text">2.1.6 catenate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-7-delete"><span class="toc-text">2.1.7 delete</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-8-compare"><span class="toc-text">2.1.8 compare</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%B8%B8%E7%94%A8%E9%80%89%E9%A1%B9"><span class="toc-text">2.2 常用选项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8E%8B%E7%BC%A9-%E8%A7%A3%E5%8E%8B"><span class="toc-text">3. 压缩 &amp; 解压</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-text">附录</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/556.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

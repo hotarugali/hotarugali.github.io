@@ -1,0 +1,668 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MatLab函数sort、issorted、sortrows、issortedrows | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【注】详情请参阅 MatLab help 文档。 1. sort 函数 1.1 作用 sort 函数对数组元素进行排序。 1.2 语法 12345B &#x3D; sort(A)B &#x3D; sort(A,dim)B &#x3D; sort(___,direction)B &#x3D; sort(___,Name,Value)[B,I] &#x3D; sort(___)  B &#x3D; sort(A) 按升序对 A 的元素进行排序。    如果 A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MatLab函数sort、issorted、sortrows、issortedrows">
+<meta property="og:url" content="https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0sort%E3%80%81issorted%E3%80%81sortrows%E3%80%81issortedrows/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="【注】详情请参阅 MatLab help 文档。 1. sort 函数 1.1 作用 sort 函数对数组元素进行排序。 1.2 语法 12345B &#x3D; sort(A)B &#x3D; sort(A,dim)B &#x3D; sort(___,direction)B &#x3D; sort(___,Name,Value)[B,I] &#x3D; sort(___)  B &#x3D; sort(A) 按升序对 A 的元素进行排序。    如果 A">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1336.jpg">
+<meta property="article:published_time" content="2020-05-26T02:44:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.593Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="MatLab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1336.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0sort%E3%80%81issorted%E3%80%81sortrows%E3%80%81issortedrows/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MatLab函数sort、issorted、sortrows、issortedrows',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1336.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MatLab函数sort、issorted、sortrows、issortedrows</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-05-26T02:44:00.000Z" title="发表于 2020-05-26 10:44:00">2020-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.593Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/MatLab/">MatLab</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MatLab函数sort、issorted、sortrows、issortedrows"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>【注】详情请参阅 <strong>MatLab help 文档</strong>。</p>
+<h2 id="1-sort-函数">1. sort 函数</h2>
+<h3 id="1-1-作用">1.1 作用</h3>
+<p>sort 函数对数组元素进行排序。</p>
+<h3 id="1-2-语法">1.2 语法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">B = <span class="built_in">sort</span>(A)</span><br><span class="line">B = <span class="built_in">sort</span>(A,dim)</span><br><span class="line">B = <span class="built_in">sort</span>(___,direction)</span><br><span class="line">B = <span class="built_in">sort</span>(___,Name,Value)</span><br><span class="line">[B,I] = <span class="built_in">sort</span>(___)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>B = sort(A)</strong><br>
+按升序对 A 的元素进行排序。</li>
+</ul>
+<blockquote>
+<ol>
+<li>如果 A 是向量，则 sort(A) 对向量元素进行排序。</li>
+<li>如果 A 是矩阵，则 sort(A) 会将 A 的列视为向量并对每列进行排序。</li>
+<li>如果 A 是多维数组，则 sort(A) 会沿大小不等于 1 的第一个数组维度计算，并将这些元素视为向量。</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p><strong>B = sort(A,dim)</strong><br>
+返回 A 沿维度 dim（正整数标量）的排序结果到变量 B 中。</p>
+</li>
+<li>
+<p><strong>B = sort(___,direction)</strong><br>
+使用上述任何语法返回按 direction 指定的顺序排序结果到变量 B 中。direction 的可选值为 <code>'ascend'</code> 或 <code>'descend'</code>，分别表示升序（默认）、降序。</p>
+</li>
+<li>
+<p><strong>B = sort(___,Name,Value)</strong><br>
+使用上述任何语法的基础上，指定用于排序的其他参数。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>‘MissingPlacement’,‘auto’（默认）| ‘first’ | ‘last’</strong> ：指定排序缺失值（NaN、NaT、<undefined>、missing）的位置。<strong>auto</strong> 指定缺失值放在最后（升序）或最前（降序），<strong>first</strong> 指定缺失值放在最前，<strong>last</strong> 指定缺失值放在最后。</p>
+</blockquote>
+<blockquote>
+<p><strong>‘ComparisonMethod’,‘auto’（默认）| ‘real’ | ‘abs’</strong> ：指定元素的比较方法。<strong>auto</strong> 指定当 A 为实数时，按 real(A) 对 A 进行排序；当 A 为复数时，按 abs(A) 进行排序。<strong>real</strong> 指定当 A 为实数或复数时，按 real(A) 对 A 进行排序；如果 A 包含具有相等实部的元素，则使用 imag(A) 进行排序。<strong>abs</strong> 指定当 A 为实数或复数时，按 abs(A) 对 A 进行排序；如果 A 包含具有相等模的元素，则使用区间 (-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>] 中的 angle(A) 进行排序。</p>
+</blockquote>
+<ul>
+<li><strong>[B,I] = sort(___)</strong><br>
+使用上述任何语法的基础上，还返回一个索引向量的集合。I 的大小与 A 的大小相同，它描述了 A 的元素沿已排序的维度在 B 中的排序情况。比如，如果 A 是一个向量，则 B = A(I) 。</li>
+</ul>
+<p>【注】当 A 是元胞数组时，不支持 dim 和 direction，即 sort 仅沿其大小不等于 1 的第一个维度进行升序排序。</p>
+<h2 id="2-issorted-函数">2. issorted 函数</h2>
+<h3 id="2-1-作用">2.1 作用</h3>
+<p>issorted 函数用来判断数组是否已经有序。</p>
+<h3 id="2-2-语法">2.2 语法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TF = issorted(A)</span><br><span class="line">TF = issorted(A,dim)</span><br><span class="line">TF = issorted(___,direction)</span><br><span class="line">TF = issorted(___,Name,Value)</span><br><span class="line">TF = issorted(A,<span class="string">&#x27;row&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>TF = issorted(A)</strong><br>
+当 A 的元素按升序排列时，TF = issorted(A) 将返回逻辑标量值 1（true）；否则，返回 0（false）。</li>
+</ul>
+<blockquote>
+<ol>
+<li>若 A 是向量，当向量元素按照升序排列时，issorted 返回 1；否则，返回 0。</li>
+<li>若 A 是矩阵，当 A 的每一列按升序排序时，issorted 返回 1；否则，返回 0。</li>
+<li>若 A 是多维数组，当 A 沿其大小不等于 1 的第一个维度按升序排序时，issorted 返回 1；否则，返回 0。</li>
+<li>若 A 是时间表（建议使用 issortedrows 函数，见下文），当其行时间向量按升序排序时，issorted 返回 1；否则，返回 0。</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p><strong>TF = issorted(A,dim)</strong><br>
+当 A 沿维度 dim 排序时，issorted 返回 1；否则，返回 0。</p>
+</li>
+<li>
+<p><strong>TF = issorted(___,direction)</strong><br>
+当 A 按 direction 指定的顺序排序时，issorted 返回 1；否则，返回 0。direction 可选值有：</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>‘ascend’</strong> ：检查数据是否按升序排列。<br>
+<strong>‘decend’</strong> ：检查数据是否按降序排列。<br>
+<strong>‘monotonic’</strong> ：检查数据是否按降序或升序排序。<br>
+<strong>‘strictascend’</strong> ：检查数据是否严格升序排列（即不能有重复元素或缺失元素）。<br>
+<strong>‘strictdescend’</strong> ：检查数据是否严格降序排列（即不能有重复元素或缺失元素）。<br>
+<strong>‘strictmonotonic’</strong> ：检查数据是否严格升序或降序排列（即不能有重复元素或缺失元素）。</p>
+</blockquote>
+<ul>
+<li><strong>TF = issorted(___,Name,Value)</strong><br>
+使用上述任何语法的基础上，指定用于检查排序顺序的其他参数。</li>
+</ul>
+<blockquote>
+<p><strong>‘MissingPlacement’,‘auto’（默认）| ‘first’ | ‘last’</strong> ：指定判断排序顺序时缺失值应该在的位置。<strong>auto</strong> 指定缺失值必须放在最后（升序）或最前（降序），才会返回 1。<strong>first</strong> 指定缺失值必须放在最前，才会返回 1。<strong>last</strong> 指定 缺失值必须放在最后，才会返回 1。<br>
+【注】时间表不支持该键值对属性（可改用 issortedrows 函数，见下文）</p>
+</blockquote>
+<blockquote>
+<p><strong>‘ComparisonMethod’,‘auto’（默认）| ‘real’ | ‘abs’</strong> ：指定元素的比较方法。<strong>auto</strong> 指定当 A 为实数时，A 是否按 real(A) 排序；当 A 为复数时，A 是否按照 abs(A) 排序。<strong>real</strong> 指定当 A 为实数或复数时，A 是否按 real(A) 排序；当 A 中元素具有连续相等的实部，则检查是否按照 imag(A) 排序。<strong>abs</strong> 指定当 A 为实数或复数时，A 是否按 abs(A) 排序；当 A 的元素具有连续相等的模，则检查是否按照区间 (-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>] 中的 angle(A) 排序。</p>
+</blockquote>
+<h2 id="3-sortrows-函数">3. sortrows 函数</h2>
+<h3 id="3-1-作用">3.1 作用</h3>
+<p>sortarrows 函数用来对矩阵行或表行进行排序。</p>
+<h3 id="3-2-语法">3.2 语法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">B = <span class="built_in">sortrows</span>(A)</span><br><span class="line">B = <span class="built_in">sortrows</span>(A,column)</span><br><span class="line">B = <span class="built_in">sortrows</span>(___,direction)</span><br><span class="line">B = <span class="built_in">sortrows</span>(___,Name,Value)</span><br><span class="line">[B,index] = <span class="built_in">sortrows</span>(___)</span><br><span class="line">tblB = <span class="built_in">sortrows</span>(tblA)</span><br><span class="line">tblB = <span class="built_in">sortrows</span>(tblA,<span class="string">&#x27;RowNames&#x27;</span>)</span><br><span class="line">tblB = <span class="built_in">sortrows</span>(tblA,rowDimName)</span><br><span class="line">tblB = <span class="built_in">sortrows</span>(tblA,vars)</span><br><span class="line">tblB = <span class="built_in">sortrows</span>(___,direction) <span class="comment">% 作用于表或时间表</span></span><br><span class="line">tblB = <span class="built_in">sortrows</span>(___,Name,Value) <span class="comment">% 作用于表或时间表</span></span><br><span class="line">[tblB,index] = <span class="built_in">sortrows</span>(___) <span class="comment">% 作用于表或时间表</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>B = sortrows(A)</strong><br>
+基于 A 第一列中的元素按升序对矩阵 A 的行进行排序，将排序结果赋值给 B。当第一列包含重复元素时，sortrows 会进一步根据下一列进行排序，依次类推。</p>
+</li>
+<li>
+<p><strong>B = sortrows(A,column)</strong><br>
+基于向量 column 中指定的列对 A 的行进行排序，将排序结果赋值给 B。按照 column 中的指定的列依次对 A 的行进行排序（即当前列出现相同元素时，进一步依据下一个指定列进行排序）column 为非零整数标量或非零整数向量，每个指定的整数值指示一个按其排序的列，负整数表示排序顺序为降序。</p>
+</li>
+<li>
+<p><strong>B = sortrows(___,direction)</strong><br>
+在上述语法基础上，指定按 direction 指定的顺序对 A 的行进行排序。direction 的可以为 <code>'ascend'</code> 或 <code>'descend'</code>，分别表示升序（默认）、降序；也可以是元素为 <code>'ascend'</code> 和 <code>'descend'</code> 的元胞数组，其中每个元素对应要排序的指定变量、行名称或行时间。</p>
+</li>
+</ul>
+<p>【注】如果同时指定 column 参数和 direction 参数，则 sortrows 根据 direction 进行排序，而忽略 column 中元素的符号。</p>
+<ul>
+<li><strong>B = sortrows(___,Name,Value)</strong><br>
+使用上述任何语法的基础上，指定用于排序的其他参数。</li>
+</ul>
+<blockquote>
+<p><strong>‘MissingPlacement’,‘auto’（默认）| ‘first’ | ‘last’</strong> ：指定排序缺失值（NaN、NaT、<undefined>、missing）的位置。<strong>auto</strong> 指定缺失值放在最后（升序）或最前（降序），<strong>first</strong> 指定缺失值放在最前，<strong>last</strong> 指定缺失值放在最后。</p>
+</blockquote>
+<blockquote>
+<p><strong>‘ComparisonMethod’,‘auto’（默认）| ‘real’ | ‘abs’</strong> ：指定元素的比较方法。<strong>auto</strong> 指定当 A 为实数时，按 real(A) 对 A 进行排序；当 A 为复数时，按 abs(A) 进行排序。<strong>real</strong> 指定当 A 为实数或复数时，按 real(A) 对 A 进行排序；如果 A 包含具有相等实部的元素，则使用 imag(A) 进行排序。<strong>abs</strong> 指定当 A 为实数或复数时，按 abs(A) 对 A 进行排序；如果 A 包含具有相等模的元素，则使用区间 (-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>] 中的 angle(A) 进行排序。</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>[B,index] = sortrows(___)</strong><br>
+在上述语法基础上，还返回描述行排列的索引向量，即 B = A(index,:)。</p>
+</li>
+<li>
+<p><strong>tblB = sortrows(tblA)</strong></p>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>当 tblA 为表（table）时，基于 tblA 中的第一个变量中的值按升序对表进行排序；如果第一个变量中的元素重复，则 sortrows 按第二个变量中的元素排序，以此类推。</li>
+<li>当 tblA 为时间表（timetable）时，则 sortrows 基于时间升序对 tblA 的行进行排序。时间表的行时间沿时间表的第一个维度标记行。</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>tblB = sortrows(tblA,‘RowNames’)</strong></li>
+</ul>
+<blockquote>
+<ol>
+<li>当 tblA 为表（table）时，基于 tblA 的行名称对表进行排序，表的行名称沿表的第一个维度标记行。如果 tblA 不包含行名称，即 tblA.Properties.RowNames 为空，则 sortrows 返回 tblA 。</li>
+<li>当 tblA 是时间表时，不支持此语法。</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>tblB = sortrows(tblA,rowDimName)</strong><br>
+沿第一个维度按行标签 rowDimName 对 tblA 进行排序。</li>
+</ul>
+<blockquote>
+<ol>
+<li>当 tblA 为表时，则行标签为行名称。</li>
+<li>当 tblA 为时间表时，则行标签为行时间。</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>tblB = sortrows(tblA,vars)</strong><br>
+按 vars 指定的变量中的元素对表进行排序。</li>
+</ul>
+<blockquote>
+<ol>
+<li>当 tblA 为包含行名称的表，则 vars 可以包含行名称。</li>
+<li>当 tblA 为时间表时，则 vars 可以包含行时间。</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p><strong>tblB = sortrows(___,direction) % 作用于表或时间表</strong><br>
+对于上述任意语法，按照 direction 指定的顺序对 tblA 进行排序。direction 可以为 <code>'ascend'</code> 或 <code>'descend'</code>，分别表示升序（默认）、降序；也可以是元素为 <code>'ascend'</code> 和 <code>'descend'</code> 的元胞数组，其中每个元素对应要排序的指定变量、行名称或行时间。</p>
+</li>
+<li>
+<p><strong>tblB = sortrows(___,Name,Value) % 作用于表或时间表</strong><br>
+对于上述任意语法，指定对表或时间表的行进行排序的其他参数。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>‘MissingPlacement’,‘auto’（默认）| ‘first’ | ‘last’</strong> ：指定排序缺失值（NaN、NaT、<undefined>、missing）的位置。<strong>auto</strong> 指定缺失值放在最后（升序）或最前（降序），<strong>first</strong> 指定缺失值放在最前，<strong>last</strong> 指定缺失值放在最后。</p>
+</blockquote>
+<blockquote>
+<p><strong>‘ComparisonMethod’,‘auto’（默认）| ‘real’ | ‘abs’</strong> ：指定元素的比较方法。<strong>auto</strong> 指定当 A 为实数时，按 real(A) 对 A 进行排序；当 A 为复数时，按 abs(A) 进行排序。<strong>real</strong> 指定当 A 为实数或复数时，按 real(A) 对 A 进行排序；如果 A 包含具有相等实部的元素，则使用 imag(A) 进行排序。<strong>abs</strong> 指定当 A 为实数或复数时，按 abs(A) 对 A 进行排序；如果 A 包含具有相等模的元素，则使用区间 (-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>] 中的 angle(A) 进行排序。</p>
+</blockquote>
+<ul>
+<li><strong>[tblB,index] = sortrows(___) % 作用于表或时间表</strong><br>
+除了返回排序结果 tblB 外，还返回一个索引向量 index 使得 tblB = tblA(index,:) 。</li>
+</ul>
+<h2 id="4-issortedrows-函数">4. issortedrows 函数</h2>
+<h3 id="4-1-作用">4.1 作用</h3>
+<p>issortedrows 函数用来确定矩阵或表的行是否已排序。</p>
+<h3 id="4-2-语法">4.2 语法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">TF = issortedrows(A)</span><br><span class="line">TF = issortedrows(A,column)</span><br><span class="line">TF = issortedrows(___,direction)</span><br><span class="line">TF = issortedrows(___,Name,Value)</span><br><span class="line">TF = issortedrows(tblA)</span><br><span class="line">TF = issortedrows(tblA,<span class="string">&#x27;RowNames&#x27;</span>)</span><br><span class="line">TF = issortedrows(tblA,rowDimName)</span><br><span class="line">TF = issortedrows(tblA,vars)</span><br><span class="line">TF = issortedrows(___,direction) <span class="comment">% 作用于表或时间表</span></span><br><span class="line">TF = issortedrows(___,Name,Value) <span class="comment">% 作用于表或时间表</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>TF = issortedrows(A)</strong><br>
+当矩阵 A 的第一列元素按升序排序时，issortedrows 返回逻辑标量 1；否则，返回 0 。当第一列有连续重复元素时，issortedrows 进一步检查下一列是否按升序排序，以此类推。</p>
+</li>
+<li>
+<p><strong>TF = issortedrows(A,column)</strong><br>
+当 A 根据向量 column 中指定的列排序时，issortedrows 返回 1，否则返回 0 。<br>
+column 为非零整数标量或非零整数向量，每个指定的整数值指示一个按其排序的列，负整数表示排序顺序为降序。</p>
+</li>
+<li>
+<p><strong>TF = issortedrows(___,direction)</strong><br>
+按照上述语法，检查是否按照 direction 指定的顺序进行排序，若是则返回 1，否则返回 0 。<br>
+direction 可选值有：</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>‘ascend’</strong> ：检查数据是否按升序排列。<br>
+<strong>‘decend’</strong> ：检查数据是否按降序排列。<br>
+<strong>‘monotonic’</strong> ：检查数据是否按降序或升序排序。<br>
+<strong>‘strictascend’</strong> ：检查数据是否严格升序排列（即不能有重复元素或缺失元素）。<br>
+<strong>‘strictdescend’</strong> ：检查数据是否严格降序排列（即不能有重复元素或缺失元素）。<br>
+<strong>‘strictmonotonic’</strong> ：检查数据是否严格升序或降序排列（即不能有重复元素或缺失元素）<br>
+【注】direction 也可以是包含上述可选值的向量列表的元胞数组，其中列表中的每个元素对应于 A 排序列向量中的一列。</p>
+</blockquote>
+<ul>
+<li><strong>TF = issortedrows(___,Name,Value)</strong><br>
+在上述语法基础上，指定用于检查排序顺序的其他参数。</li>
+</ul>
+<blockquote>
+<p><strong>‘MissingPlacement’,‘auto’（默认）| ‘first’ | ‘last’</strong> ：指定判断排序顺序时缺失值应该在的位置。<strong>auto</strong> 指定缺失值必须放在最后（升序）或最前（降序），才会返回 1。<strong>first</strong> 指定缺失值必须放在最前，才会返回 1。<strong>last</strong> 指定 缺失值必须放在最后，才会返回 1。</p>
+</blockquote>
+<blockquote>
+<p><strong>‘ComparisonMethod’,‘auto’（默认）| ‘real’ | ‘abs’</strong> ：指定元素的比较方法。<strong>auto</strong> 指定当 A 为实数时，A 是否按 real(A) 排序；当 A 为复数时，A 是否按照 abs(A) 排序。<strong>real</strong> 指定当 A 为实数或复数时，A 是否按 real(A) 排序；当 A 中元素具有连续相等的实部，则检查是否按照 imag(A) 排序。<strong>abs</strong> 指定当 A 为实数或复数时，A 是否按 abs(A) 排序；当 A 的元素具有连续相等的模，则检查是否按照区间 (-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>] 中的 angle(A) 排序。</p>
+</blockquote>
+<ul>
+<li><strong>TF = issortedrows(tblA)</strong></li>
+</ul>
+<blockquote>
+<ol>
+<li>若 tblA 为表，则检查表中的行是否基于第一个变量中的元素按升序排序；如果第一个变量中的元素重复，则 issortedrows 检查第二个变量中的元素，依次类推。</li>
+<li>若 tblA 为时间表，则检查 tblA 中的行是否基于其行时间升序排序，时间表的行时间沿时间表的第一个维度标记行。</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p><strong>TF = issortedrows(tblA,‘RowNames’)</strong><br>
+检查表中的行是否基于行名称升序排序。表的行名称沿表的第一个维度标记（tblA 为时间表时不支持该语法）</p>
+</li>
+<li>
+<p><strong>TF = issortedrows(tblA,rowDimName)</strong><br>
+检查表中的行是否沿第一个维度按行标签 rowDimName 进行排序。</p>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>若 tblA 是表，则标签为行名称。</li>
+<li>若 tblA 是时间表，则标签为行时间。</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>TF = issortedrows(tblA,vars)</strong><br>
+检查表中的行是否基于变量 vars 中的元素升序排序。</li>
+</ul>
+<blockquote>
+<ol>
+<li>若 tblA 为包含行名称的表，则 vars 可以包含行名称。</li>
+<li>若 tblA 为时间表，则 vars 可以包含行时间。</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>TF = issortedrows(___,direction) % 作用于表或时间表</strong><br>
+按照上述语法，检查是否按照 direction 指定的顺序进行排序，若是则返回 1，否则返回 0 。<br>
+direction 可选值有：</li>
+</ul>
+<blockquote>
+<p><strong>‘ascend’</strong> ：检查数据是否按升序排列。<br>
+<strong>‘decend’</strong> ：检查数据是否按降序排列。<br>
+<strong>‘monotonic’</strong> ：检查数据是否按降序或升序排序。<br>
+<strong>‘strictascend’</strong> ：检查数据是否严格升序排列（即不能有重复元素或缺失元素）。<br>
+<strong>‘strictdescend’</strong> ：检查数据是否严格降序排列（即不能有重复元素或缺失元素）。<br>
+<strong>‘strictmonotonic’</strong> ：检查数据是否严格升序或降序排列（即不能有重复元素或缺失元素）<br>
+【注】direction 也可以是包含上述可选值的向量列表的元胞数组，其中列表中的每个元素对应于 A 排序列向量中的一列。</p>
+</blockquote>
+<ul>
+<li><strong>TF = issortedrows(___,Name,Value) % 作用于表或时间表</strong><br>
+在上述语法基础上，指定用于检查排序顺序的其他参数。</li>
+</ul>
+<blockquote>
+<p><strong>‘MissingPlacement’,‘auto’（默认）| ‘first’ | ‘last’</strong> ：指定判断排序顺序时缺失值应该在的位置。<strong>auto</strong> 指定缺失值必须放在最后（升序）或最前（降序），才会返回 1。<strong>first</strong> 指定缺失值必须放在最前，才会返回 1。<strong>last</strong> 指定 缺失值必须放在最后，才会返回 1。</p>
+</blockquote>
+<blockquote>
+<p><strong>‘ComparisonMethod’,‘auto’（默认）| ‘real’ | ‘abs’</strong> ：指定元素的比较方法。<strong>auto</strong> 指定当 A 为实数时，A 是否按 real(A) 排序；当 A 为复数时，A 是否按照 abs(A) 排序。<strong>real</strong> 指定当 A 为实数或复数时，A 是否按 real(A) 排序；当 A 中元素具有连续相等的实部，则检查是否按照 imag(A) 排序。<strong>abs</strong> 指定当 A 为实数或复数时，A 是否按 abs(A) 排序；当 A 的元素具有连续相等的模，则检查是否按照区间 (-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>] 中的 angle(A) 排序。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0sort%E3%80%81issorted%E3%80%81sortrows%E3%80%81issortedrows/">https://hotarugali.github.io/2020/05/26/Technique/MatLab/MatLab函数sort、issorted、sortrows、issortedrows/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/MatLab/">MatLab</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/1336.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0repmat/" title="MatLab函数repmat"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1018.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MatLab函数repmat</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0xlsread%E3%80%81xlswrite%E3%80%81xlsfinfo/" title="MatLab函数xlsread、xlswrite、xlsfinfo"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1002.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MatLab函数xlsread、xlswrite、xlsfinfo</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/05/26/Technique/MatLab/MatLab%E4%B8%ADM%E6%96%87%E4%BB%B6/" title="MatLab中M文件"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/8.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab中M文件</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0/" title="MatLab函数"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/494.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0datetime%E3%80%81datenum%E3%80%81datevec%E3%80%81datestr/" title="MatLab函数datetime、datenum、datevec、datestr"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1046.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数datetime、datenum、datevec、datestr</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0interp1%E3%80%81interp2%E3%80%81interp3%E3%80%81interpn/" title="MatLab函数interp1、interp2、interp3、interpn"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1318.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数interp1、interp2、interp3、interpn</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0legend/" title="MatLab函数legend"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1592.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数legend</div></div></a></div><div><a href="/2020/05/26/Technique/MatLab/MatLab%E5%87%BD%E6%95%B0meshgrid%E3%80%81ndgrid/" title="MatLab函数meshgrid、ndgrid"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/594.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">MatLab函数meshgrid、ndgrid</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-sort-%E5%87%BD%E6%95%B0"><span class="toc-text">1. sort 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">1.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%AF%AD%E6%B3%95"><span class="toc-text">1.2 语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-issorted-%E5%87%BD%E6%95%B0"><span class="toc-text">2. issorted 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">2.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%AF%AD%E6%B3%95"><span class="toc-text">2.2 语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-sortrows-%E5%87%BD%E6%95%B0"><span class="toc-text">3. sortrows 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">3.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%AF%AD%E6%B3%95"><span class="toc-text">3.2 语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-issortedrows-%E5%87%BD%E6%95%B0"><span class="toc-text">4. issortedrows 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">4.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E8%AF%AD%E6%B3%95"><span class="toc-text">4.2 语法</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1336.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>

@@ -1,0 +1,1276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>五笔输入法 | お前はどこまで見えている</title><meta name="author" content="hotarugali"><meta name="copyright" content="hotarugali"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 简介 新世纪五笔是最新版的五笔输入法，它相较于前两版的五笔输入法（即 86 版和 98 版）拆字更加规范。 2. 键盘图  3. 字根助记表格  4. 编码流程  4.1 䃼码码元 新世纪五笔中有四个䃼码码元：礻、衤、犭、飠。它们作为字根时需要两个编码，即「主码」+「副码」；它们作为成字时至少需要四个编码，即「主码」+「副码」+「首笔」+ 「末笔」。    䃼码码元 字根编码 成字编码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="五笔输入法">
+<meta property="og:url" content="https://hotarugali.github.io/2021/08/12/Technique/InputMethod/%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95/%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95/index.html">
+<meta property="og:site_name" content="お前はどこまで見えている">
+<meta property="og:description" content="1. 简介 新世纪五笔是最新版的五笔输入法，它相较于前两版的五笔输入法（即 86 版和 98 版）拆字更加规范。 2. 键盘图  3. 字根助记表格  4. 编码流程  4.1 䃼码码元 新世纪五笔中有四个䃼码码元：礻、衤、犭、飠。它们作为字根时需要两个编码，即「主码」+「副码」；它们作为成字时至少需要四个编码，即「主码」+「副码」+「首笔」+ 「末笔」。    䃼码码元 字根编码 成字编码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1057.jpg">
+<meta property="article:published_time" content="2021-08-12T01:53:05.000Z">
+<meta property="article:modified_time" content="2023-12-17T04:14:51.589Z">
+<meta property="article:author" content="hotarugali">
+<meta property="article:tag" content="Technique">
+<meta property="article:tag" content="InputMethod">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hotarugali.github.io/FigureBed/wallpaper/1057.jpg"><link rel="shortcut icon" href="/img/hotarugali.jpg"><link rel="canonical" href="https://hotarugali.github.io/2021/08/12/Technique/InputMethod/%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95/%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?297e40d6e8840f7c1ba9900535589fa1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FEG5THRHCZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEG5THRHCZ');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "68ocnze3o7");</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '五笔输入法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 12:14:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2479343_vob9mc984l.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/botui.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/css/clock.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="お前はどこまで見えている" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/hotarugali.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">529</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">155</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1057.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="お前はどこまで見えている"><span class="site-name">お前はどこまで見えている</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-label"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-Category"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw iconfont icon-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw iconfont icon-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="fa-fw iconfont icon-love"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/comment/"><i class="fa-fw iconfont icon-message"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle/"><i class="fa-fw iconfont icon-f-circle"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-person1"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">五笔输入法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-12T01:53:05.000Z" title="发表于 2021-08-12 09:53:05">2021-08-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T04:14:51.589Z" title="更新于 2023-12-17 12:14:51">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/">Technique</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Technique/InputMethod/">InputMethod</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="五笔输入法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-简介">1. 简介</h2>
+<p>新世纪五笔是最新版的五笔输入法，它相较于前两版的五笔输入法（即 86 版和 98 版）拆字更加规范。</p>
+<h2 id="2-键盘图">2. 键盘图</h2>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/InputMethod/%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95/%E6%96%B0%E4%B8%96%E7%BA%AA%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95.jpg" class="" width="3508" title="新世纪五笔输入法">
+<h2 id="3-字根助记表格">3. 字根助记表格</h2>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/InputMethod/%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95/%E6%96%B0%E4%B8%96%E7%BA%AA%E4%BA%94%E7%AC%94%E5%8A%A9%E8%AE%B0%E8%A1%A8%E6%A0%BC.jpg" class="" width="878" title="新世纪五笔助记表格">
+<h2 id="4-编码流程">4. 编码流程</h2>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/Technique/InputMethod/%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95/%E7%BC%96%E7%A0%81%E6%B5%81%E7%A8%8B.jpg" class="" width="680" title="编码流程">
+<h3 id="4-1-䃼码码元">4.1 䃼码码元</h3>
+<p>新世纪五笔中有四个䃼码码元：<strong>礻</strong>、<strong>衤</strong>、<strong>犭</strong>、<strong>飠</strong>。它们作为字根时需要两个编码，即「主码」+「副码」；它们作为成字时至少需要四个编码，即「主码」+「副码」+「首笔」+ 「末笔」。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">䃼码码元</th>
+<th style="text-align:left">字根编码</th>
+<th style="text-align:left">成字编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>礻</strong></td>
+<td style="text-align:left"><code>py</code></td>
+<td style="text-align:left"><code>pyyy</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>衤</strong></td>
+<td style="text-align:left"><code>pu</code></td>
+<td style="text-align:left"><code>puyy</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>犭</strong></td>
+<td style="text-align:left"><code>qt</code></td>
+<td style="text-align:left"><code>qttt</code>，三级简码 <code>qtt</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>飠</strong></td>
+<td style="text-align:left"><code>wy</code></td>
+<td style="text-align:left"><code>wyty</code>，由于全码和「伪」字重码了，故另外给它分配了三级简码 <code>wyu</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2-打出字根">4.2 打出字根</h3>
+<ul>
+<li>横竖撇捺折：所在键位打两下 + <code>ll</code>。</li>
+<li>其它：当作成字字根来打，即所在键位打一下 + 第一笔画 + 第二笔画 + 末笔画。</li>
+</ul>
+<p>【注】不是所有字根都能打出。</p>
+<h3 id="4-3-汉字位置关系">4.3 汉字位置关系</h3>
+<p>根据构成汉字的各个字根之间的位置关系，五笔输入法将成千上万的方块汉字分为 3 种字型，即左右型、上下型和杂合型。</p>
+<h4 id="4-3-1-左右型">4.3.1 左右型</h4>
+<p>左右型汉字的字根与字根之间有一定的距离，从整体上来看，字根呈左右排列，如「划、形、担、班、侧、锄、貌、横、情、封、教」等。</p>
+<h4 id="4-3-2-上下型">4.3.2 上下型</h4>
+<p>上下型汉字的字根与字根之间有一定的距离，从整体上来看，字根呈上下排列，如「字、节、看、意、等、营、花、品、莉、想、型」。</p>
+<h4 id="4-3-3-杂合型">4.3.3 杂合型</h4>
+<p>字根相互包围、相连、相交的汉字统归杂合型。有以下 6 种结构关系的汉字都属于杂合型。</p>
+<ul>
+<li>半包围的汉字，如「包、原、匹、习、凶」等。</li>
+<li>全包围（内外型）的汉字，如「叉、回、圆、因、困、国、固、围」等。</li>
+<li>单笔画与成字字根相连而成的汉字，如「自、生、向、千、久、丈、少、舌、么」等。</li>
+<li>单独点与字根相连而成的汉字，如「刃、义、太、勺、犬」等。</li>
+<li>含走之底的汉字，如「过、进、远、连、边」等。</li>
+<li>含两个或几个字根且两者相交的汉字，如「丸、东、电、本、无、里」等。</li>
+</ul>
+<p>【注】「鱼、个」仍看作上下型。</p>
+<h3 id="4-4-末笔识别码">4.4 末笔识别码</h3>
+<h4 id="4-4-1-特殊规定">4.4.1 特殊规定</h4>
+<ul>
+<li>包含「辶」、「廴」和「𢦏」的汉字，汉字的末笔取被包围部分的末笔。</li>
+<li>全包围结构的汉字，汉字的末笔取被包围部分的末笔。</li>
+</ul>
+<h2 id="5-疑难杂症">5. 疑难杂症</h2>
+<p>虽然新世纪五笔相对前两版有所改进，但也有些地方也不是很合理，而且仍然有极少部分重码，需要特别记忆。这主要是汉字过于博大，仅用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>25</mn></mrow><annotation encoding="application/x-tex">25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">25</span></span></span></span> 个键表示所有汉字难免有重码；另一方面，汉字的笔画顺序错综复杂，即便两个字相似，它们的笔画顺序也可能大相径庭。</p>
+<h3 id="5-1-来">5.1 来</h3>
+<p><strong>来</strong>字编码：<code>go</code>，但在其他包含<strong>来</strong>的字的取法中，关于<strong>来</strong>这部分的取法为：<code>gus</code>，说实话这不太合理。</p>
+<h3 id="5-2-面">5.2 面</h3>
+<p><strong>面</strong>字编码：<code>dmjd</code>（或二级简码 <code>dm</code>），即<strong>面</strong>不拆成「囗」而拆成「冂」。</p>
+<h3 id="5-3-及">5.3 及</h3>
+<p><strong>及</strong>字编码：<code>by</code>，即拆成「乃」+「丶」。注意，其实<strong>及</strong>字中「丿」和<strong>乃</strong>字中「丿」的书写顺序是不同的，在<strong>乃</strong>中「丿」是末笔。</p>
+<h3 id="5-4-曹">5.4 曹</h3>
+<p><strong>曹</strong>字编码：<code>gmaj</code>，按照编码，它的上部分依次拆成「一」+「冂」+「艹」+「一」，故前三码为 <code>gma</code>。</p>
+<h3 id="5-5-垂">5.5 垂</h3>
+<p><strong>垂</strong>字编码：<code>tfag</code>，按照编码，它依次拆成「丿」+「十」+「艹」+「一」，注意第二部是「十」而不是单独的「一」+「丨」。</p>
+<h3 id="5-6-拜">5.6 拜</h3>
+<p><strong>拜</strong>字编码：<code>rdfh</code>，感觉这个编码有待商榷。</p>
+<h2 id="6-特殊符号">6. 特殊符号</h2>
+<p>以 <a target="_blank" rel="noopener" href="https://rime.im/">Rime</a> 下的<a target="_blank" rel="noopener" href="https://github.com/GuoBinyong/wubixinshiji">新世纪五笔输入法</a>为例：</p>
+<ul>
+<li>
+<p>标点符号：输入 <code>zzbd</code> 可得到标点符号列表。</p>
+</li>
+<li>
+<p>罗马数字：输入 <code>zzdl</code> 可得到罗马数字列表。</p>
+</li>
+<li>
+<p>阿拉伯数字：输入 <code>zzds</code> 可得到阿拉伯数字列表。</p>
+</li>
+<li>
+<p>小括号数字：输入 <code>zzfs</code> 可得到小括号数字列表。</p>
+</li>
+<li>
+<p>圆圈数字：输入 <code>zzys</code> 可得到圆圈数字列表。</p>
+</li>
+<li>
+<p>货币：输入 <code>zzhb</code> 可得到常见货币列表。</p>
+</li>
+<li>
+<p>日语片假名：输入 <code>zzjp</code> 可得到日语片假名列表。</p>
+</li>
+<li>
+<p>日语平假名：输入 <code>zzpj</code> 可得到日语平假名列表。</p>
+</li>
+<li>
+<p>汉字部首：输入 <code>zzpp</code> 可得到汉字部首列表。</p>
+</li>
+<li>
+<p>汉字注音：输入 <code>zzzy</code> 可得到汉字注音列表。</p>
+</li>
+</ul>
+<blockquote>
+<p>更多特殊符号可参见<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/GuoBinyong/wubixinshiji/master/wubixinshiji.dict.yaml">五笔新世纪词表</a>。</p>
+</blockquote>
+<h2 id="附录">附录</h2>
+<h3 id="查笔画">查笔画</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zd.diyifanwen.com/">在线新华字典</a></li>
+<li><a target="_blank" rel="noopener" href="https://zidian.aies.cn/">新华字典</a></li>
+<li><a target="_blank" rel="noopener" href="https://hanyu.baidu.com/">百度汉语</a></li>
+<li><a target="_blank" rel="noopener" href="https://bihua.bmcx.com/">便民查询网-汉字笔画查询</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zdic.net/">汉典</a></li>
+</ul>
+<h3 id="常用字">常用字</h3>
+<h4 id="横区（74-个）">横区（74 个）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">G（22 个）</th>
+<th style="text-align:left">F（20 个）</th>
+<th style="text-align:left">D（11 个）</th>
+<th style="text-align:left">S（11 个）</th>
+<th style="text-align:left">A（10 个）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">一 <code>g</code></td>
+<td style="text-align:left">地 <code>f</code></td>
+<td style="text-align:left">在 <code>d</code></td>
+<td style="text-align:left">要 <code>s</code></td>
+<td style="text-align:left">工 <code>a</code></td>
+</tr>
+<tr>
+<td style="text-align:left">开 <code>ga</code></td>
+<td style="text-align:left">支 <code>fcu</code></td>
+<td style="text-align:left">大 <code>dd</code></td>
+<td style="text-align:left">极 <code>sby</code></td>
+<td style="text-align:left">其 <code>ad</code></td>
+</tr>
+<tr>
+<td style="text-align:left">形 <code>gae</code></td>
+<td style="text-align:left">动 <code>fce</code></td>
+<td style="text-align:left">压 <code>dfy</code></td>
+<td style="text-align:left">本 <code>sg</code></td>
+<td style="text-align:left">基 <code>adw</code></td>
+</tr>
+<tr>
+<td style="text-align:left">式 <code>gan</code></td>
+<td style="text-align:left">运 <code>fcp</code></td>
+<td style="text-align:left">三 <code>dg</code></td>
+<td style="text-align:left">西 <code>sghg</code></td>
+<td style="text-align:left">期 <code>adwe</code></td>
+</tr>
+<tr>
+<td style="text-align:left">到 <code>gc</code></td>
+<td style="text-align:left">去 <code>fc</code></td>
+<td style="text-align:left">石 <code>dgtg</code></td>
+<td style="text-align:left">相 <code>sh</code></td>
+<td style="text-align:left">七 <code>ag</code></td>
+</tr>
+<tr>
+<td style="text-align:left">天 <code>gd</code></td>
+<td style="text-align:left">土 <code>ff</code></td>
+<td style="text-align:left">百 <code>dj</code></td>
+<td style="text-align:left">想 <code>shn</code></td>
+<td style="text-align:left">或 <code>ak</code></td>
+</tr>
+<tr>
+<td style="text-align:left">表 <code>ge</code></td>
+<td style="text-align:left">二 <code>fg</code></td>
+<td style="text-align:left">面 <code>dm</code></td>
+<td style="text-align:left">可 <code>sk</code></td>
+<td style="text-align:left">革 <code>akf</code></td>
+</tr>
+<tr>
+<td style="text-align:left">于 <code>gf</code></td>
+<td style="text-align:left">干 <code>fggh</code></td>
+<td style="text-align:left">而 <code>dmj</code></td>
+<td style="text-align:left">机 <code>sw</code></td>
+<td style="text-align:left">区 <code>ar</code></td>
+</tr>
+<tr>
+<td style="text-align:left">五 <code>gg</code></td>
+<td style="text-align:left">十 <code>fgh</code></td>
+<td style="text-align:left">成 <code>dn</code></td>
+<td style="text-align:left">林 <code>ss</code></td>
+<td style="text-align:left">切 <code>av</code></td>
+</tr>
+<tr>
+<td style="text-align:left">下 <code>gh</code></td>
+<td style="text-align:left">直 <code>fhf</code></td>
+<td style="text-align:left">克 <code>dq</code></td>
+<td style="text-align:left">样 <code>su</code></td>
+<td style="text-align:left">共 <code>aw</code></td>
+</tr>
+<tr>
+<td style="text-align:left">政 <code>ght</code></td>
+<td style="text-align:left">起 <code>fh</code></td>
+<td style="text-align:left">原 <code>dr</code></td>
+<td style="text-align:left">根 <code>sve</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">正 <code>ghd</code></td>
+<td style="text-align:left">真 <code>fhw</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">政 <code>ght</code></td>
+<td style="text-align:left">进 <code>fj</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">还 <code>dh</code></td>
+<td style="text-align:left">志 <code>fn</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">理 <code>gj</code></td>
+<td style="text-align:left">过 <code>fp</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">更 <code>gjr</code></td>
+<td style="text-align:left">无 <code>fq</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">事 <code>gk</code></td>
+<td style="text-align:left">教 <code>ftb</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">现 <code>gm</code></td>
+<td style="text-align:left">者 <code>ftj</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">两 <code>gmw</code></td>
+<td style="text-align:left">都 <code>ftjb</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">与 <code>gn</code></td>
+<td style="text-align:left">老 <code>ftx</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">来 <code>go</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">平 <code>gu</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="竖区（34-个）">竖区（34 个）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">H（5 个）</th>
+<th style="text-align:left">J（9 个）</th>
+<th style="text-align:left">K（6 个）</th>
+<th style="text-align:left">L（9 个）</th>
+<th style="text-align:left">M（5 个）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">上 <code>h</code></td>
+<td style="text-align:left">是 <code>j</code></td>
+<td style="text-align:left">中 <code>k</code></td>
+<td style="text-align:left">国 <code>l</code></td>
+<td style="text-align:left">同 <code>m</code></td>
+</tr>
+<tr>
+<td style="text-align:left">战 <code>hka</code></td>
+<td style="text-align:left">最 <code>jb</code></td>
+<td style="text-align:left">路 <code>khtk</code></td>
+<td style="text-align:left">因 <code>ld</code></td>
+<td style="text-align:left">由 <code>mh</code></td>
+</tr>
+<tr>
+<td style="text-align:left">点 <code>hko</code></td>
+<td style="text-align:left">明 <code>je</code></td>
+<td style="text-align:left">器 <code>kkd</code></td>
+<td style="text-align:left">转 <code>lfn</code></td>
+<td style="text-align:left">山 <code>mm</code></td>
+</tr>
+<tr>
+<td style="text-align:left">此 <code>hx</code></td>
+<td style="text-align:left">里 <code>jfd</code></td>
+<td style="text-align:left">别 <code>kej</code></td>
+<td style="text-align:left">团 <code>lf</code></td>
+<td style="text-align:left">见 <code>mq</code></td>
+</tr>
+<tr>
+<td style="text-align:left">些 <code>hxf</code></td>
+<td style="text-align:left">量 <code>jg</code></td>
+<td style="text-align:left">员 <code>km</code></td>
+<td style="text-align:left">四 <code>lh</code></td>
+<td style="text-align:left">内 <code>mw</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">题 <code>jgh</code></td>
+<td style="text-align:left">只 <code>kw</code></td>
+<td style="text-align:left">思 <code>ln</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">日 <code>jj</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">连 <code>lp</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">电 <code>jn</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">图 <code>lt</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">果 <code>js</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">较 <code>ly</code></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="撇区（83-个）">撇区（83 个）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">T（27 个）</th>
+<th style="text-align:left">R（18 个）</th>
+<th style="text-align:left">E（5 个）</th>
+<th style="text-align:left">W（26 个）</th>
+<th style="text-align:left">Q（7 个）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">和 <code>t</code></td>
+<td style="text-align:left">的 <code>r</code></td>
+<td style="text-align:left">有 <code>e</code></td>
+<td style="text-align:left">人 <code>w</code></td>
+<td style="text-align:left">我 <code>q</code></td>
+</tr>
+<tr>
+<td style="text-align:left">长 <code>ta</code></td>
+<td style="text-align:left">报 <code>rb</code></td>
+<td style="text-align:left">月 <code>ee</code></td>
+<td style="text-align:left">代 <code>wa</code></td>
+<td style="text-align:left">然 <code>qd</code></td>
+</tr>
+<tr>
+<td style="text-align:left">么 <code>tc</code></td>
+<td style="text-align:left">反 <code>rci</code></td>
+<td style="text-align:left">用 <code>eh</code></td>
+<td style="text-align:left">他 <code>wb</code></td>
+<td style="text-align:left">解 <code>qe</code></td>
+</tr>
+<tr>
+<td style="text-align:left">行 <code>tgs</code></td>
+<td style="text-align:left">把 <code>rc</code></td>
+<td style="text-align:left">加 <code>ek</code></td>
+<td style="text-align:left">公 <code>wc</code></td>
+<td style="text-align:left">外 <code>qh</code></td>
+</tr>
+<tr>
+<td style="text-align:left">等 <code>tffu</code></td>
+<td style="text-align:left">持 <code>rff</code></td>
+<td style="text-align:left">力 <code>en</code></td>
+<td style="text-align:left">会 <code>wf</code></td>
+<td style="text-align:left">象 <code>qke</code></td>
+</tr>
+<tr>
+<td style="text-align:left">造 <code>tfkp</code></td>
+<td style="text-align:left">质 <code>rf</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">全 <code>wg</code></td>
+<td style="text-align:left">多 <code>qq</code></td>
+</tr>
+<tr>
+<td style="text-align:left">毛 <code>tfn</code></td>
+<td style="text-align:left">后 <code>rg</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">合 <code>wgk</code></td>
+<td style="text-align:left">争 <code>qv</code></td>
+</tr>
+<tr>
+<td style="text-align:left">先 <code>tfq</code></td>
+<td style="text-align:left">年 <code>rh</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">命 <code>wgkb</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">生 <code>tg</code></td>
+<td style="text-align:left">看 <code>rhf</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">使 <code>wgkr</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">重 <code>tgj</code></td>
+<td style="text-align:left">提 <code>rj</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">个 <code>wh</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">处 <code>th</code></td>
+<td style="text-align:left">制 <code>rm</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">修 <code>wht</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">自 <code>thd</code></td>
+<td style="text-align:left">气 <code>rn</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">但 <code>wjg</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">得 <code>tj</code></td>
+<td style="text-align:left">所 <code>rnr</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">保 <code>wks</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">利 <code>tjh</code></td>
+<td style="text-align:left">手 <code>rt</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">你 <code>wq</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">各 <code>tk</code></td>
+<td style="text-align:left">接 <code>ruv</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">件 <code>wtg</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">程 <code>tkgg</code></td>
+<td style="text-align:left">热 <code>rv</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">体 <code>ws</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">种 <code>tkh</code></td>
+<td style="text-align:left">指 <code>rx</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">作 <code>wth</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">向 <code>tmk</code></td>
+<td style="text-align:left">批 <code>rxx</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">任 <code>wtf</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">管 <code>tp</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">几 <code>wtn</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">很 <code>tv</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">位 <code>wu</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">委 <code>tvf</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">们 <code>wun</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">第 <code>tx</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">分 <code>wv</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">系 <code>txi</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">从 <code>ww</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">入 <code>ty</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">众 <code>www</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">物 <code>tq</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">化 <code>wx</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">特 <code>tffy</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">领 <code>wycm</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">条 <code>ts</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="捺区（66-个）">捺区（66 个）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Y（14 个）</th>
+<th style="text-align:left">U（20 个）</th>
+<th style="text-align:left">I（15 个）</th>
+<th style="text-align:left">O（8 个）</th>
+<th style="text-align:left">P（9 个）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">主 <code>y</code></td>
+<td style="text-align:left">产 <code>u</code></td>
+<td style="text-align:left">不 <code>i</code></td>
+<td style="text-align:left">为 <code>o</code></td>
+<td style="text-align:left">这 <code>yp</code></td>
+</tr>
+<tr>
+<td style="text-align:left">育 <code>yce</code></td>
+<td style="text-align:left">并 <code>ua</code></td>
+<td style="text-align:left">治 <code>ick</code></td>
+<td style="text-align:left">度 <code>oa</code></td>
+<td style="text-align:left">家 <code>pge</code></td>
+</tr>
+<tr>
+<td style="text-align:left">就 <code>yk</code></td>
+<td style="text-align:left">关 <code>udu</code></td>
+<td style="text-align:left">法 <code>if</code></td>
+<td style="text-align:left">席 <code>oam</code></td>
+<td style="text-align:left">农 <code>pe</code></td>
+</tr>
+<tr>
+<td style="text-align:left">识 <code>ykw</code></td>
+<td style="text-align:left">着 <code>ug</code></td>
+<td style="text-align:left">小 <code>ih</code></td>
+<td style="text-align:left">业 <code>og</code></td>
+<td style="text-align:left">定 <code>pg</code></td>
+</tr>
+<tr>
+<td style="text-align:left">高 <code>ykm</code></td>
+<td style="text-align:left">头 <code>ud</code></td>
+<td style="text-align:left">水 <code>ii</code></td>
+<td style="text-align:left">应 <code>oi</code></td>
+<td style="text-align:left">军 <code>pl</code></td>
+</tr>
+<tr>
+<td style="text-align:left">调 <code>ymf</code></td>
+<td style="text-align:left">前 <code>ue</code></td>
+<td style="text-align:left">没 <code>iw</code></td>
+<td style="text-align:left">料 <code>ou</code></td>
+<td style="text-align:left">之 <code>pp</code></td>
+</tr>
+<tr>
+<td style="text-align:left">变 <code>yoc</code></td>
+<td style="text-align:left">斗 <code>ufk</code></td>
+<td style="text-align:left">油 <code>im</code></td>
+<td style="text-align:left">数 <code>ov</code></td>
+<td style="text-align:left">实 <code>pu</code></td>
+</tr>
+<tr>
+<td style="text-align:left">义 <code>yr</code></td>
+<td style="text-align:left">病 <code>ugm</code></td>
+<td style="text-align:left">学 <code>ip</code></td>
+<td style="text-align:left">米 <code>oyt</code></td>
+<td style="text-align:left">它 <code>px</code></td>
+</tr>
+<tr>
+<td style="text-align:left">放 <code>yt</code></td>
+<td style="text-align:left">间 <code>uj</code></td>
+<td style="text-align:left">党 <code>ipk</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">社 <code>py</code></td>
+</tr>
+<tr>
+<td style="text-align:left">说 <code>yu</code></td>
+<td style="text-align:left">意 <code>ujn</code></td>
+<td style="text-align:left">常 <code>ipkh</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">认 <code>ywy</code></td>
+<td style="text-align:left">部 <code>ukb</code></td>
+<td style="text-align:left">深 <code>ipw</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">论 <code>ywx</code></td>
+<td style="text-align:left">问 <code>uk</code></td>
+<td style="text-align:left">少 <code>it</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">方 <code>yy</code></td>
+<td style="text-align:left">总 <code>ukn</code></td>
+<td style="text-align:left">活 <code>itd</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">文 <code>yyg</code></td>
+<td style="text-align:left">决 <code>un</code></td>
+<td style="text-align:left">当 <code>iv</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">将 <code>uqf</code></td>
+<td style="text-align:left">流 <code>iy</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">次 <code>uq</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">资 <code>uqw</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">新 <code>usr</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">道 <code>ut</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">立 <code>uu</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="折区（43-个）">折区（43 个）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">N（12 个）</th>
+<th style="text-align:left">B（9 个）</th>
+<th style="text-align:left">V（6 个）</th>
+<th style="text-align:left">C（8 个）</th>
+<th style="text-align:left">X（8 个）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">民 <code>n</code></td>
+<td style="text-align:left">了 <code>b</code></td>
+<td style="text-align:left">发 <code>v</code></td>
+<td style="text-align:left">以 <code>c</code></td>
+<td style="text-align:left">经 <code>x</code></td>
+</tr>
+<tr>
+<td style="text-align:left">展 <code>na</code></td>
+<td style="text-align:left">子 <code>bb</code></td>
+<td style="text-align:left">好 <code>vb</code></td>
+<td style="text-align:left">又 <code>cc</code></td>
+<td style="text-align:left">级 <code>xb</code></td>
+</tr>
+<tr>
+<td style="text-align:left">导 <code>nf</code></td>
+<td style="text-align:left">取 <code>bc</code></td>
+<td style="text-align:left">建 <code>vg</code></td>
+<td style="text-align:left">能 <code>ce</code></td>
+<td style="text-align:left">组 <code>xe</code></td>
+</tr>
+<tr>
+<td style="text-align:left">那 <code>ng</code></td>
+<td style="text-align:left">出 <code>bm</code></td>
+<td style="text-align:left">如 <code>vk</code></td>
+<td style="text-align:left">通 <code>ceh</code></td>
+<td style="text-align:left">结 <code>xfk</code></td>
+</tr>
+<tr>
+<td style="text-align:left">情 <code>nge</code></td>
+<td style="text-align:left">也 <code>bn</code></td>
+<td style="text-align:left">九 <code>vt</code></td>
+<td style="text-align:left">对 <code>cf</code></td>
+<td style="text-align:left">线 <code>xf</code></td>
+</tr>
+<tr>
+<td style="text-align:left">己 <code>nng</code></td>
+<td style="text-align:left">孔 <code>bnn</code></td>
+<td style="text-align:left">群 <code>vtk</code></td>
+<td style="text-align:left">观 <code>cm</code></td>
+<td style="text-align:left">强 <code>xk</code></td>
+</tr>
+<tr>
+<td style="text-align:left">已 <code>nn</code></td>
+<td style="text-align:left">队 <code>bw</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">马 <code>cg</code></td>
+<td style="text-align:left">比 <code>xx</code></td>
+</tr>
+<tr>
+<td style="text-align:left">必 <code>nt</code></td>
+<td style="text-align:left">阶 <code>bwj</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">验 <code>cgw</code></td>
+<td style="text-align:left">统 <code>xy</code></td>
+</tr>
+<tr>
+<td style="text-align:left">性 <code>ntg</code></td>
+<td style="text-align:left">及 <code>by</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">改 <code>nty</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">习 <code>nu</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">心 <code>ny</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="精选难拆字">精选难拆字</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">判 <code>ugjh</code></th>
+<th style="text-align:left">贵 <code>khg</code></th>
+<th style="text-align:left">颐 <code>ahkm</code></th>
+<th style="text-align:left">戌 <code>dgx</code></th>
+<th style="text-align:left">舆 <code>elg</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">敝 <code>umit</code></td>
+<td style="text-align:left">鼠 <code>enu</code></td>
+<td style="text-align:left">母 <code>xnny</code></td>
+<td style="text-align:left">戍 <code>dyx</code></td>
+<td style="text-align:left">曹 <code>gmaj</code></td>
+</tr>
+<tr>
+<td style="text-align:left">追 <code>wnnp</code></td>
+<td style="text-align:left">藏 <code>adn</code></td>
+<td style="text-align:left">毋 <code>xdd</code></td>
+<td style="text-align:left">蔻 <code>apfc</code></td>
+<td style="text-align:left">舞 <code>rlg</code></td>
+</tr>
+<tr>
+<td style="text-align:left">釜 <code>wrf</code></td>
+<td style="text-align:left">片 <code>thg</code></td>
+<td style="text-align:left">凹 <code>hnm</code></td>
+<td style="text-align:left">尬 <code>dnw</code></td>
+<td style="text-align:left">嗤 <code>kbhj</code></td>
+</tr>
+<tr>
+<td style="text-align:left">虐 <code>haa</code></td>
+<td style="text-align:left">爿 <code>nhde</code></td>
+<td style="text-align:left">凸 <code>hghg</code></td>
+<td style="text-align:left">尴 <code>dnj</code></td>
+<td style="text-align:left">拜 <code>rdfh</code></td>
+</tr>
+<tr>
+<td style="text-align:left">脊 <code>iwe</code></td>
+<td style="text-align:left">臣 <code>ahnh</code></td>
+<td style="text-align:left">戊 <code>dxyi</code>（与「龙」重码）</td>
+<td style="text-align:left">卑 <code>rtfj</code></td>
+<td style="text-align:left">靥 <code>ddyd</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="学习资料">学习资料</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.52wubi.com/">我爱五笔网</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nx41177Mm">五笔打字教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uW41117BQ">【全套】五笔输入法打字首选教程</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.wangma.net.cn/">王码</a></li>
+<li><a target="_blank" rel="noopener" href="https://06wb.github.io/">新世纪五笔字型资源库</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/keatonlao/p/13072507.html">7 天学会新世纪五笔——原来五笔是个拼字游戏</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io">hotarugali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hotarugali.github.io/2021/08/12/Technique/InputMethod/%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95/%E4%BA%94%E7%AC%94%E8%BE%93%E5%85%A5%E6%B3%95/">https://hotarugali.github.io/2021/08/12/Technique/InputMethod/五笔输入法/五笔输入法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hotarugali.github.io" target="_blank">お前はどこまで見えている</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Technique/">Technique</a><a class="post-meta__tags" href="/tags/InputMethod/">InputMethod</a></div><div class="post_share"><div class="social-share" data-image="https://hotarugali.github.io/FigureBed/wallpaper/1057.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/donate/WeChatSQ.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/WeChatSQ.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/donate/AliPayQR.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/donate/AliPayQR.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/12/Technique/InputMethod/%E5%8F%8C%E6%8B%BC%E8%BE%93%E5%85%A5%E6%B3%95/%E5%8F%8C%E6%8B%BC%E8%BE%93%E5%85%A5%E6%B3%95/" title="双拼输入法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/236.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">双拼输入法</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/11/Technique/Linux/ArchLinux/ArchLinux%E4%B8%8B%E5%BC%80%E5%90%AFMagicSysRq%E7%BB%84%E5%90%88%E9%94%AE/" title="ArchLinux下开启MagicSysRq组合键"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1498.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ArchLinux下开启MagicSysRq组合键</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/25/Technique/InputMethod/Rime%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%96%B9%E6%A1%88/" title="Rime中文输入方案"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/438.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-25</div><div class="title">Rime中文输入方案</div></div></a></div><div><a href="/2021/12/05/Technique/InputMethod/Windows%E4%B8%8B%E9%85%8D%E7%BD%AERime%E8%BE%93%E5%85%A5%E6%96%B9%E6%A1%88/Windows%E4%B8%8B%E9%85%8D%E7%BD%AERime%E8%BE%93%E5%85%A5%E6%96%B9%E6%A1%88/" title="Windows下配置Rime输入方案"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/410.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-05</div><div class="title">Windows下配置Rime输入方案</div></div></a></div><div><a href="/2021/08/12/Technique/InputMethod/%E5%8F%8C%E6%8B%BC%E8%BE%93%E5%85%A5%E6%B3%95/%E5%8F%8C%E6%8B%BC%E8%BE%93%E5%85%A5%E6%B3%95/" title="双拼输入法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/236.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-12</div><div class="title">双拼输入法</div></div></a></div><div><a href="/2021/08/18/Technique/Browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%9E%E7%94%A8%E6%8F%92%E4%BB%B6%E9%9B%86%E5%90%88/" title="浏览器实用插件集合"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1085.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-18</div><div class="title">浏览器实用插件集合</div></div></a></div><div><a href="/2021/06/04/Technique/C++/C++%E5%86%85%E7%BD%AE%E5%AE%8F%E5%AE%9A%E4%B9%89/" title="C++内置宏定义"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1524.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-04</div><div class="title">C++内置宏定义</div></div></a></div><div><a href="/2020/12/12/Technique/C++/C++%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/" title="C++相关资料汇总"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://hotarugali.github.io/FigureBed/wallpaper/1326.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-12</div><div class="title">C++相关资料汇总</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%94%AE%E7%9B%98%E5%9B%BE"><span class="toc-text">2. 键盘图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AD%97%E6%A0%B9%E5%8A%A9%E8%AE%B0%E8%A1%A8%E6%A0%BC"><span class="toc-text">3. 字根助记表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BC%96%E7%A0%81%E6%B5%81%E7%A8%8B"><span class="toc-text">4. 编码流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%83%BC%E7%A0%81%E7%A0%81%E5%85%83"><span class="toc-text">4.1 䃼码码元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%89%93%E5%87%BA%E5%AD%97%E6%A0%B9"><span class="toc-text">4.2 打出字根</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%B1%89%E5%AD%97%E4%BD%8D%E7%BD%AE%E5%85%B3%E7%B3%BB"><span class="toc-text">4.3 汉字位置关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-%E5%B7%A6%E5%8F%B3%E5%9E%8B"><span class="toc-text">4.3.1 左右型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-%E4%B8%8A%E4%B8%8B%E5%9E%8B"><span class="toc-text">4.3.2 上下型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-%E6%9D%82%E5%90%88%E5%9E%8B"><span class="toc-text">4.3.3 杂合型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E6%9C%AB%E7%AC%94%E8%AF%86%E5%88%AB%E7%A0%81"><span class="toc-text">4.4 末笔识别码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-%E7%89%B9%E6%AE%8A%E8%A7%84%E5%AE%9A"><span class="toc-text">4.4.1 特殊规定</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87"><span class="toc-text">5. 疑难杂症</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%9D%A5"><span class="toc-text">5.1 来</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E9%9D%A2"><span class="toc-text">5.2 面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%8F%8A"><span class="toc-text">5.3 及</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E6%9B%B9"><span class="toc-text">5.4 曹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E5%9E%82"><span class="toc-text">5.5 垂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-%E6%8B%9C"><span class="toc-text">5.6 拜</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-text">6. 特殊符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%AC%94%E7%94%BB"><span class="toc-text">查笔画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%AD%97"><span class="toc-text">常用字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%AA%E5%8C%BA%EF%BC%8874-%E4%B8%AA%EF%BC%89"><span class="toc-text">横区（74 个）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%96%E5%8C%BA%EF%BC%8834-%E4%B8%AA%EF%BC%89"><span class="toc-text">竖区（34 个）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%92%87%E5%8C%BA%EF%BC%8883-%E4%B8%AA%EF%BC%89"><span class="toc-text">撇区（83 个）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%BA%E5%8C%BA%EF%BC%8866-%E4%B8%AA%EF%BC%89"><span class="toc-text">捺区（66 个）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%98%E5%8C%BA%EF%BC%8843-%E4%B8%AA%EF%BC%89"><span class="toc-text">折区（43 个）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%BE%E9%80%89%E9%9A%BE%E6%8B%86%E5%AD%97"><span class="toc-text">精选难拆字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99"><span class="toc-text">学习资料</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://hotarugali.github.io/FigureBed/wallpaper/1057.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hotarugali</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, Welcome to my blog.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    btf.addModeChange('mermaid', () => {
+      window.runMermaid()
+    })
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline-v2-hotarugali.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, {"locale":{"placeholder":"都看到这里了，留个脚印再走呗~"},"emoji":["https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili_tv_gif/waline/bilibili_tv_gif","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibiliHotKey/waline/bilibiliHotKey","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@bilibili2233/waline/bilibili2233","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@smallshake/waline/smallshake","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@alu/waline/alu","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@QQ/waline/QQ","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@Tieba-New/waline/Tieba-New","https://cdn.jsdelivr.net/gh/hotarugali/Emoji@weibo/waline/weibo"]}))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-git-main-hotarugali.vercel.app/',
+      region: 'ap-guangzhou',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="3107777185" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script defer src="/live2d-widget/autoload.js"></script><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 網站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">點擊刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"點擊刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/p6xsdfucuppqybcfijot1hsnancsqec5.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/js/githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api-hotarugali.vercel.app/api?hotarugali";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="hotarugali";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/images/weather/loading.gif" style="height: 136px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script type="text/javascript">var font='UnidreamLED'</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            loc = $.ajax({
+                    url: "https://ipapi.co/json/",  //json文件位置，文件名
+                    type: "GET",                    //请求方式为get
+                    dataType: "json",               //返回数据格式为json
+                    async: false,
+                    success: function(data) {       //请求成功完成后要执行的方法 
+                    }
+                });
+            ip=$.parseJSON(loc.responseText).ip;
+            version=$.parseJSON(loc.responseText).version;
+            city=$.parseJSON(loc.responseText).city;
+            country=$.parseJSON(loc.responseText).country_name;
+        </script>
+        <script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-electric-clock-plus@latest/js/clock.js"></script><!-- hexo injector body_end end --><script src="/js/markmap.js"></script></body></html>
