@@ -1,24 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let headerContentWidth, $nav
+  let blogNameWidth, menusWidth, searchWidth, $nav
   let mobileSidebarOpen = false
 
-  const adjustMenu = init => {
-    const getAllWidth = ele => {
-      let width = 0
-      ele.length && Array.from(ele).forEach(i => { width += i.offsetWidth })
-      return width
-    }
-
+  const adjustMenu = (init) => {
     if (init) {
-      const blogInfoWidth = getAllWidth(document.querySelector('#blog-info > a').children)
-      const menusWidth = getAllWidth(document.getElementById('menus').children)
-      headerContentWidth = blogInfoWidth + menusWidth
+      blogNameWidth = document.getElementById('site-name').offsetWidth
+      const $menusEle = document.querySelectorAll('#menus .menus_item')
+      menusWidth = 0
+      $menusEle.length && $menusEle.forEach(i => { menusWidth += i.offsetWidth })
+      const $searchEle = document.querySelector('#search-button')
+      searchWidth = $searchEle ? $searchEle.offsetWidth : 0
       $nav = document.getElementById('nav')
     }
 
     let hideMenuIndex = ''
-    if (window.innerWidth <= 768) hideMenuIndex = true
-    else hideMenuIndex = headerContentWidth > $nav.offsetWidth - 120
+    if (window.innerWidth < 768) hideMenuIndex = true
+    else hideMenuIndex = blogNameWidth + menusWidth + searchWidth > $nav.offsetWidth - 120
 
     if (hideMenuIndex) {
       $nav.classList.add('hide-menu')
@@ -70,17 +67,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const highLight = GLOBAL_CONFIG.highlight
     if (!highLight) return
 
-    const { highlightCopy, highlightLang, highlightHeightLimit, plugin } = highLight
+    const isHighlightCopy = highLight.highlightCopy
+    const isHighlightLang = highLight.highlightLang
     const isHighlightShrink = GLOBAL_CONFIG_SITE.isHighlightShrink
-    const isShowTool = highlightCopy || highlightLang || isHighlightShrink !== undefined
-    const $figureHighlight = plugin === 'highlighjs' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]')
+    const highlightHeightLimit = highLight.highlightHeightLimit
+    const isShowTool = isHighlightCopy || isHighlightLang || isHighlightShrink !== undefined
+    const $figureHighlight = highLight.plugin === 'highlighjs' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]')
 
     if (!((isShowTool || highlightHeightLimit) && $figureHighlight.length)) return
 
-    const isPrismjs = plugin === 'prismjs'
+    const isPrismjs = highLight.plugin === 'prismjs'
+
+    let highlightShrinkEle = ''
+    let highlightCopyEle = ''
     const highlightShrinkClass = isHighlightShrink === true ? 'closed' : ''
-    const highlightShrinkEle = isHighlightShrink !== undefined ? `<i class="fas fa-angle-down expand ${highlightShrinkClass}"></i>` : ''
-    const highlightCopyEle = highlightCopy ? '<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>' : ''
+
+    if (isHighlightShrink !== undefined) {
+      highlightShrinkEle = `<i class="fas fa-angle-down expand ${highlightShrinkClass}"></i>`
+    }
+
+    if (isHighlightCopy) {
+      highlightCopyEle = '<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>'
+    }
 
     const copy = (text, ctx) => {
       if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
@@ -89,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
           btf.snackbarShow(GLOBAL_CONFIG.copy.success)
         } else {
           const prevEle = ctx.previousElementSibling
-          prevEle.textContent = GLOBAL_CONFIG.copy.success
+          prevEle.innerText = GLOBAL_CONFIG.copy.success
           prevEle.style.opacity = 1
           setTimeout(() => { prevEle.style.opacity = 0 }, 700)
         }
@@ -97,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (GLOBAL_CONFIG.Snackbar !== undefined) {
           btf.snackbarShow(GLOBAL_CONFIG.copy.noSupport)
         } else {
-          ctx.previousElementSibling.textContent = GLOBAL_CONFIG.copy.noSupport
+          ctx.previousElementSibling.innerText = GLOBAL_CONFIG.copy.noSupport
         }
       }
     }
@@ -108,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
       $buttonParent.classList.add('copy-true')
       const selection = window.getSelection()
       const range = document.createRange()
-      const preCodeSelector = isPrismjs ? 'pre code' : 'table .code pre'
-      range.selectNodeContents($buttonParent.querySelectorAll(`${preCodeSelector}`)[0])
+      if (isPrismjs) range.selectNodeContents($buttonParent.querySelectorAll('pre code')[0])
+      else range.selectNodeContents($buttonParent.querySelectorAll('table .code pre')[0])
       selection.removeAllRanges()
       selection.addRange(range)
       const text = selection.toString()
@@ -164,29 +172,33 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    if (isPrismjs) {
-      $figureHighlight.forEach(item => {
-        if (highlightLang) {
-          const langName = item.getAttribute('data-language') || 'Code'
+    if (isHighlightLang) {
+      if (isPrismjs) {
+        $figureHighlight.forEach(function (item) {
+          const langName = item.getAttribute('data-language') ? item.getAttribute('data-language') : 'Code'
           const highlightLangEle = `<div class="code-lang">${langName}</div>`
           btf.wrap(item, 'figure', { class: 'highlight' })
           createEle(highlightLangEle, item)
-        } else {
-          btf.wrap(item, 'figure', { class: 'highlight' })
-          createEle('', item)
-        }
-      })
-    } else {
-      $figureHighlight.forEach(function (item) {
-        if (highlightLang) {
+        })
+      } else {
+        $figureHighlight.forEach(function (item) {
           let langName = item.getAttribute('class').split(' ')[1]
           if (langName === 'plain' || langName === undefined) langName = 'Code'
           const highlightLangEle = `<div class="code-lang">${langName}</div>`
           createEle(highlightLangEle, item, 'hl')
-        } else {
+        })
+      }
+    } else {
+      if (isPrismjs) {
+        $figureHighlight.forEach(function (item) {
+          btf.wrap(item, 'figure', { class: 'highlight' })
+          createEle('', item)
+        })
+      } else {
+        $figureHighlight.forEach(function (item) {
           createEle('', item, 'hl')
-        }
-      })
+        })
+      }
     }
   }
 
@@ -217,79 +229,26 @@ document.addEventListener('DOMContentLoaded', function () {
    * justified-gallery 圖庫排版
    */
   const runJustifiedGallery = function (ele) {
-    const htmlStr = arr => {
-      let str = ''
-      const replaceDq = str => str.replace(/"/g, '&quot;') // replace double quotes to &quot;
-      arr.forEach(i => {
-        const alt = i.alt ? `alt="${replaceDq(i.alt)}"` : ''
-        const title = i.title ? `title="${replaceDq(i.title)}"` : ''
-        str += `<div class="fj-gallery-item"><img src="${i.url}" ${alt + title}"></div>`
+    ele.forEach(item => {
+      const $imgList = item.querySelectorAll('img')
+
+      $imgList.forEach(i => {
+        const dataLazySrc = i.getAttribute('data-lazy-src')
+        if (dataLazySrc) i.src = dataLazySrc
+        btf.wrap(i, 'div', { class: 'fj-gallery-item' })
       })
-      return str
-    }
-
-    const lazyloadFn = (i, arr, limit) => {
-      const loadItem = limit
-      const arrLength = arr.length
-      if (arrLength > loadItem) i.insertAdjacentHTML('beforeend', htmlStr(arr.splice(0, loadItem)))
-      else {
-        i.insertAdjacentHTML('beforeend', htmlStr(arr))
-        i.classList.remove('lazyload')
-      }
-      return arrLength > loadItem ? loadItem : arrLength
-    }
-
-    const fetchUrl = async (url) => {
-      const response = await fetch(url)
-      return await response.json()
-    }
-
-    const runJustifiedGallery = (item, arr) => {
-      if (!item.classList.contains('lazyload')) item.innerHTML = htmlStr(arr)
-      else {
-        const limit = item.getAttribute('data-limit')
-        lazyloadFn(item, arr, limit)
-        const clickBtnFn = () => {
-          const lastItemLength = lazyloadFn(item, arr, limit)
-          fjGallery(item, 'appendImages', item.querySelectorAll(`.fj-gallery-item:nth-last-child(-n+${lastItemLength})`))
-          btf.loadLightbox(item.querySelectorAll('img'))
-          lastItemLength < limit && item.nextElementSibling.removeEventListener('click', clickBtnFn)
-        }
-        item.nextElementSibling.addEventListener('click', clickBtnFn)
-      }
-      btf.initJustifiedGallery(item)
-      btf.loadLightbox(item.querySelectorAll('img'))
-    }
-
-    const addJustifiedGallery = () => {
-      ele.forEach(item => {
-        item.classList.contains('url')
-          ? fetchUrl(item.textContent).then(res => { runJustifiedGallery(item, res) })
-          : runJustifiedGallery(item, JSON.parse(item.textContent))
-      })
-    }
+    })
 
     if (window.fjGallery) {
-      addJustifiedGallery()
+      setTimeout(() => { btf.initJustifiedGallery(ele) }, 100)
       return
     }
 
-    getCSS(`${GLOBAL_CONFIG.source.justifiedGallery.css}`)
-    getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`).then(addJustifiedGallery)
-  }
-
-  /**
-   * rightside scroll percent
-   */
-  const rightsideScrollPercent = currentTop => {
-    const perNum = btf.getScrollPercent(currentTop, document.body)
-    const $goUp = document.getElementById('go-up')
-    if (perNum < 95) {
-      $goUp.classList.add('show-percent')
-      $goUp.querySelector('.scroll-percent').textContent = perNum
-    } else {
-      $goUp.classList.remove('show-percent')
-    }
+    const newEle = document.createElement('link')
+    newEle.rel = 'stylesheet'
+    newEle.href = GLOBAL_CONFIG.source.justifiedGallery.css
+    document.body.appendChild(newEle)
+    getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`).then(() => { btf.initJustifiedGallery(ele) })
   }
 
   /**
@@ -298,12 +257,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const scrollFn = function () {
     const $rightside = document.getElementById('rightside')
     const innerHeight = window.innerHeight + 56
-    let initTop = 0
-    let isChatShow = true
-    const $header = document.getElementById('page-header')
-    const isChatBtnHide = typeof chatBtnHide === 'function'
-    const isChatBtnShow = typeof chatBtnShow === 'function'
-    const isShowPercent = GLOBAL_CONFIG.percent.rightside
 
     // 當滾動條小于 56 的時候
     if (document.body.scrollHeight <= innerHeight) {
@@ -312,48 +265,52 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // find the scroll direction
-    const scrollDirection = currentTop => {
+    function scrollDirection (currentTop) {
       const result = currentTop > initTop // true is down & false is up
       initTop = currentTop
       return result
     }
 
-    const scrollTask = btf.throttle(() => {
-      const currentTop = window.scrollY || document.documentElement.scrollTop
-      const isDown = scrollDirection(currentTop)
-      if (currentTop > 56) {
-        if (isDown) {
-          if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
-          if (isChatBtnShow && isChatShow === true) {
-            chatBtnHide()
-            isChatShow = false
+    let initTop = 0
+    let isChatShow = true
+    const $header = document.getElementById('page-header')
+    const isChatBtnHide = typeof chatBtnHide === 'function'
+    const isChatBtnShow = typeof chatBtnShow === 'function'
+
+    window.scrollCollect = () => {
+      return btf.throttle(function (e) {
+        const currentTop = window.scrollY || document.documentElement.scrollTop
+        const isDown = scrollDirection(currentTop)
+        if (currentTop > 56) {
+          if (isDown) {
+            if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
+            if (isChatBtnShow && isChatShow === true) {
+              chatBtnHide()
+              isChatShow = false
+            }
+          } else {
+            if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
+            if (isChatBtnHide && isChatShow === false) {
+              chatBtnShow()
+              isChatShow = true
+            }
+          }
+          $header.classList.add('nav-fixed')
+          if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
+            $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
           }
         } else {
-          if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
-          if (isChatBtnHide && isChatShow === false) {
-            chatBtnShow()
-            isChatShow = true
+          if (currentTop === 0) {
+            $header.classList.remove('nav-fixed', 'nav-visible')
           }
+          $rightside.style.cssText = "opacity: ''; transform: ''"
         }
-        $header.classList.add('nav-fixed')
-        if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
+
+        if (document.body.scrollHeight <= innerHeight) {
           $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
         }
-      } else {
-        if (currentTop === 0) {
-          $header.classList.remove('nav-fixed', 'nav-visible')
-        }
-        $rightside.style.cssText = "opacity: ''; transform: ''"
-      }
-
-      isShowPercent && rightsideScrollPercent(currentTop)
-
-      if (document.body.scrollHeight <= innerHeight) {
-        $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
-      }
-    }, 200)
-
-    window.scrollCollect = scrollTask
+      }, 200)()
+    }
 
     window.addEventListener('scroll', scrollCollect)
   }
@@ -368,14 +325,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!($article && (isToc || isAnchor))) return
 
-    let $tocLink, $cardToc, autoScrollToc, $tocPercentage, isExpand
+    let $tocLink, $cardToc, scrollPercent, autoScrollToc, isExpand
 
     if (isToc) {
       const $cardTocLayout = document.getElementById('card-toc')
       $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0]
       $tocLink = $cardToc.querySelectorAll('.toc-link')
-      $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
+      const $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
       isExpand = $cardToc.classList.contains('is-expand')
+
+      scrollPercent = currentTop => {
+        const docHeight = $article.clientHeight
+        const winHeight = document.documentElement.clientHeight
+        const headerHeight = $article.offsetTop
+        const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : (document.documentElement.scrollHeight - winHeight)
+        const scrollPercent = (currentTop - headerHeight) / (contentMath)
+        const scrollPercentRounded = Math.round(scrollPercent * 100)
+        const percentage = (scrollPercentRounded > 100) ? 100 : (scrollPercentRounded <= 0) ? 0 : scrollPercentRounded
+        $tocPercentage.textContent = percentage
+      }
 
       window.mobileToc = {
         open: () => {
@@ -465,31 +433,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // main of scroll
-    window.tocScrollFn = btf.throttle(() => {
-      const currentTop = window.scrollY || document.documentElement.scrollTop
-      if (isToc && GLOBAL_CONFIG.percent.toc) {
-        $tocPercentage.textContent = btf.getScrollPercent(currentTop, $article)
-      }
-      findHeadPosition(currentTop)
-    }, 100)
-
-    window.addEventListener('scroll', tocScrollFn)
-  }
-
-  const modeChangeFn = mode => {
-    if (!window.themeChange) {
-      return
+    window.tocScrollFn = function () {
+      return btf.throttle(function () {
+        const currentTop = window.scrollY || document.documentElement.scrollTop
+        isToc && scrollPercent(currentTop)
+        findHeadPosition(currentTop)
+      }, 100)()
     }
-
-    const turnMode = item => window.themeChange[item](mode)
-
-    Object.keys(window.themeChange).forEach(item => {
-      if (['disqus', 'disqusjs'].includes(item)) {
-        setTimeout(() => turnMode(item), 300)
-      } else {
-        turnMode(item)
-      }
-    })
+    window.addEventListener('scroll', tocScrollFn)
   }
 
   /**
@@ -504,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function () {
       newEle.className = 'fas fa-sign-out-alt exit-readmode'
       $body.appendChild(newEle)
 
-      const clickFn = () => {
+      function clickFn () {
         $body.classList.remove('read-mode')
         newEle.remove()
         newEle.removeEventListener('click', clickFn)
@@ -513,8 +464,8 @@ document.addEventListener('DOMContentLoaded', function () {
       newEle.addEventListener('click', clickFn)
     },
     switchDarkMode: () => { // Switch Between Light And Dark Mode
-      const willChangeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-      if (willChangeMode === 'dark') {
+      const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+      if (nowMode === 'light') {
         activateDarkMode()
         saveToLocal.set('theme', 'dark', 2)
         GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
@@ -523,7 +474,12 @@ document.addEventListener('DOMContentLoaded', function () {
         saveToLocal.set('theme', 'light', 2)
         GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
       }
-      modeChangeFn(willChangeMode)
+      // handle some cases
+      typeof utterancesTheme === 'function' && utterancesTheme()
+      typeof changeGiscusTheme === 'function' && changeGiscusTheme()
+      typeof FB === 'object' && window.loadFBComment()
+      window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)
+      typeof runMermaid === 'function' && window.runMermaid()
     },
     showOrHideBtn: (e) => { // rightside 點擊設置 按鈕 展開
       const rightsideHideClassList = document.getElementById('rightside-config-hide').classList
@@ -541,8 +497,9 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     hideAsideBtn: () => { // Hide aside
       const $htmlDom = document.documentElement.classList
-      const saveStatus = $htmlDom.contains('hide-aside') ? 'show' : 'hide'
-      saveToLocal.set('aside-status', saveStatus, 2)
+      $htmlDom.contains('hide-aside')
+        ? saveToLocal.set('aside-status', 'show', 2)
+        : saveToLocal.set('aside-status', 'hide', 2)
       $htmlDom.toggle('hide-aside')
     },
 
@@ -591,16 +548,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * 複製時加上版權信息
- */
+   * 複製時加上版權信息
+   */
   const addCopyright = () => {
     const copyright = GLOBAL_CONFIG.copyright
     document.body.oncopy = (e) => {
       e.preventDefault()
-      const copyFont = window.getSelection(0).toString()
-      let textFont = copyFont
+      let textFont; const copyFont = window.getSelection(0).toString()
       if (copyFont.length > copyright.limitCount) {
-        textFont = `${copyFont}\n\n\n${copyright.languages.author}\n${copyright.languages.link}${window.location.href}\n${copyright.languages.source}\n${copyright.languages.info}`
+        textFont = copyFont + '\n' + '\n' + '\n' +
+        copyright.languages.author + '\n' +
+        copyright.languages.link + window.location.href + '\n' +
+        copyright.languages.source + '\n' +
+        copyright.languages.info
+      } else {
+        textFont = copyFont
       }
       if (e.clipboardData) {
         return e.clipboardData.setData('text', textFont)
@@ -617,7 +579,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const $runtimeCount = document.getElementById('runtimeshow')
     if ($runtimeCount) {
       const publishDate = $runtimeCount.getAttribute('data-publishDate')
-      $runtimeCount.textContent = `${btf.diffDate(publishDate)} ${GLOBAL_CONFIG.runtime}`
+      $runtimeCount.innerText = btf.diffDate(publishDate) + ' ' + GLOBAL_CONFIG.runtime
     }
   }
 
@@ -628,7 +590,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const $lastPushDateItem = document.getElementById('last-push-date')
     if ($lastPushDateItem) {
       const lastPushDate = $lastPushDateItem.getAttribute('data-lastPushDate')
-      $lastPushDateItem.textContent = btf.diffDate(lastPushDate, true)
+      $lastPushDateItem.innerText = btf.diffDate(lastPushDate, true)
     }
   }
 
@@ -761,9 +723,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const relativeDate = function (selector) {
     selector.forEach(item => {
-      const timeVal = item.getAttribute('datetime')
-      item.textContent = btf.diffDate(timeVal, true)
-      item.style.display = 'inline'
+      const $this = item
+      const timeVal = $this.getAttribute('datetime')
+      $this.innerText = btf.diffDate(timeVal, true)
+      $this.style.display = 'inline'
     })
   }
 
@@ -778,13 +741,6 @@ document.addEventListener('DOMContentLoaded', function () {
     clickFnOfSubMenu()
     GLOBAL_CONFIG.islazyload && lazyloadImg()
     GLOBAL_CONFIG.copyright !== undefined && addCopyright()
-
-    if (GLOBAL_CONFIG.autoDarkmode) {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (saveToLocal.get('theme') !== undefined) return
-        e.matches ? modeChangeFn('dark') : modeChangeFn('light')
-      })
-    }
   }
 
   window.refreshFn = function () {
